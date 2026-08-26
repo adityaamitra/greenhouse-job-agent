@@ -1,0 +1,25 @@
+# Environment variables / secrets
+.env
+
+# Private applicant data
+agent/config/applicant.json
+
+# Resumes - contain personal information
+agent/resumes/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Node / React
+node_modules/
+dashboard/dist/
+
+# macOS
+.DS_Store
+
+# IDE
+.vscode/
+.idea/
