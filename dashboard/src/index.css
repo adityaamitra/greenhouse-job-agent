@@ -2,14 +2,8 @@
   box-sizing: border-box;
 }
 
-html,
-body,
-#root {
-  margin: 0;
-  min-height: 100%;
-}
 
-body {
+:root {
   font-family:
     Inter,
     system-ui,
@@ -18,18 +12,51 @@ body {
     "Segoe UI",
     sans-serif;
 
-  background: #0b0d10;
-  color: #f4f4f5;
+  color: #f5f7fa;
+  background: #090b0e;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
 }
 
+
+html,
+body,
+#root {
+  margin: 0;
+  min-height: 100%;
+}
+
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+
+  background:
+    radial-gradient(
+      circle at top left,
+      rgba(59, 130, 246, 0.07),
+      transparent 28rem
+    ),
+    #090b0e;
+}
+
+
 button,
-input {
+input,
+select {
   font: inherit;
 }
+
 
 button {
   cursor: pointer;
 }
+
+
+/* ==========================================================
+   AUTH
+   ========================================================== */
 
 .page-center {
   min-height: 100vh;
@@ -41,28 +68,63 @@ button {
   padding: 24px;
 }
 
+
 .login-card {
   width: 100%;
   max-width: 420px;
 
-  background: #14171c;
+  padding: 36px;
 
-  border: 1px solid #272b33;
-  border-radius: 16px;
+  background: #12151a;
 
-  padding: 32px;
+  border: 1px solid #282d35;
+  border-radius: 18px;
+
+  box-shadow:
+    0 24px 80px
+    rgba(0, 0, 0, 0.35);
 }
+
+
+.brand-mark {
+  width: 46px;
+  height: 46px;
+
+  display: grid;
+  place-items: center;
+
+  margin-bottom: 22px;
+
+  border-radius: 12px;
+
+  background: #f3f4f6;
+  color: #101216;
+
+  font-weight: 800;
+}
+
 
 .login-card h1 {
-  margin-top: 0;
-  margin-bottom: 8px;
+  margin:
+    0
+    0
+    8px;
+
+  font-size: 28px;
 }
+
 
 .subtitle {
-  color: #9ca3af;
+  margin:
+    0
+    0
+    26px;
 
-  margin-bottom: 28px;
+  color: #9da5b4;
+
+  line-height: 1.5;
 }
+
 
 .login-card form {
   display: flex;
@@ -71,138 +133,604 @@ button {
   gap: 10px;
 }
 
+
 .login-card label {
-  font-size: 14px;
-
-  color: #d4d4d8;
-
   margin-top: 8px;
-}
 
-.login-card input {
-  background: #0f1115;
+  color: #c5cad3;
 
-  border: 1px solid #343944;
-  border-radius: 8px;
-
-  color: white;
-
-  padding: 12px 14px;
-}
-
-.login-card button {
-  margin-top: 18px;
-
-  border: none;
-  border-radius: 8px;
-
-  padding: 12px;
-
+  font-size: 13px;
   font-weight: 600;
 }
 
-.error {
-  color: #fca5a5;
+
+.login-card input {
+  width: 100%;
+
+  padding: 12px 14px;
+
+  border: 1px solid #353b45;
+  border-radius: 9px;
+
+  outline: none;
+
+  background: #0d1014;
+  color: #fff;
 }
+
+
+.login-card input:focus {
+  border-color: #778195;
+}
+
+
+.primary-button {
+  margin-top: 18px;
+
+  padding: 12px 16px;
+
+  border: 0;
+  border-radius: 9px;
+
+  background: #f3f4f6;
+  color: #101216;
+
+  font-weight: 700;
+}
+
+
+.primary-button:disabled {
+  cursor: default;
+  opacity: 0.6;
+}
+
+
+/* ==========================================================
+   DASHBOARD
+   ========================================================== */
 
 .dashboard {
-  min-height: 100vh;
+  width: min(
+    1550px,
+    calc(100% - 48px)
+  );
 
-  padding: 32px;
+  margin: 0 auto;
+
+  padding:
+    34px
+    0
+    70px;
 }
+
 
 .header {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
 
-  margin-bottom: 32px;
+  gap: 20px;
+
+  margin-bottom: 28px;
 }
+
 
 .header h1 {
-  margin: 0 0 6px;
+  margin:
+    0
+    0
+    6px;
+
+  font-size: 30px;
+  letter-spacing: -0.5px;
 }
+
 
 .header p {
   margin: 0;
 
-  color: #9ca3af;
+  color: #9da5b4;
 }
+
 
 .logout-button {
-  padding: 9px 14px;
+  padding: 10px 16px;
 
-  border-radius: 8px;
-
-  border: 1px solid #343944;
+  border: 1px solid #343a44;
+  border-radius: 9px;
 
   background: transparent;
-  color: white;
+  color: #f4f4f5;
 }
+
+
+.logout-button:hover {
+  background: #16191f;
+}
+
+
+/* ==========================================================
+   TABS
+   ========================================================== */
+
+.tabs {
+  display: flex;
+  align-items: center;
+
+  gap: 8px;
+
+  margin-bottom: 26px;
+
+  padding-bottom: 12px;
+
+  border-bottom: 1px solid #242932;
+
+  overflow-x: auto;
+}
+
+
+.tab {
+  display: flex;
+  align-items: center;
+
+  gap: 8px;
+
+  padding: 9px 13px;
+
+  border: 0;
+  border-radius: 8px;
+
+  background: transparent;
+
+  color: #929aa9;
+
+  white-space: nowrap;
+}
+
+
+.tab:hover {
+  background: #12151a;
+  color: #e4e7ec;
+}
+
+
+.tab.active {
+  background: #1a1e25;
+  color: #fff;
+}
+
+
+.tab-count {
+  min-width: 20px;
+
+  padding: 2px 6px;
+
+  border-radius: 999px;
+
+  background: #343a44;
+
+  font-size: 11px;
+  text-align: center;
+}
+
+
+/* ==========================================================
+   ERRORS
+   ========================================================== */
+
+.error {
+  color: #ff9d9d;
+}
+
+
+.error-banner {
+  margin-bottom: 20px;
+
+  padding: 12px 15px;
+
+  border: 1px solid #633636;
+  border-radius: 8px;
+
+  background: #261515;
+  color: #ffb0b0;
+}
+
+
+/* ==========================================================
+   METRICS
+   ========================================================== */
 
 .metrics {
   display: grid;
 
   grid-template-columns:
     repeat(
-      auto-fit,
-      minmax(180px, 1fr)
+      5,
+      minmax(
+        0,
+        1fr
+      )
     );
+
+  gap: 14px;
+
+  margin-bottom: 24px;
+}
+
+
+.metric-card {
+  min-height: 112px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  padding: 20px;
+
+  border: 1px solid #292e37;
+  border-radius: 12px;
+
+  background: #12151a;
+}
+
+
+.metric-card span {
+  color: #9da5b4;
+
+  font-size: 13px;
+}
+
+
+.metric-card strong {
+  font-size: 30px;
+  letter-spacing: -0.6px;
+}
+
+
+/* ==========================================================
+   PANELS
+   ========================================================== */
+
+.two-column {
+  display: grid;
+
+  grid-template-columns:
+    1.2fr
+    0.8fr;
+
+  gap: 18px;
+}
+
+
+.panel {
+  padding: 24px;
+
+  border: 1px solid #292e37;
+  border-radius: 13px;
+
+  background: #12151a;
+}
+
+
+.panel-spacing {
+  margin-top: 20px;
+}
+
+
+.panel-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  gap: 20px;
+
+  margin-bottom: 22px;
+}
+
+
+.panel-heading h2 {
+  margin:
+    0
+    0
+    5px;
+
+  font-size: 20px;
+}
+
+
+.panel-heading p {
+  margin: 0;
+
+  color: #929aa9;
+
+  font-size: 14px;
+}
+
+
+.count-badge {
+  padding: 5px 9px;
+
+  border-radius: 999px;
+
+  background: #252a32;
+
+  color: #d6dae1;
+
+  font-size: 12px;
+}
+
+
+/* ==========================================================
+   PRIORITIES
+   ========================================================== */
+
+.priority-row {
+  display: grid;
+
+  grid-template-columns:
+    auto
+    minmax(0, 1fr)
+    auto
+    auto;
+
+  align-items: center;
 
   gap: 16px;
 
-  margin-bottom: 32px;
+  padding: 14px 0;
+
+  border-bottom: 1px solid #272c34;
 }
 
-.metric-card {
-  background: #14171c;
 
-  border: 1px solid #272b33;
-  border-radius: 12px;
-
-  padding: 20px;
+.priority-row:last-child {
+  border-bottom: 0;
 }
 
-.metric-card span {
+
+.priority-main {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 4px;
+}
+
+
+.priority-main strong {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+
+.priority-main span,
+.priority-resume {
+  color: #929aa9;
+
+  font-size: 13px;
+}
+
+
+/* ==========================================================
+   SCORE
+   ========================================================== */
+
+.score-badge {
+  min-width: 58px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 5px 8px;
+
+  border-radius: 7px;
+
+  background: #272c34;
+
+  color: #dce0e7;
+
+  font-size: 12px;
+  font-weight: 700;
+}
+
+
+.score-high {
+  background: #173826;
+  color: #9be3ba;
+}
+
+
+.score-medium {
+  background: #41371a;
+  color: #ecd77c;
+}
+
+
+.score-low {
+  background: #2d3037;
+  color: #c4c9d3;
+}
+
+
+/* ==========================================================
+   LATEST RUN
+   ========================================================== */
+
+.run-grid,
+.activity-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(
+      3,
+      1fr
+    );
+
+  gap: 10px;
+}
+
+
+.run-stat {
+  padding: 16px;
+
+  border: 1px solid #292e37;
+  border-radius: 10px;
+
+  background: #0d1014;
+}
+
+
+.run-stat span {
   display: block;
 
-  color: #9ca3af;
+  margin-bottom: 8px;
 
-  font-size: 14px;
+  color: #929aa9;
 
-  margin-bottom: 10px;
+  font-size: 12px;
 }
 
-.metric-card strong {
-  font-size: 28px;
+
+.run-stat strong {
+  font-size: 22px;
 }
 
-.applications-section {
-  background: #14171c;
 
-  border: 1px solid #272b33;
-  border-radius: 12px;
+/* ==========================================================
+   ACTION CARDS
+   ========================================================== */
 
-  padding: 24px;
+.action-card {
+  display: grid;
+
+  grid-template-columns:
+    auto
+    minmax(0, 1fr)
+    auto;
+
+  align-items: center;
+
+  gap: 18px;
+
+  padding: 18px 0;
+
+  border-bottom: 1px solid #272c34;
 }
 
-.section-heading {
-  margin-bottom: 20px;
+
+.action-card:last-child {
+  border-bottom: 0;
 }
 
-.section-heading h2 {
-  margin: 0 0 6px;
+
+.action-main h3 {
+  margin:
+    0
+    0
+    5px;
+
+  font-size: 16px;
 }
 
-.section-heading p {
+
+.action-main p {
   margin: 0;
 
-  color: #9ca3af;
+  color: #929aa9;
+
+  font-size: 13px;
 }
 
+
+.action-meta {
+  display: flex;
+  flex-wrap: wrap;
+
+  gap: 18px;
+
+  margin-top: 10px;
+
+  color: #929aa9;
+
+  font-size: 12px;
+}
+
+
+.action-meta strong {
+  color: #d8dce3;
+}
+
+
+.action-buttons {
+  display: flex;
+
+  gap: 8px;
+}
+
+
+.primary-link,
+.secondary-button {
+  padding: 9px 12px;
+
+  border-radius: 8px;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  white-space: nowrap;
+}
+
+
+.primary-link {
+  background: #f0f1f3;
+
+  color: #111318;
+
+  text-decoration: none;
+}
+
+
+.secondary-button {
+  border: 1px solid #343a44;
+
+  background: transparent;
+  color: #eef0f3;
+}
+
+
+.secondary-button:hover {
+  background: #1c2027;
+}
+
+
+.assistance-message {
+  margin-top: 12px;
+
+  padding: 10px 12px;
+
+  border: 1px solid #604b25;
+  border-radius: 7px;
+
+  background: #292213;
+  color: #eed69b;
+
+  font-size: 13px;
+}
+
+
+/* ==========================================================
+   TABLE
+   ========================================================== */
+
 .table-wrapper {
+  width: 100%;
+
   overflow-x: auto;
 }
+
 
 table {
   width: 100%;
@@ -210,33 +738,252 @@ table {
   border-collapse: collapse;
 }
 
+
 th,
 td {
+  padding: 14px 12px;
+
+  border-bottom: 1px solid #272c34;
+
   text-align: left;
 
-  padding: 14px;
-
-  border-bottom: 1px solid #272b33;
+  vertical-align: middle;
 }
+
 
 th {
-  color: #9ca3af;
+  color: #9199a7;
 
-  font-size: 13px;
+  font-size: 11px;
+  font-weight: 700;
 
   text-transform: uppercase;
+  letter-spacing: 0.04em;
 }
+
 
 td {
-  font-size: 14px;
+  color: #dfe2e7;
+
+  font-size: 13px;
 }
 
-a {
-  color: #93c5fd;
+
+.role-cell {
+  min-width: 240px;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 4px;
+}
+
+
+.role-cell span {
+  color: #8f97a5;
+
+  font-size: 12px;
+}
+
+
+.method-badge {
+  display: inline-flex;
+
+  padding: 4px 7px;
+
+  border-radius: 6px;
+
+  font-size: 11px;
+  font-weight: 700;
+}
+
+
+.method-badge.manual {
+  background: #173826;
+  color: #9be3ba;
+}
+
+
+.method-badge.agent {
+  background: #202d3d;
+  color: #a4c8ef;
+}
+
+
+.status-select {
+  max-width: 180px;
+
+  padding: 7px 9px;
+
+  border: 1px solid #353b45;
+  border-radius: 7px;
+
+  outline: none;
+
+  background: #0d1014;
+  color: #e2e5ea;
+
+  font-size: 12px;
+}
+
+
+.job-link {
+  color: #92c5ff;
 
   text-decoration: none;
+
+  white-space: nowrap;
 }
 
-a:hover {
+
+.job-link:hover {
   text-decoration: underline;
+}
+
+
+/* ==========================================================
+   AGENT PERFORMANCE
+   ========================================================== */
+
+.timing-panel {
+  max-width: 620px;
+
+  margin-top: 28px;
+}
+
+
+.timing-panel h3 {
+  margin:
+    0
+    0
+    14px;
+}
+
+
+.timing-row {
+  display: flex;
+  justify-content: space-between;
+
+  gap: 20px;
+
+  padding: 10px 0;
+
+  border-bottom: 1px solid #272c34;
+}
+
+
+.timing-row span {
+  color: #929aa9;
+}
+
+
+.timing-row strong {
+  font-size: 13px;
+}
+
+
+/* ==========================================================
+   EMPTY
+   ========================================================== */
+
+.empty-state {
+  padding: 30px;
+
+  border: 1px dashed #343a44;
+  border-radius: 10px;
+
+  color: #878f9d;
+
+  text-align: center;
+}
+
+
+/* ==========================================================
+   RESPONSIVE
+   ========================================================== */
+
+@media (
+  max-width: 1100px
+) {
+  .metrics {
+    grid-template-columns:
+      repeat(
+        2,
+        1fr
+      );
+  }
+
+  .two-column {
+    grid-template-columns:
+      1fr;
+  }
+
+  .activity-grid {
+    grid-template-columns:
+      repeat(
+        2,
+        1fr
+      );
+  }
+}
+
+
+@media (
+  max-width: 700px
+) {
+  .dashboard {
+    width:
+      min(
+        100% - 28px,
+        1550px
+      );
+
+    padding-top: 22px;
+  }
+
+  .header {
+    align-items: flex-start;
+  }
+
+  .header h1 {
+    font-size: 24px;
+  }
+
+  .metrics {
+    grid-template-columns:
+      1fr;
+  }
+
+  .action-card {
+    grid-template-columns:
+      1fr;
+  }
+
+  .action-score {
+    margin-bottom: -7px;
+  }
+
+  .action-buttons {
+    flex-direction: column;
+  }
+
+  .priority-row {
+    grid-template-columns:
+      auto
+      1fr;
+
+    gap: 10px;
+  }
+
+  .priority-resume,
+  .priority-row
+  .job-link {
+    grid-column: 2;
+  }
+
+  .run-grid,
+  .activity-grid {
+    grid-template-columns:
+      1fr;
+  }
 }
