@@ -1,22 +1,41 @@
 from src.greenhouse.client import get_jobs
 
 from src.filtering.job_filter import filter_by_role
-from src.filtering.location_filter import filter_by_location
-from src.filtering.experience_filter import filter_by_experience
 
-from src.matching.requirement_extractor import (
-    extract_requirements,
+from src.filtering.location_filter import (
+    filter_by_location,
+)
+
+from src.filtering.experience_filter import (
+    filter_by_experience,
+    clean_job_content,
+)
+
+from src.matching.resume_loader import (
+    load_all_resumes,
+)
+
+from src.matching.matcher import (
+    rank_resumes,
 )
 
 
+def pretty_name(name: str) -> str:
+    return (
+        name
+        .replace("_", " ")
+        .title()
+    )
+
+
 def choose_test_job(
-    accepted_jobs: list[dict],
+    eligible_jobs: list[dict],
 ) -> dict | None:
     """
-    Choose a Backend Engineer job for our requirement parser test.
+    Prefer a Backend Engineer role for this test.
     """
 
-    for result in accepted_jobs:
+    for result in eligible_jobs:
 
         job = result["job"]
 
@@ -26,12 +45,40 @@ def choose_test_job(
         ).lower()
 
         if "backend engineer" in title:
-            return job
+            return result
 
-    if accepted_jobs:
-        return accepted_jobs[0]["job"]
+    if eligible_jobs:
+        return eligible_jobs[0]
 
     return None
+
+
+def print_group_result(
+    group: dict,
+) -> None:
+
+    options = " OR ".join(
+        group["skills"]
+    )
+
+    if group["satisfied"]:
+
+        matches = ", ".join(
+            group[
+                "matching_options"
+            ]
+        )
+
+        print(
+            f"  ✓ {options}"
+            f"  [matched: {matches}]"
+        )
+
+    else:
+
+        print(
+            f"  ✗ {options}"
+        )
 
 
 def main():
@@ -40,8 +87,12 @@ def main():
 
     print()
     print("=" * 80)
-    print("GREENHOUSE REQUIREMENT EXTRACTOR TEST")
+    print("GREENHOUSE REFINED MATCH SCORE TEST")
     print("=" * 80)
+
+    # ========================================================
+    # FETCH
+    # ========================================================
 
     print()
     print(
@@ -54,8 +105,13 @@ def main():
     )
 
     if not jobs:
+
         print("No jobs found.")
         return
+
+    # ========================================================
+    # ELIGIBILITY
+    # ========================================================
 
     role_jobs = filter_by_role(
         jobs
@@ -77,13 +133,84 @@ def main():
         us_jobs
     )
 
-    test_job = choose_test_job(
+    # IMPORTANT:
+    #
+    # 4-year REVIEW jobs remain eligible.
+    #
+    # Only experience REJECT jobs are removed.
+    eligible_jobs = (
         accepted_jobs
+        + review_jobs
     )
 
-    if not test_job:
-        print("No accepted test job found.")
+    # ========================================================
+    # SUMMARY
+    # ========================================================
+
+    print()
+    print("ELIGIBILITY SUMMARY")
+    print("-" * 80)
+
+    print(
+        f"Total jobs:                   "
+        f"{len(jobs)}"
+    )
+
+    print(
+        f"Target-role jobs:             "
+        f"{len(role_jobs)}"
+    )
+
+    print(
+        f"US-compatible jobs:           "
+        f"{len(us_jobs)}"
+    )
+
+    print(
+        f"Experience accepted:          "
+        f"{len(accepted_jobs)}"
+    )
+
+    print(
+        f"Experience review / eligible: "
+        f"{len(review_jobs)}"
+    )
+
+    print(
+        f"Experience rejected / skip:   "
+        f"{len(rejected_jobs)}"
+    )
+
+    print(
+        f"TOTAL ELIGIBLE FOR APPLY:     "
+        f"{len(eligible_jobs)}"
+    )
+
+    # ========================================================
+    # SELECT TEST JOB
+    # ========================================================
+
+    test_result = choose_test_job(
+        eligible_jobs
+    )
+
+    if not test_result:
+
+        print(
+            "No eligible test job found."
+        )
+
         return
+
+    test_job = test_result[
+        "job"
+    ]
+
+    experience_mentions = (
+        test_result[
+            "experience_mentions"
+        ]
+    )
 
     title = test_job.get(
         "title",
@@ -98,140 +225,284 @@ def main():
         "Unknown location",
     )
 
+    url = test_job.get(
+        "absolute_url",
+        "No URL",
+    )
+
+    content = test_job.get(
+        "content",
+        "",
+    )
+
+    job_text = clean_job_content(
+        content
+    )
+
+    # ========================================================
+    # JOB
+    # ========================================================
+
     print()
     print("=" * 80)
     print("TEST JOB")
     print("=" * 80)
 
-    print(f"Title:    {title}")
-    print(f"Location: {location}")
+    print(
+        f"Title:    {title}"
+    )
 
-    result = extract_requirements(
-        test_job.get(
-            "content",
-            "",
-        )
+    print(
+        f"Location: {location}"
+    )
+
+    print(
+        f"URL:      {url}"
     )
 
     # ========================================================
-    # REQUIRED
+    # RESUMES
     # ========================================================
 
     print()
+    print(
+        "Loading master resumes..."
+    )
+
+    resumes = load_all_resumes()
+
+    print(
+        f"Loaded {len(resumes)} "
+        f"master resumes."
+    )
+
+    # ========================================================
+    # MATCH
+    # ========================================================
+
+    print()
+    print(
+        "Calculating refined match scores..."
+    )
+
+    result = rank_resumes(
+        job_title=title,
+        job_content=content,
+        job_text=job_text,
+        experience_mentions=(
+            experience_mentions
+        ),
+        resumes=resumes,
+    )
+
+    print()
+    print(
+        "Detected profile: "
+        f"{pretty_name(result['job_profile'])}"
+    )
+
+    print(
+        "Experience component: "
+        f"{result['experience_score']:.2f}"
+    )
+
+    # ========================================================
+    # JOB REQUIREMENTS
+    # ========================================================
+
+    requirements = result[
+        "requirements"
+    ]
+
+    print()
     print("=" * 80)
-    print("REQUIRED SKILLS")
+    print("JOB REQUIREMENTS")
     print("=" * 80)
 
-    if result["required_skills"]:
+    print()
+    print("Required:")
 
-        for skill in result[
+    if requirements[
+        "required_skills"
+    ]:
+
+        for skill in requirements[
             "required_skills"
         ]:
-            print(f"  ✓ {skill}")
+            print(
+                f"  • {skill}"
+            )
 
     else:
-        print("  None detected")
-
-    # ========================================================
-    # PREFERRED
-    # ========================================================
+        print("  None")
 
     print()
-    print("=" * 80)
-    print("PREFERRED SKILLS")
-    print("=" * 80)
+    print("Preferred:")
 
-    if result["preferred_skills"]:
+    if requirements[
+        "preferred_skills"
+    ]:
 
-        for skill in result[
+        for skill in requirements[
             "preferred_skills"
         ]:
-            print(f"  • {skill}")
+            print(
+                f"  • {skill}"
+            )
 
     else:
-        print("  None detected")
+        print("  None")
+
+    print()
+    print("Alternative groups:")
+
+    required_groups_exist = False
+
+    for group in requirements[
+        "alternative_groups"
+    ]:
+
+        required_groups_exist = True
+
+        print(
+            "  • "
+            + " OR ".join(
+                group["skills"]
+            )
+            + f" [{group['section']}]"
+        )
+
+    if not required_groups_exist:
+        print("  None")
 
     # ========================================================
-    # GENERAL
+    # RANKINGS
     # ========================================================
 
     print()
     print("=" * 80)
-    print("GENERAL JD MENTIONS")
+    print("REFINED RESUME RANKING")
     print("=" * 80)
 
-    if result["general_skills"]:
-
-        for skill in result[
-            "general_skills"
-        ]:
-            print(f"  • {skill}")
-
-    else:
-        print("  None detected")
-
-    # ========================================================
-    # ALTERNATIVES
-    # ========================================================
-
-    print()
-    print("=" * 80)
-    print("ALTERNATIVE SKILL GROUPS")
-    print("=" * 80)
-
-    if result["alternative_groups"]:
-
-        for group in result[
-            "alternative_groups"
-        ]:
-
-            print()
-
-            print(
-                f"Section: "
-                f"{group['section']}"
-            )
-
-            print(
-                "Skills: "
-                + " OR ".join(
-                    group["skills"]
-                )
-            )
-
-            print(
-                f"Context: "
-                f"{group['text']}"
-            )
-
-    else:
-        print("  None detected")
-
-    # ========================================================
-    # EVIDENCE
-    # ========================================================
-
-    print()
-    print("=" * 80)
-    print("DETECTION EVIDENCE")
-    print("=" * 80)
-
-    for item in result["evidence"]:
+    for index, item in enumerate(
+        result["rankings"],
+        start=1,
+    ):
 
         print()
         print(
-            f"[{item['section'].upper()}]"
+            f"{index}. "
+            f"{pretty_name(item['resume_name'])}"
         )
 
         print(
-            "Skills: "
-            + ", ".join(
-                item["skills"]
+            f"   FINAL:       "
+            f"{item['final_score']:.2f}"
+        )
+
+        print(
+            f"   Role:        "
+            f"{item['role_score']:.2f}"
+        )
+
+        print(
+            f"   Required:    "
+            f"{item['required_score']:.2f}"
+        )
+
+        print(
+            f"   Preferred:   "
+            f"{item['preferred_score']:.2f}"
+        )
+
+        print(
+            f"   Semantic:    "
+            f"{item['semantic_score']:.2f}"
+            f" "
+            f"(raw "
+            f"{item['semantic_raw']:.2f})"
+        )
+
+        print(
+            f"   Experience:  "
+            f"{item['experience_score']:.2f}"
+        )
+
+        print(
+            f"   Route:       "
+            f"{item['route']}"
+        )
+
+    # ========================================================
+    # WINNER DETAILS
+    # ========================================================
+
+    best = result[
+        "rankings"
+    ][0]
+
+    print()
+    print("=" * 80)
+    print("BEST MATCH")
+    print("=" * 80)
+
+    print(
+        f"Resume: "
+        f"{pretty_name(best['resume_name'])}"
+    )
+
+    print(
+        f"File: "
+        f"{best['filename']}"
+    )
+
+    print(
+        f"Score: "
+        f"{best['final_score']:.2f}/100"
+    )
+
+    print(
+        f"Route: "
+        f"{best['route']}"
+    )
+
+    # --------------------------------------------------------
+    # REQUIRED DETAIL
+    # --------------------------------------------------------
+
+    print()
+    print("Required skill matches:")
+
+    if best[
+        "matched_required"
+    ]:
+
+        for skill in best[
+            "matched_required"
+        ]:
+
+            print(
+                f"  ✓ {skill}"
             )
-        )
 
-        print(
-            f"Text: {item['text']}"
+    if best[
+        "missing_required"
+    ]:
+
+        for skill in best[
+            "missing_required"
+        ]:
+
+            print(
+                f"  ✗ {skill}"
+            )
+
+    for group in best[
+        "required_groups"
+    ]:
+
+        print_group_result(
+            group
         )
 
     print()

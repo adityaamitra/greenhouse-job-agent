@@ -1,18 +1,31 @@
-import re
-
 from sentence_transformers import SentenceTransformer, util
+
+from src.matching.requirement_extractor import (
+    extract_requirements,
+    extract_skills,
+)
+
+
+# ============================================================
+# CONFIGURATION
+# ============================================================
+
+MODEL_NAME = "all-MiniLM-L6-v2"
+
+APPLICANT_YEARS_EXPERIENCE = 3
+
+_model = None
 
 
 # ============================================================
 # SEMANTIC MODEL
 # ============================================================
 
-MODEL_NAME = "all-MiniLM-L6-v2"
-
-_model = None
-
-
 def get_model() -> SentenceTransformer:
+    """
+    Load the local sentence-transformer model once.
+    """
+
     global _model
 
     if _model is None:
@@ -26,7 +39,7 @@ def get_model() -> SentenceTransformer:
 
 
 # ============================================================
-# ROLE PROFILES
+# ROLE ALIGNMENT
 # ============================================================
 
 ROLE_ALIGNMENT = {
@@ -121,10 +134,14 @@ ROLE_ALIGNMENT = {
 
 
 def infer_job_profile(title: str) -> str:
-    title = title.lower()
+    """
+    Map a job title to one of our 8 resume profiles.
+    """
+
+    normalized = title.lower()
 
     if any(
-        phrase in title
+        phrase in normalized
         for phrase in [
             "machine learning",
             "ml engineer",
@@ -137,7 +154,7 @@ def infer_job_profile(title: str) -> str:
         return "ai_ml_engineer"
 
     if any(
-        phrase in title
+        phrase in normalized
         for phrase in [
             "production support",
             "application support",
@@ -146,7 +163,7 @@ def infer_job_profile(title: str) -> str:
         return "production_support_engineer"
 
     if any(
-        phrase in title
+        phrase in normalized
         for phrase in [
             "devops",
             "site reliability",
@@ -156,7 +173,7 @@ def infer_job_profile(title: str) -> str:
         return "devops_engineer"
 
     if any(
-        phrase in title
+        phrase in normalized
         for phrase in [
             "full stack",
             "full-stack",
@@ -165,7 +182,7 @@ def infer_job_profile(title: str) -> str:
         return "fullstack_engineer"
 
     if any(
-        phrase in title
+        phrase in normalized
         for phrase in [
             "frontend",
             "front-end",
@@ -174,7 +191,7 @@ def infer_job_profile(title: str) -> str:
         return "frontend_engineer"
 
     if any(
-        phrase in title
+        phrase in normalized
         for phrase in [
             "backend",
             "back-end",
@@ -183,7 +200,7 @@ def infer_job_profile(title: str) -> str:
         return "backend_engineer"
 
     if any(
-        phrase in title
+        phrase in normalized
         for phrase in [
             "systems engineer",
             "system engineer",
@@ -199,357 +216,187 @@ def get_role_score(
     resume_name: str,
 ) -> float:
 
-    profile_scores = ROLE_ALIGNMENT.get(
-        job_profile,
-        {},
-    )
-
     return float(
-        profile_scores.get(
-            resume_name,
-            50,
-        )
+        ROLE_ALIGNMENT
+        .get(job_profile, {})
+        .get(resume_name, 50)
     )
 
 
 # ============================================================
-# SKILL EXTRACTION
+# REQUIREMENT SCORING
 # ============================================================
 
-SKILL_PATTERNS = {
-    "Python": [
-        r"\bpython\b",
-    ],
-
-    "Java": [
-        r"\bjava\b",
-    ],
-
-    "JavaScript": [
-        r"\bjavascript\b",
-        r"\bjs\b",
-    ],
-
-    "TypeScript": [
-        r"\btypescript\b",
-    ],
-
-    "Go": [
-        r"\bgolang\b",
-        r"\bgo language\b",
-    ],
-
-    "C++": [
-        r"c\+\+",
-    ],
-
-    "Ruby": [
-        r"\bruby\b",
-    ],
-
-    "React": [
-        r"\breact\b",
-        r"\breactjs\b",
-        r"\breact\.js\b",
-    ],
-
-    "Node.js": [
-        r"\bnode\.?js\b",
-        r"\bnodejs\b",
-    ],
-
-    "FastAPI": [
-        r"\bfastapi\b",
-    ],
-
-    "Flask": [
-        r"\bflask\b",
-    ],
-
-    "REST APIs": [
-        r"\brest\b",
-        r"\brestful\b",
-        r"\brest api",
-        r"\brest APIs?\b",
-    ],
-
-    "GraphQL": [
-        r"\bgraphql\b",
-    ],
-
-    "SQL": [
-        r"\bsql\b",
-    ],
-
-    "PL/SQL": [
-        r"\bpl/sql\b",
-        r"\bplsql\b",
-    ],
-
-    "Oracle": [
-        r"\boracle\b",
-    ],
-
-    "PostgreSQL": [
-        r"\bpostgresql\b",
-        r"\bpostgres\b",
-    ],
-
-    "MySQL": [
-        r"\bmysql\b",
-    ],
-
-    "MongoDB": [
-        r"\bmongodb\b",
-    ],
-
-    "Redis": [
-        r"\bredis\b",
-    ],
-
-    "Qdrant": [
-        r"\bqdrant\b",
-    ],
-
-    "IBM MQ": [
-        r"\bibm mq\b",
-    ],
-
-    "WebLogic": [
-        r"\bweblogic\b",
-    ],
-
-    "Kafka": [
-        r"\bkafka\b",
-    ],
-
-    "RabbitMQ": [
-        r"\brabbitmq\b",
-    ],
-
-    "Linux": [
-        r"\blinux\b",
-        r"\bred hat\b",
-        r"\bubuntu\b",
-    ],
-
-    "Bash/Shell": [
-        r"\bbash\b",
-        r"\bshell scripting\b",
-        r"\bshell script",
-    ],
-
-    "Docker": [
-        r"\bdocker\b",
-        r"\bcontainerization\b",
-    ],
-
-    "Kubernetes": [
-        r"\bkubernetes\b",
-        r"\bk8s\b",
-    ],
-
-    "AWS": [
-        r"\baws\b",
-        r"\bamazon web services\b",
-    ],
-
-    "GCP": [
-        r"\bgcp\b",
-        r"\bgoogle cloud\b",
-    ],
-
-    "Azure": [
-        r"\bazure\b",
-    ],
-
-    "CI/CD": [
-        r"\bci/cd\b",
-        r"\bcontinuous integration\b",
-        r"\bcontinuous delivery\b",
-        r"\bcontinuous deployment\b",
-    ],
-
-    "GitHub Actions": [
-        r"\bgithub actions\b",
-    ],
-
-    "Git": [
-        r"\bgit\b",
-        r"\bgithub\b",
-    ],
-
-    "ELK Stack": [
-        r"\belk\b",
-        r"\belasticsearch\b",
-        r"\blogstash\b",
-        r"\bkibana\b",
-    ],
-
-    "PyTorch": [
-        r"\bpytorch\b",
-    ],
-
-    "TensorFlow": [
-        r"\btensorflow\b",
-    ],
-
-    "Scikit-learn": [
-        r"\bscikit-learn\b",
-        r"\bsklearn\b",
-    ],
-
-    "LLMs": [
-        r"\bllm\b",
-        r"\bllms\b",
-        r"\blarge language model",
-    ],
-
-    "RAG": [
-        r"\brag\b",
-        r"\bretrieval augmented generation\b",
-    ],
-
-    "LangChain": [
-        r"\blangchain\b",
-    ],
-
-    "CrewAI": [
-        r"\bcrewai\b",
-    ],
-
-    "Embeddings": [
-        r"\bembedding\b",
-        r"\bembeddings\b",
-    ],
-
-    "Vector Search": [
-        r"\bvector search\b",
-        r"\bvector database\b",
-        r"\bvector db\b",
-    ],
-
-    "Terraform": [
-        r"\bterraform\b",
-    ],
-
-    "Ansible": [
-        r"\bansible\b",
-    ],
-
-    "Jenkins": [
-        r"\bjenkins\b",
-    ],
-
-    "Prometheus": [
-        r"\bprometheus\b",
-    ],
-
-    "Grafana": [
-        r"\bgrafana\b",
-    ],
-
-    "System Design": [
-        r"\bsystem design\b",
-    ],
-
-    "Distributed Systems": [
-        r"\bdistributed system",
-    ],
-
-    "Microservices": [
-        r"\bmicroservice",
-    ],
-
-    "Concurrency": [
-        r"\bconcurrency\b",
-        r"\bconcurrent\b",
-    ],
-
-    "Incident Response": [
-        r"\bincident response\b",
-        r"\bincident management\b",
-    ],
-
-    "Root Cause Analysis": [
-        r"\broot cause analysis\b",
-        r"\brca\b",
-    ],
-
-    "Observability": [
-        r"\bobservability\b",
-        r"\bmonitoring\b",
-        r"\balerting\b",
-    ],
-
-    "Testing": [
-        r"\bpytest\b",
-        r"\bunit testing\b",
-        r"\bunit tests\b",
-    ],
-
-    "Security": [
-        r"\bsecurity\b",
-        r"\bcompliance\b",
-    ],
-}
-
-
-def extract_skills(text: str) -> set[str]:
-    if not text:
-        return set()
-
-    skills = set()
-
-    for skill, patterns in SKILL_PATTERNS.items():
-
-        for pattern in patterns:
-
-            if re.search(
-                pattern,
-                text,
-                re.IGNORECASE,
-            ):
-                skills.add(skill)
-                break
-
-    return skills
-
-
-def calculate_skill_score(
-    job_skills: set[str],
+def group_is_satisfied(
+    group_skills: list[str],
     resume_skills: set[str],
-) -> tuple[float, list[str], list[str]]:
+) -> tuple[bool, list[str]]:
+    """
+    For an alternative group:
 
-    if not job_skills:
-        return (
-            50.0,
-            [],
-            [],
+        Java OR Go OR C++
+
+    satisfying ANY member is enough.
+    """
+
+    matches = sorted(
+        set(group_skills).intersection(
+            resume_skills
         )
+    )
+
+    return bool(matches), matches
+
+
+def calculate_requirement_score(
+    normal_skills: list[str],
+    alternative_groups: list[dict],
+    resume_skills: set[str],
+    section: str,
+) -> tuple[float, list[str], list[str], list[dict]]:
+    """
+    Treat each normal skill as one requirement and each
+    OR-group as one requirement.
+
+    Example:
+
+        Distributed Systems
+        +
+        (Java OR Go OR C++)
+
+    = 2 total requirements.
+    """
+
+    normal_set = set(normal_skills)
 
     matched = sorted(
-        job_skills.intersection(
+        normal_set.intersection(
             resume_skills
         )
     )
 
     missing = sorted(
-        job_skills.difference(
+        normal_set.difference(
             resume_skills
         )
     )
 
+    satisfied_count = len(matched)
+    total_count = len(normal_set)
+
+    group_results = []
+
+    for group in alternative_groups:
+
+        if group.get("section") != section:
+            continue
+
+        skills = group.get(
+            "skills",
+            [],
+        )
+
+        satisfied, matching_options = (
+            group_is_satisfied(
+                skills,
+                resume_skills,
+            )
+        )
+
+        total_count += 1
+
+        if satisfied:
+            satisfied_count += 1
+
+        group_results.append(
+            {
+                "skills": skills,
+                "satisfied": satisfied,
+                "matching_options": matching_options,
+                "text": group.get(
+                    "text",
+                    "",
+                ),
+            }
+        )
+
+    # No requirement means there is nothing missing.
+    if total_count == 0:
+        return (
+            100.0,
+            matched,
+            missing,
+            group_results,
+        )
+
     score = (
-        len(matched)
-        / len(job_skills)
+        satisfied_count
+        / total_count
     ) * 100
 
     return (
         round(score, 2),
         matched,
         missing,
+        group_results,
     )
+
+
+# ============================================================
+# EXPERIENCE COMPONENT
+# ============================================================
+
+def calculate_experience_score(
+    experience_mentions: list[dict],
+) -> float:
+    """
+    The hard experience filter has already removed jobs that are
+    clearly outside our range.
+
+    This component distinguishes strong fit from borderline fit.
+
+    User experience:
+        3 years
+
+    Examples:
+        requires 2 years -> 100
+        requires 3 years -> 100
+        requires 4 years -> 65
+        no requirement   -> 100
+    """
+
+    relevant_mentions = [
+        mention
+        for mention in experience_mentions
+        if not mention.get(
+            "preferred",
+            False,
+        )
+    ]
+
+    if not relevant_mentions:
+        return 100.0
+
+    required_minimum = max(
+        mention.get(
+            "min_years",
+            0,
+        )
+        for mention in relevant_mentions
+    )
+
+    if APPLICANT_YEARS_EXPERIENCE >= required_minimum:
+        return 100.0
+
+    difference = (
+        required_minimum
+        - APPLICANT_YEARS_EXPERIENCE
+    )
+
+    if difference <= 1:
+        return 65.0
+
+    return 0.0
 
 
 # ============================================================
@@ -595,7 +442,7 @@ def chunk_text(
     return chunks
 
 
-def semantic_scores(
+def calculate_semantic_scores(
     job_text: str,
     resumes: dict[str, dict],
 ) -> dict[str, float]:
@@ -607,6 +454,7 @@ def semantic_scores(
     )
 
     if not job_chunks:
+
         return {
             name: 0.0
             for name in resumes
@@ -619,7 +467,7 @@ def semantic_scores(
         show_progress_bar=False,
     )
 
-    scores = {}
+    results = {}
 
     for resume_name, resume in resumes.items():
 
@@ -628,7 +476,8 @@ def semantic_scores(
         )
 
         if not resume_chunks:
-            scores[resume_name] = 0.0
+
+            results[resume_name] = 0.0
             continue
 
         resume_embeddings = model.encode(
@@ -638,13 +487,13 @@ def semantic_scores(
             show_progress_bar=False,
         )
 
-        similarity_matrix = util.cos_sim(
+        matrix = util.cos_sim(
             job_embeddings,
             resume_embeddings,
         )
 
         strongest = (
-            similarity_matrix
+            matrix
             .max(dim=1)
             .values
             .cpu()
@@ -656,30 +505,33 @@ def semantic_scores(
         )
 
         strongest = strongest[
-            :min(5, len(strongest))
+            :min(
+                5,
+                len(strongest),
+            )
         ]
 
-        raw_score = (
+        raw = (
             sum(strongest)
             / len(strongest)
         ) * 100
 
-        scores[resume_name] = round(
-            raw_score,
+        results[resume_name] = round(
+            raw,
             2,
         )
 
-    return scores
+    return results
 
 
 def normalize_semantic_score(
     raw_score: float,
 ) -> float:
     """
-    Convert typical cosine scores into a more useful 0-100
-    component score.
+    Convert typical MiniLM cosine similarity values into a
+    more interpretable component score.
 
-    Rough calibration:
+    Approximate calibration:
 
         25 -> 0
         35 -> 29
@@ -709,25 +561,39 @@ def normalize_semantic_score(
 
 
 # ============================================================
-# FINAL SCORING
+# ROUTING
 # ============================================================
 
 def get_route(
-    score: float,
+    final_score: float,
 ) -> str:
+    """
+    Score does NOT decide whether we apply.
 
-    if score >= 85:
+    Eligibility filtering happens before this point.
+
+    85+:
+        User manually applies.
+
+    Below 85:
+        Agent applies.
+    """
+
+    if final_score >= 85:
         return "MANUAL_PRIORITY"
 
-    if score >= 75:
-        return "AGENT_ASSIST"
+    return "AGENT_APPLY"
 
-    return "SKIP"
 
+# ============================================================
+# FINAL MATCHER
+# ============================================================
 
 def rank_resumes(
     job_title: str,
+    job_content: str,
     job_text: str,
+    experience_mentions: list[dict],
     resumes: dict[str, dict],
 ) -> dict:
 
@@ -735,36 +601,87 @@ def rank_resumes(
         job_title
     )
 
-    job_skills = extract_skills(
-        job_text
+    requirements = extract_requirements(
+        job_content
     )
 
-    semantic_raw_scores = semantic_scores(
-        job_text,
-        resumes,
+    semantic_raw_scores = (
+        calculate_semantic_scores(
+            job_text,
+            resumes,
+        )
+    )
+
+    experience_score = (
+        calculate_experience_score(
+            experience_mentions
+        )
     )
 
     rankings = []
 
     for resume_name, resume in resumes.items():
 
+        # ----------------------------------------------------
+        # ROLE
+        # ----------------------------------------------------
+
         role_score = get_role_score(
             job_profile,
             resume_name,
         )
 
+        # ----------------------------------------------------
+        # RESUME SKILLS
+        # ----------------------------------------------------
+
         resume_skills = extract_skills(
             resume["text"]
         )
 
+        # ----------------------------------------------------
+        # REQUIRED
+        # ----------------------------------------------------
+
         (
-            skill_score,
-            matched_skills,
-            missing_skills,
-        ) = calculate_skill_score(
-            job_skills,
+            required_score,
+            matched_required,
+            missing_required,
+            required_groups,
+        ) = calculate_requirement_score(
+            requirements[
+                "required_skills"
+            ],
+            requirements[
+                "alternative_groups"
+            ],
             resume_skills,
+            "required",
         )
+
+        # ----------------------------------------------------
+        # PREFERRED
+        # ----------------------------------------------------
+
+        (
+            preferred_score,
+            matched_preferred,
+            missing_preferred,
+            preferred_groups,
+        ) = calculate_requirement_score(
+            requirements[
+                "preferred_skills"
+            ],
+            requirements[
+                "alternative_groups"
+            ],
+            resume_skills,
+            "preferred",
+        )
+
+        # ----------------------------------------------------
+        # SEMANTIC
+        # ----------------------------------------------------
 
         semantic_raw = (
             semantic_raw_scores[
@@ -778,10 +695,16 @@ def rank_resumes(
             )
         )
 
+        # ----------------------------------------------------
+        # FINAL WEIGHTED SCORE
+        # ----------------------------------------------------
+
         final_score = (
-            role_score * 0.40
-            + skill_score * 0.40
+            role_score * 0.25
+            + required_score * 0.35
+            + preferred_score * 0.10
             + semantic_score * 0.20
+            + experience_score * 0.10
         )
 
         final_score = round(
@@ -792,32 +715,78 @@ def rank_resumes(
         rankings.append(
             {
                 "resume_name": resume_name,
-                "filename": resume["filename"],
+                "filename": resume[
+                    "filename"
+                ],
 
                 "role_score": role_score,
-                "skill_score": skill_score,
 
-                "semantic_raw": semantic_raw,
-                "semantic_score": semantic_score,
+                "required_score": (
+                    required_score
+                ),
 
-                "final_score": final_score,
+                "preferred_score": (
+                    preferred_score
+                ),
 
-                "matched_skills": matched_skills,
-                "missing_skills": missing_skills,
+                "semantic_raw": (
+                    semantic_raw
+                ),
+
+                "semantic_score": (
+                    semantic_score
+                ),
+
+                "experience_score": (
+                    experience_score
+                ),
+
+                "final_score": (
+                    final_score
+                ),
 
                 "route": get_route(
                     final_score
+                ),
+
+                "matched_required": (
+                    matched_required
+                ),
+
+                "missing_required": (
+                    missing_required
+                ),
+
+                "required_groups": (
+                    required_groups
+                ),
+
+                "matched_preferred": (
+                    matched_preferred
+                ),
+
+                "missing_preferred": (
+                    missing_preferred
+                ),
+
+                "preferred_groups": (
+                    preferred_groups
                 ),
             }
         )
 
     rankings.sort(
-        key=lambda item: item["final_score"],
+        key=lambda item: item[
+            "final_score"
+        ],
         reverse=True,
     )
 
     return {
         "job_profile": job_profile,
-        "job_skills": sorted(job_skills),
+        "requirements": requirements,
+        "experience_score": (
+            experience_score
+        ),
         "rankings": rankings,
     }
