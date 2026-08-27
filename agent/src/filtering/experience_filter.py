@@ -24,29 +24,24 @@ PREFERRED_KEYWORDS = [
 ]
 
 
-REQUIRED_KEYWORDS = [
-    "required",
-    "requirement",
-    "requirements",
-    "minimum",
-    "minimum qualifications",
-    "must have",
-    "must-have",
-    "must also have",
-    "at least",
-    "you have",
-    "you bring",
-    "looking for",
-    "look for",
-    "we look for",
-    "we'd look for",
-    "we would look for",
+EXPERIENCE_TERMS = [
+    "experience",
+    "professional experience",
+    "engineering experience",
+    "software development experience",
+    "software engineering experience",
+    "software-engineering experience",
+    "hands-on experience",
+    "work experience",
+    "industry experience",
+    "development experience",
+    "production experience",
 ]
 
 
 def clean_job_content(content: str) -> str:
     """
-    Convert Greenhouse HTML job-description content into plain text.
+    Convert Greenhouse HTML into normalized plain text.
     """
 
     if not content:
@@ -54,49 +49,70 @@ def clean_job_content(content: str) -> str:
 
     decoded = html.unescape(content)
 
-    soup = BeautifulSoup(decoded, "html.parser")
+    soup = BeautifulSoup(
+        decoded,
+        "html.parser",
+    )
 
-    text = soup.get_text(separator="\n", strip=True)
+    text = soup.get_text(
+        separator=" ",
+        strip=True,
+    )
 
-    lines = []
-
-    for line in text.splitlines():
-        cleaned = re.sub(r"\s+", " ", line).strip()
-
-        if cleaned:
-            lines.append(cleaned)
-
-    return "\n".join(lines)
+    return re.sub(
+        r"\s+",
+        " ",
+        text,
+    ).strip()
 
 
-def split_into_chunks(text: str) -> list[str]:
+def get_context(
+    text: str,
+    start: int,
+    end: int,
+    radius: int = 140,
+) -> str:
     """
-    Break job-description text into manageable chunks.
+    Return surrounding text for a detected years phrase.
     """
 
-    if not text:
-        return []
+    left = max(
+        0,
+        start - radius,
+    )
 
-    chunks = []
+    right = min(
+        len(text),
+        end + radius,
+    )
 
-    for line in text.splitlines():
-
-        sentence_parts = re.split(
-            r"(?<=[.!?])\s+",
-            line,
-        )
-
-        for part in sentence_parts:
-            part = part.strip()
-
-            if part:
-                chunks.append(part)
-
-    return chunks
+    return text[left:right].strip()
 
 
-def is_preferred_context(text: str) -> bool:
-    normalized = text.lower()
+def looks_like_experience_context(
+    context: str,
+) -> bool:
+    """
+    Make sure the years refer to work/professional experience.
+    """
+
+    normalized = context.lower()
+
+    return any(
+        term in normalized
+        for term in EXPERIENCE_TERMS
+    )
+
+
+def is_preferred_context(
+    context: str,
+) -> bool:
+    """
+    Determine whether the years requirement is described
+    as preferred rather than expected/required.
+    """
+
+    normalized = context.lower()
 
     return any(
         keyword in normalized
@@ -104,222 +120,360 @@ def is_preferred_context(text: str) -> bool:
     )
 
 
-def is_required_context(text: str) -> bool:
-    normalized = text.lower()
-
-    return any(
-        keyword in normalized
-        for keyword in REQUIRED_KEYWORDS
-    )
-
-
-def looks_like_experience_context(text: str) -> bool:
+def is_degree_duration(
+    context: str,
+    matched_text: str,
+) -> bool:
     """
-    Ignore year counts that refer to degrees, schooling,
-    product age, etc.
+    Ignore phrases such as:
+
+        4-year bachelor's degree
+        3 or 4 year foreign degree
+
+    while retaining real experience requirements.
     """
 
-    normalized = text.lower()
+    normalized = context.lower()
+    match_lower = matched_text.lower()
 
-    experience_terms = [
-        "experience",
-        "professional experience",
-        "engineering experience",
-        "software development experience",
-        "software engineering experience",
-        "software-engineering experience",
-        "hands-on experience",
-        "work experience",
-        "industry experience",
-        "development experience",
-        "production experience",
+    degree_terms = [
+        "year degree",
+        "year bachelor's",
+        "year bachelor",
+        "year master's",
+        "year master",
+        "year university",
+        "year college",
+        "foreign degree",
     ]
 
-    return any(
+    if any(
         term in normalized
-        for term in experience_terms
+        for term in degree_terms
+    ):
+        if "experience" not in match_lower:
+            return True
+
+    return False
+
+
+def overlaps(
+    start: int,
+    end: int,
+    occupied_spans: list[tuple[int, int]],
+) -> bool:
+    """
+    Prevent part of a range from being detected again.
+
+    Example:
+
+        2-5 years
+
+    should not later also become:
+
+        5 years
+    """
+
+    return any(
+        start < occupied_end
+        and end > occupied_start
+        for occupied_start, occupied_end
+        in occupied_spans
     )
 
 
-def find_experience_mentions(text: str) -> list[dict]:
+def find_experience_mentions(
+    text: str,
+) -> list[dict]:
     """
-    Find professional-experience requirements.
+    Extract professional experience requirements.
 
-    More specific patterns are evaluated first so that a range
-    such as "2-5 years" is not also detected as "5 years".
+    Handles examples such as:
+
+        3 years
+        4+ years
+        2-5 years
+        2-12+ years
+        3 to 6 years
+        at least 5 years
+        minimum of 4 years
+
+    More specific patterns run before simpler patterns.
     """
 
-    chunks = split_into_chunks(text)
-
-    results = []
+    if not text:
+        return []
 
     patterns = [
-        {
-            "type": "range",
-            "pattern": re.compile(
-                r"\b(\d+)\s*(?:-|–|—|to)\s*(\d+)\s*"
-                r"(?:\+?\s*)?(?:years?|yrs?)\b",
+        # -----------------------------------------------------
+        # RANGE
+        #
+        # Examples:
+        # 2-5 years
+        # 2–12+ years
+        # 3 to 6 years
+        # -----------------------------------------------------
+        (
+            "range",
+            re.compile(
+                r"\b"
+                r"(\d+)"
+                r"\s*(?:-|–|—|to)\s*"
+                r"(\d+)"
+                r"\s*\+?"
+                r"\s*(?:years?|yrs?)"
+                r"\b",
                 re.IGNORECASE,
             ),
-        },
-        {
-            "type": "plus",
-            "pattern": re.compile(
-                r"\b(\d+)\s*\+\s*(?:years?|yrs?)\b",
+        ),
+
+        # -----------------------------------------------------
+        # PLUS
+        #
+        # Example:
+        # 5+ years
+        # -----------------------------------------------------
+        (
+            "plus",
+            re.compile(
+                r"\b"
+                r"(\d+)"
+                r"\s*\+\s*"
+                r"(?:years?|yrs?)"
+                r"\b",
                 re.IGNORECASE,
             ),
-        },
-        {
-            "type": "at_least",
-            "pattern": re.compile(
-                r"\bat\s+least\s+(\d+)\s*(?:years?|yrs?)\b",
+        ),
+
+        # -----------------------------------------------------
+        # AT LEAST
+        #
+        # Example:
+        # at least 5 years
+        # -----------------------------------------------------
+        (
+            "at_least",
+            re.compile(
+                r"\bat\s+least\s+"
+                r"(\d+)"
+                r"\s*(?:years?|yrs?)"
+                r"\b",
                 re.IGNORECASE,
             ),
-        },
-        {
-            "type": "minimum",
-            "pattern": re.compile(
-                r"\bminimum(?:\s+of)?\s+(\d+)\s*(?:years?|yrs?)\b",
+        ),
+
+        # -----------------------------------------------------
+        # MINIMUM
+        #
+        # Example:
+        # minimum of 4 years
+        # -----------------------------------------------------
+        (
+            "minimum",
+            re.compile(
+                r"\bminimum(?:\s+of)?\s+"
+                r"(\d+)"
+                r"\s*(?:years?|yrs?)"
+                r"\b",
                 re.IGNORECASE,
             ),
-        },
-        {
-            "type": "single",
-            "pattern": re.compile(
-                r"\b(\d+)\s*(?:years?|yrs?)\b",
+        ),
+
+        # -----------------------------------------------------
+        # SINGLE
+        #
+        # Example:
+        # 4 years
+        # -----------------------------------------------------
+        (
+            "single",
+            re.compile(
+                r"\b"
+                r"(\d+)"
+                r"\s*(?:years?|yrs?)"
+                r"\b",
                 re.IGNORECASE,
             ),
-        },
+        ),
     ]
 
-    for chunk in chunks:
+    mentions = []
+    occupied_spans = []
 
-        if not looks_like_experience_context(chunk):
-            continue
+    for pattern_type, pattern in patterns:
 
-        occupied_spans = []
+        for match in pattern.finditer(text):
 
-        for pattern_info in patterns:
+            start, end = match.span()
 
-            pattern_type = pattern_info["type"]
-            pattern = pattern_info["pattern"]
+            # A more specific pattern already captured this area.
+            if overlaps(
+                start,
+                end,
+                occupied_spans,
+            ):
+                continue
 
-            for match in pattern.finditer(chunk):
+            context = get_context(
+                text,
+                start,
+                end,
+            )
 
-                start, end = match.span()
+            if not looks_like_experience_context(
+                context
+            ):
+                continue
 
-                overlaps_existing = any(
-                    start < existing_end
-                    and end > existing_start
-                    for existing_start, existing_end
-                    in occupied_spans
-                )
+            matched_text = match.group(0)
 
-                if overlaps_existing:
+            if is_degree_duration(
+                context,
+                matched_text,
+            ):
+
+                nearby = text[
+                    max(0, start - 25):
+                    min(len(text), end + 50)
+                ].lower()
+
+                if "experience" not in nearby:
                     continue
 
-                groups = [
-                    int(value)
-                    for value in match.groups()
-                    if value is not None
-                ]
+            numbers = [
+                int(value)
+                for value in match.groups()
+                if value is not None
+            ]
 
-                if not groups:
-                    continue
+            if not numbers:
+                continue
 
-                if pattern_type == "range":
-                    minimum_years = min(groups)
-                    maximum_years = max(groups)
+            if pattern_type == "range":
 
-                else:
-                    minimum_years = groups[0]
-                    maximum_years = groups[0]
+                minimum_years = min(numbers)
+                maximum_years = max(numbers)
 
-                preferred = is_preferred_context(chunk)
-                required = is_required_context(chunk)
+            else:
 
-                results.append(
-                    {
-                        "text": chunk,
-                        "match": match.group(0),
-                        "min_years": minimum_years,
-                        "max_years": maximum_years,
-                        "preferred": preferred,
-                        "required": required,
-                        "type": pattern_type,
-                    }
-                )
+                minimum_years = numbers[0]
+                maximum_years = numbers[0]
 
-                occupied_spans.append((start, end))
+            mentions.append(
+                {
+                    "text": context,
+                    "match": matched_text,
+                    "min_years": minimum_years,
+                    "max_years": maximum_years,
+                    "preferred": is_preferred_context(
+                        context
+                    ),
+                    "type": pattern_type,
+                }
+            )
 
-    return results
+            occupied_spans.append(
+                (start, end)
+            )
+
+    return mentions
 
 
 def classify_experience(
     job: dict,
 ) -> tuple[ExperienceStatus, list[dict]]:
     """
-    Apply our experience eligibility rules.
+    Apply our final V1 experience rules.
 
-    Rules
-    -----
+    ----------------------------------------------------------
+
     Preferred requirement:
-        Ignore it for blocking purposes.
+        Ignore for blocking purposes.
 
-    Minimum 0-3 years:
+    Minimum 0-3:
         ACCEPT
 
-    Minimum 4 years:
+    Minimum 4:
         REVIEW
 
-    Minimum 5+ years:
+    Minimum 5+:
         REJECT
 
-    For ranges, use the lower bound.
+    ----------------------------------------------------------
 
-    Examples
-    --------
-    2-5 years -> ACCEPT
-    3-6 years -> ACCEPT
-    4-6 years -> REVIEW
-    5-8 years -> REJECT
-    6+ years  -> REJECT
+    Ranges use the LOWER bound.
+
+    Examples:
+
+        0-2 years   -> ACCEPT
+        2-5 years   -> ACCEPT
+        2-12+ years -> ACCEPT
+        3-6 years   -> ACCEPT
+        4-6 years   -> REVIEW
+        5-8 years   -> REJECT
+        5+ years    -> REJECT
+        8+ years    -> REJECT
     """
 
-    content = job.get("content", "")
+    content = job.get(
+        "content",
+        "",
+    )
 
-    text = clean_job_content(content)
+    text = clean_job_content(
+        content
+    )
 
-    mentions = find_experience_mentions(text)
+    mentions = find_experience_mentions(
+        text
+    )
 
     if not mentions:
-        return ExperienceStatus.ACCEPT, []
+        return (
+            ExperienceStatus.ACCEPT,
+            [],
+        )
 
-    strongest_status = ExperienceStatus.ACCEPT
+    result = ExperienceStatus.ACCEPT
 
     for mention in mentions:
 
-        minimum_years = mention["min_years"]
-        preferred = mention["preferred"]
-
-        # A preferred qualification should not block us.
-        if preferred:
+        # Preferred experience does not block application.
+        if mention["preferred"]:
             continue
 
-        # 5+ minimum experience is outside our target.
+        minimum_years = mention[
+            "min_years"
+        ]
+
+        # 5+ minimum is outside our target.
         if minimum_years >= 5:
-            return ExperienceStatus.REJECT, mentions
 
-        # 4 years goes to manual review.
+            return (
+                ExperienceStatus.REJECT,
+                mentions,
+            )
+
+        # Exactly 4 goes to manual review.
         if minimum_years == 4:
-            strongest_status = ExperienceStatus.REVIEW
 
-    return strongest_status, mentions
+            result = ExperienceStatus.REVIEW
+
+    return (
+        result,
+        mentions,
+    )
 
 
-def filter_by_experience(jobs: list[dict]):
+def filter_by_experience(
+    jobs: list[dict],
+):
     """
-    Split jobs into ACCEPT, REVIEW and REJECT buckets.
+    Split jobs into:
+
+        ACCEPT
+        REVIEW
+        REJECT
     """
 
     accepted_jobs = []
@@ -328,7 +482,9 @@ def filter_by_experience(jobs: list[dict]):
 
     for job in jobs:
 
-        status, mentions = classify_experience(job)
+        status, mentions = classify_experience(
+            job
+        )
 
         result = {
             "job": job,
@@ -337,13 +493,22 @@ def filter_by_experience(jobs: list[dict]):
         }
 
         if status == ExperienceStatus.ACCEPT:
-            accepted_jobs.append(result)
+
+            accepted_jobs.append(
+                result
+            )
 
         elif status == ExperienceStatus.REVIEW:
-            review_jobs.append(result)
+
+            review_jobs.append(
+                result
+            )
 
         else:
-            rejected_jobs.append(result)
+
+            rejected_jobs.append(
+                result
+            )
 
     return (
         accepted_jobs,
