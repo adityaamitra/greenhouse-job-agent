@@ -1,10 +1,7 @@
 from src.greenhouse.client import get_jobs
 
 from src.filtering.job_filter import filter_by_role
-
-from src.filtering.location_filter import (
-    filter_by_location,
-)
+from src.filtering.location_filter import filter_by_location
 
 from src.filtering.experience_filter import (
     filter_by_experience,
@@ -17,7 +14,20 @@ from src.matching.resume_loader import (
 
 from src.matching.matcher import (
     rank_resumes,
+    infer_job_profile,
 )
+
+
+TARGET_PROFILES = [
+    "software_engineer",
+    "backend_engineer",
+    "frontend_engineer",
+    "fullstack_engineer",
+    "ai_ml_engineer",
+    "systems_engineer",
+    "production_support_engineer",
+    "devops_engineer",
+]
 
 
 def pretty_name(name: str) -> str:
@@ -28,12 +38,14 @@ def pretty_name(name: str) -> str:
     )
 
 
-def choose_test_job(
+def choose_jobs_by_profile(
     eligible_jobs: list[dict],
-) -> dict | None:
+) -> dict[str, dict]:
     """
-    Prefer a Backend Engineer role for this test.
+    Pick one eligible job for each available target profile.
     """
+
+    selected = {}
 
     for result in eligible_jobs:
 
@@ -42,43 +54,19 @@ def choose_test_job(
         title = job.get(
             "title",
             "",
-        ).lower()
-
-        if "backend engineer" in title:
-            return result
-
-    if eligible_jobs:
-        return eligible_jobs[0]
-
-    return None
-
-
-def print_group_result(
-    group: dict,
-) -> None:
-
-    options = " OR ".join(
-        group["skills"]
-    )
-
-    if group["satisfied"]:
-
-        matches = ", ".join(
-            group[
-                "matching_options"
-            ]
         )
 
-        print(
-            f"  ✓ {options}"
-            f"  [matched: {matches}]"
+        profile = infer_job_profile(
+            title
         )
 
-    else:
+        if (
+            profile in TARGET_PROFILES
+            and profile not in selected
+        ):
+            selected[profile] = result
 
-        print(
-            f"  ✗ {options}"
-        )
+    return selected
 
 
 def main():
@@ -86,9 +74,9 @@ def main():
     board_token = "stripe"
 
     print()
-    print("=" * 80)
-    print("GREENHOUSE REFINED MATCH SCORE TEST")
-    print("=" * 80)
+    print("=" * 90)
+    print("MULTI-PROFILE RESUME ROUTER TEST")
+    print("=" * 90)
 
     # ========================================================
     # FETCH
@@ -133,26 +121,18 @@ def main():
         us_jobs
     )
 
-    # IMPORTANT:
-    #
-    # 4-year REVIEW jobs remain eligible.
-    #
-    # Only experience REJECT jobs are removed.
+    # 4-year review jobs are still eligible.
     eligible_jobs = (
         accepted_jobs
         + review_jobs
     )
 
-    # ========================================================
-    # SUMMARY
-    # ========================================================
-
     print()
     print("ELIGIBILITY SUMMARY")
-    print("-" * 80)
+    print("-" * 90)
 
     print(
-        f"Total jobs:                   "
+        f"All Greenhouse jobs:          "
         f"{len(jobs)}"
     )
 
@@ -167,346 +147,300 @@ def main():
     )
 
     print(
-        f"Experience accepted:          "
-        f"{len(accepted_jobs)}"
-    )
-
-    print(
-        f"Experience review / eligible: "
-        f"{len(review_jobs)}"
-    )
-
-    print(
-        f"Experience rejected / skip:   "
-        f"{len(rejected_jobs)}"
-    )
-
-    print(
-        f"TOTAL ELIGIBLE FOR APPLY:     "
+        f"Eligible for application:     "
         f"{len(eligible_jobs)}"
     )
 
+    print(
+        f"Experience rejected:          "
+        f"{len(rejected_jobs)}"
+    )
+
     # ========================================================
-    # SELECT TEST JOB
+    # PICK TEST JOBS
     # ========================================================
 
-    test_result = choose_test_job(
+    selected_jobs = choose_jobs_by_profile(
         eligible_jobs
     )
 
-    if not test_result:
+    print()
+    print("=" * 90)
+    print("AVAILABLE TEST PROFILES")
+    print("=" * 90)
 
-        print(
-            "No eligible test job found."
-        )
+    for profile in TARGET_PROFILES:
 
+        if profile in selected_jobs:
+
+            title = (
+                selected_jobs[profile]
+                ["job"]
+                .get(
+                    "title",
+                    "Unknown title",
+                )
+            )
+
+            print(
+                f"✓ {pretty_name(profile):30} "
+                f"→ {title}"
+            )
+
+        else:
+
+            print(
+                f"✗ {pretty_name(profile):30} "
+                f"→ No eligible Stripe job found"
+            )
+
+    if not selected_jobs:
+
+        print()
+        print("No jobs available for testing.")
         return
 
-    test_job = test_result[
-        "job"
-    ]
-
-    experience_mentions = (
-        test_result[
-            "experience_mentions"
-        ]
-    )
-
-    title = test_job.get(
-        "title",
-        "Unknown title",
-    )
-
-    location = test_job.get(
-        "location",
-        {},
-    ).get(
-        "name",
-        "Unknown location",
-    )
-
-    url = test_job.get(
-        "absolute_url",
-        "No URL",
-    )
-
-    content = test_job.get(
-        "content",
-        "",
-    )
-
-    job_text = clean_job_content(
-        content
-    )
-
     # ========================================================
-    # JOB
+    # LOAD RESUMES ONCE
     # ========================================================
 
     print()
-    print("=" * 80)
-    print("TEST JOB")
-    print("=" * 80)
-
-    print(
-        f"Title:    {title}"
-    )
-
-    print(
-        f"Location: {location}"
-    )
-
-    print(
-        f"URL:      {url}"
-    )
-
-    # ========================================================
-    # RESUMES
-    # ========================================================
-
-    print()
-    print(
-        "Loading master resumes..."
-    )
+    print("Loading master resumes...")
 
     resumes = load_all_resumes()
 
     print(
-        f"Loaded {len(resumes)} "
-        f"master resumes."
+        f"Loaded {len(resumes)} master resumes."
     )
 
     # ========================================================
-    # MATCH
+    # TEST EVERY AVAILABLE PROFILE
     # ========================================================
 
-    print()
-    print(
-        "Calculating refined match scores..."
-    )
+    summary = []
 
-    result = rank_resumes(
-        job_title=title,
-        job_content=content,
-        job_text=job_text,
-        experience_mentions=(
-            experience_mentions
-        ),
-        resumes=resumes,
-    )
+    for profile in TARGET_PROFILES:
 
-    print()
-    print(
-        "Detected profile: "
-        f"{pretty_name(result['job_profile'])}"
-    )
+        if profile not in selected_jobs:
+            continue
 
-    print(
-        "Experience component: "
-        f"{result['experience_score']:.2f}"
-    )
+        test_result = selected_jobs[
+            profile
+        ]
 
-    # ========================================================
-    # JOB REQUIREMENTS
-    # ========================================================
+        job = test_result[
+            "job"
+        ]
 
-    requirements = result[
-        "requirements"
-    ]
-
-    print()
-    print("=" * 80)
-    print("JOB REQUIREMENTS")
-    print("=" * 80)
-
-    print()
-    print("Required:")
-
-    if requirements[
-        "required_skills"
-    ]:
-
-        for skill in requirements[
-            "required_skills"
-        ]:
-            print(
-                f"  • {skill}"
-            )
-
-    else:
-        print("  None")
-
-    print()
-    print("Preferred:")
-
-    if requirements[
-        "preferred_skills"
-    ]:
-
-        for skill in requirements[
-            "preferred_skills"
-        ]:
-            print(
-                f"  • {skill}"
-            )
-
-    else:
-        print("  None")
-
-    print()
-    print("Alternative groups:")
-
-    required_groups_exist = False
-
-    for group in requirements[
-        "alternative_groups"
-    ]:
-
-        required_groups_exist = True
-
-        print(
-            "  • "
-            + " OR ".join(
-                group["skills"]
-            )
-            + f" [{group['section']}]"
+        experience_mentions = (
+            test_result[
+                "experience_mentions"
+            ]
         )
 
-    if not required_groups_exist:
-        print("  None")
+        title = job.get(
+            "title",
+            "Unknown title",
+        )
 
-    # ========================================================
-    # RANKINGS
-    # ========================================================
+        location = job.get(
+            "location",
+            {},
+        ).get(
+            "name",
+            "Unknown location",
+        )
 
-    print()
-    print("=" * 80)
-    print("REFINED RESUME RANKING")
-    print("=" * 80)
+        content = job.get(
+            "content",
+            "",
+        )
 
-    for index, item in enumerate(
-        result["rankings"],
-        start=1,
-    ):
+        job_text = clean_job_content(
+            content
+        )
+
+        print()
+        print()
+        print("=" * 90)
+        print(
+            f"TESTING: {pretty_name(profile)}"
+        )
+        print("=" * 90)
+
+        print(
+            f"Job:      {title}"
+        )
+
+        print(
+            f"Location: {location}"
+        )
 
         print()
         print(
-            f"{index}. "
-            f"{pretty_name(item['resume_name'])}"
+            "Calculating scores..."
+        )
+
+        result = rank_resumes(
+            job_title=title,
+            job_content=content,
+            job_text=job_text,
+            experience_mentions=(
+                experience_mentions
+            ),
+            resumes=resumes,
+        )
+
+        rankings = result[
+            "rankings"
+        ]
+
+        # ----------------------------------------------------
+        # PRINT TOP 3
+        # ----------------------------------------------------
+
+        print()
+        print("TOP 3 RESUMES")
+        print("-" * 90)
+
+        for index, item in enumerate(
+            rankings[:3],
+            start=1,
+        ):
+
+            print(
+                f"{index}. "
+                f"{pretty_name(item['resume_name']):30} "
+                f"{item['final_score']:6.2f} "
+                f"→ {item['route']}"
+            )
+
+        winner = rankings[0]
+
+        expected_resume = profile
+
+        correct = (
+            winner[
+                "resume_name"
+            ]
+            == expected_resume
+        )
+
+        summary.append(
+            {
+                "profile": profile,
+                "job_title": title,
+                "expected": expected_resume,
+                "winner": winner[
+                    "resume_name"
+                ],
+                "score": winner[
+                    "final_score"
+                ],
+                "route": winner[
+                    "route"
+                ],
+                "correct": correct,
+            }
+        )
+
+        print()
+        print(
+            f"Expected profile resume: "
+            f"{pretty_name(expected_resume)}"
         )
 
         print(
-            f"   FINAL:       "
-            f"{item['final_score']:.2f}"
+            f"Selected resume:         "
+            f"{pretty_name(winner['resume_name'])}"
         )
 
         print(
-            f"   Role:        "
-            f"{item['role_score']:.2f}"
+            f"Router result:           "
+            f"{'✓ CORRECT' if correct else '✗ NEEDS REVIEW'}"
+        )
+
+    # ========================================================
+    # FINAL ROUTER SUMMARY
+    # ========================================================
+
+    print()
+    print()
+    print("=" * 90)
+    print("ROUTER VALIDATION SUMMARY")
+    print("=" * 90)
+
+    correct_count = sum(
+        1
+        for item in summary
+        if item["correct"]
+    )
+
+    total_count = len(
+        summary
+    )
+
+    for item in summary:
+
+        marker = (
+            "✓"
+            if item["correct"]
+            else "✗"
+        )
+
+        print()
+
+        print(
+            f"{marker} "
+            f"{pretty_name(item['profile'])}"
         )
 
         print(
-            f"   Required:    "
-            f"{item['required_score']:.2f}"
+            f"   Job:      "
+            f"{item['job_title']}"
         )
 
         print(
-            f"   Preferred:   "
-            f"{item['preferred_score']:.2f}"
+            f"   Expected: "
+            f"{pretty_name(item['expected'])}"
         )
 
         print(
-            f"   Semantic:    "
-            f"{item['semantic_score']:.2f}"
-            f" "
-            f"(raw "
-            f"{item['semantic_raw']:.2f})"
+            f"   Selected: "
+            f"{pretty_name(item['winner'])}"
         )
 
         print(
-            f"   Experience:  "
-            f"{item['experience_score']:.2f}"
+            f"   Score:    "
+            f"{item['score']:.2f}"
         )
 
         print(
-            f"   Route:       "
+            f"   Route:    "
             f"{item['route']}"
         )
 
-    # ========================================================
-    # WINNER DETAILS
-    # ========================================================
-
-    best = result[
-        "rankings"
-    ][0]
-
     print()
-    print("=" * 80)
-    print("BEST MATCH")
-    print("=" * 80)
+    print("-" * 90)
 
     print(
-        f"Resume: "
-        f"{pretty_name(best['resume_name'])}"
+        f"Correct resume selections: "
+        f"{correct_count}/{total_count}"
     )
 
-    print(
-        f"File: "
-        f"{best['filename']}"
-    )
+    if total_count:
 
-    print(
-        f"Score: "
-        f"{best['final_score']:.2f}/100"
-    )
+        accuracy = (
+            correct_count
+            / total_count
+        ) * 100
 
-    print(
-        f"Route: "
-        f"{best['route']}"
-    )
-
-    # --------------------------------------------------------
-    # REQUIRED DETAIL
-    # --------------------------------------------------------
-
-    print()
-    print("Required skill matches:")
-
-    if best[
-        "matched_required"
-    ]:
-
-        for skill in best[
-            "matched_required"
-        ]:
-
-            print(
-                f"  ✓ {skill}"
-            )
-
-    if best[
-        "missing_required"
-    ]:
-
-        for skill in best[
-            "missing_required"
-        ]:
-
-            print(
-                f"  ✗ {skill}"
-            )
-
-    for group in best[
-        "required_groups"
-    ]:
-
-        print_group_result(
-            group
+        print(
+            f"Router accuracy on this sample: "
+            f"{accuracy:.1f}%"
         )
 
-    print()
-    print("=" * 80)
+    print("=" * 90)
 
 
 if __name__ == "__main__":
