@@ -23,16 +23,25 @@ _model = None
 
 def get_model() -> SentenceTransformer:
     """
-    Load the local sentence-transformer model once.
+    Load the local semantic model once.
     """
 
     global _model
 
     if _model is None:
-        print(f"Loading semantic model: {MODEL_NAME}")
+
+        print(
+            f"Loading semantic model: {MODEL_NAME}",
+            flush=True,
+        )
 
         _model = SentenceTransformer(
             MODEL_NAME
+        )
+
+        print(
+            f"Semantic model device: {_model.device}",
+            flush=True,
         )
 
     return _model
@@ -134,9 +143,6 @@ ROLE_ALIGNMENT = {
 
 
 def infer_job_profile(title: str) -> str:
-    """
-    Map a job title to one of our 8 resume profiles.
-    """
 
     normalized = title.lower()
 
@@ -224,183 +230,7 @@ def get_role_score(
 
 
 # ============================================================
-# REQUIREMENT SCORING
-# ============================================================
-
-def group_is_satisfied(
-    group_skills: list[str],
-    resume_skills: set[str],
-) -> tuple[bool, list[str]]:
-    """
-    For an alternative group:
-
-        Java OR Go OR C++
-
-    satisfying ANY member is enough.
-    """
-
-    matches = sorted(
-        set(group_skills).intersection(
-            resume_skills
-        )
-    )
-
-    return bool(matches), matches
-
-
-def calculate_requirement_score(
-    normal_skills: list[str],
-    alternative_groups: list[dict],
-    resume_skills: set[str],
-    section: str,
-) -> tuple[float, list[str], list[str], list[dict]]:
-    """
-    Treat each normal skill as one requirement and each
-    OR-group as one requirement.
-
-    Example:
-
-        Distributed Systems
-        +
-        (Java OR Go OR C++)
-
-    = 2 total requirements.
-    """
-
-    normal_set = set(normal_skills)
-
-    matched = sorted(
-        normal_set.intersection(
-            resume_skills
-        )
-    )
-
-    missing = sorted(
-        normal_set.difference(
-            resume_skills
-        )
-    )
-
-    satisfied_count = len(matched)
-    total_count = len(normal_set)
-
-    group_results = []
-
-    for group in alternative_groups:
-
-        if group.get("section") != section:
-            continue
-
-        skills = group.get(
-            "skills",
-            [],
-        )
-
-        satisfied, matching_options = (
-            group_is_satisfied(
-                skills,
-                resume_skills,
-            )
-        )
-
-        total_count += 1
-
-        if satisfied:
-            satisfied_count += 1
-
-        group_results.append(
-            {
-                "skills": skills,
-                "satisfied": satisfied,
-                "matching_options": matching_options,
-                "text": group.get(
-                    "text",
-                    "",
-                ),
-            }
-        )
-
-    # No requirement means there is nothing missing.
-    if total_count == 0:
-        return (
-            100.0,
-            matched,
-            missing,
-            group_results,
-        )
-
-    score = (
-        satisfied_count
-        / total_count
-    ) * 100
-
-    return (
-        round(score, 2),
-        matched,
-        missing,
-        group_results,
-    )
-
-
-# ============================================================
-# EXPERIENCE COMPONENT
-# ============================================================
-
-def calculate_experience_score(
-    experience_mentions: list[dict],
-) -> float:
-    """
-    The hard experience filter has already removed jobs that are
-    clearly outside our range.
-
-    This component distinguishes strong fit from borderline fit.
-
-    User experience:
-        3 years
-
-    Examples:
-        requires 2 years -> 100
-        requires 3 years -> 100
-        requires 4 years -> 65
-        no requirement   -> 100
-    """
-
-    relevant_mentions = [
-        mention
-        for mention in experience_mentions
-        if not mention.get(
-            "preferred",
-            False,
-        )
-    ]
-
-    if not relevant_mentions:
-        return 100.0
-
-    required_minimum = max(
-        mention.get(
-            "min_years",
-            0,
-        )
-        for mention in relevant_mentions
-    )
-
-    if APPLICANT_YEARS_EXPERIENCE >= required_minimum:
-        return 100.0
-
-    difference = (
-        required_minimum
-        - APPLICANT_YEARS_EXPERIENCE
-    )
-
-    if difference <= 1:
-        return 65.0
-
-    return 0.0
-
-
-# ============================================================
-# SEMANTIC SIMILARITY
+# TEXT CHUNKING
 # ============================================================
 
 def chunk_text(
@@ -442,10 +272,283 @@ def chunk_text(
     return chunks
 
 
-def calculate_semantic_scores(
-    job_text: str,
+# ============================================================
+# RESUME CACHE
+# ============================================================
+
+def prepare_resume_cache(
     resumes: dict[str, dict],
-) -> dict[str, float]:
+) -> dict[str, dict]:
+    """
+    Prepare each resume ONCE.
+
+    We cache:
+        - extracted skills
+        - chunks
+        - semantic embeddings
+
+    This prevents re-encoding the same resumes for every job.
+    """
+
+    model = get_model()
+
+    cache = {}
+
+    print()
+    print(
+        "Preparing resume semantic cache...",
+        flush=True,
+    )
+
+    for index, (
+        resume_name,
+        resume,
+    ) in enumerate(
+        resumes.items(),
+        start=1,
+    ):
+
+        print(
+            f"  [{index}/{len(resumes)}] "
+            f"{resume_name}",
+            flush=True,
+        )
+
+        text = resume[
+            "text"
+        ]
+
+        chunks = chunk_text(
+            text
+        )
+
+        embeddings = model.encode(
+            chunks,
+            convert_to_tensor=True,
+            normalize_embeddings=True,
+            show_progress_bar=False,
+        )
+
+        skills = extract_skills(
+            text
+        )
+
+        cache[
+            resume_name
+        ] = {
+            "filename": resume[
+                "filename"
+            ],
+
+            "text": text,
+
+            "chunks": chunks,
+
+            "embeddings": embeddings,
+
+            "skills": skills,
+        }
+
+    print(
+        "Resume cache ready.",
+        flush=True,
+    )
+
+    return cache
+
+
+# ============================================================
+# REQUIREMENT SCORING
+# ============================================================
+
+def group_is_satisfied(
+    group_skills: list[str],
+    resume_skills: set[str],
+) -> tuple[bool, list[str]]:
+
+    matches = sorted(
+        set(
+            group_skills
+        ).intersection(
+            resume_skills
+        )
+    )
+
+    return (
+        bool(matches),
+        matches,
+    )
+
+
+def calculate_requirement_score(
+    normal_skills: list[str],
+    alternative_groups: list[dict],
+    resume_skills: set[str],
+    section: str,
+) -> tuple[
+    float,
+    list[str],
+    list[str],
+    list[dict],
+]:
+
+    normal_set = set(
+        normal_skills
+    )
+
+    matched = sorted(
+        normal_set.intersection(
+            resume_skills
+        )
+    )
+
+    missing = sorted(
+        normal_set.difference(
+            resume_skills
+        )
+    )
+
+    satisfied_count = len(
+        matched
+    )
+
+    total_count = len(
+        normal_set
+    )
+
+    group_results = []
+
+    for group in alternative_groups:
+
+        if group.get(
+            "section"
+        ) != section:
+
+            continue
+
+        skills = group.get(
+            "skills",
+            [],
+        )
+
+        (
+            satisfied,
+            matching_options,
+        ) = group_is_satisfied(
+            skills,
+            resume_skills,
+        )
+
+        total_count += 1
+
+        if satisfied:
+            satisfied_count += 1
+
+        group_results.append(
+            {
+                "skills": skills,
+
+                "satisfied": (
+                    satisfied
+                ),
+
+                "matching_options": (
+                    matching_options
+                ),
+
+                "text": group.get(
+                    "text",
+                    "",
+                ),
+            }
+        )
+
+    if total_count == 0:
+
+        return (
+            100.0,
+            matched,
+            missing,
+            group_results,
+        )
+
+    score = (
+        satisfied_count
+        / total_count
+    ) * 100
+
+    return (
+        round(
+            score,
+            2,
+        ),
+        matched,
+        missing,
+        group_results,
+    )
+
+
+# ============================================================
+# EXPERIENCE SCORE
+# ============================================================
+
+def calculate_experience_score(
+    experience_mentions: list[dict],
+) -> float:
+
+    relevant_mentions = [
+        mention
+        for mention
+        in experience_mentions
+        if not mention.get(
+            "preferred",
+            False,
+        )
+    ]
+
+    if not relevant_mentions:
+
+        return 100.0
+
+    required_minimum = max(
+        mention.get(
+            "min_years",
+            0,
+        )
+        for mention
+        in relevant_mentions
+    )
+
+    if (
+        APPLICANT_YEARS_EXPERIENCE
+        >= required_minimum
+    ):
+        return 100.0
+
+    difference = (
+        required_minimum
+        - APPLICANT_YEARS_EXPERIENCE
+    )
+
+    if difference <= 1:
+        return 65.0
+
+    return 0.0
+
+
+# ============================================================
+# SEMANTIC SCORE
+# ============================================================
+
+def calculate_semantic_score(
+    job_text: str,
+    resume_embeddings,
+) -> float:
+    """
+    Encode ONLY the job.
+
+    Resume embeddings are already cached.
+    """
 
     model = get_model()
 
@@ -454,11 +557,7 @@ def calculate_semantic_scores(
     )
 
     if not job_chunks:
-
-        return {
-            name: 0.0
-            for name in resumes
-        }
+        return 0.0
 
     job_embeddings = model.encode(
         job_chunks,
@@ -467,79 +566,44 @@ def calculate_semantic_scores(
         show_progress_bar=False,
     )
 
-    results = {}
+    matrix = util.cos_sim(
+        job_embeddings,
+        resume_embeddings,
+    )
 
-    for resume_name, resume in resumes.items():
+    strongest = (
+        matrix
+        .max(dim=1)
+        .values
+        .cpu()
+        .tolist()
+    )
 
-        resume_chunks = chunk_text(
-            resume["text"]
+    strongest.sort(
+        reverse=True
+    )
+
+    strongest = strongest[
+        :min(
+            5,
+            len(strongest),
         )
+    ]
 
-        if not resume_chunks:
+    raw_score = (
+        sum(strongest)
+        / len(strongest)
+    ) * 100
 
-            results[resume_name] = 0.0
-            continue
-
-        resume_embeddings = model.encode(
-            resume_chunks,
-            convert_to_tensor=True,
-            normalize_embeddings=True,
-            show_progress_bar=False,
-        )
-
-        matrix = util.cos_sim(
-            job_embeddings,
-            resume_embeddings,
-        )
-
-        strongest = (
-            matrix
-            .max(dim=1)
-            .values
-            .cpu()
-            .tolist()
-        )
-
-        strongest.sort(
-            reverse=True
-        )
-
-        strongest = strongest[
-            :min(
-                5,
-                len(strongest),
-            )
-        ]
-
-        raw = (
-            sum(strongest)
-            / len(strongest)
-        ) * 100
-
-        results[resume_name] = round(
-            raw,
-            2,
-        )
-
-    return results
+    return round(
+        raw_score,
+        2,
+    )
 
 
 def normalize_semantic_score(
     raw_score: float,
 ) -> float:
-    """
-    Convert typical MiniLM cosine similarity values into a
-    more interpretable component score.
-
-    Approximate calibration:
-
-        25 -> 0
-        35 -> 29
-        45 -> 57
-        50 -> 71
-        55 -> 86
-        60 -> 100
-    """
 
     normalized = (
         (raw_score - 25)
@@ -567,17 +631,6 @@ def normalize_semantic_score(
 def get_route(
     final_score: float,
 ) -> str:
-    """
-    Score does NOT decide whether we apply.
-
-    Eligibility filtering happens before this point.
-
-    85+:
-        User manually applies.
-
-    Below 85:
-        Agent applies.
-    """
 
     if final_score >= 85:
         return "MANUAL_PRIORITY"
@@ -594,7 +647,7 @@ def rank_resumes(
     job_content: str,
     job_text: str,
     experience_mentions: list[dict],
-    resumes: dict[str, dict],
+    resume_cache: dict[str, dict],
 ) -> dict:
 
     job_profile = infer_job_profile(
@@ -605,13 +658,6 @@ def rank_resumes(
         job_content
     )
 
-    semantic_raw_scores = (
-        calculate_semantic_scores(
-            job_text,
-            resumes,
-        )
-    )
-
     experience_score = (
         calculate_experience_score(
             experience_mentions
@@ -620,7 +666,10 @@ def rank_resumes(
 
     rankings = []
 
-    for resume_name, resume in resumes.items():
+    for (
+        resume_name,
+        resume,
+    ) in resume_cache.items():
 
         # ----------------------------------------------------
         # ROLE
@@ -631,13 +680,9 @@ def rank_resumes(
             resume_name,
         )
 
-        # ----------------------------------------------------
-        # RESUME SKILLS
-        # ----------------------------------------------------
-
-        resume_skills = extract_skills(
-            resume["text"]
-        )
+        resume_skills = resume[
+            "skills"
+        ]
 
         # ----------------------------------------------------
         # REQUIRED
@@ -684,9 +729,12 @@ def rank_resumes(
         # ----------------------------------------------------
 
         semantic_raw = (
-            semantic_raw_scores[
-                resume_name
-            ]
+            calculate_semantic_score(
+                job_text,
+                resume[
+                    "embeddings"
+                ],
+            )
         )
 
         semantic_score = (
@@ -696,7 +744,7 @@ def rank_resumes(
         )
 
         # ----------------------------------------------------
-        # FINAL WEIGHTED SCORE
+        # FINAL
         # ----------------------------------------------------
 
         final_score = (
@@ -714,12 +762,17 @@ def rank_resumes(
 
         rankings.append(
             {
-                "resume_name": resume_name,
+                "resume_name": (
+                    resume_name
+                ),
+
                 "filename": resume[
                     "filename"
                 ],
 
-                "role_score": role_score,
+                "role_score": (
+                    role_score
+                ),
 
                 "required_score": (
                     required_score
@@ -783,10 +836,17 @@ def rank_resumes(
     )
 
     return {
-        "job_profile": job_profile,
-        "requirements": requirements,
+        "job_profile": (
+            job_profile
+        ),
+
+        "requirements": (
+            requirements
+        ),
+
         "experience_score": (
             experience_score
         ),
+
         "rankings": rankings,
     }
