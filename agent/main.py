@@ -1,6 +1,8 @@
 import time
 
-from src.greenhouse.client import get_jobs
+from src.greenhouse.client import (
+    get_jobs,
+)
 
 from src.filtering.job_filter import (
     filter_by_role,
@@ -24,6 +26,10 @@ from src.matching.matcher import (
     rank_resumes,
 )
 
+from src.database.repository import (
+    JobRepository,
+)
+
 
 def pretty_name(
     name: str,
@@ -38,20 +44,27 @@ def pretty_name(
 
 def main():
 
-    total_start = time.perf_counter()
+    total_start = (
+        time.perf_counter()
+    )
 
     board_token = "stripe"
 
     print()
     print("=" * 90)
-    print("GREENHOUSE JOB AGENT — FULL SCORING RUN")
+    print(
+        "GREENHOUSE JOB AGENT — "
+        "SUPABASE PERSISTENCE RUN"
+    )
     print("=" * 90)
 
     # ========================================================
     # FETCH
     # ========================================================
 
-    fetch_start = time.perf_counter()
+    fetch_start = (
+        time.perf_counter()
+    )
 
     print()
     print(
@@ -78,10 +91,12 @@ def main():
         return
 
     # ========================================================
-    # ELIGIBILITY
+    # ELIGIBILITY FILTERS
     # ========================================================
 
-    filter_start = time.perf_counter()
+    filter_start = (
+        time.perf_counter()
+    )
 
     role_jobs = filter_by_role(
         jobs
@@ -103,6 +118,7 @@ def main():
         us_jobs
     )
 
+    # 4-year review jobs remain eligible.
     eligible_jobs = (
         accepted_jobs
         + review_jobs
@@ -166,18 +182,22 @@ def main():
         return
 
     # ========================================================
-    # RESUMES
+    # LOAD + CACHE RESUMES
     # ========================================================
 
-    resume_start = time.perf_counter()
+    resume_start = (
+        time.perf_counter()
+    )
 
     print()
     print(
-        "Loading 8 master resumes...",
+        "Loading master resumes...",
         flush=True,
     )
 
-    resumes = load_all_resumes()
+    resumes = (
+        load_all_resumes()
+    )
 
     resume_cache = (
         prepare_resume_cache(
@@ -191,16 +211,47 @@ def main():
     )
 
     # ========================================================
-    # SCORE ALL JOBS
+    # CONNECT DATABASE
     # ========================================================
 
-    scoring_start = time.perf_counter()
+    print()
+    print(
+        "Connecting to Supabase...",
+        flush=True,
+    )
+
+    repository = (
+        JobRepository()
+    )
+
+    run_id = (
+        repository
+        .create_agent_run(
+            board_token
+        )
+    )
+
+    print(
+        f"Agent run created: "
+        f"{run_id[:8]}...",
+        flush=True,
+    )
+
+    # ========================================================
+    # SCORE + SAVE ALL JOBS
+    # ========================================================
+
+    scoring_start = (
+        time.perf_counter()
+    )
 
     scored_jobs = []
 
     print()
     print("=" * 90)
-    print("SCORING ELIGIBLE JOBS")
+    print(
+        "SCORING + SAVING ELIGIBLE JOBS"
+    )
     print("=" * 90)
 
     for index, result in enumerate(
@@ -223,12 +274,16 @@ def main():
             "Unknown title",
         )
 
-        location = job.get(
-            "location",
-            {},
-        ).get(
-            "name",
-            "Unknown location",
+        location = (
+            job
+            .get(
+                "location",
+                {},
+            )
+            .get(
+                "name",
+                "Unknown location",
+            )
         )
 
         content = job.get(
@@ -236,12 +291,15 @@ def main():
             "",
         )
 
-        job_text = clean_job_content(
-            content
+        job_text = (
+            clean_job_content(
+                content
+            )
         )
 
         print(
-            f"[{index:02}/{len(eligible_jobs):02}] "
+            f"[{index:02}/"
+            f"{len(eligible_jobs):02}] "
             f"{title}",
             flush=True,
         )
@@ -253,11 +311,15 @@ def main():
         match_result = (
             rank_resumes(
                 job_title=title,
+
                 job_content=content,
+
                 job_text=job_text,
+
                 experience_mentions=(
                     experience_mentions
                 ),
+
                 resume_cache=(
                     resume_cache
                 ),
@@ -268,6 +330,96 @@ def main():
             match_result[
                 "rankings"
             ][0]
+        )
+
+        # ----------------------------------------------------
+        # COMPANY
+        # ----------------------------------------------------
+
+        company = (
+            job.get(
+                "company_name"
+            )
+            or board_token.title()
+        )
+
+        # ----------------------------------------------------
+        # SAVE JOB
+        # ----------------------------------------------------
+
+        database_job_id = (
+            repository
+            .upsert_job(
+                greenhouse_job_id=(
+                    job.get(
+                        "id"
+                    )
+                ),
+
+                board_token=(
+                    board_token
+                ),
+
+                company=(
+                    company
+                ),
+
+                title=(
+                    title
+                ),
+
+                location=(
+                    location
+                ),
+
+                url=job.get(
+                    "absolute_url",
+                    "",
+                ),
+
+                detected_profile=(
+                    match_result[
+                        "job_profile"
+                    ]
+                ),
+            )
+        )
+
+        # ----------------------------------------------------
+        # SAVE SCORE
+        # ----------------------------------------------------
+
+        repository.save_evaluation(
+            run_id=(
+                run_id
+            ),
+
+            job_id=(
+                database_job_id
+            ),
+
+            best_match=(
+                best
+            ),
+        )
+
+        # ----------------------------------------------------
+        # CREATE TRACKER ENTRY
+        # ----------------------------------------------------
+
+        application_id = (
+            repository
+            .ensure_application(
+                job_id=(
+                    database_job_id
+                ),
+
+                route=(
+                    best[
+                        "route"
+                    ]
+                ),
+            )
         )
 
         job_time = (
@@ -283,17 +435,33 @@ def main():
             f" | "
             f"{best['route']}"
             f" | "
+            f"saved"
+            f" | "
             f"{job_time:.2f}s",
             flush=True,
         )
 
         scored_jobs.append(
             {
+                "database_job_id": (
+                    database_job_id
+                ),
+
+                "application_id": (
+                    application_id
+                ),
+
                 "job_id": job.get(
                     "id"
                 ),
 
-                "title": title,
+                "title": (
+                    title
+                ),
+
+                "company": (
+                    company
+                ),
 
                 "location": (
                     location
@@ -348,35 +516,102 @@ def main():
     manual_jobs = [
         job
         for job in scored_jobs
-        if job[
-            "route"
-        ] == "MANUAL_PRIORITY"
+        if job["route"]
+        == "MANUAL_PRIORITY"
     ]
 
     agent_jobs = [
         job
         for job in scored_jobs
-        if job[
-            "route"
-        ] == "AGENT_APPLY"
+        if job["route"]
+        == "AGENT_APPLY"
     ]
 
     manual_jobs.sort(
-        key=lambda job: job[
-            "score"
-        ],
+        key=lambda job: (
+            job["score"]
+        ),
         reverse=True,
     )
 
     agent_jobs.sort(
-        key=lambda job: job[
-            "score"
-        ],
+        key=lambda job: (
+            job["score"]
+        ),
         reverse=True,
     )
 
     # ========================================================
-    # MANUAL PRIORITY
+    # COMPLETE DATABASE RUN
+    # ========================================================
+
+    total_time = (
+        time.perf_counter()
+        - total_start
+    )
+
+    repository.complete_agent_run(
+        run_id=(
+            run_id
+        ),
+
+        jobs_discovered=(
+            len(jobs)
+        ),
+
+        target_role_jobs=(
+            len(role_jobs)
+        ),
+
+        us_compatible_jobs=(
+            len(us_jobs)
+        ),
+
+        jobs_eligible=(
+            len(eligible_jobs)
+        ),
+
+        manual_priority_count=(
+            len(manual_jobs)
+        ),
+
+        agent_apply_count=(
+            len(agent_jobs)
+        ),
+
+        experience_rejected_count=(
+            len(rejected_jobs)
+        ),
+
+        unknown_location_count=(
+            len(
+                unknown_location_jobs
+            )
+        ),
+
+        fetch_seconds=(
+            fetch_time
+        ),
+
+        filtering_seconds=(
+            filter_time
+        ),
+
+        resume_cache_seconds=(
+            resume_time
+        ),
+
+        scoring_seconds=(
+            scoring_time
+        ),
+
+        total_seconds=(
+            total_time
+        ),
+    )
+
+    # ========================================================
+    # OUTPUT QUEUES
     # ========================================================
 
     print()
@@ -387,13 +622,6 @@ def main():
         f"{len(manual_jobs)} JOBS"
     )
     print("=" * 90)
-
-    if not manual_jobs:
-
-        print()
-        print(
-            "No 85+ jobs found."
-        )
 
     for index, job in enumerate(
         manual_jobs,
@@ -406,6 +634,11 @@ def main():
             f"{index}. "
             f"[{job['score']:.2f}] "
             f"{job['title']}"
+        )
+
+        print(
+            f"   Company:  "
+            f"{job['company']}"
         )
 
         print(
@@ -422,10 +655,6 @@ def main():
             f"   URL:      "
             f"{job['url']}"
         )
-
-    # ========================================================
-    # AGENT APPLY
-    # ========================================================
 
     print()
     print()
@@ -450,6 +679,11 @@ def main():
         )
 
         print(
+            f"   Company:  "
+            f"{job['company']}"
+        )
+
+        print(
             f"   Location: "
             f"{job['location']}"
         )
@@ -465,85 +699,52 @@ def main():
         )
 
     # ========================================================
-    # PERFORMANCE
+    # FINAL SUMMARY
     # ========================================================
-
-    total_time = (
-        time.perf_counter()
-        - total_start
-    )
 
     print()
     print()
     print("=" * 90)
-    print("RUN SUMMARY")
+    print(
+        "SUPABASE RUN SAVED SUCCESSFULLY"
+    )
     print("=" * 90)
 
     print(
-        f"Jobs discovered:             "
+        f"Run ID:                     "
+        f"{run_id}"
+    )
+
+    print(
+        f"Jobs discovered:            "
         f"{len(jobs)}"
     )
 
     print(
-        f"Jobs eligible:               "
-        f"{len(eligible_jobs)}"
+        f"Jobs saved/tracked:         "
+        f"{len(scored_jobs)}"
     )
 
     print(
-        f"Manual priority:             "
+        f"Manual priority:            "
         f"{len(manual_jobs)}"
     )
 
     print(
-        f"Agent apply:                 "
+        f"Agent apply:                "
         f"{len(agent_jobs)}"
     )
 
     print(
-        f"Experience rejected:         "
-        f"{len(rejected_jobs)}"
-    )
-
-    print(
-        f"Unknown location:            "
-        f"{len(unknown_location_jobs)}"
-    )
-
-    print()
-    print("TIMING")
-    print("-" * 90)
-
-    print(
-        f"Fetch:                       "
-        f"{fetch_time:.2f}s"
-    )
-
-    print(
-        f"Filtering:                   "
-        f"{filter_time:.2f}s"
-    )
-
-    print(
-        f"Resume cache preparation:    "
-        f"{resume_time:.2f}s"
-    )
-
-    print(
-        f"Scoring all jobs:            "
-        f"{scoring_time:.2f}s"
-    )
-
-    print(
-        f"TOTAL RUN TIME:              "
+        f"Total runtime:              "
         f"{total_time:.2f}s"
     )
 
-    if eligible_jobs:
-
-        print(
-            f"Average score time / job:    "
-            f"{scoring_time / len(eligible_jobs):.2f}s"
-        )
+    print()
+    print(
+        "You can now verify the rows "
+        "inside Supabase."
+    )
 
     print("=" * 90)
 
