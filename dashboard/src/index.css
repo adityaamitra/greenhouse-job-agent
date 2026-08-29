@@ -1377,3 +1377,45 @@ td {
   }
 }
 
+
+/* ==========================================================
+   JOB LIFECYCLE
+   ========================================================== */
+
+.job-state-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 54px;
+  padding: 4px 8px;
+
+  border-radius: 999px;
+
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.job-state-badge.open {
+  background: #173826;
+  color: #9be3ba;
+}
+
+.job-state-badge.closed {
+  background: #3a2020;
+  color: #f2aaaa;
+}
+
+.closed-job-row {
+  background: rgba(255, 255, 255, 0.015);
+}
+
+.closed-job-row > td {
+  color: #9ca3af;
+}
+
+.closed-job-row .role-cell strong {
+  color: #aab1bd;
+}
+

@@ -149,6 +149,13 @@ function hasV21Evidence(evaluation) {
 }
 
 
+function jobIsActive(application) {
+  // Treat missing lifecycle metadata as active so older rows
+  // remain usable if the dashboard is opened before a refresh.
+  return application?.jobs?.is_active !== false;
+}
+
+
 function ScoreBadge({ score }) {
   const numericScore = numberOrNull(score);
 
@@ -222,6 +229,21 @@ function RouteBadge({ route }) {
       {route === "MANUAL_PRIORITY"
         ? "Manual Priority"
         : "Agent Apply"}
+    </span>
+  );
+}
+
+
+function JobStateBadge({ isActive }) {
+  return (
+    <span
+      className={
+        isActive
+          ? "job-state-badge open"
+          : "job-state-badge closed"
+      }
+    >
+      {isActive ? "Open" : "Closed"}
     </span>
   );
 }
@@ -540,7 +562,8 @@ function App() {
               "MANUAL_PRIORITY" &&
             application.status ===
               "PENDING" &&
-            !application.needs_assistance
+            !application.needs_assistance &&
+            jobIsActive(application)
         )
         .sort(
           (a, b) =>
@@ -559,7 +582,8 @@ function App() {
     () =>
       applications.filter(
         (application) =>
-          application.needs_assistance
+          application.needs_assistance &&
+          jobIsActive(application)
       ),
     [applications]
   );
@@ -571,7 +595,8 @@ function App() {
         (application) =>
           application.evaluation
             ?.route === "AGENT_APPLY" &&
-          !application.needs_assistance
+          !application.needs_assistance &&
+          jobIsActive(application)
       ),
     [applications]
   );
@@ -588,6 +613,7 @@ function App() {
             );
 
           return (
+            jobIsActive(application) &&
             confidence !== null &&
             confidence <
               CONFIDENCE_THRESHOLD
@@ -602,6 +628,16 @@ function App() {
               b.evaluation?.confidence ?? 0
             )
         ),
+    [applications]
+  );
+
+
+  const closedApplications = useMemo(
+    () =>
+      applications.filter(
+        (application) =>
+          !jobIsActive(application)
+      ),
     [applications]
   );
 
@@ -623,6 +659,7 @@ function App() {
 
   const evidenceStats = useMemo(() => {
     const evaluations = applications
+      .filter(jobIsActive)
       .map(
         (application) =>
           application.evaluation
@@ -975,6 +1012,11 @@ function App() {
             <MetricCard
               label="Tracked Jobs"
               value={applications.length}
+              hint={
+                `${closedApplications.length} closed opening${
+                  closedApplications.length === 1 ? "" : "s"
+                } preserved in history`
+              }
             />
 
             <MetricCard
@@ -1025,7 +1067,7 @@ function App() {
                     Highest Priority
                   </h2>
                   <p>
-                    Jobs that pass all V2.1 Manual Priority gates.
+                    Open jobs that pass all V2.1 Manual Priority gates.
                   </p>
                 </div>
               </div>
@@ -1265,7 +1307,7 @@ function App() {
                   Application Tracker
                 </h2>
                 <p>
-                  Latest V2.1 evaluation plus recruiting-pipeline status.
+                  All application history, including jobs that have closed.
                 </p>
               </div>
 
@@ -1280,6 +1322,7 @@ function App() {
                   <tr>
                     <th>Company</th>
                     <th>Role</th>
+                    <th>Opening</th>
                     <th>Fit</th>
                     <th>Confidence</th>
                     <th>Selection</th>
@@ -1293,7 +1336,14 @@ function App() {
                 <tbody>
                   {applications.map(
                     (application) => (
-                      <tr key={application.id}>
+                      <tr
+                        key={application.id}
+                        className={
+                          jobIsActive(application)
+                            ? ""
+                            : "closed-job-row"
+                        }
+                      >
                         <td>
                           {application.jobs
                             ?.company ?? "-"}
@@ -1322,6 +1372,14 @@ function App() {
                               />
                             )}
                           </div>
+                        </td>
+
+                        <td>
+                          <JobStateBadge
+                            isActive={
+                              jobIsActive(application)
+                            }
+                          />
                         </td>
 
                         <td>
@@ -1552,6 +1610,7 @@ function App() {
             <MetricCard
               label="Tracked Jobs"
               value={analytics.total}
+              hint={`${closedApplications.length} closed`}
             />
 
             <MetricCard

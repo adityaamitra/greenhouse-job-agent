@@ -1119,6 +1119,8 @@ def main():
 
     total_hard_blocked = 0
 
+    total_stale_jobs = 0
+
     total_fetch_time = 0.0
 
     total_filter_time = 0.0
@@ -1204,6 +1206,7 @@ def main():
                     "eligible": 0,
                     "assistance": 0,
                     "blocked": 0,
+                    "stale": 0,
                     "manual": 0,
                     "agent": 0,
                 }
@@ -1233,12 +1236,103 @@ def main():
                     "eligible": 0,
                     "assistance": 0,
                     "blocked": 0,
+                    "stale": 0,
                     "manual": 0,
                     "agent": 0,
                 }
             )
 
             continue
+
+        # ====================================================
+        # JOB LIFECYCLE
+        # ====================================================
+        #
+        # Compare against the COMPLETE Greenhouse board, not
+        # the filtered target-role subset. A tracked job should
+        # become inactive only when it actually disappears from
+        # the company's Greenhouse board.
+        #
+        # We deliberately skip lifecycle deactivation for empty
+        # board responses above. That protects the database from
+        # a temporary/anomalous empty API response.
+        # ====================================================
+
+        live_greenhouse_job_ids = [
+            job.get(
+                "id"
+            )
+            for job
+            in jobs
+            if job.get(
+                "id"
+            ) is not None
+        ]
+
+        lifecycle_result = (
+            repository
+            .sync_board_job_lifecycle(
+                board_token=(
+                    board_token
+                ),
+
+                live_greenhouse_job_ids=(
+                    live_greenhouse_job_ids
+                ),
+            )
+        )
+
+        company_stale_jobs = (
+            lifecycle_result[
+                "stale_jobs"
+            ]
+        )
+
+        company_stale_count = (
+            lifecycle_result[
+                "stale_count"
+            ]
+        )
+
+        total_stale_jobs += (
+            company_stale_count
+        )
+
+        if company_stale_count:
+
+            print()
+
+            print(
+                f"Lifecycle: marked "
+                f"{company_stale_count} "
+                f"previously tracked job(s) inactive."
+            )
+
+            for stale_job in (
+                company_stale_jobs[
+                    :5
+                ]
+            ):
+
+                print(
+                    f"  ✗ "
+                    f"{stale_job.get('title', 'Unknown title')}"
+                )
+
+            remaining_stale = (
+                company_stale_count
+                - min(
+                    company_stale_count,
+                    5,
+                )
+            )
+
+            if remaining_stale > 0:
+
+                print(
+                    f"  ... +"
+                    f"{remaining_stale} more"
+                )
 
         # ====================================================
         # BASIC FILTERS
@@ -1906,6 +2000,10 @@ def main():
                     company_blocked
                 ),
 
+                "stale": (
+                    company_stale_count
+                ),
+
                 "manual": (
                     company_manual
                 ),
@@ -2118,6 +2216,11 @@ def main():
         print(
             f"  Hard blocked:         "
             f"{summary['blocked']}"
+        )
+
+        print(
+            f"  Marked inactive:      "
+            f"{summary['stale']}"
         )
 
         print(
@@ -2664,6 +2767,11 @@ def main():
     print(
         f"Hard blocked:                "
         f"{total_hard_blocked}"
+    )
+
+    print(
+        f"Jobs marked inactive:        "
+        f"{total_stale_jobs}"
     )
 
     print(

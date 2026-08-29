@@ -27,6 +27,101 @@ def utc_now() -> str:
 
 
 # ============================================================
+# JOB LIFECYCLE HELPERS
+# ============================================================
+
+def normalize_greenhouse_job_ids(
+    values,
+) -> set[str]:
+    """
+    Normalize Greenhouse job IDs for reliable comparison.
+    """
+
+    normalized = set()
+
+    for value in (
+        values
+        or []
+    ):
+
+        if value is None:
+
+            continue
+
+        text = str(
+            value
+        ).strip()
+
+        if text:
+
+            normalized.add(
+                text
+            )
+
+    return normalized
+
+
+def find_stale_job_rows(
+    tracked_rows: list[dict],
+    live_greenhouse_job_ids,
+) -> list[dict]:
+    """
+    Return active tracked jobs whose Greenhouse IDs are no
+    longer present in the latest successful board fetch.
+
+    An empty live-ID set intentionally returns no stale jobs.
+    This is a safety guard against mass deactivation when a
+    board unexpectedly returns an empty response.
+    """
+
+    live_ids = (
+        normalize_greenhouse_job_ids(
+            live_greenhouse_job_ids
+        )
+    )
+
+    if not live_ids:
+
+        return []
+
+    stale_rows = []
+
+    for row in (
+        tracked_rows
+        or []
+    ):
+
+        if row.get(
+            "is_active",
+            True,
+        ) is False:
+
+            continue
+
+        greenhouse_job_id = (
+            str(
+                row.get(
+                    "greenhouse_job_id",
+                    "",
+                )
+            )
+            .strip()
+        )
+
+        if (
+            greenhouse_job_id
+            and greenhouse_job_id
+            not in live_ids
+        ):
+
+            stale_rows.append(
+                row
+            )
+
+    return stale_rows
+
+
+# ============================================================
 # REPOSITORY
 # ============================================================
 
@@ -323,6 +418,173 @@ class JobRepository:
                 "id"
             ]
         )
+
+    # ========================================================
+    # JOB LIFECYCLE
+    # ========================================================
+
+    def sync_board_job_lifecycle(
+        self,
+        *,
+        board_token: str,
+        live_greenhouse_job_ids,
+        dry_run: bool = False,
+    ) -> dict:
+        """
+        Mark previously tracked jobs inactive when they are no
+        longer present in a successful non-empty Greenhouse
+        board fetch.
+
+        Safety rules:
+            - an empty live-ID set never deactivates anything
+            - fetch failures are handled by main.py and never
+              call this method
+            - dry_run=True performs comparison only, no updates
+            - historical evaluations/applications are preserved
+            - if a job later reappears, upsert_job() sets
+              is_active=True again automatically
+        """
+
+        live_ids = (
+            normalize_greenhouse_job_ids(
+                live_greenhouse_job_ids
+            )
+        )
+
+        if not live_ids:
+
+            return {
+                "board_token": board_token,
+                "live_count": 0,
+                "tracked_active_count": 0,
+                "stale_count": 0,
+                "stale_jobs": [],
+                "skipped": True,
+                "reason": "EMPTY_LIVE_SET",
+                "dry_run": dry_run,
+            }
+
+        response = (
+            self.client
+            .table(
+                "jobs"
+            )
+            .select(
+                (
+                    "id,"
+                    "greenhouse_job_id,"
+                    "company,"
+                    "title,"
+                    "location,"
+                    "url,"
+                    "last_seen_at,"
+                    "is_active"
+                )
+            )
+            .eq(
+                "owner_id",
+                self.owner_id,
+            )
+            .eq(
+                "board_token",
+                board_token,
+            )
+            .eq(
+                "is_active",
+                True,
+            )
+            .execute()
+        )
+
+        tracked_rows = (
+            response.data
+            or []
+        )
+
+        stale_rows = (
+            find_stale_job_rows(
+                tracked_rows,
+                live_ids,
+            )
+        )
+
+        if (
+            stale_rows
+            and not dry_run
+        ):
+
+            now = (
+                utc_now()
+            )
+
+            stale_database_ids = [
+                row[
+                    "id"
+                ]
+                for row
+                in stale_rows
+            ]
+
+            # Keep each update request comfortably small.
+            batch_size = 100
+
+            for start in range(
+                0,
+                len(
+                    stale_database_ids
+                ),
+                batch_size,
+            ):
+
+                batch = (
+                    stale_database_ids[
+                        start:
+                        start + batch_size
+                    ]
+                )
+
+                (
+                    self.client
+                    .table(
+                        "jobs"
+                    )
+                    .update(
+                        {
+                            "is_active": False,
+                            "updated_at": now,
+                        }
+                    )
+                    .eq(
+                        "owner_id",
+                        self.owner_id,
+                    )
+                    .eq(
+                        "board_token",
+                        board_token,
+                    )
+                    .in_(
+                        "id",
+                        batch,
+                    )
+                    .execute()
+                )
+
+        return {
+            "board_token": board_token,
+            "live_count": len(
+                live_ids
+            ),
+            "tracked_active_count": len(
+                tracked_rows
+            ),
+            "stale_count": len(
+                stale_rows
+            ),
+            "stale_jobs": stale_rows,
+            "skipped": False,
+            "reason": None,
+            "dry_run": dry_run,
+        }
 
     # ========================================================
     # JOB EVALUATIONS
