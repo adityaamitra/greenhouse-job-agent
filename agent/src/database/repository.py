@@ -1,4 +1,7 @@
-from datetime import datetime, timezone
+from datetime import (
+    datetime,
+    timezone,
+)
 
 from src.database.supabase_client import (
     get_owner_id,
@@ -6,25 +9,37 @@ from src.database.supabase_client import (
 )
 
 
+# ============================================================
+# TIME
+# ============================================================
+
 def utc_now() -> str:
     """
     Return current UTC timestamp in ISO format.
     """
 
-    return datetime.now(
-        timezone.utc
-    ).isoformat()
+    return (
+        datetime.now(
+            timezone.utc
+        )
+        .isoformat()
+    )
 
+
+# ============================================================
+# REPOSITORY
+# ============================================================
 
 class JobRepository:
     """
     Database layer for the Greenhouse Job Agent.
 
     Responsibilities:
-        - Agent run history
-        - Job persistence
-        - Match-score history
-        - Application tracker creation
+        - agent run history
+        - job persistence
+        - evaluation history
+        - application tracking
+        - eligibility assistance
     """
 
     def __init__(self):
@@ -45,28 +60,39 @@ class JobRepository:
         self,
         board_token: str,
     ) -> str:
-        """
-        Start a new agent scan.
-        """
 
         payload = {
-            "owner_id": self.owner_id,
-            "board_token": board_token,
+            "owner_id": (
+                self.owner_id
+            ),
+
+            "board_token": (
+                board_token
+            ),
         }
 
         response = (
             self.client
-            .table("agent_runs")
-            .insert(payload)
+            .table(
+                "agent_runs"
+            )
+            .insert(
+                payload
+            )
             .execute()
         )
 
         if not response.data:
+
             raise RuntimeError(
                 "Failed to create agent run."
             )
 
-        return response.data[0]["id"]
+        return (
+            response.data[0][
+                "id"
+            ]
+        )
 
     def complete_agent_run(
         self,
@@ -86,12 +112,11 @@ class JobRepository:
         scoring_seconds: float,
         total_seconds: float,
     ) -> None:
-        """
-        Save final statistics for an agent scan.
-        """
 
         payload = {
-            "completed_at": utc_now(),
+            "completed_at": (
+                utc_now()
+            ),
 
             "jobs_discovered": (
                 jobs_discovered
@@ -153,8 +178,12 @@ class JobRepository:
 
         (
             self.client
-            .table("agent_runs")
-            .update(payload)
+            .table(
+                "agent_runs"
+            )
+            .update(
+                payload
+            )
             .eq(
                 "id",
                 run_id,
@@ -181,19 +210,15 @@ class JobRepository:
         url: str,
         detected_profile: str,
     ) -> str:
-        """
-        Insert a new Greenhouse job or update an existing one.
 
-        Job uniqueness:
-            owner_id
-            board_token
-            greenhouse_job_id
-        """
-
-        now = utc_now()
+        now = (
+            utc_now()
+        )
 
         payload = {
-            "owner_id": self.owner_id,
+            "owner_id": (
+                self.owner_id
+            ),
 
             "greenhouse_job_id": str(
                 greenhouse_job_id
@@ -236,7 +261,9 @@ class JobRepository:
 
         response = (
             self.client
-            .table("jobs")
+            .table(
+                "jobs"
+            )
             .upsert(
                 payload,
                 on_conflict=(
@@ -250,16 +277,20 @@ class JobRepository:
 
         if response.data:
 
-            return response.data[0][
-                "id"
-            ]
+            return (
+                response.data[0][
+                    "id"
+                ]
+            )
 
-        # Fallback lookup in case the API did not
-        # return the inserted/upserted row.
         lookup = (
             self.client
-            .table("jobs")
-            .select("id")
+            .table(
+                "jobs"
+            )
+            .select(
+                "id"
+            )
             .eq(
                 "owner_id",
                 self.owner_id,
@@ -274,7 +305,9 @@ class JobRepository:
                     greenhouse_job_id
                 ),
             )
-            .limit(1)
+            .limit(
+                1
+            )
             .execute()
         )
 
@@ -285,7 +318,11 @@ class JobRepository:
                 "not be retrieved."
             )
 
-        return lookup.data[0]["id"]
+        return (
+            lookup.data[0][
+                "id"
+            ]
+        )
 
     # ========================================================
     # JOB EVALUATIONS
@@ -299,7 +336,8 @@ class JobRepository:
         best_match: dict,
     ) -> None:
         """
-        Store the resume-selection result for a job.
+        Persist the selected resume and the complete V2.1
+        job-fit explanation for this run/job pair.
         """
 
         payload = {
@@ -319,6 +357,18 @@ class JobRepository:
                 best_match[
                     "final_score"
                 ]
+            ),
+
+            "selection_score": (
+                best_match.get(
+                    "selection_score"
+                )
+            ),
+
+            "confidence": (
+                best_match.get(
+                    "confidence"
+                )
             ),
 
             "route": (
@@ -368,6 +418,14 @@ class JobRepository:
                     "experience_score"
                 ]
             ),
+
+            "explanation": (
+                best_match.get(
+                    "explanation",
+                    {},
+                )
+                or {}
+            ),
         }
 
         (
@@ -385,30 +443,27 @@ class JobRepository:
         )
 
     # ========================================================
-    # APPLICATION TRACKER
+    # APPLICATION LOOKUP
     # ========================================================
 
-    def ensure_application(
+    def _get_application(
         self,
-        *,
         job_id: str,
-        route: str,
-    ) -> str:
-        """
-        Make sure an application tracker row exists.
+    ):
 
-        Existing application statuses are NEVER reset.
-
-        Example:
-            If a job is already INTERVIEW,
-            another scan must not change it back to PENDING.
-        """
-
-        existing = (
+        response = (
             self.client
-            .table("applications")
+            .table(
+                "applications"
+            )
             .select(
-                "id, status"
+                (
+                    "id,"
+                    "status,"
+                    "application_method,"
+                    "needs_assistance,"
+                    "assistance_reason"
+                )
             )
             .eq(
                 "owner_id",
@@ -418,26 +473,146 @@ class JobRepository:
                 "job_id",
                 job_id,
             )
-            .limit(1)
+            .limit(
+                1
+            )
             .execute()
         )
 
-        if existing.data:
+        if response.data:
 
-            return existing.data[0][
-                "id"
-            ]
-
-        if route == "MANUAL_PRIORITY":
-
-            application_method = (
-                "MANUAL"
+            return (
+                response.data[0]
             )
 
-        else:
+        return None
 
-            application_method = (
-                "AGENT"
+    # ========================================================
+    # NORMAL APPLICATION
+    # ========================================================
+
+    def ensure_application(
+        self,
+        *,
+        job_id: str,
+        route: str,
+    ) -> str:
+        """
+        Ensure an application row exists.
+
+        Existing progressed statuses are never reset.
+        Database updates happen only when routing or
+        eligibility-assistance state changes.
+        """
+
+        desired_method = (
+            "MANUAL"
+            if route
+            == "MANUAL_PRIORITY"
+            else "AGENT"
+        )
+
+        existing = (
+            self._get_application(
+                job_id
+            )
+        )
+
+        if existing:
+
+            application_id = (
+                existing[
+                    "id"
+                ]
+            )
+
+            status = (
+                existing.get(
+                    "status"
+                )
+            )
+
+            if status not in {
+                "PENDING",
+                "IN_PROGRESS",
+            }:
+
+                return (
+                    application_id
+                )
+
+            update_payload = {}
+
+            current_method = (
+                existing.get(
+                    "application_method"
+                )
+            )
+
+            if (
+                current_method
+                != desired_method
+            ):
+
+                update_payload[
+                    "application_method"
+                ] = (
+                    desired_method
+                )
+
+            assistance_reason = (
+                existing.get(
+                    "assistance_reason"
+                )
+                or ""
+            )
+
+            if (
+                existing.get(
+                    "needs_assistance"
+                )
+                and assistance_reason.startswith(
+                    "ELIGIBILITY:"
+                )
+            ):
+
+                update_payload[
+                    "needs_assistance"
+                ] = False
+
+                update_payload[
+                    "assistance_reason"
+                ] = None
+
+            if update_payload:
+
+                update_payload[
+                    "last_updated_at"
+                ] = (
+                    utc_now()
+                )
+
+                (
+                    self.client
+                    .table(
+                        "applications"
+                    )
+                    .update(
+                        update_payload
+                    )
+                    .eq(
+                        "id",
+                        application_id,
+                    )
+                    .eq(
+                        "owner_id",
+                        self.owner_id,
+                    )
+                    .execute()
+                )
+
+            return (
+                application_id
             )
 
         payload = {
@@ -450,16 +625,14 @@ class JobRepository:
             ),
 
             "application_method": (
-                application_method
+                desired_method
             ),
 
             "status": (
                 "PENDING"
             ),
 
-            "needs_assistance": (
-                False
-            ),
+            "needs_assistance": False,
         }
 
         response = (
@@ -480,6 +653,281 @@ class JobRepository:
                 "application tracker row."
             )
 
-        return response.data[0][
-            "id"
-        ]
+        return (
+            response.data[0][
+                "id"
+            ]
+        )
+
+    # ========================================================
+    # NEEDS ASSISTANCE
+    # ========================================================
+
+    def ensure_assistance_application(
+        self,
+        *,
+        job_id: str,
+        reason: str,
+    ) -> str:
+        """
+        Ensure a job requiring human review appears in
+        the assistance queue.
+
+        Existing progressed applications are preserved.
+        Writes only occur when the assistance state or
+        assistance reason actually changes.
+        """
+
+        tagged_reason = (
+            f"ELIGIBILITY: {reason}"
+        )
+
+        existing = (
+            self._get_application(
+                job_id
+            )
+        )
+
+        if existing:
+
+            application_id = (
+                existing[
+                    "id"
+                ]
+            )
+
+            status = (
+                existing.get(
+                    "status"
+                )
+            )
+
+            if status not in {
+                "PENDING",
+                "IN_PROGRESS",
+            }:
+
+                return (
+                    application_id
+                )
+
+            update_payload = {}
+
+            current_assistance = (
+                bool(
+                    existing.get(
+                        "needs_assistance"
+                    )
+                )
+            )
+
+            current_reason = (
+                existing.get(
+                    "assistance_reason"
+                )
+            )
+
+            if not current_assistance:
+
+                update_payload[
+                    "needs_assistance"
+                ] = True
+
+            if (
+                current_reason
+                != tagged_reason
+            ):
+
+                update_payload[
+                    "assistance_reason"
+                ] = (
+                    tagged_reason
+                )
+
+            if update_payload:
+
+                update_payload[
+                    "last_updated_at"
+                ] = (
+                    utc_now()
+                )
+
+                (
+                    self.client
+                    .table(
+                        "applications"
+                    )
+                    .update(
+                        update_payload
+                    )
+                    .eq(
+                        "id",
+                        application_id,
+                    )
+                    .eq(
+                        "owner_id",
+                        self.owner_id,
+                    )
+                    .execute()
+                )
+
+            self._ensure_assistance_request(
+                application_id=(
+                    application_id
+                ),
+
+                reason=(
+                    tagged_reason
+                ),
+            )
+
+            return (
+                application_id
+            )
+
+        payload = {
+            "owner_id": (
+                self.owner_id
+            ),
+
+            "job_id": (
+                job_id
+            ),
+
+            "application_method": (
+                "AGENT"
+            ),
+
+            "status": (
+                "PENDING"
+            ),
+
+            "needs_assistance": True,
+
+            "assistance_reason": (
+                tagged_reason
+            ),
+        }
+
+        response = (
+            self.client
+            .table(
+                "applications"
+            )
+            .insert(
+                payload
+            )
+            .execute()
+        )
+
+        if not response.data:
+
+            raise RuntimeError(
+                "Failed to create assistance "
+                "application tracker row."
+            )
+
+        application_id = (
+            response.data[0][
+                "id"
+            ]
+        )
+
+        self._ensure_assistance_request(
+            application_id=(
+                application_id
+            ),
+
+            reason=(
+                tagged_reason
+            ),
+        )
+
+        return (
+            application_id
+        )
+
+    # ========================================================
+    # ASSISTANCE REQUESTS
+    # ========================================================
+
+    def _ensure_assistance_request(
+        self,
+        *,
+        application_id: str,
+        reason: str,
+    ) -> None:
+        """
+        Prevent duplicate unresolved assistance requests.
+        """
+
+        existing = (
+            self.client
+            .table(
+                "assistance_requests"
+            )
+            .select(
+                "id,reason,resolved"
+            )
+            .eq(
+                "owner_id",
+                self.owner_id,
+            )
+            .eq(
+                "application_id",
+                application_id,
+            )
+            .eq(
+                "resolved",
+                False,
+            )
+            .execute()
+        )
+
+        for request in (
+            existing.data
+            or []
+        ):
+
+            if (
+                request.get(
+                    "reason"
+                )
+                == reason
+            ):
+
+                return
+
+        payload = {
+            "owner_id": (
+                self.owner_id
+            ),
+
+            "application_id": (
+                application_id
+            ),
+
+            "question": (
+                "Please review this job's "
+                "eligibility requirements "
+                "before application."
+            ),
+
+            "reason": (
+                reason
+            ),
+
+            "resolved": False,
+        }
+
+        (
+            self.client
+            .table(
+                "assistance_requests"
+            )
+            .insert(
+                payload
+            )
+            .execute()
+        )
+

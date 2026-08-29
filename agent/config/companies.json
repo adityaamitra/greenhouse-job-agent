@@ -1,0 +1,38 @@
+[
+  {
+    "name": "Stripe",
+    "board_token": "stripe",
+    "enabled": true,
+    "priority": "high"
+  },
+  {
+    "name": "Figma",
+    "board_token": "figma",
+    "enabled": true,
+    "priority": "high"
+  },
+  {
+    "name": "Scale AI",
+    "board_token": "scaleai",
+    "enabled": true,
+    "priority": "high"
+  },
+  {
+    "name": "Airtable",
+    "board_token": "airtable",
+    "enabled": true,
+    "priority": "high"
+  },
+  {
+    "name": "Webflow",
+    "board_token": "webflow",
+    "enabled": true,
+    "priority": "watch"
+  },
+  {
+    "name": "Ocrolus",
+    "board_token": "ocrolusinc",
+    "enabled": true,
+    "priority": "watch"
+  }
+]
