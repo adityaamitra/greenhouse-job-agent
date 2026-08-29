@@ -15,6 +15,9 @@ import {
 import { supabase } from "./lib/supabase";
 
 
+const MANUAL_THRESHOLD = 85;
+const CONFIDENCE_THRESHOLD = 75;
+
 const APPLICATION_STATUSES = [
   "PENDING",
   "IN_PROGRESS",
@@ -29,12 +32,18 @@ const APPLICATION_STATUSES = [
   "WITHDRAWN",
 ];
 
-
 const INTERVIEW_STATUSES = [
   "RECRUITER_SCREEN",
   "INTERVIEW",
   "TECHNICAL_INTERVIEW",
   "FINAL_INTERVIEW",
+];
+
+const FIT_COMPONENTS = [
+  ["required", "Required", "required_score"],
+  ["preferred", "Preferred", "preferred_score"],
+  ["semantic", "Semantic", "semantic_score"],
+  ["experience", "Experience", "experience_score"],
 ];
 
 
@@ -43,7 +52,7 @@ function prettyName(value) {
     return "-";
   }
 
-  return value
+  return String(value)
     .replaceAll("_", " ")
     .toLowerCase()
     .replace(/\b\w/g, (letter) =>
@@ -52,8 +61,98 @@ function prettyName(value) {
 }
 
 
+function numberOrNull(value) {
+  if (value === null || value === undefined || value === "") {
+    return null;
+  }
+
+  const parsed = Number(value);
+
+  return Number.isFinite(parsed)
+    ? parsed
+    : null;
+}
+
+
+function formatNumber(value, digits = 2) {
+  const parsed = numberOrNull(value);
+
+  return parsed === null
+    ? "-"
+    : parsed.toFixed(digits);
+}
+
+
+function getExplanation(evaluation) {
+  const explanation = evaluation?.explanation;
+
+  if (
+    explanation &&
+    typeof explanation === "object" &&
+    !Array.isArray(explanation)
+  ) {
+    return explanation;
+  }
+
+  return {};
+}
+
+
+function getAvailability(evaluation) {
+  return (
+    getExplanation(evaluation)
+      .component_availability ?? {}
+  );
+}
+
+
+function componentAvailable(
+  evaluation,
+  component
+) {
+  const availability =
+    getAvailability(evaluation);
+
+  if (
+    Object.prototype.hasOwnProperty.call(
+      availability,
+      component
+    )
+  ) {
+    return Boolean(
+      availability[component]
+    );
+  }
+
+  // Semantic matching exists for every V2.1 scored row.
+  if (
+    component === "semantic" &&
+    evaluation?.semantic_score !== null &&
+    evaluation?.semantic_score !== undefined
+  ) {
+    return true;
+  }
+
+  return false;
+}
+
+
+function hasV21Evidence(evaluation) {
+  return Boolean(
+    evaluation &&
+    evaluation.confidence !== null &&
+    evaluation.confidence !== undefined &&
+    Object.keys(
+      getExplanation(evaluation)
+    ).length > 0
+  );
+}
+
+
 function ScoreBadge({ score }) {
-  if (score === null || score === undefined) {
+  const numericScore = numberOrNull(score);
+
+  if (numericScore === null) {
     return (
       <span className="score-badge">
         -
@@ -63,9 +162,9 @@ function ScoreBadge({ score }) {
 
   let className = "score-badge";
 
-  if (score >= 85) {
+  if (numericScore >= MANUAL_THRESHOLD) {
     className += " score-high";
-  } else if (score >= 75) {
+  } else if (numericScore >= 75) {
     className += " score-medium";
   } else {
     className += " score-low";
@@ -73,7 +172,56 @@ function ScoreBadge({ score }) {
 
   return (
     <span className={className}>
-      {Number(score).toFixed(2)}
+      {numericScore.toFixed(2)}
+    </span>
+  );
+}
+
+
+function ConfidenceBadge({ confidence }) {
+  const value = numberOrNull(confidence);
+
+  if (value === null) {
+    return (
+      <span className="confidence-badge neutral">
+        -
+      </span>
+    );
+  }
+
+  let className = "confidence-badge";
+
+  if (value >= CONFIDENCE_THRESHOLD) {
+    className += " high";
+  } else if (value >= 60) {
+    className += " medium";
+  } else {
+    className += " low";
+  }
+
+  return (
+    <span className={className}>
+      {value.toFixed(0)}%
+    </span>
+  );
+}
+
+
+function RouteBadge({ route }) {
+  if (!route) {
+    return null;
+  }
+
+  const className =
+    route === "MANUAL_PRIORITY"
+      ? "route-badge manual"
+      : "route-badge agent";
+
+  return (
+    <span className={className}>
+      {route === "MANUAL_PRIORITY"
+        ? "Manual Priority"
+        : "Agent Apply"}
     </span>
   );
 }
@@ -81,31 +229,23 @@ function ScoreBadge({ score }) {
 
 function App() {
   const [session, setSession] = useState(null);
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
   const [applications, setApplications] =
     useState([]);
-
   const [latestRun, setLatestRun] =
     useState(null);
-
   const [runHistory, setRunHistory] =
     useState([]);
-
   const [activeTab, setActiveTab] =
     useState("overview");
-
   const [loading, setLoading] =
     useState(true);
-
+  const [dashboardLoading, setDashboardLoading] =
+    useState(false);
   const [loginLoading, setLoginLoading] =
     useState(false);
-
-  const [error, setError] =
-    useState("");
-
+  const [error, setError] = useState("");
   const [updatingId, setUpdatingId] =
     useState(null);
 
@@ -185,6 +325,7 @@ function App() {
 
   async function loadDashboard() {
     setError("");
+    setDashboardLoading(true);
 
     try {
       const {
@@ -208,7 +349,9 @@ function App() {
             title,
             location,
             url,
-            detected_profile
+            detected_profile,
+            is_active,
+            last_seen_at
           )
         `)
         .order("created_at", {
@@ -219,7 +362,6 @@ function App() {
         throw applicationError;
       }
 
-
       const {
         data: evaluationData,
         error: evaluationError,
@@ -228,13 +370,17 @@ function App() {
         .select(`
           job_id,
           score,
+          selection_score,
+          confidence,
           route,
           selected_resume,
+          selected_resume_file,
           role_score,
           required_score,
           preferred_score,
           semantic_score,
           experience_score,
+          explanation,
           created_at
         `)
         .order("created_at", {
@@ -244,7 +390,6 @@ function App() {
       if (evaluationError) {
         throw evaluationError;
       }
-
 
       const latestEvaluationByJob = {};
 
@@ -260,12 +405,10 @@ function App() {
         }
       }
 
-
       const mergedApplications = (
         applicationData ?? []
       ).map((application) => ({
         ...application,
-
         evaluation:
           latestEvaluationByJob[
             application.job_id
@@ -275,7 +418,6 @@ function App() {
       setApplications(
         mergedApplications
       );
-
 
       const {
         data: runData,
@@ -317,9 +459,10 @@ function App() {
       setRunHistory(
         [...(runData ?? [])].reverse()
       );
-
     } catch (err) {
       setError(err.message);
+    } finally {
+      setDashboardLoading(false);
     }
   }
 
@@ -328,10 +471,7 @@ function App() {
     applicationId,
     status
   ) {
-    setUpdatingId(
-      applicationId
-    );
-
+    setUpdatingId(applicationId);
     setError("");
 
     try {
@@ -371,11 +511,9 @@ function App() {
               return {
                 ...application,
                 status,
-
                 last_updated_at:
                   updatePayload
                     .last_updated_at,
-
                 applied_at:
                   updatePayload
                     .applied_at ??
@@ -384,7 +522,6 @@ function App() {
             }
           )
       );
-
     } catch (err) {
       setError(err.message);
     } finally {
@@ -393,128 +530,199 @@ function App() {
   }
 
 
-  const manualApplications =
-    useMemo(
-      () =>
-        applications
-          .filter(
-            (application) =>
-              application
-                .evaluation
-                ?.route ===
-                "MANUAL_PRIORITY" &&
-              application.status ===
-                "PENDING"
-          )
-          .sort(
-            (a, b) =>
-              Number(
-                b.evaluation?.score ??
-                  0
-              ) -
-              Number(
-                a.evaluation?.score ??
-                  0
-              )
-          ),
-      [applications]
-    );
-
-
-  const assistanceApplications =
-    useMemo(
-      () =>
-        applications.filter(
+  const manualApplications = useMemo(
+    () =>
+      applications
+        .filter(
           (application) =>
-            application.needs_assistance
-        ),
-      [applications]
-    );
-
-
-  const agentApplications =
-    useMemo(
-      () =>
-        applications.filter(
-          (application) =>
-            application
-              .evaluation
+            application.evaluation
               ?.route ===
-            "AGENT_APPLY"
-        ),
-      [applications]
-    );
-
-
-  const progressedApplications =
-    useMemo(
-      () =>
-        applications.filter(
-          (application) =>
-            ![
-              "PENDING",
-              "IN_PROGRESS",
-            ].includes(
-              application.status
+              "MANUAL_PRIORITY" &&
+            application.status ===
+              "PENDING" &&
+            !application.needs_assistance
+        )
+        .sort(
+          (a, b) =>
+            Number(
+              b.evaluation?.score ?? 0
+            ) -
+            Number(
+              a.evaluation?.score ?? 0
             )
         ),
-      [applications]
+    [applications]
+  );
+
+
+  const assistanceApplications = useMemo(
+    () =>
+      applications.filter(
+        (application) =>
+          application.needs_assistance
+      ),
+    [applications]
+  );
+
+
+  const agentApplications = useMemo(
+    () =>
+      applications.filter(
+        (application) =>
+          application.evaluation
+            ?.route === "AGENT_APPLY" &&
+          !application.needs_assistance
+      ),
+    [applications]
+  );
+
+
+  const lowConfidenceApplications = useMemo(
+    () =>
+      applications
+        .filter((application) => {
+          const confidence =
+            numberOrNull(
+              application.evaluation
+                ?.confidence
+            );
+
+          return (
+            confidence !== null &&
+            confidence <
+              CONFIDENCE_THRESHOLD
+          );
+        })
+        .sort(
+          (a, b) =>
+            Number(
+              a.evaluation?.confidence ?? 0
+            ) -
+            Number(
+              b.evaluation?.confidence ?? 0
+            )
+        ),
+    [applications]
+  );
+
+
+  const progressedApplications = useMemo(
+    () =>
+      applications.filter(
+        (application) =>
+          ![
+            "PENDING",
+            "IN_PROGRESS",
+          ].includes(
+            application.status
+          )
+      ),
+    [applications]
+  );
+
+
+  const evidenceStats = useMemo(() => {
+    const evaluations = applications
+      .map(
+        (application) =>
+          application.evaluation
+      )
+      .filter(Boolean);
+
+    const v21Evaluations = evaluations.filter(
+      hasV21Evidence
     );
+
+    const requiredEvidence =
+      v21Evaluations.filter(
+        (evaluation) =>
+          Boolean(
+            getExplanation(evaluation)
+              .required_evidence_gate
+          )
+      ).length;
+
+    const manualReady =
+      v21Evaluations.filter(
+        (evaluation) =>
+          Boolean(
+            getExplanation(evaluation)
+              .manual_ready
+          )
+      ).length;
+
+    const averageConfidence =
+      v21Evaluations.length > 0
+        ? v21Evaluations.reduce(
+            (total, evaluation) =>
+              total +
+              Number(
+                evaluation.confidence ?? 0
+              ),
+            0
+          ) / v21Evaluations.length
+        : 0;
+
+    const averageFit =
+      v21Evaluations.length > 0
+        ? v21Evaluations.reduce(
+            (total, evaluation) =>
+              total +
+              Number(
+                evaluation.score ?? 0
+              ),
+            0
+          ) / v21Evaluations.length
+        : 0;
+
+    return {
+      total: v21Evaluations.length,
+      requiredEvidence,
+      manualReady,
+      averageConfidence,
+      averageFit,
+    };
+  }, [applications]);
 
 
   const analytics = useMemo(() => {
-    const total =
-      applications.length;
+    const total = applications.length;
 
-    const applied =
-      applications.filter(
-        (application) =>
-          application.status ===
-          "APPLIED"
-      ).length;
+    const applied = applications.filter(
+      (application) =>
+        application.status === "APPLIED"
+    ).length;
 
-    const interviews =
-      applications.filter(
-        (application) =>
-          INTERVIEW_STATUSES.includes(
-            application.status
-          )
-      ).length;
+    const interviews = applications.filter(
+      (application) =>
+        INTERVIEW_STATUSES.includes(
+          application.status
+        )
+    ).length;
 
-    const offers =
-      applications.filter(
-        (application) =>
-          application.status ===
-          "OFFER"
-      ).length;
+    const offers = applications.filter(
+      (application) =>
+        application.status === "OFFER"
+    ).length;
 
-    const rejected =
-      applications.filter(
-        (application) =>
-          application.status ===
-          "REJECTED"
-      ).length;
+    const rejected = applications.filter(
+      (application) =>
+        application.status === "REJECTED"
+    ).length;
 
-    const manual =
-      applications.filter(
-        (application) =>
-          application
-            .application_method ===
-          "MANUAL"
-      );
+    const manual = applications.filter(
+      (application) =>
+        application.application_method ===
+        "MANUAL"
+    );
 
-    const agent =
-      applications.filter(
-        (application) =>
-          application
-            .application_method ===
-          "AGENT"
-      );
+    const agent = applications.filter(
+      (application) =>
+        application.application_method ===
+        "AGENT"
+    );
 
-
-    function positiveOutcomes(
-      rows
-    ) {
+    function positiveOutcomes(rows) {
       return rows.filter(
         (application) =>
           [
@@ -526,7 +734,6 @@ function App() {
           )
       ).length;
     }
-
 
     const resumeCounts = {};
 
@@ -543,48 +750,28 @@ function App() {
         (resumeCounts[resume] ?? 0) + 1;
     }
 
-
     const resumeUsage =
-      Object.entries(
-        resumeCounts
-      )
-        .map(
-          ([
-            resume,
-            count,
-          ]) => ({
-            resume:
-              prettyName(resume),
-
-            count,
-          })
-        )
+      Object.entries(resumeCounts)
+        .map(([resume, count]) => ({
+          resume: prettyName(resume),
+          count,
+        }))
         .sort(
-          (a, b) =>
-            b.count - a.count
+          (a, b) => b.count - a.count
         );
 
-
     const runChartData =
-      runHistory.map(
-        (run, index) => ({
-          name:
-            `Run ${index + 1}`,
-
-          discovered:
-            run.jobs_discovered,
-
-          eligible:
-            run.jobs_eligible,
-
-          manual:
-            run.manual_priority_count,
-
-          agent:
-            run.agent_apply_count,
-        })
-      );
-
+      runHistory.map((run, index) => ({
+        name: `Run ${index + 1}`,
+        discovered:
+          run.jobs_discovered,
+        eligible:
+          run.jobs_eligible,
+        manual:
+          run.manual_priority_count,
+        agent:
+          run.agent_apply_count,
+      }));
 
     return {
       total,
@@ -592,30 +779,16 @@ function App() {
       interviews,
       offers,
       rejected,
-
-      manualCount:
-        manual.length,
-
-      agentCount:
-        agent.length,
-
+      manualCount: manual.length,
+      agentCount: agent.length,
       manualPositive:
-        positiveOutcomes(
-          manual
-        ),
-
+        positiveOutcomes(manual),
       agentPositive:
-        positiveOutcomes(
-          agent
-        ),
-
+        positiveOutcomes(agent),
       resumeUsage,
       runChartData,
     };
-  }, [
-    applications,
-    runHistory,
-  ]);
+  }, [applications, runHistory]);
 
 
   if (loading) {
@@ -630,9 +803,7 @@ function App() {
   if (!session) {
     return (
       <div className="page-center">
-
         <div className="login-card">
-
           <div className="brand-mark">
             GH
           </div>
@@ -647,7 +818,6 @@ function App() {
           </p>
 
           <form onSubmit={login}>
-
             <label>Email</label>
 
             <input
@@ -689,11 +859,8 @@ function App() {
                 ? "Signing in..."
                 : "Sign In"}
             </button>
-
           </form>
-
         </div>
-
       </div>
     );
   }
@@ -701,34 +868,44 @@ function App() {
 
   return (
     <div className="dashboard">
-
       <header className="header">
-
         <div>
-
-          <h1>
-            Greenhouse Job Agent
-          </h1>
+          <div className="header-title-row">
+            <h1>
+              Greenhouse Job Agent
+            </h1>
+            <span className="model-badge">
+              Scoring V2.1
+            </span>
+          </div>
 
           <p>
-            AI-assisted job-search
-            command center
+            Evidence-aware job-search command center
           </p>
-
         </div>
 
-        <button
-          className="logout-button"
-          onClick={logout}
-        >
-          Sign Out
-        </button>
+        <div className="header-actions">
+          <button
+            className="refresh-button"
+            onClick={loadDashboard}
+            disabled={dashboardLoading}
+          >
+            {dashboardLoading
+              ? "Refreshing..."
+              : "Refresh"}
+          </button>
 
+          <button
+            className="logout-button"
+            onClick={logout}
+          >
+            Sign Out
+          </button>
+        </div>
       </header>
 
 
       <nav className="tabs">
-
         <Tab
           label="Overview"
           active={
@@ -756,13 +933,10 @@ function App() {
         <Tab
           label="Applications"
           active={
-            activeTab ===
-            "applications"
+            activeTab === "applications"
           }
           onClick={() =>
-            setActiveTab(
-              "applications"
-            )
+            setActiveTab("applications")
           }
         />
 
@@ -779,16 +953,12 @@ function App() {
         <Tab
           label="Analytics"
           active={
-            activeTab ===
-            "analytics"
+            activeTab === "analytics"
           }
           onClick={() =>
-            setActiveTab(
-              "analytics"
-            )
+            setActiveTab("analytics")
           }
         />
-
       </nav>
 
 
@@ -801,348 +971,318 @@ function App() {
 
       {activeTab === "overview" && (
         <main>
-
-          <section className="metrics">
-
+          <section className="metrics metrics-six">
             <MetricCard
               label="Tracked Jobs"
-              value={
-                applications.length
-              }
+              value={applications.length}
             />
 
             <MetricCard
               label="Manual Priority"
-              value={
-                manualApplications
-                  .length
-              }
+              value={manualApplications.length}
             />
 
             <MetricCard
               label="Agent Queue"
               value={
-                agentApplications
-                  .filter(
-                    (application) =>
-                      application.status ===
-                      "PENDING"
-                  )
-                  .length
+                agentApplications.filter(
+                  (application) =>
+                    application.status ===
+                    "PENDING"
+                ).length
               }
             />
 
             <MetricCard
               label="Needs Assistance"
               value={
-                assistanceApplications
-                  .length
+                assistanceApplications.length
               }
+            />
+
+            <MetricCard
+              label="Low Confidence"
+              value={
+                lowConfidenceApplications.length
+              }
+              hint={`<${CONFIDENCE_THRESHOLD}% evidence`}
             />
 
             <MetricCard
               label="Progressed"
               value={
-                progressedApplications
-                  .length
+                progressedApplications.length
               }
             />
-
           </section>
 
 
           <section className="two-column">
-
             <div className="panel">
-
               <div className="panel-heading">
                 <div>
                   <h2>
                     Highest Priority
                   </h2>
-
                   <p>
-                    Strongest matches for
-                    you to apply manually.
+                    Jobs that pass all V2.1 Manual Priority gates.
                   </p>
                 </div>
               </div>
 
               {manualApplications
                 .slice(0, 5)
-                .map(
-                  (application) => (
-                    <PriorityRow
-                      key={
-                        application.id
-                      }
-                      application={
-                        application
-                      }
-                    />
-                  )
-                )}
+                .map((application) => (
+                  <PriorityRow
+                    key={application.id}
+                    application={application}
+                  />
+                ))}
 
-              {manualApplications
-                .length === 0 && (
+              {manualApplications.length === 0 && (
                 <EmptyState
-                  text={
-                    "No manual applications waiting."
-                  }
+                  text="No manual applications waiting."
                 />
               )}
-
             </div>
 
 
             <div className="panel">
-
               <div className="panel-heading">
                 <div>
                   <h2>
                     Latest Agent Run
                   </h2>
-
                   <p>
-                    Most recent job scan
-                    statistics.
+                    Most recent scan statistics.
                   </p>
                 </div>
               </div>
 
               {latestRun ? (
                 <div className="run-grid">
-
                   <RunStat
                     label="Discovered"
                     value={
-                      latestRun
-                        .jobs_discovered
+                      latestRun.jobs_discovered
                     }
                   />
 
                   <RunStat
                     label="Eligible"
                     value={
-                      latestRun
-                        .jobs_eligible
+                      latestRun.jobs_eligible
                     }
                   />
 
                   <RunStat
                     label="Manual"
                     value={
-                      latestRun
-                        .manual_priority_count
+                      latestRun.manual_priority_count
                     }
                   />
 
                   <RunStat
                     label="Agent"
                     value={
-                      latestRun
-                        .agent_apply_count
+                      latestRun.agent_apply_count
                     }
                   />
 
                   <RunStat
-                    label="Experience Filtered"
+                    label="Exp. Filtered"
                     value={
-                      latestRun
-                        .experience_rejected_count
+                      latestRun.experience_rejected_count
                     }
                   />
 
                   <RunStat
                     label="Runtime"
                     value={
-                      latestRun
-                        .total_seconds
+                      latestRun.total_seconds
                         ? `${Number(
-                            latestRun
-                              .total_seconds
+                            latestRun.total_seconds
                           ).toFixed(1)}s`
                         : "-"
                     }
                   />
-
                 </div>
               ) : (
                 <EmptyState
-                  text={
-                    "No agent runs found."
-                  }
+                  text="No agent runs found."
                 />
               )}
-
             </div>
-
           </section>
 
+
+          <section className="panel panel-spacing">
+            <div className="panel-heading">
+              <div>
+                <h2>
+                  V2.1 Evidence Health
+                </h2>
+                <p>
+                  Coverage and confidence of the latest evaluation stored for each tracked job.
+                </p>
+              </div>
+            </div>
+
+            <div className="evidence-health-grid">
+              <HealthStat
+                label="V2.1 evaluations"
+                value={evidenceStats.total}
+              />
+
+              <HealthStat
+                label="Avg. fit"
+                value={
+                  evidenceStats.total
+                    ? evidenceStats.averageFit.toFixed(1)
+                    : "-"
+                }
+                suffix={
+                  evidenceStats.total ? "/100" : ""
+                }
+              />
+
+              <HealthStat
+                label="Avg. confidence"
+                value={
+                  evidenceStats.total
+                    ? evidenceStats.averageConfidence.toFixed(0)
+                    : "-"
+                }
+                suffix={
+                  evidenceStats.total ? "%" : ""
+                }
+              />
+
+              <HealthStat
+                label="Required evidence"
+                value={evidenceStats.requiredEvidence}
+              />
+
+              <HealthStat
+                label="Manual-ready"
+                value={evidenceStats.manualReady}
+              />
+
+              <HealthStat
+                label="Low confidence"
+                value={
+                  lowConfidenceApplications.length
+                }
+              />
+            </div>
+          </section>
         </main>
       )}
 
 
       {activeTab === "action" && (
         <main>
-
           <section className="panel">
-
             <div className="panel-heading">
-
               <div>
-
                 <h2>
                   Manual Priority
                 </h2>
-
                 <p>
-                  85+ matches waiting
-                  for you.
+                  Fit ≥ {MANUAL_THRESHOLD}, confidence ≥ {CONFIDENCE_THRESHOLD}%, and required evidence present.
                 </p>
-
               </div>
 
               <span className="count-badge">
-                {
-                  manualApplications
-                    .length
-                }
+                {manualApplications.length}
               </span>
-
             </div>
 
             {manualApplications.map(
               (application) => (
                 <ActionCard
-                  key={
-                    application.id
-                  }
-                  application={
-                    application
-                  }
-                  updateStatus={
-                    updateStatus
-                  }
-                  updatingId={
-                    updatingId
-                  }
+                  key={application.id}
+                  application={application}
+                  updateStatus={updateStatus}
+                  updatingId={updatingId}
+                  showEvidence
                 />
               )
             )}
 
-            {manualApplications
-              .length === 0 && (
+            {manualApplications.length === 0 && (
               <EmptyState
-                text={
-                  "No manual applications require attention."
-                }
+                text="No manual applications require attention."
               />
             )}
-
           </section>
 
 
           <section className="panel panel-spacing">
-
             <div className="panel-heading">
-
               <div>
-
                 <h2>
                   Needs Assistance
                 </h2>
-
                 <p>
-                  Applications paused
-                  for your input.
+                  Eligibility or application questions that require human input.
                 </p>
-
               </div>
 
               <span className="count-badge">
-                {
-                  assistanceApplications
-                    .length
-                }
+                {assistanceApplications.length}
               </span>
-
             </div>
 
             {assistanceApplications.map(
               (application) => (
                 <ActionCard
-                  key={
-                    application.id
-                  }
-                  application={
-                    application
-                  }
-                  updateStatus={
-                    updateStatus
-                  }
-                  updatingId={
-                    updatingId
-                  }
+                  key={application.id}
+                  application={application}
+                  updateStatus={updateStatus}
+                  updatingId={updatingId}
+                  showEvidence={false}
                 />
               )
             )}
 
-            {assistanceApplications
-              .length === 0 && (
+            {assistanceApplications.length === 0 && (
               <EmptyState
-                text={
-                  "The agent does not currently need your help."
-                }
+                text="The agent does not currently need your help."
               />
             )}
-
           </section>
-
         </main>
       )}
 
 
-      {activeTab ===
-        "applications" && (
+      {activeTab === "applications" && (
         <main>
-
           <section className="panel">
-
             <div className="panel-heading">
-
               <div>
-
                 <h2>
                   Application Tracker
                 </h2>
-
                 <p>
-                  Track every application
-                  through the recruiting
-                  pipeline.
+                  Latest V2.1 evaluation plus recruiting-pipeline status.
                 </p>
-
               </div>
 
               <span className="count-badge">
-                {
-                  applications.length
-                }
+                {applications.length}
               </span>
-
             </div>
 
-
             <div className="table-wrapper">
-
               <table>
-
                 <thead>
                   <tr>
                     <th>Company</th>
                     <th>Role</th>
-                    <th>Score</th>
+                    <th>Fit</th>
+                    <th>Confidence</th>
+                    <th>Selection</th>
                     <th>Resume</th>
                     <th>Method</th>
                     <th>Status</th>
@@ -1151,48 +1291,37 @@ function App() {
                 </thead>
 
                 <tbody>
-
                   {applications.map(
                     (application) => (
-                      <tr
-                        key={
-                          application.id
-                        }
-                      >
-
+                      <tr key={application.id}>
                         <td>
-                          {
-                            application
-                              .jobs
-                              ?.company ??
-                            "-"
-                          }
+                          {application.jobs
+                            ?.company ?? "-"}
                         </td>
 
                         <td>
-
                           <div className="role-cell">
-
                             <strong>
-                              {
-                                application
-                                  .jobs
-                                  ?.title ??
-                                "-"
-                              }
+                              {application.jobs
+                                ?.title ?? "-"}
                             </strong>
 
                             <span>
-                              {
-                                application
-                                  .jobs
-                                  ?.location ??
-                                "-"
-                              }
+                              {application.jobs
+                                ?.location ?? "-"}
                             </span>
 
+                            {application.evaluation
+                              ?.route && (
+                              <RouteBadge
+                                route={
+                                  application
+                                    .evaluation
+                                    .route
+                                }
+                              />
+                            )}
                           </div>
-
                         </td>
 
                         <td>
@@ -1203,6 +1332,24 @@ function App() {
                                 ?.score
                             }
                           />
+                        </td>
+
+                        <td>
+                          <ConfidenceBadge
+                            confidence={
+                              application
+                                .evaluation
+                                ?.confidence
+                            }
+                          />
+                        </td>
+
+                        <td className="numeric-cell">
+                          {formatNumber(
+                            application
+                              .evaluation
+                              ?.selection_score
+                          )}
                         </td>
 
                         <td>
@@ -1223,62 +1370,39 @@ function App() {
                         </td>
 
                         <td>
-
                           <select
                             className="status-select"
-                            value={
-                              application
-                                .status
-                            }
+                            value={application.status}
                             disabled={
                               updatingId ===
                               application.id
                             }
-                            onChange={(
-                              event
-                            ) =>
+                            onChange={(event) =>
                               updateStatus(
                                 application.id,
-                                event.target
-                                  .value
+                                event.target.value
                               )
                             }
                           >
-
                             {APPLICATION_STATUSES.map(
                               (status) => (
                                 <option
-                                  key={
-                                    status
-                                  }
-                                  value={
-                                    status
-                                  }
+                                  key={status}
+                                  value={status}
                                 >
-                                  {
-                                    prettyName(
-                                      status
-                                    )
-                                  }
+                                  {prettyName(status)}
                                 </option>
                               )
                             )}
-
                           </select>
-
                         </td>
 
                         <td>
-
-                          {application
-                            .jobs
-                            ?.url ? (
+                          {application.jobs?.url ? (
                             <a
                               className="job-link"
                               href={
-                                application
-                                  .jobs
-                                  .url
+                                application.jobs.url
                               }
                               target="_blank"
                               rel="noreferrer"
@@ -1288,247 +1412,205 @@ function App() {
                           ) : (
                             "-"
                           )}
-
                         </td>
-
                       </tr>
                     )
                   )}
-
                 </tbody>
-
               </table>
-
             </div>
-
           </section>
-
         </main>
       )}
 
 
       {activeTab === "agent" && (
         <main>
-
           <section className="panel">
-
             <div className="panel-heading">
-
               <div>
-
                 <h2>
                   Agent Activity
                 </h2>
-
                 <p>
-                  Latest discovery and
-                  scoring performance.
+                  Latest discovery, filtering, scoring, and evidence quality.
                 </p>
-
               </div>
-
             </div>
 
             {latestRun ? (
               <>
-
                 <div className="activity-grid">
-
                   <RunStat
                     label="Jobs scanned"
-                    value={
-                      latestRun
-                        .jobs_discovered
-                    }
+                    value={latestRun.jobs_discovered}
                   />
 
                   <RunStat
                     label="Target roles"
-                    value={
-                      latestRun
-                        .target_role_jobs
-                    }
+                    value={latestRun.target_role_jobs}
                   />
 
                   <RunStat
                     label="US compatible"
-                    value={
-                      latestRun
-                        .us_compatible_jobs
-                    }
+                    value={latestRun.us_compatible_jobs}
                   />
 
                   <RunStat
                     label="Eligible"
-                    value={
-                      latestRun
-                        .jobs_eligible
-                    }
+                    value={latestRun.jobs_eligible}
                   />
 
                   <RunStat
                     label="Manual Priority"
-                    value={
-                      latestRun
-                        .manual_priority_count
-                    }
+                    value={latestRun.manual_priority_count}
                   />
 
                   <RunStat
                     label="Agent Apply"
-                    value={
-                      latestRun
-                        .agent_apply_count
-                    }
+                    value={latestRun.agent_apply_count}
                   />
-
                 </div>
 
-
                 <div className="timing-panel">
-
                   <h3>
                     Performance
                   </h3>
 
                   <TimingRow
                     label="Fetch"
-                    value={
-                      latestRun
-                        .fetch_seconds
-                    }
+                    value={latestRun.fetch_seconds}
                   />
 
                   <TimingRow
                     label="Filtering"
-                    value={
-                      latestRun
-                        .filtering_seconds
-                    }
+                    value={latestRun.filtering_seconds}
                   />
 
                   <TimingRow
                     label="Resume cache"
-                    value={
-                      latestRun
-                        .resume_cache_seconds
-                    }
+                    value={latestRun.resume_cache_seconds}
                   />
 
                   <TimingRow
                     label="Scoring"
-                    value={
-                      latestRun
-                        .scoring_seconds
-                    }
+                    value={latestRun.scoring_seconds}
                   />
 
                   <TimingRow
                     label="Total"
-                    value={
-                      latestRun
-                        .total_seconds
-                    }
+                    value={latestRun.total_seconds}
                   />
-
                 </div>
-
               </>
             ) : (
               <EmptyState
-                text={
-                  "No agent run information found."
-                }
+                text="No agent run information found."
               />
             )}
-
           </section>
 
+
+          <section className="panel panel-spacing">
+            <div className="panel-heading">
+              <div>
+                <h2>
+                  Low-Confidence Review
+                </h2>
+                <p>
+                  Scored jobs with less than {CONFIDENCE_THRESHOLD}% evidence coverage. These stay out of Manual Priority unless the evidence gates pass.
+                </p>
+              </div>
+
+              <span className="count-badge">
+                {lowConfidenceApplications.length}
+              </span>
+            </div>
+
+            {lowConfidenceApplications
+              .slice(0, 20)
+              .map((application) => (
+                <EvidenceReviewRow
+                  key={application.id}
+                  application={application}
+                />
+              ))}
+
+            {lowConfidenceApplications.length === 0 && (
+              <EmptyState
+                text="No low-confidence scored jobs."
+              />
+            )}
+          </section>
         </main>
       )}
 
 
-      {activeTab ===
-        "analytics" && (
+      {activeTab === "analytics" && (
         <main>
-
-          <section className="metrics analytics-metrics">
-
+          <section className="metrics analytics-metrics metrics-six">
             <MetricCard
               label="Tracked Jobs"
-              value={
-                analytics.total
-              }
+              value={analytics.total}
             />
 
             <MetricCard
               label="Applied"
-              value={
-                analytics.applied
-              }
+              value={analytics.applied}
             />
 
             <MetricCard
               label="Interview Pipeline"
-              value={
-                analytics.interviews
-              }
+              value={analytics.interviews}
             />
 
             <MetricCard
               label="Offers"
+              value={analytics.offers}
+            />
+
+            <MetricCard
+              label="Avg. V2.1 Fit"
               value={
-                analytics.offers
+                evidenceStats.total
+                  ? evidenceStats.averageFit.toFixed(1)
+                  : "-"
               }
             />
 
             <MetricCard
-              label="Employer Rejections"
+              label="Avg. Confidence"
               value={
-                analytics.rejected
+                evidenceStats.total
+                  ? `${evidenceStats.averageConfidence.toFixed(0)}%`
+                  : "-"
               }
             />
-
           </section>
 
 
           <section className="analytics-grid">
-
             <div className="panel chart-panel">
-
               <div className="panel-heading">
-
                 <div>
                   <h2>
                     Job Discovery History
                   </h2>
-
                   <p>
-                    Eligible and discovered
-                    jobs across agent runs.
+                    Eligible and discovered jobs across agent runs.
                   </p>
                 </div>
-
               </div>
 
-              {analytics
-                .runChartData
-                .length > 0 ? (
-
+              {analytics.runChartData.length > 0 ? (
                 <div className="chart-container">
-
                   <ResponsiveContainer
                     width="100%"
                     height="100%"
                   >
-
                     <LineChart
-                      data={
-                        analytics
-                          .runChartData
-                      }
+                      data={analytics.runChartData}
                     >
-
                       <CartesianGrid
                         strokeDasharray="3 3"
                         stroke="#2b3038"
@@ -1544,7 +1626,6 @@ function App() {
                       />
 
                       <Tooltip />
-
                       <Legend />
 
                       <Line
@@ -1560,111 +1641,68 @@ function App() {
                         stroke="currentColor"
                         strokeWidth={2}
                       />
-
                     </LineChart>
-
                   </ResponsiveContainer>
-
                 </div>
-
               ) : (
                 <EmptyState
-                  text={
-                    "No run history available."
-                  }
+                  text="No run history available."
                 />
               )}
-
             </div>
 
 
             <div className="panel">
-
               <div className="panel-heading">
-
                 <div>
                   <h2>
                     Manual vs Agent
                   </h2>
-
                   <p>
-                    Current application
-                    routing and outcomes.
+                    Current application routing and outcomes.
                   </p>
                 </div>
-
               </div>
 
               <div className="comparison-grid">
-
                 <ComparisonCard
                   label="Manual"
-                  total={
-                    analytics
-                      .manualCount
-                  }
-                  positive={
-                    analytics
-                      .manualPositive
-                  }
+                  total={analytics.manualCount}
+                  positive={analytics.manualPositive}
                 />
 
                 <ComparisonCard
                   label="Agent"
-                  total={
-                    analytics
-                      .agentCount
-                  }
-                  positive={
-                    analytics
-                      .agentPositive
-                  }
+                  total={analytics.agentCount}
+                  positive={analytics.agentPositive}
                 />
-
               </div>
-
             </div>
-
           </section>
 
 
           <section className="analytics-grid analytics-spacing">
-
             <div className="panel chart-panel">
-
               <div className="panel-heading">
-
                 <div>
                   <h2>
                     Queue History
                   </h2>
-
                   <p>
-                    Manual-priority versus
-                    agent-apply volume.
+                    Manual-priority versus agent-apply volume.
                   </p>
                 </div>
-
               </div>
 
-              {analytics
-                .runChartData
-                .length > 0 ? (
-
+              {analytics.runChartData.length > 0 ? (
                 <div className="chart-container">
-
                   <ResponsiveContainer
                     width="100%"
                     height="100%"
                   >
-
                     <BarChart
-                      data={
-                        analytics
-                          .runChartData
-                      }
+                      data={analytics.runChartData}
                     >
-
                       <CartesianGrid
                         strokeDasharray="3 3"
                         stroke="#2b3038"
@@ -1680,7 +1718,6 @@ function App() {
                       />
 
                       <Tooltip />
-
                       <Legend />
 
                       <Bar
@@ -1692,81 +1729,55 @@ function App() {
                         dataKey="agent"
                         fill="currentColor"
                       />
-
                     </BarChart>
-
                   </ResponsiveContainer>
-
                 </div>
-
               ) : (
                 <EmptyState
-                  text={
-                    "No queue history available."
-                  }
+                  text="No queue history available."
                 />
               )}
-
             </div>
 
 
             <div className="panel">
-
               <div className="panel-heading">
-
                 <div>
                   <h2>
                     Resume Usage
                   </h2>
-
                   <p>
-                    Which master resumes
-                    are being selected.
+                    Which master resumes are being selected.
                   </p>
                 </div>
-
               </div>
 
-              {analytics
-                .resumeUsage
-                .map(
-                  (item) => (
-                    <div
-                      className="resume-usage-row"
-                      key={
-                        item.resume
-                      }
-                    >
+              {analytics.resumeUsage.map(
+                (item) => (
+                  <div
+                    className="resume-usage-row"
+                    key={item.resume}
+                  >
+                    <span>
+                      {item.resume}
+                    </span>
 
-                      <span>
-                        {item.resume}
-                      </span>
-
-                      <strong>
-                        {item.count}
-                      </strong>
-
-                    </div>
-                  )
-                )}
-
-              {analytics
-                .resumeUsage
-                .length === 0 && (
-                <EmptyState
-                  text={
-                    "No resume usage data yet."
-                  }
-                />
+                    <strong>
+                      {item.count}
+                    </strong>
+                  </div>
+                )
               )}
 
+              {analytics.resumeUsage.length === 0 && (
+                <EmptyState
+                  text="No resume usage data yet."
+                />
+              )}
             </div>
-
           </section>
-
         </main>
       )}
-
     </div>
   );
 }
@@ -1787,7 +1798,6 @@ function Tab({
       }
       onClick={onClick}
     >
-
       {label}
 
       {count > 0 && (
@@ -1795,7 +1805,6 @@ function Tab({
           {count}
         </span>
       )}
-
     </button>
   );
 }
@@ -1804,10 +1813,10 @@ function Tab({
 function MetricCard({
   label,
   value,
+  hint,
 }) {
   return (
     <div className="metric-card">
-
       <span>
         {label}
       </span>
@@ -1816,6 +1825,30 @@ function MetricCard({
         {value}
       </strong>
 
+      {hint && (
+        <small>
+          {hint}
+        </small>
+      )}
+    </div>
+  );
+}
+
+
+function HealthStat({
+  label,
+  value,
+  suffix = "",
+}) {
+  return (
+    <div className="health-stat">
+      <span>
+        {label}
+      </span>
+
+      <strong>
+        {value}{suffix}
+      </strong>
     </div>
   );
 }
@@ -1827,7 +1860,6 @@ function RunStat({
 }) {
   return (
     <div className="run-stat">
-
       <span>
         {label}
       </span>
@@ -1835,7 +1867,6 @@ function RunStat({
       <strong>
         {value}
       </strong>
-
     </div>
   );
 }
@@ -1847,7 +1878,6 @@ function TimingRow({
 }) {
   return (
     <div className="timing-row">
-
       <span>
         {label}
       </span>
@@ -1855,12 +1885,9 @@ function TimingRow({
       <strong>
         {value !== null &&
         value !== undefined
-          ? `${Number(
-              value
-            ).toFixed(2)}s`
+          ? `${Number(value).toFixed(2)}s`
           : "-"}
       </strong>
-
     </div>
   );
 }
@@ -1869,59 +1896,53 @@ function TimingRow({
 function PriorityRow({
   application,
 }) {
-  return (
-    <div className="priority-row">
+  const evaluation =
+    application.evaluation;
 
+  return (
+    <div className="priority-row v21-priority-row">
       <ScoreBadge
-        score={
-          application
-            .evaluation
-            ?.score
-        }
+        score={evaluation?.score}
       />
 
       <div className="priority-main">
-
         <strong>
-          {
-            application.jobs
-              ?.title
-          }
+          {application.jobs?.title}
         </strong>
 
         <span>
-          {
-            application.jobs
-              ?.company
-          }
+          {application.jobs?.company}
           {" · "}
-          {
-            application.jobs
-              ?.location
-          }
+          {application.jobs?.location}
         </span>
 
+        <div className="priority-meta">
+          <ConfidenceBadge
+            confidence={evaluation?.confidence}
+          />
+
+          <span>
+            Selection {formatNumber(
+              evaluation?.selection_score
+            )}
+          </span>
+
+          <span>
+            {prettyName(
+              evaluation?.selected_resume
+            )}
+          </span>
+        </div>
       </div>
 
-      <span className="priority-resume">
-        {prettyName(
-          application
-            .evaluation
-            ?.selected_resume
-        )}
-      </span>
-
       <a
-        href={
-          application.jobs?.url
-        }
+        href={application.jobs?.url}
         target="_blank"
         rel="noreferrer"
         className="job-link"
       >
         Apply ↗
       </a>
-
     </div>
   );
 }
@@ -1931,89 +1952,85 @@ function ActionCard({
   application,
   updateStatus,
   updatingId,
+  showEvidence,
 }) {
+  const evaluation =
+    application.evaluation;
+
   return (
-    <div className="action-card">
-
-      <div className="action-score">
-
+    <div className="action-card action-card-v21">
+      <div className="action-score-stack">
         <ScoreBadge
-          score={
-            application
-              .evaluation
-              ?.score
-          }
+          score={evaluation?.score}
         />
 
+        <ConfidenceBadge
+          confidence={evaluation?.confidence}
+        />
       </div>
 
       <div className="action-main">
+        <div className="action-title-line">
+          <h3>
+            {application.jobs?.title}
+          </h3>
 
-        <h3>
-          {
-            application.jobs
-              ?.title
-          }
-        </h3>
+          {evaluation?.route && (
+            <RouteBadge
+              route={evaluation.route}
+            />
+          )}
+        </div>
 
         <p>
-          {
-            application.jobs
-              ?.company
-          }
+          {application.jobs?.company}
           {" · "}
-          {
-            application.jobs
-              ?.location
-          }
+          {application.jobs?.location}
         </p>
 
         <div className="action-meta">
-
           <span>
-            Resume:
-            {" "}
+            Resume:{" "}
             <strong>
               {prettyName(
-                application
-                  .evaluation
-                  ?.selected_resume
+                evaluation?.selected_resume
               )}
             </strong>
           </span>
 
           <span>
-            Method:
-            {" "}
+            Selection:{" "}
             <strong>
-              {
-                application
-                  .application_method
-              }
+              {formatNumber(
+                evaluation?.selection_score
+              )}
             </strong>
           </span>
 
+          <span>
+            Method:{" "}
+            <strong>
+              {application.application_method}
+            </strong>
+          </span>
         </div>
 
-        {application
-          .assistance_reason && (
-          <div className="assistance-message">
-            {
-              application
-                .assistance_reason
-            }
-          </div>
+        {showEvidence && (
+          <FitBreakdown
+            evaluation={evaluation}
+          />
         )}
 
+        {application.assistance_reason && (
+          <div className="assistance-message">
+            {application.assistance_reason}
+          </div>
+        )}
       </div>
 
-
       <div className="action-buttons">
-
         <a
-          href={
-            application.jobs?.url
-          }
+          href={application.jobs?.url}
           target="_blank"
           rel="noreferrer"
           className="primary-link"
@@ -2021,13 +2038,11 @@ function ActionCard({
           Open Application
         </a>
 
-        {application.status ===
-          "PENDING" && (
+        {application.status === "PENDING" && (
           <button
             className="secondary-button"
             disabled={
-              updatingId ===
-              application.id
+              updatingId === application.id
             }
             onClick={() =>
               updateStatus(
@@ -2039,17 +2054,230 @@ function ActionCard({
             Mark Applied
           </button>
         )}
-
       </div>
-
     </div>
   );
 }
 
 
-function MethodBadge({
-  method,
+function FitBreakdown({ evaluation }) {
+  if (!hasV21Evidence(evaluation)) {
+    return (
+      <div className="legacy-evaluation-note">
+        V2.1 evidence details are not available for this older evaluation.
+      </div>
+    );
+  }
+
+  const explanation =
+    getExplanation(evaluation);
+
+  const contributions =
+    explanation.weighted_contributions ?? {};
+
+  const gateFailures =
+    explanation.gate_failures ?? [];
+
+  return (
+    <div className="fit-breakdown">
+      <div className="fit-breakdown-header">
+        <span>
+          Evidence {formatNumber(
+            explanation.active_weight,
+            0
+          )}/{formatNumber(
+            explanation.total_weight,
+            0
+          )}
+        </span>
+
+        <span>
+          Required evidence:{" "}
+          <strong>
+            {explanation.required_evidence_gate
+              ? "Yes"
+              : "No"}
+          </strong>
+        </span>
+      </div>
+
+      <div className="component-grid">
+        {FIT_COMPONENTS.map(
+          ([component, label, scoreKey]) => {
+            const available =
+              componentAvailable(
+                evaluation,
+                component
+              );
+
+            return (
+              <div
+                className={
+                  available
+                    ? "component-card"
+                    : "component-card missing"
+                }
+                key={component}
+              >
+                <span>
+                  {label}
+                </span>
+
+                <strong>
+                  {available
+                    ? formatNumber(
+                        evaluation?.[scoreKey]
+                      )
+                    : "N/A"}
+                </strong>
+
+                <small>
+                  {available
+                    ? `${formatNumber(
+                        contributions[
+                          component
+                        ] ?? 0
+                      )} pts`
+                    : "missing evidence"}
+                </small>
+              </div>
+            );
+          }
+        )}
+      </div>
+
+      <div className="gate-row">
+        <GatePill
+          label={`Fit ≥ ${MANUAL_THRESHOLD}`}
+          passed={
+            Boolean(
+              explanation.score_gate
+            )
+          }
+        />
+
+        <GatePill
+          label={`Confidence ≥ ${CONFIDENCE_THRESHOLD}%`}
+          passed={
+            Boolean(
+              explanation.confidence_gate
+            )
+          }
+        />
+
+        <GatePill
+          label="Required evidence"
+          passed={
+            Boolean(
+              explanation.required_evidence_gate
+            )
+          }
+        />
+      </div>
+
+      {gateFailures.length > 0 && (
+        <div className="gate-failure-text">
+          Manual gate: {gateFailures.join("; ")}
+        </div>
+      )}
+    </div>
+  );
+}
+
+
+function GatePill({
+  label,
+  passed,
 }) {
+  return (
+    <span
+      className={
+        passed
+          ? "gate-pill pass"
+          : "gate-pill fail"
+      }
+    >
+      {passed ? "✓" : "×"} {label}
+    </span>
+  );
+}
+
+
+function EvidenceReviewRow({
+  application,
+}) {
+  const evaluation =
+    application.evaluation;
+
+  const explanation =
+    getExplanation(evaluation);
+
+  const availability =
+    getAvailability(evaluation);
+
+  const missing = [
+    "required",
+    "preferred",
+    "experience",
+  ].filter(
+    (component) =>
+      !availability[component]
+  );
+
+  return (
+    <div className="evidence-review-row">
+      <div className="evidence-review-score">
+        <ScoreBadge
+          score={evaluation?.score}
+        />
+
+        <ConfidenceBadge
+          confidence={evaluation?.confidence}
+        />
+      </div>
+
+      <div className="evidence-review-main">
+        <strong>
+          {application.jobs?.title}
+        </strong>
+
+        <span>
+          {application.jobs?.company}
+          {" · "}
+          {application.jobs?.location}
+        </span>
+
+        <small>
+          Missing: {missing.length
+            ? missing
+                .map(prettyName)
+                .join(", ")
+            : "None"}
+        </small>
+
+        {(explanation.gate_failures ?? [])
+          .length > 0 && (
+          <small className="review-reason">
+            {(explanation.gate_failures ?? [])
+              .join("; ")}
+          </small>
+        )}
+      </div>
+
+      <a
+        href={application.jobs?.url}
+        target="_blank"
+        rel="noreferrer"
+        className="job-link"
+      >
+        Open ↗
+      </a>
+    </div>
+  );
+}
+
+
+function MethodBadge({ method }) {
   const className =
     method === "MANUAL"
       ? "method-badge manual"
@@ -2057,7 +2285,7 @@ function MethodBadge({
 
   return (
     <span className={className}>
-      {method}
+      {method ?? "-"}
     </span>
   );
 }
@@ -2078,7 +2306,6 @@ function ComparisonCard({
 
   return (
     <div className="comparison-card">
-
       <span>
         {label}
       </span>
@@ -2088,25 +2315,20 @@ function ComparisonCard({
       </strong>
 
       <p>
-        Positive outcomes:
-        {" "}
+        Positive outcomes:{" "}
         {positive}
       </p>
 
       <p>
-        Progress rate:
-        {" "}
+        Progress rate:{" "}
         {rate}%
       </p>
-
     </div>
   );
 }
 
 
-function EmptyState({
-  text,
-}) {
+function EmptyState({ text }) {
   return (
     <div className="empty-state">
       {text}
@@ -2116,3 +2338,4 @@ function EmptyState({
 
 
 export default App;
+

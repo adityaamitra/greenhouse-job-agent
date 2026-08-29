@@ -992,3 +992,388 @@ td {
       1fr;
   }
 }
+
+
+/* ==========================================================
+   DASHBOARD V2.1 — EVIDENCE-AWARE SCORING
+   ========================================================== */
+
+.header-title-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.header-title-row h1 {
+  margin-bottom: 0;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.refresh-button {
+  padding: 10px 16px;
+  border: 1px solid #343a44;
+  border-radius: 9px;
+  background: #16191f;
+  color: #f4f4f5;
+}
+
+.refresh-button:hover:not(:disabled) {
+  background: #20242c;
+}
+
+.refresh-button:disabled {
+  cursor: default;
+  opacity: 0.6;
+}
+
+.model-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 8px;
+  border: 1px solid #244b69;
+  border-radius: 999px;
+  background: #122333;
+  color: #9dcef3;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.metrics-six {
+  grid-template-columns:
+    repeat(6, minmax(0, 1fr));
+}
+
+.metric-card small {
+  margin-top: 5px;
+  color: #6f7888;
+  font-size: 11px;
+}
+
+.confidence-badge {
+  min-width: 50px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px 8px;
+  border-radius: 7px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.confidence-badge.high {
+  background: #173826;
+  color: #9be3ba;
+}
+
+.confidence-badge.medium {
+  background: #41371a;
+  color: #ecd77c;
+}
+
+.confidence-badge.low {
+  background: #4a2327;
+  color: #f1a5ad;
+}
+
+.confidence-badge.neutral {
+  background: #272c34;
+  color: #aab1bd;
+}
+
+.route-badge {
+  width: fit-content;
+  display: inline-flex;
+  padding: 3px 7px;
+  border-radius: 999px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+.route-badge.manual {
+  background: #173826;
+  color: #9be3ba;
+}
+
+.route-badge.agent {
+  background: #202d3d;
+  color: #a4c8ef;
+}
+
+.evidence-health-grid {
+  display: grid;
+  grid-template-columns:
+    repeat(6, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.health-stat {
+  min-height: 92px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 16px;
+  border: 1px solid #292e37;
+  border-radius: 10px;
+  background: #0d1014;
+}
+
+.health-stat span {
+  color: #929aa9;
+  font-size: 12px;
+}
+
+.health-stat strong {
+  font-size: 23px;
+  letter-spacing: -0.4px;
+}
+
+.v21-priority-row {
+  grid-template-columns:
+    auto minmax(0, 1fr) auto;
+}
+
+.priority-meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.priority-meta > span:not(.confidence-badge) {
+  padding: 3px 7px;
+  border-radius: 6px;
+  background: #1b1f26;
+  color: #9ea6b4;
+  font-size: 11px;
+}
+
+.action-card-v21 {
+  align-items: flex-start;
+}
+
+.action-score-stack,
+.evidence-review-score {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 7px;
+}
+
+.action-title-line {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 4px;
+}
+
+.action-title-line h3 {
+  margin: 0;
+}
+
+.fit-breakdown {
+  margin-top: 14px;
+  padding: 14px;
+  border: 1px solid #2b313a;
+  border-radius: 10px;
+  background: #0d1014;
+}
+
+.fit-breakdown-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  margin-bottom: 11px;
+  color: #8f98a8;
+  font-size: 11px;
+}
+
+.fit-breakdown-header strong {
+  color: #dce0e7;
+}
+
+.component-grid {
+  display: grid;
+  grid-template-columns:
+    repeat(4, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.component-card {
+  min-width: 0;
+  padding: 10px;
+  border: 1px solid #2c323b;
+  border-radius: 8px;
+  background: #13171c;
+}
+
+.component-card.missing {
+  border-style: dashed;
+  background: #101216;
+  opacity: 0.72;
+}
+
+.component-card span,
+.component-card small {
+  display: block;
+}
+
+.component-card span {
+  margin-bottom: 5px;
+  color: #8f98a8;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.component-card strong {
+  display: block;
+  color: #e9ebef;
+  font-size: 15px;
+}
+
+.component-card small {
+  margin-top: 4px;
+  color: #727b89;
+  font-size: 10px;
+}
+
+.gate-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-top: 11px;
+}
+
+.gate-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 7px;
+  border-radius: 999px;
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.gate-pill.pass {
+  background: #173826;
+  color: #9be3ba;
+}
+
+.gate-pill.fail {
+  background: #4a2327;
+  color: #f1a5ad;
+}
+
+.gate-failure-text {
+  margin-top: 10px;
+  color: #d6a5a9;
+  font-size: 11px;
+  line-height: 1.45;
+}
+
+.legacy-evaluation-note {
+  margin-top: 12px;
+  padding: 9px 11px;
+  border: 1px dashed #414854;
+  border-radius: 7px;
+  color: #8f98a8;
+  font-size: 11px;
+}
+
+.numeric-cell {
+  font-variant-numeric: tabular-nums;
+}
+
+.evidence-review-row {
+  display: grid;
+  grid-template-columns:
+    auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 16px;
+  padding: 15px 0;
+  border-bottom: 1px solid #272c34;
+}
+
+.evidence-review-row:last-child {
+  border-bottom: 0;
+}
+
+.evidence-review-main {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.evidence-review-main > strong {
+  color: #e3e6eb;
+}
+
+.evidence-review-main > span,
+.evidence-review-main > small {
+  color: #8f98a8;
+  font-size: 11px;
+}
+
+.evidence-review-main .review-reason {
+  color: #c69ca1;
+}
+
+@media (max-width: 1300px) {
+  .metrics-six,
+  .evidence-health-grid {
+    grid-template-columns:
+      repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 900px) {
+  .component-grid {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 700px) {
+  .header-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .metrics-six,
+  .evidence-health-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .component-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .evidence-review-row {
+    grid-template-columns:
+      auto minmax(0, 1fr);
+  }
+
+  .evidence-review-row .job-link {
+    grid-column: 2;
+  }
+}
+
+@media (max-width: 480px) {
+  .component-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
