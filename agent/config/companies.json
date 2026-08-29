@@ -2,37 +2,56 @@
   {
     "name": "Stripe",
     "board_token": "stripe",
-    "enabled": true,
-    "priority": "high"
+    "enabled": true
   },
   {
     "name": "Figma",
     "board_token": "figma",
-    "enabled": true,
-    "priority": "high"
+    "enabled": true
   },
   {
     "name": "Scale AI",
     "board_token": "scaleai",
-    "enabled": true,
-    "priority": "high"
+    "enabled": true
   },
   {
     "name": "Airtable",
     "board_token": "airtable",
-    "enabled": true,
-    "priority": "high"
+    "enabled": true
   },
   {
     "name": "Webflow",
     "board_token": "webflow",
-    "enabled": true,
-    "priority": "watch"
+    "enabled": true
   },
   {
     "name": "Ocrolus",
     "board_token": "ocrolusinc",
-    "enabled": true,
-    "priority": "watch"
+    "enabled": true
+  },
+  {
+    "name": "Twilio",
+    "board_token": "twilio",
+    "enabled": true
+  },
+  {
+    "name": "Chime",
+    "board_token": "chime",
+    "enabled": true
+  },
+  {
+    "name": "Robinhood",
+    "board_token": "robinhood",
+    "enabled": true
+  },
+  {
+    "name": "Glean",
+    "board_token": "gleanwork",
+    "enabled": true
+  },
+  {
+    "name": "Discord",
+    "board_token": "discord",
+    "enabled": true
   }
 ]
