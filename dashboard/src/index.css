@@ -637,6 +637,349 @@ button {
 
 
 /* ==========================================================
+   BROWSER ASSISTANCE HANDOFF V1
+   ========================================================== */
+
+.browser-handoff {
+  margin-top: 14px;
+  padding: 15px;
+
+  border: 1px solid #334155;
+  border-radius: 10px;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(30, 41, 59, 0.34),
+      rgba(13, 16, 20, 0.76)
+    );
+}
+
+.browser-handoff-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+
+  gap: 14px;
+}
+
+.browser-handoff-header > div:first-child {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 4px;
+}
+
+.browser-handoff-header strong {
+  color: #edf1f7;
+  font-size: 13px;
+}
+
+.browser-handoff-header span {
+  color: #929baa;
+  font-size: 11px;
+  line-height: 1.45;
+}
+
+.handoff-badges {
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+
+  gap: 6px;
+}
+
+.handoff-badge {
+  display: inline-flex;
+  align-items: center;
+
+  padding: 4px 7px;
+
+  border-radius: 999px;
+
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 1.2;
+
+  white-space: nowrap;
+}
+
+.handoff-badge.browser {
+  background: #202d3d;
+  color: #a4c8ef;
+}
+
+.handoff-badge.challenge {
+  background: #4a2327;
+  color: #f1a5ad;
+}
+
+.handoff-badge.ready {
+  background: #173826;
+  color: #9be3ba;
+}
+
+.handoff-badge.review {
+  background: #41371a;
+  color: #ecd77c;
+}
+
+.handoff-badge.warning {
+  background: #3a2b19;
+  color: #f0c67c;
+}
+
+.handoff-resume {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+
+  gap: 8px;
+
+  margin-top: 12px;
+
+  color: #8f98a8;
+  font-size: 11px;
+}
+
+.handoff-resume strong {
+  padding: 4px 7px;
+
+  border: 1px solid #303743;
+  border-radius: 6px;
+
+  background: #11151a;
+  color: #dce2ea;
+
+  font-family:
+    ui-monospace,
+    SFMono-Regular,
+    Menlo,
+    Monaco,
+    Consolas,
+    monospace;
+
+  font-size: 11px;
+}
+
+.handoff-routing-note {
+  margin-top: 10px;
+  padding: 9px 10px;
+
+  border: 1px solid #5b4524;
+  border-radius: 7px;
+
+  background: #2b2112;
+  color: #e7c98a;
+
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+.handoff-details {
+  margin-top: 12px;
+
+  border-top: 1px solid #2c333d;
+}
+
+.handoff-details > summary {
+  width: fit-content;
+
+  padding: 12px 0 2px;
+
+  color: #b7c4d6;
+
+  cursor: pointer;
+
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.handoff-details > summary:hover {
+  color: #d8e6f7;
+}
+
+.handoff-detail-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+
+  gap: 12px;
+
+  margin-top: 12px;
+}
+
+.handoff-section {
+  min-width: 0;
+
+  padding: 13px;
+
+  border: 1px solid #2b313a;
+  border-radius: 8px;
+
+  background: #0d1014;
+}
+
+.handoff-section-wide {
+  grid-column: 1 / -1;
+}
+
+.handoff-section h4 {
+  margin: 0 0 10px;
+
+  color: #e0e5ec;
+
+  font-size: 12px;
+}
+
+.handoff-section p,
+.handoff-section ul {
+  margin: 0;
+
+  color: #9aa3b1;
+
+  font-size: 11px;
+  line-height: 1.55;
+}
+
+.handoff-section ul:not(.handoff-item-list) {
+  padding-left: 18px;
+}
+
+.handoff-section li + li {
+  margin-top: 6px;
+}
+
+.handoff-technical {
+  display: flex;
+  flex-direction: column;
+
+  gap: 5px;
+
+  margin-top: 10px;
+}
+
+.handoff-technical > span {
+  color: #747e8e;
+
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.handoff-technical code {
+  width: fit-content;
+  max-width: 100%;
+
+  padding: 4px 6px;
+
+  border-radius: 5px;
+
+  background: #161a20;
+  color: #aeb8c6;
+
+  overflow-wrap: anywhere;
+
+  font-size: 10px;
+}
+
+.handoff-item-list {
+  list-style: none;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 0;
+
+  padding: 0;
+}
+
+.handoff-item-list > li {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+
+  gap: 12px;
+
+  padding: 8px 0;
+
+  border-bottom: 1px solid #242a32;
+}
+
+.handoff-item-list > li:first-child {
+  padding-top: 0;
+}
+
+.handoff-item-list > li:last-child {
+  padding-bottom: 0;
+
+  border-bottom: 0;
+}
+
+.handoff-item-list > li > div {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 3px;
+}
+
+.handoff-item-list strong {
+  color: #dce1e8;
+
+  font-size: 11px;
+  line-height: 1.45;
+
+  overflow-wrap: anywhere;
+}
+
+.handoff-item-list small {
+  color: #747e8d;
+
+  font-size: 10px;
+}
+
+.handoff-ready-value {
+  flex: 0 0 auto;
+
+  padding: 3px 6px;
+
+  border-radius: 999px;
+
+  background: #173826;
+  color: #9be3ba;
+
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.handoff-field-badge {
+  flex: 0 0 auto;
+
+  padding: 3px 6px;
+
+  border-radius: 999px;
+
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.handoff-field-badge.required {
+  background: #41371a;
+  color: #ecd77c;
+}
+
+.handoff-field-badge.optional {
+  background: #242a32;
+  color: #9da6b4;
+}
+
+
+/* ==========================================================
    TABLE
    ========================================================== */
 
@@ -1419,3 +1762,195 @@ td {
   color: #aab1bd;
 }
 
+
+
+/* Browser Assistance Handoff V1 responsive */
+@media (max-width: 900px) {
+  .browser-handoff-header {
+    flex-direction: column;
+  }
+
+  .handoff-badges {
+    justify-content: flex-start;
+  }
+
+  .handoff-detail-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .handoff-section-wide {
+    grid-column: auto;
+  }
+}
+
+@media (max-width: 600px) {
+  .browser-handoff {
+    padding: 12px;
+  }
+
+  .handoff-item-list > li {
+    flex-direction: column;
+    gap: 7px;
+  }
+}
+
+/* ==========================================================
+   BROWSER QUEUE RUN HISTORY V1
+   ========================================================== */
+
+.browser-run-hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  margin-bottom: 18px;
+  padding: 16px;
+  border: 1px solid #2b313a;
+  border-radius: 11px;
+  background: #0d1014;
+}
+
+.browser-run-hero > div {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.browser-run-hero strong {
+  color: #e8ebf0;
+  font-size: 18px;
+}
+
+.browser-run-hero small,
+.browser-run-kicker {
+  color: #8f98a8;
+  font-size: 11px;
+}
+
+.browser-run-kicker {
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.browser-run-stats {
+  margin-bottom: 16px;
+}
+
+.browser-safety-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 18px;
+  padding: 11px 13px;
+  border: 1px solid #2b313a;
+  border-radius: 9px;
+  background: #11151a;
+  color: #8f98a8;
+  font-size: 11px;
+}
+
+.browser-safety-strip strong {
+  color: #e4e7ec;
+}
+
+.browser-submit-zero,
+.browser-submit-zero strong {
+  color: #9be3ba;
+}
+
+.browser-run-health {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  padding: 5px 9px;
+  border-radius: 999px;
+  font-size: 10px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.browser-run-health.clean {
+  background: #173826;
+  color: #9be3ba;
+}
+
+.browser-run-health.assistance {
+  background: #3d3219;
+  color: #f0cf7a;
+}
+
+.browser-run-health.warning {
+  background: #4a2e1d;
+  color: #efb080;
+}
+
+.browser-run-health.danger {
+  background: #4a2327;
+  color: #f1a5ad;
+}
+
+.browser-run-health.compact {
+  padding: 3px 7px;
+  font-size: 9px;
+}
+
+.browser-history-summary {
+  margin-top: 18px;
+}
+
+.browser-runs-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 1050px;
+}
+
+.browser-runs-table th,
+.browser-runs-table td {
+  padding: 12px 10px;
+  border-bottom: 1px solid #272c34;
+  text-align: left;
+  vertical-align: middle;
+  font-size: 11px;
+}
+
+.browser-runs-table th {
+  color: #8f98a8;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.browser-runs-table td {
+  color: #cfd4dd;
+}
+
+.browser-run-time-cell {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 5px;
+}
+
+.browser-run-time-cell strong {
+  color: #e4e7ec;
+  white-space: nowrap;
+}
+
+.browser-submit-badge {
+  display: inline-flex;
+  min-width: 28px;
+  justify-content: center;
+  padding: 4px 7px;
+  border-radius: 999px;
+  background: #173826;
+  color: #9be3ba;
+  font-weight: 700;
+}
+
+@media (max-width: 700px) {
+  .browser-run-hero {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}

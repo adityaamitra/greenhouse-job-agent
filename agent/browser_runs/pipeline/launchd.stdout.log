@@ -1,0 +1,67 @@
+
+========================================================================================================
+DAILY PIPELINE ORCHESTRATION V1
+========================================================================================================
+Mode:                    SCAN_ONLY
+Stage 1:                 Greenhouse scan + scoring
+Browser cap:             1
+Browser statuses:        PENDING only
+Browser IN_PROGRESS:     DISABLED
+Browser mode:            HEADLESS
+Fresh-evaluation guard:  REQUIRED
+CAPTCHA bypass:          DISABLED
+Submit clicks:           NONE
+Application submission:  HARD-BLOCKED
+Browser execution:       DISABLED
+Browser persistence:     DISABLED
+========================================================================================================
+
+========================================================================================================
+DAILY PIPELINE RESULT
+========================================================================================================
+Status:                  COMPLETED_SCAN_ONLY
+Jobs discovered:         1551
+Target roles:            159
+US compatible:           100
+Eligible/scored:         73
+Agent apply:             65
+Browser candidates:      0
+Browser opened:          NO
+Browser history:         NO
+Application submitted:   NO
+Pipeline report:         /Users/mitra/Desktop/greenhouse-job-agent/agent/browser_runs/pipeline/20260904T214305Z/daily_pipeline_report.json
+========================================================================================================
+
+========================================================================================================
+DAILY PIPELINE ORCHESTRATION V1
+========================================================================================================
+Mode:                    SCAN_THEN_BROWSER_PERSISTED
+Stage 1:                 Greenhouse scan + scoring
+Browser cap:             1
+Browser statuses:        PENDING only
+Browser IN_PROGRESS:     DISABLED
+Browser mode:            HEADLESS
+Fresh-evaluation guard:  REQUIRED
+CAPTCHA bypass:          DISABLED
+Submit clicks:           NONE
+Application submission:  HARD-BLOCKED
+Browser execution:       ENABLED
+Browser persistence:     ENABLED
+Persistence allow:       YES
+========================================================================================================
+
+========================================================================================================
+DAILY PIPELINE RESULT
+========================================================================================================
+Status:                  COMPLETED_BROWSER
+Jobs discovered:         1551
+Target roles:            159
+US compatible:           100
+Eligible/scored:         73
+Agent apply:             65
+Browser candidates:      1
+Browser opened:          YES
+Browser history:         YES
+Application submitted:   NO
+Pipeline report:         /Users/mitra/Desktop/greenhouse-job-agent/agent/browser_runs/pipeline/20260904T215105Z/daily_pipeline_report.json
+========================================================================================================

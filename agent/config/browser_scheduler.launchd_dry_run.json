@@ -1,0 +1,11 @@
+{
+  "mode": "BROWSER_DRY_RUN",
+  "limit": 1,
+  "board_token": null,
+  "order": "oldest",
+  "profile_path": "config/applicant_profile.json",
+  "resume_dir": "resumes",
+  "queue_artifacts_dir": "browser_runs/queue",
+  "scheduler_artifacts_dir": "browser_runs/scheduler",
+  "delay_seconds": 2.0
+}

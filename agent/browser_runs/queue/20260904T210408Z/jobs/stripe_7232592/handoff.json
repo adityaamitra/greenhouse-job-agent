@@ -1,0 +1,297 @@
+{
+  "packet_version": 1,
+  "company": "Stripe",
+  "job_title": "Backend Engineer, Payments and Risk",
+  "requested_url": "https://job-boards.greenhouse.io/embed/job_app?for=stripe&token=7232592",
+  "page_title": "Job Application for Backend Engineer, Payments and Risk at Stripe",
+  "selected_resume": "backend_engineer.pdf",
+  "route": "NEEDS_ASSISTANCE",
+  "route_reasons": [
+    "Page challenge / CAPTCHA detected.",
+    "7 required field(s) need human resolution."
+  ],
+  "challenge": {
+    "detected": true,
+    "reasons": [
+      "reCAPTCHA iframe: 1 element(s), 1 visible"
+    ]
+  },
+  "browser_safety": {
+    "application_submitted": false,
+    "submit_clicked_by_agent": false,
+    "nonready_mutation_detected": false,
+    "nonready_mutation_reason": ""
+  },
+  "deterministic_ready": [
+    {
+      "label": "First Name*",
+      "category": "FIRST_NAME",
+      "required": true,
+      "status": "READY",
+      "source": "profile",
+      "answer_key": "FIRST_NAME",
+      "display_answer": null,
+      "reason": "Resolved from applicant profile path: identity.first_name"
+    },
+    {
+      "label": "Last Name*",
+      "category": "LAST_NAME",
+      "required": true,
+      "status": "READY",
+      "source": "profile",
+      "answer_key": "LAST_NAME",
+      "display_answer": null,
+      "reason": "Resolved from applicant profile path: identity.last_name"
+    },
+    {
+      "label": "Email*",
+      "category": "EMAIL",
+      "required": true,
+      "status": "READY",
+      "source": "profile",
+      "answer_key": "EMAIL",
+      "display_answer": null,
+      "reason": "Resolved from applicant profile path: contact.email"
+    },
+    {
+      "label": "Country*",
+      "category": "COUNTRY",
+      "required": true,
+      "status": "READY",
+      "source": "profile",
+      "answer_key": "COUNTRY",
+      "display_answer": null,
+      "reason": "Resolved from applicant profile path: address.country"
+    },
+    {
+      "label": "Phone*",
+      "category": "PHONE",
+      "required": true,
+      "status": "READY",
+      "source": "profile",
+      "answer_key": "PHONE",
+      "display_answer": null,
+      "reason": "Resolved from applicant profile path: contact.phone"
+    },
+    {
+      "label": "Location (City)*",
+      "category": "CITY",
+      "required": true,
+      "status": "READY",
+      "source": "profile",
+      "answer_key": "CITY",
+      "display_answer": null,
+      "reason": "Resolved from applicant profile path: address.city"
+    },
+    {
+      "label": "Attach",
+      "category": "RESUME",
+      "required": true,
+      "status": "READY",
+      "source": "matcher",
+      "answer_key": "SELECTED_RESUME_FILE",
+      "display_answer": null,
+      "reason": "Selected resume file exists and is ready for later upload."
+    },
+    {
+      "label": "School*",
+      "category": "EDUCATION_SCHOOL",
+      "required": true,
+      "status": "READY",
+      "source": "profile",
+      "answer_key": "EDUCATION_SCHOOL",
+      "display_answer": null,
+      "reason": "Resolved from applicant profile path: education.school"
+    },
+    {
+      "label": "Degree*",
+      "category": "EDUCATION_DEGREE",
+      "required": true,
+      "status": "READY",
+      "source": "profile",
+      "answer_key": "EDUCATION_DEGREE",
+      "display_answer": null,
+      "reason": "Resolved from applicant profile path: education.degree"
+    },
+    {
+      "label": "Please select the country where you currently reside. *",
+      "category": "COUNTRY",
+      "required": true,
+      "status": "READY",
+      "source": "profile",
+      "answer_key": "COUNTRY",
+      "display_answer": null,
+      "reason": "Resolved from applicant profile path: address.country"
+    },
+    {
+      "label": "Are you authorized to work in the location(s) you selected in your previous response?*",
+      "category": "WORK_AUTHORIZATION_US",
+      "required": true,
+      "status": "READY",
+      "source": "profile-policy",
+      "answer_key": "WORK_AUTHORIZED_US",
+      "display_answer": "Yes",
+      "reason": "Resolved from explicit work-authorization profile fact."
+    },
+    {
+      "label": "Will you require Stripe to sponsor you for a work permit now or in the future for the location(s) you selected in in your previous response? *",
+      "category": "SPONSORSHIP_NOW_OR_FUTURE",
+      "required": true,
+      "status": "READY",
+      "source": "profile-policy",
+      "answer_key": "SPONSORSHIP_NOW_OR_FUTURE",
+      "display_answer": "Yes",
+      "reason": "Resolved as logical OR of current and future sponsorship."
+    },
+    {
+      "label": "If this role offers the option to work from a remote location, do you plan to work remotely?*",
+      "category": "LOCATION_FREEFORM",
+      "required": true,
+      "status": "READY",
+      "source": "profile",
+      "answer_key": "LOCATION_FREEFORM",
+      "display_answer": null,
+      "reason": "Resolved from applicant profile path: address.location_freeform"
+    },
+    {
+      "label": "If located in the US, in what city and state do you reside?*",
+      "category": "CITY",
+      "required": true,
+      "status": "READY",
+      "source": "profile",
+      "answer_key": "CITY",
+      "display_answer": null,
+      "reason": "Resolved from applicant profile path: address.city"
+    }
+  ],
+  "human_assistance": [
+    {
+      "label": "Attach",
+      "category": "COVER_LETTER_UPLOAD",
+      "required": false,
+      "status": "OPTIONAL_ASSISTANCE",
+      "source": "human",
+      "answer_key": null,
+      "display_answer": null,
+      "reason": "Cover-letter content is intentionally human-reviewed."
+    },
+    {
+      "label": "Select...",
+      "category": "UNKNOWN_CUSTOM_FIELD",
+      "required": true,
+      "status": "REQUIRED_ASSISTANCE",
+      "source": "human",
+      "answer_key": null,
+      "display_answer": null,
+      "reason": "Field is not recognized with enough confidence to answer automatically."
+    },
+    {
+      "label": "Australia",
+      "category": "UNKNOWN_CUSTOM_FIELD",
+      "required": true,
+      "status": "REQUIRED_ASSISTANCE",
+      "source": "human",
+      "answer_key": null,
+      "display_answer": null,
+      "reason": "Field is not recognized with enough confidence to answer automatically."
+    },
+    {
+      "label": "San Francisco",
+      "category": "UNKNOWN_CUSTOM_FIELD",
+      "required": true,
+      "status": "REQUIRED_ASSISTANCE",
+      "source": "human",
+      "answer_key": null,
+      "display_answer": null,
+      "reason": "Field is not recognized with enough confidence to answer automatically."
+    },
+    {
+      "label": "Have you ever been employed by Stripe or a Stripe affiliate?*",
+      "category": "UNKNOWN_CUSTOM_FIELD",
+      "required": true,
+      "status": "REQUIRED_ASSISTANCE",
+      "source": "human",
+      "answer_key": null,
+      "display_answer": null,
+      "reason": "Field is not recognized with enough confidence to answer automatically."
+    },
+    {
+      "label": "Who is your current or previous employer?*",
+      "category": "UNKNOWN_CUSTOM_FIELD",
+      "required": true,
+      "status": "REQUIRED_ASSISTANCE",
+      "source": "human",
+      "answer_key": null,
+      "display_answer": null,
+      "reason": "Field is not recognized with enough confidence to answer automatically."
+    },
+    {
+      "label": "What is your current or previous job title?*",
+      "category": "UNKNOWN_CUSTOM_FIELD",
+      "required": true,
+      "status": "REQUIRED_ASSISTANCE",
+      "source": "human",
+      "answer_key": null,
+      "display_answer": null,
+      "reason": "Field is not recognized with enough confidence to answer automatically."
+    },
+    {
+      "label": "Do you opt-in to receive WhatsApp messages from Stripe Recruiting?*",
+      "category": "UNKNOWN_CUSTOM_FIELD",
+      "required": true,
+      "status": "REQUIRED_ASSISTANCE",
+      "source": "human",
+      "answer_key": null,
+      "display_answer": null,
+      "reason": "Field is not recognized with enough confidence to answer automatically."
+    },
+    {
+      "label": "Gender",
+      "category": "VOLUNTARY_DEMOGRAPHIC",
+      "required": false,
+      "status": "OPTIONAL_ASSISTANCE",
+      "source": "human",
+      "answer_key": null,
+      "display_answer": null,
+      "reason": "Demographic/EEO answers must never be inferred."
+    },
+    {
+      "label": "Are you Hispanic/Latino?",
+      "category": "VOLUNTARY_DEMOGRAPHIC",
+      "required": false,
+      "status": "OPTIONAL_ASSISTANCE",
+      "source": "human",
+      "answer_key": null,
+      "display_answer": null,
+      "reason": "Demographic/EEO answers must never be inferred."
+    },
+    {
+      "label": "Veteran Status",
+      "category": "VOLUNTARY_DEMOGRAPHIC",
+      "required": false,
+      "status": "OPTIONAL_ASSISTANCE",
+      "source": "human",
+      "answer_key": null,
+      "display_answer": null,
+      "reason": "Demographic/EEO answers must never be inferred."
+    },
+    {
+      "label": "Disability Status",
+      "category": "VOLUNTARY_DEMOGRAPHIC",
+      "required": false,
+      "status": "OPTIONAL_ASSISTANCE",
+      "source": "human",
+      "answer_key": null,
+      "display_answer": null,
+      "reason": "Demographic/EEO answers must never be inferred."
+    }
+  ],
+  "summary": {
+    "ready_count": 14,
+    "human_assistance_count": 12,
+    "required_human_count": 7,
+    "challenge_detected": true,
+    "policy_mismatches": 0,
+    "missing_resume": 0
+  }
+}

@@ -1,0 +1,717 @@
+================ GLEAN ================
+
+====================================================================================================
+BROWSER APPLICATION AGENT V1.4 — READ-ONLY FORM INSPECTOR
+====================================================================================================
+
+Safety mode: INSPECT ONLY
+Fields will NOT be filled.
+Files will NOT be uploaded.
+Submit will NOT be clicked.
+
+Page title:     Job Application for Software Engineer, Fullstack at Glean
+Requested URL:  https://job-boards.greenhouse.io/gleanwork/jobs/4006734005
+Final URL:      https://job-boards.greenhouse.io/gleanwork/jobs/4006734005
+Form frame URL: https://job-boards.greenhouse.io/gleanwork/jobs/4006734005
+
+Logical fields discovered: 18
+
+----------------------------------------------------------------------------------------------------
+01. First Name*
+    DOM:        input/text
+    Sources:    1 control(s) [text]
+    Required:   YES
+    Category:   FIRST_NAME
+    Action:     PROFILE_VALUE
+    Answer key: FIRST_NAME
+    Reason:     Standard applicant profile field.
+----------------------------------------------------------------------------------------------------
+02. Last Name*
+    DOM:        input/text
+    Sources:    1 control(s) [text]
+    Required:   YES
+    Category:   LAST_NAME
+    Action:     PROFILE_VALUE
+    Answer key: LAST_NAME
+    Reason:     Standard applicant profile field.
+----------------------------------------------------------------------------------------------------
+03. Email*
+    DOM:        input/text
+    Sources:    1 control(s) [text]
+    Required:   YES
+    Category:   EMAIL
+    Action:     PROFILE_VALUE
+    Answer key: EMAIL
+    Reason:     Standard applicant profile field.
+----------------------------------------------------------------------------------------------------
+04. Country*
+    DOM:        input/text
+    Sources:    2 control(s) [text]
+    Required:   YES
+    Category:   LOCATION_OR_ADDRESS
+    Action:     PROFILE_VALUE
+    Answer key: LOCATION_OR_ADDRESS
+    Reason:     Recognized profile/location field; future filling must use explicit profile configuration.
+----------------------------------------------------------------------------------------------------
+05. Phone*
+    DOM:        input/tel
+    Sources:    1 control(s) [tel]
+    Required:   YES
+    Category:   PHONE
+    Action:     PROFILE_VALUE
+    Answer key: PHONE
+    Reason:     Standard applicant profile field.
+----------------------------------------------------------------------------------------------------
+06. Attach
+    DOM:        input/file
+    Sources:    1 control(s) [file]
+    Required:   NO
+    Category:   RESUME
+    Action:     RESUME_FILE
+    Answer key: SELECTED_RESUME_FILE
+    Reason:     Resume upload can use the resume already selected by the V2.1 matcher.
+----------------------------------------------------------------------------------------------------
+07. Attach
+    DOM:        input/file
+    Sources:    1 control(s) [file]
+    Required:   NO
+    Category:   COVER_LETTER_UPLOAD
+    Action:     NEEDS_ASSISTANCE
+    Reason:     Cover-letter content is intentionally human-reviewed.
+----------------------------------------------------------------------------------------------------
+08. LinkedIn Profile*
+    DOM:        input/text
+    Sources:    1 control(s) [text]
+    Required:   YES
+    Category:   LINKEDIN
+    Action:     PROFILE_VALUE
+    Answer key: LINKEDIN_URL
+    Reason:     Standard professional-profile field.
+----------------------------------------------------------------------------------------------------
+09. Website
+    DOM:        input/text
+    Sources:    1 control(s) [text]
+    Required:   NO
+    Category:   PORTFOLIO
+    Action:     PROFILE_VALUE
+    Answer key: PORTFOLIO_URL
+    Reason:     Standard professional-profile field.
+----------------------------------------------------------------------------------------------------
+10. Are you willing and able to commit to the hybrid policy if hired?*
+    DOM:        input/text
+    Sources:    2 control(s) [text]
+    Required:   YES
+    Category:   WORK_LOCATION_COMMITMENT
+    Action:     NEEDS_ASSISTANCE
+    Reason:     Hybrid/office attendance is a job-specific commitment and should be explicitly confirmed.
+----------------------------------------------------------------------------------------------------
+11. Do you know anyone currently at Glean?*
+    DOM:        input/text
+    Sources:    1 control(s) [text]
+    Required:   YES
+    Category:   REFERRAL_RELATIONSHIP
+    Action:     NEEDS_ASSISTANCE
+    Reason:     Referral/relationship questions require a truthful per-company answer.
+----------------------------------------------------------------------------------------------------
+12. How did you hear about Glean?*
+    DOM:        input/text
+    Sources:    2 control(s) [text]
+    Required:   YES
+    Category:   APPLICATION_SOURCE
+    Action:     NEEDS_ASSISTANCE
+    Reason:     Application-source questions require a truthful per-application answer.
+----------------------------------------------------------------------------------------------------
+13. Please input the total years of experience you have that are relevant for this role.*
+    DOM:        input/text
+    Sources:    1 control(s) [text]
+    Required:   YES
+    Category:   EXPERIENCE_SELF_REPORT
+    Action:     NEEDS_ASSISTANCE
+    Reason:     Self-reported relevant experience can vary by role and should be resolved from explicit profile evidence.
+----------------------------------------------------------------------------------------------------
+14. What AI tools are you currently using today and how are you using them?*
+    DOM:        textarea/textarea
+    Sources:    1 control(s) [textarea]
+    Required:   YES
+    Category:   UNKNOWN_CUSTOM_FIELD
+    Action:     NEEDS_ASSISTANCE
+    Reason:     Field is not recognized with enough confidence to answer automatically.
+    Context:    LinkedIn Profile* Website Are you willing and able to commit to the hybrid policy if hired?* Select... We work out of the Palo Alto office on Monday, Wednesday, and Friday. Do you know anyone currently at Glean?* How did you hear about Glean?* Select... Please input the total years of experience you have that are relevant for this role.* What AI tools are you currently using today and how are you using them?*
+----------------------------------------------------------------------------------------------------
+15. Gender
+    DOM:        input/text
+    Sources:    1 control(s) [text]
+    Required:   NO
+    Category:   VOLUNTARY_DEMOGRAPHIC
+    Action:     NEEDS_ASSISTANCE
+    Reason:     Demographic/EEO answers must never be inferred.
+----------------------------------------------------------------------------------------------------
+16. Are you Hispanic/Latino?
+    DOM:        input/text
+    Sources:    1 control(s) [text]
+    Required:   NO
+    Category:   VOLUNTARY_DEMOGRAPHIC
+    Action:     NEEDS_ASSISTANCE
+    Reason:     Demographic/EEO answers must never be inferred.
+----------------------------------------------------------------------------------------------------
+17. Veteran Status
+    DOM:        input/text
+    Sources:    1 control(s) [text]
+    Required:   NO
+    Category:   VOLUNTARY_DEMOGRAPHIC
+    Action:     NEEDS_ASSISTANCE
+    Reason:     Demographic/EEO answers must never be inferred.
+----------------------------------------------------------------------------------------------------
+18. Disability Status
+    DOM:        input/text
+    Sources:    1 control(s) [text]
+    Required:   NO
+    Category:   VOLUNTARY_DEMOGRAPHIC
+    Action:     NEEDS_ASSISTANCE
+    Reason:     Demographic/EEO answers must never be inferred.
+
+====================================================================================================
+INSPECTION SUMMARY
+====================================================================================================
+Profile-value fields: 7
+Fixed-policy fields:  0
+Resume fields:        1
+Needs Assistance:     10
+Ignored technical:    0
+Submit attempted:     NO
+JSON report:          browser_runs/v14/glean.json
+====================================================================================================
+
+================ ROBINHOOD ================
+
+====================================================================================================
+BROWSER APPLICATION AGENT V1.4 — READ-ONLY FORM INSPECTOR
+====================================================================================================
+
+Safety mode: INSPECT ONLY
+Fields will NOT be filled.
+Files will NOT be uploaded.
+Submit will NOT be clicked.
+
+Page title:     Job Application for Software Engineer, Wallet at Robinhood
+Requested URL:  https://job-boards.greenhouse.io/robinhood/jobs/8088444
+Final URL:      https://job-boards.greenhouse.io/robinhood/jobs/8088444
+Form frame URL: https://job-boards.greenhouse.io/robinhood/jobs/8088444
+
+Logical fields discovered: 27
+
+----------------------------------------------------------------------------------------------------
+01. First Name*
+    DOM:        input/text
+    Sources:    1 control(s) [text]
+    Required:   YES
+    Category:   FIRST_NAME
+    Action:     PROFILE_VALUE
+    Answer key: FIRST_NAME
+    Reason:     Standard applicant profile field.
+----------------------------------------------------------------------------------------------------
+02. Last Name*
+    DOM:        input/text
+    Sources:    1 control(s) [text]
+    Required:   YES
+    Category:   LAST_NAME
+    Action:     PROFILE_VALUE
+    Answer key: LAST_NAME
+    Reason:     Standard applicant profile field.
+----------------------------------------------------------------------------------------------------
+03. Email*
+    DOM:        input/text
+    Sources:    1 control(s) [text]
+    Required:   YES
+    Category:   EMAIL
+    Action:     PROFILE_VALUE
+    Answer key: EMAIL
+    Reason:     Standard applicant profile field.
+----------------------------------------------------------------------------------------------------
+04. Country*
+    DOM:        input/text
+    Sources:    2 control(s) [text]
+    Required:   YES
+    Category:   LOCATION_OR_ADDRESS
+    Action:     PROFILE_VALUE
+    Answer key: LOCATION_OR_ADDRESS
+    Reason:     Recognized profile/location field; future filling must use explicit profile configuration.
+----------------------------------------------------------------------------------------------------
+05. Phone*
+    DOM:        input/tel
+    Sources:    1 control(s) [tel]
+    Required:   YES
+    Category:   PHONE
+    Action:     PROFILE_VALUE
+    Answer key: PHONE
+    Reason:     Standard applicant profile field.
+----------------------------------------------------------------------------------------------------
+06. Location (City)*
+    DOM:        input/text
+    Sources:    2 control(s) [text]
+    Required:   YES
+    Category:   LOCATION_OR_ADDRESS
+    Action:     PROFILE_VALUE
+    Answer key: LOCATION_OR_ADDRESS
+    Reason:     Recognized profile/location field; future filling must use explicit profile configuration.
+----------------------------------------------------------------------------------------------------
+07. Attach
+    DOM:        input/file
+    Sources:    1 control(s) [file]
+    Required:   NO
+    Category:   RESUME
+    Action:     RESUME_FILE
+    Answer key: SELECTED_RESUME_FILE
+    Reason:     Resume upload can use the resume already selected by the V2.1 matcher.
+----------------------------------------------------------------------------------------------------
+08. Attach
+    DOM:        input/file
+    Sources:    1 control(s) [file]
+    Required:   NO
+    Category:   COVER_LETTER_UPLOAD
+    Action:     NEEDS_ASSISTANCE
+    Reason:     Cover-letter content is intentionally human-reviewed.
+----------------------------------------------------------------------------------------------------
+09. LinkedIn Profile
+    DOM:        input/text
+    Sources:    1 control(s) [text]
+    Required:   NO
+    Category:   LINKEDIN
+    Action:     PROFILE_VALUE
+    Answer key: LINKEDIN_URL
+    Reason:     Standard professional-profile field.
+----------------------------------------------------------------------------------------------------
+10. Website
+    DOM:        input/text
+    Sources:    1 control(s) [text]
+    Required:   NO
+    Category:   PORTFOLIO
+    Action:     PROFILE_VALUE
+    Answer key: PORTFOLIO_URL
+    Reason:     Standard professional-profile field.
+----------------------------------------------------------------------------------------------------
+11. How did you hear about this job?
+    DOM:        input/text
+    Sources:    1 control(s) [text]
+    Required:   NO
+    Category:   APPLICATION_SOURCE
+    Action:     NEEDS_ASSISTANCE
+    Reason:     Application-source questions require a truthful per-application answer.
+----------------------------------------------------------------------------------------------------
+12. Have you used Robinhood?
+    DOM:        input/text
+    Sources:    1 control(s) [text]
+    Required:   NO
+    Category:   PRODUCT_USAGE
+    Action:     NEEDS_ASSISTANCE
+    Reason:     Product-usage questions require an explicit user-confirmed answer.
+----------------------------------------------------------------------------------------------------
+13. Have you ever worked for Robinhood as an employee, intern or contractor? Note that providing false or misleading information may result in disqualification from the hiring process.*
+    DOM:        input/text
+    Sources:    2 control(s) [text]
+    Required:   YES
+    Category:   PRIOR_COMPANY_EMPLOYMENT
+    Action:     NEEDS_ASSISTANCE
+    Reason:     Prior-company-employment questions require an explicit truthful answer.
+----------------------------------------------------------------------------------------------------
+14. What gender pronouns do you prefer?
+    DOM:        input/text
+    Sources:    1 control(s) [text]
+    Required:   NO
+    Category:   VOLUNTARY_DEMOGRAPHIC
+    Action:     NEEDS_ASSISTANCE
+    Reason:     Demographic/EEO answers must never be inferred.
+----------------------------------------------------------------------------------------------------
+15. Are you legally work authorized to work in the US?*
+    DOM:        input/text
+    Sources:    2 control(s) [text]
+    Required:   YES
+    Category:   WORK_AUTHORIZATION_US
+    Action:     FIXED_ANSWER
+    Answer key: WORK_AUTHORIZED_US
+    Policy:     Yes
+    Reason:     Direct U.S. work-authorization question without sponsorship wording.
+----------------------------------------------------------------------------------------------------
+16. Will you now (or in the future) require visa sponsorship in order to work in the US?*
+    DOM:        input/text
+    Sources:    2 control(s) [text]
+    Required:   YES
+    Category:   SPONSORSHIP_NOW_OR_FUTURE
+    Action:     FIXED_ANSWER
+    Answer key: SPONSORSHIP_NOW_OR_FUTURE
+    Policy:     Yes
+    Reason:     Question asks whether sponsorship is needed now OR in the future.
+----------------------------------------------------------------------------------------------------
+17. Are you willing to work from the office(s) listed on the job description?*
+    DOM:        input/text
+    Sources:    2 control(s) [text]
+    Required:   YES
+    Category:   WORK_LOCATION_COMMITMENT
+    Action:     NEEDS_ASSISTANCE
+    Reason:     Hybrid/office attendance is a job-specific commitment and should be explicitly confirmed.
+----------------------------------------------------------------------------------------------------
+18. What is your preferred office location?*
+    DOM:        input/text
+    Sources:    2 control(s) [text]
+    Required:   YES
+    Category:   OFFICE_PREFERENCE
+    Action:     NEEDS_ASSISTANCE
+    Reason:     Preferred office is a job-specific preference and must not reuse the applicant's current address.
+----------------------------------------------------------------------------------------------------
+19. Do you have: a) any Personal/Familial Relationships (current Robinhood employees or employees of Robinhood’s vendors); b) any Outside Business Activities that you wish to continue; c) any investment that is greater than 5% of the outstanding shares of a publicly-traded company; d) any investment in a private company that has a business relationship or that is a current competitor of Robinhood; or e) any Intellectual Property Ownership (patents, trademarks, copyrights) that you wish to retain and/or create/develop while at Robinhood?*
+    DOM:        input/text
+    Sources:    2 control(s) [text]
+    Required:   YES
+    Category:   UNKNOWN_CUSTOM_FIELD
+    Action:     NEEDS_ASSISTANCE
+    Reason:     Field is not recognized with enough confidence to answer automatically.
+    Context:    Do you have: a) any Personal/Familial Relationships (current Robinhood employees or employees of Robinhood’s vendors); b) any Outside Business Activities that you wish to continue; c) any investment that is greater than 5% of the outstanding shares of a publicly-traded company; d) any investment in a private company that has a business relationship or that is a current competitor of Robinhood; or e) any Intellectual Property Ownership (patents, trademarks, copyrights) that you wish to retain and
+----------------------------------------------------------------------------------------------------
+20. If you answered "Yes" to the above question, please provide additional information here:
+    DOM:        input/text
+    Sources:    2 control(s) [text]
+    Required:   NO
+    Category:   FREEFORM_APPLICATION_QUESTION
+    Action:     NEEDS_ASSISTANCE
+    Reason:     Free-form answers are human-reviewed in Browser Agent V1.
+----------------------------------------------------------------------------------------------------
+21. Robinhood adheres to applicable laws and regulations in relation to government officials given inherent bribery and/or corruption risk. A government official is any person that performs a public function on any level or acts in any official capacity on behalf of a government or government owned entity. a) Do you currently hold or have you held, within the last 5 years, a position as a government official? b) Have you been referred or recommended for this position by a government official? c) Are you related to or have a close personal relationship with a government official?*
+    DOM:        input/text
+    Sources:    2 control(s) [text]
+    Required:   YES
+    Category:   UNKNOWN_CUSTOM_FIELD
+    Action:     NEEDS_ASSISTANCE
+    Reason:     Field is not recognized with enough confidence to answer automatically.
+    Context:    Robinhood adheres to applicable laws and regulations in relation to government officials given inherent bribery and/or corruption risk. A government official is any person that performs a public function on any level or acts in any official capacity on behalf of a government or government owned entity. a) Do you currently hold or have you held, within the last 5 years, a position as a government official? b) Have you been referred or recommended for this position by a government official? c) Are
+----------------------------------------------------------------------------------------------------
+22. What is your gender identity?*
+    DOM:        input/text
+    Sources:    2 control(s) [text]
+    Required:   YES
+    Category:   VOLUNTARY_DEMOGRAPHIC
+    Action:     NEEDS_ASSISTANCE
+    Reason:     Demographic/EEO answers must never be inferred.
+----------------------------------------------------------------------------------------------------
+23. What is your race or ethnicity?*
+    DOM:        input/text
+    Sources:    2 control(s) [text]
+    Required:   YES
+    Category:   VOLUNTARY_DEMOGRAPHIC
+    Action:     NEEDS_ASSISTANCE
+    Reason:     Demographic/EEO answers must never be inferred.
+----------------------------------------------------------------------------------------------------
+24. What is your military status?*
+    DOM:        input/text
+    Sources:    2 control(s) [text]
+    Required:   YES
+    Category:   VOLUNTARY_DEMOGRAPHIC
+    Action:     NEEDS_ASSISTANCE
+    Reason:     Demographic/EEO answers must never be inferred.
+----------------------------------------------------------------------------------------------------
+25. What is your disability status?*
+    DOM:        input/text
+    Sources:    2 control(s) [text]
+    Required:   YES
+    Category:   VOLUNTARY_DEMOGRAPHIC
+    Action:     NEEDS_ASSISTANCE
+    Reason:     Demographic/EEO answers must never be inferred.
+----------------------------------------------------------------------------------------------------
+26. Do you identify as part of the LGBTQ+ community?
+    DOM:        input/text
+    Sources:    1 control(s) [text]
+    Required:   NO
+    Category:   VOLUNTARY_DEMOGRAPHIC
+    Action:     NEEDS_ASSISTANCE
+    Reason:     Demographic/EEO answers must never be inferred.
+----------------------------------------------------------------------------------------------------
+27. By checking this box, I consent to Robinhood collecting, storing, and processing my responses to the demographic data surveys above.*
+    DOM:        input/checkbox
+    Sources:    1 control(s) [checkbox]
+    Required:   YES
+    Category:   VOLUNTARY_DEMOGRAPHIC
+    Action:     NEEDS_ASSISTANCE
+    Reason:     Demographic/EEO answers must never be inferred.
+
+====================================================================================================
+INSPECTION SUMMARY
+====================================================================================================
+Profile-value fields: 8
+Fixed-policy fields:  2
+Resume fields:        1
+Needs Assistance:     16
+Ignored technical:    0
+Submit attempted:     NO
+JSON report:          browser_runs/v14/robinhood.json
+====================================================================================================
+
+================ DISCORD ================
+
+====================================================================================================
+BROWSER APPLICATION AGENT V1.4 — READ-ONLY FORM INSPECTOR
+====================================================================================================
+
+Safety mode: INSPECT ONLY
+Fields will NOT be filled.
+Files will NOT be uploaded.
+Submit will NOT be clicked.
+
+Page title:     Job Application for Software Engineer, Developer Success at Discord
+Requested URL:  https://job-boards.greenhouse.io/discord/jobs/8609250002
+Final URL:      https://job-boards.greenhouse.io/discord/jobs/8609250002
+Form frame URL: https://job-boards.greenhouse.io/discord/jobs/8609250002
+
+Logical fields discovered: 28
+
+----------------------------------------------------------------------------------------------------
+01. First Name*
+    DOM:        input/text
+    Sources:    1 control(s) [text]
+    Required:   YES
+    Category:   FIRST_NAME
+    Action:     PROFILE_VALUE
+    Answer key: FIRST_NAME
+    Reason:     Standard applicant profile field.
+----------------------------------------------------------------------------------------------------
+02. Last Name*
+    DOM:        input/text
+    Sources:    1 control(s) [text]
+    Required:   YES
+    Category:   LAST_NAME
+    Action:     PROFILE_VALUE
+    Answer key: LAST_NAME
+    Reason:     Standard applicant profile field.
+----------------------------------------------------------------------------------------------------
+03. Email*
+    DOM:        input/text
+    Sources:    1 control(s) [text]
+    Required:   YES
+    Category:   EMAIL
+    Action:     PROFILE_VALUE
+    Answer key: EMAIL
+    Reason:     Standard applicant profile field.
+----------------------------------------------------------------------------------------------------
+04. Country*
+    DOM:        input/text
+    Sources:    2 control(s) [text]
+    Required:   YES
+    Category:   LOCATION_OR_ADDRESS
+    Action:     PROFILE_VALUE
+    Answer key: LOCATION_OR_ADDRESS
+    Reason:     Recognized profile/location field; future filling must use explicit profile configuration.
+----------------------------------------------------------------------------------------------------
+05. Phone*
+    DOM:        input/tel
+    Sources:    1 control(s) [tel]
+    Required:   YES
+    Category:   PHONE
+    Action:     PROFILE_VALUE
+    Answer key: PHONE
+    Reason:     Standard applicant profile field.
+----------------------------------------------------------------------------------------------------
+06. Location (City)*
+    DOM:        input/text
+    Sources:    2 control(s) [text]
+    Required:   YES
+    Category:   LOCATION_OR_ADDRESS
+    Action:     PROFILE_VALUE
+    Answer key: LOCATION_OR_ADDRESS
+    Reason:     Recognized profile/location field; future filling must use explicit profile configuration.
+----------------------------------------------------------------------------------------------------
+07. Attach
+    DOM:        input/file
+    Sources:    1 control(s) [file]
+    Required:   NO
+    Category:   RESUME
+    Action:     RESUME_FILE
+    Answer key: SELECTED_RESUME_FILE
+    Reason:     Resume upload can use the resume already selected by the V2.1 matcher.
+----------------------------------------------------------------------------------------------------
+08. Attach
+    DOM:        input/file
+    Sources:    1 control(s) [file]
+    Required:   NO
+    Category:   COVER_LETTER_UPLOAD
+    Action:     NEEDS_ASSISTANCE
+    Reason:     Cover-letter content is intentionally human-reviewed.
+----------------------------------------------------------------------------------------------------
+09. School
+    DOM:        input/text
+    Sources:    1 control(s) [text]
+    Required:   NO
+    Category:   EDUCATION_SCHOOL
+    Action:     PROFILE_VALUE
+    Answer key: EDUCATION_SCHOOL
+    Reason:     Structured education field.
+----------------------------------------------------------------------------------------------------
+10. Degree
+    DOM:        input/text
+    Sources:    1 control(s) [text]
+    Required:   NO
+    Category:   EDUCATION_DEGREE
+    Action:     PROFILE_VALUE
+    Answer key: EDUCATION_DEGREE
+    Reason:     Structured education field.
+----------------------------------------------------------------------------------------------------
+11. Discipline
+    DOM:        input/text
+    Sources:    1 control(s) [text]
+    Required:   NO
+    Category:   EDUCATION_DISCIPLINE
+    Action:     PROFILE_VALUE
+    Answer key: EDUCATION_DISCIPLINE
+    Reason:     Structured education field.
+----------------------------------------------------------------------------------------------------
+12. Why do you want to work at Discord?*
+    DOM:        textarea/textarea
+    Sources:    1 control(s) [textarea]
+    Required:   YES
+    Category:   FREEFORM_APPLICATION_QUESTION
+    Action:     NEEDS_ASSISTANCE
+    Reason:     Free-form answers are human-reviewed in Browser Agent V1.
+----------------------------------------------------------------------------------------------------
+13. Tell us about your game development experience. This can include professional work, independent projects, game jams, academic projects, or mods.*
+    DOM:        input/text
+    Sources:    1 control(s) [text]
+    Required:   YES
+    Category:   UNKNOWN_CUSTOM_FIELD
+    Action:     NEEDS_ASSISTANCE
+    Reason:     Field is not recognized with enough confidence to answer automatically.
+    Context:    Why do you want to work at Discord?* Tell us about your game development experience. This can include professional work, independent projects, game jams, academic projects, or mods.* Please describe your experience using C++.* LinkedIn Profile Website How did you hear about this job? Are you legally authorized to work in the United States for our Company?* Select... Are you currently located in the US?* Select... Are you currently based in or willing to relocate to the Bay Area for this position
+----------------------------------------------------------------------------------------------------
+14. Please describe your experience using C++.*
+    DOM:        input/text
+    Sources:    1 control(s) [text]
+    Required:   YES
+    Category:   UNKNOWN_CUSTOM_FIELD
+    Action:     NEEDS_ASSISTANCE
+    Reason:     Field is not recognized with enough confidence to answer automatically.
+    Context:    Why do you want to work at Discord?* Tell us about your game development experience. This can include professional work, independent projects, game jams, academic projects, or mods.* Please describe your experience using C++.* LinkedIn Profile Website How did you hear about this job? Are you legally authorized to work in the United States for our Company?* Select... Are you currently located in the US?* Select... Are you currently based in or willing to relocate to the Bay Area for this position
+----------------------------------------------------------------------------------------------------
+15. LinkedIn Profile
+    DOM:        input/text
+    Sources:    1 control(s) [text]
+    Required:   NO
+    Category:   LINKEDIN
+    Action:     PROFILE_VALUE
+    Answer key: LINKEDIN_URL
+    Reason:     Standard professional-profile field.
+----------------------------------------------------------------------------------------------------
+16. Website
+    DOM:        input/text
+    Sources:    1 control(s) [text]
+    Required:   NO
+    Category:   PORTFOLIO
+    Action:     PROFILE_VALUE
+    Answer key: PORTFOLIO_URL
+    Reason:     Standard professional-profile field.
+----------------------------------------------------------------------------------------------------
+17. How did you hear about this job?
+    DOM:        input/text
+    Sources:    1 control(s) [text]
+    Required:   NO
+    Category:   APPLICATION_SOURCE
+    Action:     NEEDS_ASSISTANCE
+    Reason:     Application-source questions require a truthful per-application answer.
+----------------------------------------------------------------------------------------------------
+18. Are you legally authorized to work in the United States for our Company?*
+    DOM:        input/text
+    Sources:    2 control(s) [text]
+    Required:   YES
+    Category:   WORK_AUTHORIZATION_US
+    Action:     FIXED_ANSWER
+    Answer key: WORK_AUTHORIZED_US
+    Policy:     Yes
+    Reason:     Direct U.S. work-authorization question without sponsorship wording.
+----------------------------------------------------------------------------------------------------
+19. Are you currently located in the US?*
+    DOM:        input/text
+    Sources:    2 control(s) [text]
+    Required:   YES
+    Category:   CURRENT_US_LOCATION
+    Action:     PROFILE_VALUE
+    Answer key: CURRENT_US_LOCATION
+    Reason:     Current-country/location fact should come from explicit applicant profile configuration.
+----------------------------------------------------------------------------------------------------
+20. Are you currently based in or willing to relocate to the Bay Area for this position?*
+    DOM:        input/text
+    Sources:    2 control(s) [text]
+    Required:   YES
+    Category:   RELOCATION
+    Action:     NEEDS_ASSISTANCE
+    Reason:     Relocation preferences require explicit profile data.
+----------------------------------------------------------------------------------------------------
+21. Gender*
+    DOM:        input/text
+    Sources:    4 control(s) [text]
+    Required:   YES
+    Category:   VOLUNTARY_DEMOGRAPHIC
+    Action:     NEEDS_ASSISTANCE
+    Reason:     Demographic/EEO answers must never be inferred.
+----------------------------------------------------------------------------------------------------
+22. Race and Ethnicity*
+    DOM:        input/text
+    Sources:    2 control(s) [text]
+    Required:   YES
+    Category:   VOLUNTARY_DEMOGRAPHIC
+    Action:     NEEDS_ASSISTANCE
+    Reason:     Demographic/EEO answers must never be inferred.
+----------------------------------------------------------------------------------------------------
+23. Veteran Status*
+    DOM:        input/text
+    Sources:    4 control(s) [text]
+    Required:   YES
+    Category:   VOLUNTARY_DEMOGRAPHIC
+    Action:     NEEDS_ASSISTANCE
+    Reason:     Demographic/EEO answers must never be inferred.
+----------------------------------------------------------------------------------------------------
+24. Disability Status*
+    DOM:        input/text
+    Sources:    4 control(s) [text]
+    Required:   YES
+    Category:   VOLUNTARY_DEMOGRAPHIC
+    Action:     NEEDS_ASSISTANCE
+    Reason:     Demographic/EEO answers must never be inferred.
+----------------------------------------------------------------------------------------------------
+25. Gender Identity (optional)
+    DOM:        input/text
+    Sources:    1 control(s) [text]
+    Required:   NO
+    Category:   VOLUNTARY_DEMOGRAPHIC
+    Action:     NEEDS_ASSISTANCE
+    Reason:     Demographic/EEO answers must never be inferred.
+----------------------------------------------------------------------------------------------------
+26. Race or Ethnicity (optional)
+    DOM:        input/text
+    Sources:    1 control(s) [text]
+    Required:   NO
+    Category:   VOLUNTARY_DEMOGRAPHIC
+    Action:     NEEDS_ASSISTANCE
+    Reason:     Demographic/EEO answers must never be inferred.
+----------------------------------------------------------------------------------------------------
+27. I consider myself a member of the LGBTQ+ community. (optional)
+    DOM:        input/text
+    Sources:    1 control(s) [text]
+    Required:   NO
+    Category:   VOLUNTARY_DEMOGRAPHIC
+    Action:     NEEDS_ASSISTANCE
+    Reason:     Demographic/EEO answers must never be inferred.
+----------------------------------------------------------------------------------------------------
+28. Are you Hispanic/Latino?*
+    DOM:        input/text
+    Sources:    2 control(s) [text]
+    Required:   YES
+    Category:   VOLUNTARY_DEMOGRAPHIC
+    Action:     NEEDS_ASSISTANCE
+    Reason:     Demographic/EEO answers must never be inferred.
+
+====================================================================================================
+INSPECTION SUMMARY
+====================================================================================================
+Profile-value fields: 12
+Fixed-policy fields:  1
+Resume fields:        1
+Needs Assistance:     14
+Ignored technical:    0
+Submit attempted:     NO
+JSON report:          browser_runs/v14/discord.json
+====================================================================================================

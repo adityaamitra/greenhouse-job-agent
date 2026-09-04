@@ -1,0 +1,53 @@
+{
+  "queue_runner_version": 1,
+  "run_id": "20260904T204618Z",
+  "started_at": "2026-09-04T20:46:16.657706+00:00",
+  "completed_at": "2026-09-04T20:46:29.317913+00:00",
+  "total_seconds": 12.66,
+  "persist": true,
+  "history_persisted": true,
+  "history_id": "595282a5-ed1a-4de6-ad8d-df41915238d9",
+  "history_error": null,
+  "limit": 1,
+  "include_in_progress": false,
+  "board_token_filter": null,
+  "order": "oldest",
+  "delay_seconds": 2.0,
+  "summary": {
+    "selected": 1,
+    "completed": 1,
+    "needs_assistance": 1,
+    "ready_no_submit": 0,
+    "blocked": 0,
+    "errors": 0,
+    "challenge_count": 1,
+    "browser_modified_count": 0,
+    "submitted": 0
+  },
+  "results": [
+    {
+      "job_id": "dcc02b39-f3e5-4aa9-9b62-33735182d01d",
+      "application_id": "c6c7b920-3ec8-4e79-bf71-a2e9ec0a2410",
+      "board_token": "stripe",
+      "greenhouse_job_id": "8131144",
+      "company": "Stripe",
+      "title": "Backend Engineer, Link",
+      "matcher_route": "AGENT_APPLY",
+      "selected_resume": "backend_engineer.pdf",
+      "queue_status": "COMPLETED",
+      "outcome": "NEEDS_ASSISTANCE",
+      "challenge_detected": true,
+      "ready_count": 15,
+      "required_human_count": 7,
+      "browser_modified": false,
+      "persisted": true,
+      "application_status_after": "PENDING",
+      "submit_clicked_by_agent": false,
+      "application_submitted": false,
+      "error_type": null,
+      "error": null
+    }
+  ],
+  "application_submitted": false,
+  "submit_clicked_by_agent": false
+}

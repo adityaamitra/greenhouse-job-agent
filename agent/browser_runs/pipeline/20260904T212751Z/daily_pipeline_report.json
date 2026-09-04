@@ -1,0 +1,44 @@
+{
+  "pipeline_version": 1,
+  "run_key": "20260904T212751Z",
+  "mode": "SCAN_THEN_BROWSER_PERSISTED",
+  "started_at": "2026-09-04T21:27:51.895953+00:00",
+  "scan": {
+    "board_token": "multi",
+    "started_at": "2026-09-04T21:27:59.267712+00:00",
+    "completed_at": "2026-09-04T21:28:54.397604+00:00",
+    "jobs_discovered": 1550,
+    "target_role_jobs": 159,
+    "us_compatible_jobs": 100,
+    "jobs_eligible": 73,
+    "manual_priority_count": 8,
+    "agent_apply_count": 65,
+    "experience_rejected_count": 23,
+    "unknown_location_count": 8,
+    "total_seconds": 58.459
+  },
+  "scan_process_seconds": 63.28,
+  "browser_limit": 1,
+  "browser_board_token_filter": null,
+  "browser_order": "oldest",
+  "browser_opened": true,
+  "browser_history_persisted": true,
+  "browser_selected_count": 1,
+  "browser_candidates": [
+    {
+      "board_token": "stripe",
+      "greenhouse_job_id": "7325252",
+      "company": "Stripe",
+      "title": "Frontend Engineer, Payments & Risk",
+      "route": "AGENT_APPLY",
+      "application_status": "PENDING",
+      "score": 74.44,
+      "confidence": 75.0,
+      "evaluation_completed_at": "2026-09-04T21:28:54.397604+00:00"
+    }
+  ],
+  "submit_clicked_by_agent": false,
+  "application_submitted": false,
+  "completed_at": "2026-09-04T21:29:23.111564+00:00",
+  "status": "COMPLETED_BROWSER"
+}

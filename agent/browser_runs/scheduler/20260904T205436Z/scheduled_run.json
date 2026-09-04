@@ -1,0 +1,28 @@
+{
+  "scheduler_version": 1,
+  "run_key": "20260904T205436Z",
+  "mode": "PREVIEW",
+  "started_at": "2026-09-04T20:54:36.819357+00:00",
+  "completed_at": "2026-09-04T20:54:38.828595+00:00",
+  "queue_limit": 1,
+  "board_token_filter": null,
+  "order": "oldest",
+  "browser_opened": false,
+  "supabase_queue_history_persisted": false,
+  "selected_count": 1,
+  "candidates": [
+    {
+      "board_token": "stripe",
+      "greenhouse_job_id": "7232592",
+      "company": "Stripe",
+      "title": "Backend Engineer, Payments and Risk",
+      "application_status": "PENDING",
+      "route": "AGENT_APPLY",
+      "score": 60.9,
+      "confidence": 40.0
+    }
+  ],
+  "results": [],
+  "submit_clicked_by_agent": false,
+  "application_submitted": false
+}

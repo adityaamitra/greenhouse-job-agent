@@ -1,0 +1,36 @@
+{
+  "profile_version": 1,
+  "identity": {
+    "first_name": null,
+    "last_name": null,
+    "preferred_first_name": null
+  },
+  "contact": {
+    "email": null,
+    "phone": null
+  },
+  "links": {
+    "linkedin_url": null,
+    "portfolio_url": null,
+    "github_url": null
+  },
+  "address": {
+    "country": null,
+    "city": null,
+    "state_or_province": null,
+    "postal_code": null,
+    "street_address": null,
+    "location_freeform": null,
+    "currently_in_us": null
+  },
+  "education": {
+    "school": null,
+    "degree": null,
+    "discipline": null
+  },
+  "work_authorization": {
+    "authorized_to_work_us": null,
+    "sponsorship_now": null,
+    "sponsorship_future": null
+  }
+}

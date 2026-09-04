@@ -1,0 +1,53 @@
+{
+  "queue_runner_version": 1,
+  "run_id": "20260904T200210Z",
+  "started_at": "2026-09-04T20:02:09.406913+00:00",
+  "completed_at": "2026-09-04T20:02:21.655469+00:00",
+  "total_seconds": 12.249,
+  "persist": true,
+  "history_persisted": true,
+  "history_id": "deb0e9c9-7b28-4e17-82f7-20e403c1c339",
+  "history_error": null,
+  "limit": 1,
+  "include_in_progress": false,
+  "board_token_filter": "stripe",
+  "order": "oldest",
+  "delay_seconds": 2.0,
+  "summary": {
+    "selected": 1,
+    "completed": 1,
+    "needs_assistance": 1,
+    "ready_no_submit": 0,
+    "blocked": 0,
+    "errors": 0,
+    "challenge_count": 1,
+    "browser_modified_count": 0,
+    "submitted": 0
+  },
+  "results": [
+    {
+      "job_id": "2ab4b220-c97d-4d05-83f6-5024f820f86a",
+      "application_id": "0dfb0503-0d97-448f-9b73-83c93c54e444",
+      "board_token": "stripe",
+      "greenhouse_job_id": "7476555",
+      "company": "Stripe",
+      "title": "Backend Engineer, Developer & End-user Experience Platform",
+      "matcher_route": "AGENT_APPLY",
+      "selected_resume": "backend_engineer.pdf",
+      "queue_status": "COMPLETED",
+      "outcome": "NEEDS_ASSISTANCE",
+      "challenge_detected": true,
+      "ready_count": 13,
+      "required_human_count": 7,
+      "browser_modified": false,
+      "persisted": true,
+      "application_status_after": "PENDING",
+      "submit_clicked_by_agent": false,
+      "application_submitted": false,
+      "error_type": null,
+      "error": null
+    }
+  ],
+  "application_submitted": false,
+  "submit_clicked_by_agent": false
+}

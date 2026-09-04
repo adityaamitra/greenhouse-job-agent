@@ -1,0 +1,270 @@
+
+====================================================================================================
+BROWSER APPLICATION AGENT V1.4 — READ-ONLY FORM INSPECTOR
+====================================================================================================
+
+Safety mode: INSPECT ONLY
+Fields will NOT be filled.
+Files will NOT be uploaded.
+Submit will NOT be clicked.
+
+Page title:     Job Application for Software Engineer, Developer Success at Discord
+Requested URL:  https://job-boards.greenhouse.io/discord/jobs/8609250002
+Final URL:      https://job-boards.greenhouse.io/discord/jobs/8609250002
+Form frame URL: https://job-boards.greenhouse.io/discord/jobs/8609250002
+
+Logical fields discovered: 28
+
+----------------------------------------------------------------------------------------------------
+01. First Name*
+    DOM:        input/text
+    Sources:    1 control(s) [text]
+    Required:   YES
+    Category:   FIRST_NAME
+    Action:     PROFILE_VALUE
+    Answer key: FIRST_NAME
+    Reason:     Standard applicant profile field.
+----------------------------------------------------------------------------------------------------
+02. Last Name*
+    DOM:        input/text
+    Sources:    1 control(s) [text]
+    Required:   YES
+    Category:   LAST_NAME
+    Action:     PROFILE_VALUE
+    Answer key: LAST_NAME
+    Reason:     Standard applicant profile field.
+----------------------------------------------------------------------------------------------------
+03. Email*
+    DOM:        input/text
+    Sources:    1 control(s) [text]
+    Required:   YES
+    Category:   EMAIL
+    Action:     PROFILE_VALUE
+    Answer key: EMAIL
+    Reason:     Standard applicant profile field.
+----------------------------------------------------------------------------------------------------
+04. Country*
+    DOM:        input/text
+    Sources:    2 control(s) [text]
+    Required:   YES
+    Category:   LOCATION_OR_ADDRESS
+    Action:     PROFILE_VALUE
+    Answer key: LOCATION_OR_ADDRESS
+    Reason:     Recognized profile/location field; future filling must use explicit profile configuration.
+----------------------------------------------------------------------------------------------------
+05. Phone*
+    DOM:        input/tel
+    Sources:    1 control(s) [tel]
+    Required:   YES
+    Category:   PHONE
+    Action:     PROFILE_VALUE
+    Answer key: PHONE
+    Reason:     Standard applicant profile field.
+----------------------------------------------------------------------------------------------------
+06. Location (City)*
+    DOM:        input/text
+    Sources:    2 control(s) [text]
+    Required:   YES
+    Category:   LOCATION_OR_ADDRESS
+    Action:     PROFILE_VALUE
+    Answer key: LOCATION_OR_ADDRESS
+    Reason:     Recognized profile/location field; future filling must use explicit profile configuration.
+----------------------------------------------------------------------------------------------------
+07. Attach
+    DOM:        input/file
+    Sources:    1 control(s) [file]
+    Required:   NO
+    Category:   RESUME
+    Action:     RESUME_FILE
+    Answer key: SELECTED_RESUME_FILE
+    Reason:     Resume upload can use the resume already selected by the V2.1 matcher.
+----------------------------------------------------------------------------------------------------
+08. Attach
+    DOM:        input/file
+    Sources:    1 control(s) [file]
+    Required:   NO
+    Category:   COVER_LETTER_UPLOAD
+    Action:     NEEDS_ASSISTANCE
+    Reason:     Cover-letter content is intentionally human-reviewed.
+----------------------------------------------------------------------------------------------------
+09. School
+    DOM:        input/text
+    Sources:    1 control(s) [text]
+    Required:   NO
+    Category:   EDUCATION_SCHOOL
+    Action:     PROFILE_VALUE
+    Answer key: EDUCATION_SCHOOL
+    Reason:     Structured education field.
+----------------------------------------------------------------------------------------------------
+10. Degree
+    DOM:        input/text
+    Sources:    1 control(s) [text]
+    Required:   NO
+    Category:   EDUCATION_DEGREE
+    Action:     PROFILE_VALUE
+    Answer key: EDUCATION_DEGREE
+    Reason:     Structured education field.
+----------------------------------------------------------------------------------------------------
+11. Discipline
+    DOM:        input/text
+    Sources:    1 control(s) [text]
+    Required:   NO
+    Category:   EDUCATION_DISCIPLINE
+    Action:     PROFILE_VALUE
+    Answer key: EDUCATION_DISCIPLINE
+    Reason:     Structured education field.
+----------------------------------------------------------------------------------------------------
+12. Why do you want to work at Discord?*
+    DOM:        textarea/textarea
+    Sources:    1 control(s) [textarea]
+    Required:   YES
+    Category:   FREEFORM_APPLICATION_QUESTION
+    Action:     NEEDS_ASSISTANCE
+    Reason:     Free-form answers are human-reviewed in Browser Agent V1.
+----------------------------------------------------------------------------------------------------
+13. Tell us about your game development experience. This can include professional work, independent projects, game jams, academic projects, or mods.*
+    DOM:        input/text
+    Sources:    1 control(s) [text]
+    Required:   YES
+    Category:   UNKNOWN_CUSTOM_FIELD
+    Action:     NEEDS_ASSISTANCE
+    Reason:     Field is not recognized with enough confidence to answer automatically.
+    Context:    Why do you want to work at Discord?* Tell us about your game development experience. This can include professional work, independent projects, game jams, academic projects, or mods.* Please describe your experience using C++.* LinkedIn Profile Website How did you hear about this job? Are you legally authorized to work in the United States for our Company?* Select... Are you currently located in the US?* Select... Are you currently based in or willing to relocate to the Bay Area for this position
+----------------------------------------------------------------------------------------------------
+14. Please describe your experience using C++.*
+    DOM:        input/text
+    Sources:    1 control(s) [text]
+    Required:   YES
+    Category:   UNKNOWN_CUSTOM_FIELD
+    Action:     NEEDS_ASSISTANCE
+    Reason:     Field is not recognized with enough confidence to answer automatically.
+    Context:    Why do you want to work at Discord?* Tell us about your game development experience. This can include professional work, independent projects, game jams, academic projects, or mods.* Please describe your experience using C++.* LinkedIn Profile Website How did you hear about this job? Are you legally authorized to work in the United States for our Company?* Select... Are you currently located in the US?* Select... Are you currently based in or willing to relocate to the Bay Area for this position
+----------------------------------------------------------------------------------------------------
+15. LinkedIn Profile
+    DOM:        input/text
+    Sources:    1 control(s) [text]
+    Required:   NO
+    Category:   LINKEDIN
+    Action:     PROFILE_VALUE
+    Answer key: LINKEDIN_URL
+    Reason:     Standard professional-profile field.
+----------------------------------------------------------------------------------------------------
+16. Website
+    DOM:        input/text
+    Sources:    1 control(s) [text]
+    Required:   NO
+    Category:   PORTFOLIO
+    Action:     PROFILE_VALUE
+    Answer key: PORTFOLIO_URL
+    Reason:     Standard professional-profile field.
+----------------------------------------------------------------------------------------------------
+17. How did you hear about this job?
+    DOM:        input/text
+    Sources:    1 control(s) [text]
+    Required:   NO
+    Category:   APPLICATION_SOURCE
+    Action:     NEEDS_ASSISTANCE
+    Reason:     Application-source questions require a truthful per-application answer.
+----------------------------------------------------------------------------------------------------
+18. Are you legally authorized to work in the United States for our Company?*
+    DOM:        input/text
+    Sources:    2 control(s) [text]
+    Required:   YES
+    Category:   WORK_AUTHORIZATION_US
+    Action:     FIXED_ANSWER
+    Answer key: WORK_AUTHORIZED_US
+    Policy:     Yes
+    Reason:     Direct U.S. work-authorization question without sponsorship wording.
+----------------------------------------------------------------------------------------------------
+19. Are you currently located in the US?*
+    DOM:        input/text
+    Sources:    2 control(s) [text]
+    Required:   YES
+    Category:   CURRENT_US_LOCATION
+    Action:     PROFILE_VALUE
+    Answer key: CURRENT_US_LOCATION
+    Reason:     Current-country/location fact should come from explicit applicant profile configuration.
+----------------------------------------------------------------------------------------------------
+20. Are you currently based in or willing to relocate to the Bay Area for this position?*
+    DOM:        input/text
+    Sources:    2 control(s) [text]
+    Required:   YES
+    Category:   RELOCATION
+    Action:     NEEDS_ASSISTANCE
+    Reason:     Relocation preferences require explicit profile data.
+----------------------------------------------------------------------------------------------------
+21. Gender*
+    DOM:        input/text
+    Sources:    4 control(s) [text]
+    Required:   YES
+    Category:   VOLUNTARY_DEMOGRAPHIC
+    Action:     NEEDS_ASSISTANCE
+    Reason:     Demographic/EEO answers must never be inferred.
+----------------------------------------------------------------------------------------------------
+22. Race and Ethnicity*
+    DOM:        input/text
+    Sources:    2 control(s) [text]
+    Required:   YES
+    Category:   VOLUNTARY_DEMOGRAPHIC
+    Action:     NEEDS_ASSISTANCE
+    Reason:     Demographic/EEO answers must never be inferred.
+----------------------------------------------------------------------------------------------------
+23. Veteran Status*
+    DOM:        input/text
+    Sources:    4 control(s) [text]
+    Required:   YES
+    Category:   VOLUNTARY_DEMOGRAPHIC
+    Action:     NEEDS_ASSISTANCE
+    Reason:     Demographic/EEO answers must never be inferred.
+----------------------------------------------------------------------------------------------------
+24. Disability Status*
+    DOM:        input/text
+    Sources:    4 control(s) [text]
+    Required:   YES
+    Category:   VOLUNTARY_DEMOGRAPHIC
+    Action:     NEEDS_ASSISTANCE
+    Reason:     Demographic/EEO answers must never be inferred.
+----------------------------------------------------------------------------------------------------
+25. Gender Identity (optional)
+    DOM:        input/text
+    Sources:    1 control(s) [text]
+    Required:   NO
+    Category:   VOLUNTARY_DEMOGRAPHIC
+    Action:     NEEDS_ASSISTANCE
+    Reason:     Demographic/EEO answers must never be inferred.
+----------------------------------------------------------------------------------------------------
+26. Race or Ethnicity (optional)
+    DOM:        input/text
+    Sources:    1 control(s) [text]
+    Required:   NO
+    Category:   VOLUNTARY_DEMOGRAPHIC
+    Action:     NEEDS_ASSISTANCE
+    Reason:     Demographic/EEO answers must never be inferred.
+----------------------------------------------------------------------------------------------------
+27. I consider myself a member of the LGBTQ+ community. (optional)
+    DOM:        input/text
+    Sources:    1 control(s) [text]
+    Required:   NO
+    Category:   VOLUNTARY_DEMOGRAPHIC
+    Action:     NEEDS_ASSISTANCE
+    Reason:     Demographic/EEO answers must never be inferred.
+----------------------------------------------------------------------------------------------------
+28. Are you Hispanic/Latino?*
+    DOM:        input/text
+    Sources:    2 control(s) [text]
+    Required:   YES
+    Category:   VOLUNTARY_DEMOGRAPHIC
+    Action:     NEEDS_ASSISTANCE
+    Reason:     Demographic/EEO answers must never be inferred.
+
+====================================================================================================
+INSPECTION SUMMARY
+====================================================================================================
+Profile-value fields: 12
+Fixed-policy fields:  1
+Resume fields:        1
+Needs Assistance:     14
+Ignored technical:    0
+Submit attempted:     NO
+JSON report:          browser_runs/v14/discord.json
+====================================================================================================

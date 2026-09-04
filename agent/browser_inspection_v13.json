@@ -1,0 +1,519 @@
+{
+  "requested_url": "https://job-boards.greenhouse.io/chime/jobs/8616359002",
+  "final_url": "https://job-boards.greenhouse.io/chime/jobs/8616359002",
+  "page_title": "Job Application for Software Engineer, Infrastructure at Chime Financial, Inc",
+  "form_frame_url": "https://job-boards.greenhouse.io/chime/jobs/8616359002",
+  "fields": [
+    {
+      "tag": "input",
+      "type": "text",
+      "name": "",
+      "id": "first_name",
+      "label": "First Name*",
+      "placeholder": "",
+      "context_text": "First Name* Last Name* Preferred First Name* Email* Phone Country* Phone* Resume/CV* Attach Attach Dropbox Google Drive Enter manually Enter manually Accepted file types: pdf, doc, docx, txt, rtf Cover Letter Attach Attach Dropbox Google Drive Enter manually Enter manually Accepted file types: pdf, doc, docx, txt, rtf",
+      "required": true,
+      "options": [],
+      "dom_indices": [
+        0
+      ],
+      "source_types": [
+        "text"
+      ],
+      "source_count": 1,
+      "decision": {
+        "category": "FIRST_NAME",
+        "action": "PROFILE_VALUE",
+        "reason": "Standard applicant profile field.",
+        "answer_key": "FIRST_NAME",
+        "fixed_answer": null
+      }
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "name": "",
+      "id": "last_name",
+      "label": "Last Name*",
+      "placeholder": "",
+      "context_text": "First Name* Last Name* Preferred First Name* Email* Phone Country* Phone* Resume/CV* Attach Attach Dropbox Google Drive Enter manually Enter manually Accepted file types: pdf, doc, docx, txt, rtf Cover Letter Attach Attach Dropbox Google Drive Enter manually Enter manually Accepted file types: pdf, doc, docx, txt, rtf",
+      "required": true,
+      "options": [],
+      "dom_indices": [
+        1
+      ],
+      "source_types": [
+        "text"
+      ],
+      "source_count": 1,
+      "decision": {
+        "category": "LAST_NAME",
+        "action": "PROFILE_VALUE",
+        "reason": "Standard applicant profile field.",
+        "answer_key": "LAST_NAME",
+        "fixed_answer": null
+      }
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "name": "",
+      "id": "preferred_name",
+      "label": "Preferred First Name*",
+      "placeholder": "",
+      "context_text": "First Name* Last Name* Preferred First Name* Email* Phone Country* Phone* Resume/CV* Attach Attach Dropbox Google Drive Enter manually Enter manually Accepted file types: pdf, doc, docx, txt, rtf Cover Letter Attach Attach Dropbox Google Drive Enter manually Enter manually Accepted file types: pdf, doc, docx, txt, rtf",
+      "required": true,
+      "options": [],
+      "dom_indices": [
+        2
+      ],
+      "source_types": [
+        "text"
+      ],
+      "source_count": 1,
+      "decision": {
+        "category": "PREFERRED_FIRST_NAME",
+        "action": "PROFILE_VALUE",
+        "reason": "Separate preferred-name profile field; it should not silently reuse legal first name.",
+        "answer_key": "PREFERRED_FIRST_NAME",
+        "fixed_answer": null
+      }
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "name": "",
+      "id": "email",
+      "label": "Email*",
+      "placeholder": "",
+      "context_text": "First Name* Last Name* Preferred First Name* Email* Phone Country* Phone* Resume/CV* Attach Attach Dropbox Google Drive Enter manually Enter manually Accepted file types: pdf, doc, docx, txt, rtf Cover Letter Attach Attach Dropbox Google Drive Enter manually Enter manually Accepted file types: pdf, doc, docx, txt, rtf",
+      "required": true,
+      "options": [],
+      "dom_indices": [
+        3
+      ],
+      "source_types": [
+        "text"
+      ],
+      "source_count": 1,
+      "decision": {
+        "category": "EMAIL",
+        "action": "PROFILE_VALUE",
+        "reason": "Standard applicant profile field.",
+        "answer_key": "EMAIL",
+        "fixed_answer": null
+      }
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "name": "",
+      "id": "country",
+      "label": "Country*",
+      "placeholder": "",
+      "context_text": "First Name* Last Name* Preferred First Name* Email* Phone Country* Phone* Resume/CV* Attach Attach Dropbox Google Drive Enter manually Enter manually Accepted file types: pdf, doc, docx, txt, rtf Cover Letter Attach Attach Dropbox Google Drive Enter manually Enter manually Accepted file types: pdf, doc, docx, txt, rtf",
+      "required": true,
+      "options": [],
+      "dom_indices": [
+        4,
+        5
+      ],
+      "source_types": [
+        "text"
+      ],
+      "source_count": 2,
+      "decision": {
+        "category": "LOCATION_OR_ADDRESS",
+        "action": "PROFILE_VALUE",
+        "reason": "Recognized profile/location field; future filling must use explicit profile configuration.",
+        "answer_key": "LOCATION_OR_ADDRESS",
+        "fixed_answer": null
+      }
+    },
+    {
+      "tag": "input",
+      "type": "tel",
+      "name": "",
+      "id": "phone",
+      "label": "Phone*",
+      "placeholder": "",
+      "context_text": "First Name* Last Name* Preferred First Name* Email* Phone Country* Phone* Resume/CV* Attach Attach Dropbox Google Drive Enter manually Enter manually Accepted file types: pdf, doc, docx, txt, rtf Cover Letter Attach Attach Dropbox Google Drive Enter manually Enter manually Accepted file types: pdf, doc, docx, txt, rtf",
+      "required": true,
+      "options": [],
+      "dom_indices": [
+        7
+      ],
+      "source_types": [
+        "tel"
+      ],
+      "source_count": 1,
+      "decision": {
+        "category": "PHONE",
+        "action": "PROFILE_VALUE",
+        "reason": "Standard applicant profile field.",
+        "answer_key": "PHONE",
+        "fixed_answer": null
+      }
+    },
+    {
+      "tag": "input",
+      "type": "file",
+      "name": "",
+      "id": "resume",
+      "label": "Attach",
+      "placeholder": "",
+      "context_text": "Resume/CV* Attach Attach Dropbox Google Drive Enter manually Enter manually Accepted file types: pdf, doc, docx, txt, rtf",
+      "required": false,
+      "options": [],
+      "dom_indices": [
+        8
+      ],
+      "source_types": [
+        "file"
+      ],
+      "source_count": 1,
+      "decision": {
+        "category": "RESUME",
+        "action": "RESUME_FILE",
+        "reason": "Resume upload can use the resume already selected by the V2.1 matcher.",
+        "answer_key": "SELECTED_RESUME_FILE",
+        "fixed_answer": null
+      }
+    },
+    {
+      "tag": "input",
+      "type": "file",
+      "name": "",
+      "id": "cover_letter",
+      "label": "Attach",
+      "placeholder": "",
+      "context_text": "Cover Letter Attach Attach Dropbox Google Drive Enter manually Enter manually Accepted file types: pdf, doc, docx, txt, rtf",
+      "required": false,
+      "options": [],
+      "dom_indices": [
+        9
+      ],
+      "source_types": [
+        "file"
+      ],
+      "source_count": 1,
+      "decision": {
+        "category": "COVER_LETTER_UPLOAD",
+        "action": "NEEDS_ASSISTANCE",
+        "reason": "Cover-letter content is intentionally human-reviewed.",
+        "answer_key": null,
+        "fixed_answer": null
+      }
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "name": "",
+      "id": "question_37162251002",
+      "label": "LinkedIn Profile*",
+      "placeholder": "",
+      "context_text": "LinkedIn Profile* How did you hear about this job?* Are you currently eligible to work legally in the United States of America?* Select... Do you now or in the future require immigration support or visa sponsorship to continue working in the United States?* Select... Are you currently subject to any agreement with a former employer/third party (such as a non-solicitation or non-compete agreement) that may potentially limit your ability to perform the duties of the position you are applying for? If yes, you may be asked to provide a copy for review. Please note, answering \"yes\" will not disqualify your application from consideration.* Select...",
+      "required": true,
+      "options": [],
+      "dom_indices": [
+        10
+      ],
+      "source_types": [
+        "text"
+      ],
+      "source_count": 1,
+      "decision": {
+        "category": "LINKEDIN",
+        "action": "PROFILE_VALUE",
+        "reason": "Standard professional-profile field.",
+        "answer_key": "LINKEDIN_URL",
+        "fixed_answer": null
+      }
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "name": "",
+      "id": "question_37162252002",
+      "label": "How did you hear about this job?*",
+      "placeholder": "",
+      "context_text": "LinkedIn Profile* How did you hear about this job?* Are you currently eligible to work legally in the United States of America?* Select... Do you now or in the future require immigration support or visa sponsorship to continue working in the United States?* Select... Are you currently subject to any agreement with a former employer/third party (such as a non-solicitation or non-compete agreement) that may potentially limit your ability to perform the duties of the position you are applying for? If yes, you may be asked to provide a copy for review. Please note, answering \"yes\" will not disqualify your application from consideration.* Select...",
+      "required": true,
+      "options": [],
+      "dom_indices": [
+        11
+      ],
+      "source_types": [
+        "text"
+      ],
+      "source_count": 1,
+      "decision": {
+        "category": "APPLICATION_SOURCE",
+        "action": "NEEDS_ASSISTANCE",
+        "reason": "Application-source questions require a truthful per-application answer.",
+        "answer_key": null,
+        "fixed_answer": null
+      }
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "name": "",
+      "id": "question_37162253002",
+      "label": "Are you currently eligible to work legally in the United States of America?*",
+      "placeholder": "",
+      "context_text": "Are you currently eligible to work legally in the United States of America?* Select...",
+      "required": true,
+      "options": [],
+      "dom_indices": [
+        12,
+        13
+      ],
+      "source_types": [
+        "text"
+      ],
+      "source_count": 2,
+      "decision": {
+        "category": "WORK_AUTHORIZATION_US",
+        "action": "FIXED_ANSWER",
+        "reason": "Direct U.S. work-authorization question without sponsorship wording.",
+        "answer_key": "WORK_AUTHORIZED_US",
+        "fixed_answer": "Yes"
+      }
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "name": "",
+      "id": "question_37162254002",
+      "label": "Do you now or in the future require immigration support or visa sponsorship to continue working in the United States?*",
+      "placeholder": "",
+      "context_text": "Do you now or in the future require immigration support or visa sponsorship to continue working in the United States?* Select...",
+      "required": true,
+      "options": [],
+      "dom_indices": [
+        14,
+        15
+      ],
+      "source_types": [
+        "text"
+      ],
+      "source_count": 2,
+      "decision": {
+        "category": "SPONSORSHIP_NOW_OR_FUTURE",
+        "action": "FIXED_ANSWER",
+        "reason": "Question asks whether sponsorship is needed now OR in the future.",
+        "answer_key": "SPONSORSHIP_NOW_OR_FUTURE",
+        "fixed_answer": "Yes"
+      }
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "name": "",
+      "id": "question_37162256002",
+      "label": "Are you currently subject to any agreement with a former employer/third party (such as a non-solicitation or non-compete agreement) that may potentially limit your ability to perform the duties of the position you are applying for? If yes, you may be asked to provide a copy for review. Please note, answering \"yes\" will not disqualify your application from consideration.*",
+      "placeholder": "",
+      "context_text": "Are you currently subject to any agreement with a former employer/third party (such as a non-solicitation or non-compete agreement) that may potentially limit your ability to perform the duties of the position you are applying for? If yes, you may be asked to provide a copy for review. Please note, answering \"yes\" will not disqualify your application from consideration.* Select...",
+      "required": true,
+      "options": [],
+      "dom_indices": [
+        16,
+        17
+      ],
+      "source_types": [
+        "text"
+      ],
+      "source_count": 2,
+      "decision": {
+        "category": "EMPLOYMENT_RESTRICTION",
+        "action": "NEEDS_ASSISTANCE",
+        "reason": "Employment-agreement restrictions require an explicit user-confirmed answer.",
+        "answer_key": null,
+        "fixed_answer": null
+      }
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "name": "",
+      "id": "4024620002",
+      "label": "I identify my gender as:*",
+      "placeholder": "",
+      "context_text": "I identify my gender as:* Select...",
+      "required": true,
+      "options": [],
+      "dom_indices": [
+        18,
+        19
+      ],
+      "source_types": [
+        "text"
+      ],
+      "source_count": 2,
+      "decision": {
+        "category": "VOLUNTARY_DEMOGRAPHIC",
+        "action": "NEEDS_ASSISTANCE",
+        "reason": "Demographic/EEO answers must never be inferred.",
+        "answer_key": null,
+        "fixed_answer": null
+      }
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "name": "",
+      "id": "4024621002",
+      "label": "I identify as:*",
+      "placeholder": "",
+      "context_text": "I identify as:* Select...",
+      "required": true,
+      "options": [],
+      "dom_indices": [
+        20,
+        21
+      ],
+      "source_types": [
+        "text"
+      ],
+      "source_count": 2,
+      "decision": {
+        "category": "VOLUNTARY_DEMOGRAPHIC",
+        "action": "NEEDS_ASSISTANCE",
+        "reason": "Demographic/EEO answers must never be inferred.",
+        "answer_key": null,
+        "fixed_answer": null
+      }
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "name": "",
+      "id": "4024622002",
+      "label": "I identify my sexual orientation as:*",
+      "placeholder": "",
+      "context_text": "I identify my sexual orientation as:* Select...",
+      "required": true,
+      "options": [],
+      "dom_indices": [
+        22,
+        23
+      ],
+      "source_types": [
+        "text"
+      ],
+      "source_count": 2,
+      "decision": {
+        "category": "VOLUNTARY_DEMOGRAPHIC",
+        "action": "NEEDS_ASSISTANCE",
+        "reason": "Demographic/EEO answers must never be inferred.",
+        "answer_key": null,
+        "fixed_answer": null
+      }
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "name": "",
+      "id": "4024623002",
+      "label": "Veteran Status:*",
+      "placeholder": "",
+      "context_text": "Veteran Status:* Select...",
+      "required": true,
+      "options": [],
+      "dom_indices": [
+        24,
+        25
+      ],
+      "source_types": [
+        "text"
+      ],
+      "source_count": 2,
+      "decision": {
+        "category": "VOLUNTARY_DEMOGRAPHIC",
+        "action": "NEEDS_ASSISTANCE",
+        "reason": "Demographic/EEO answers must never be inferred.",
+        "answer_key": null,
+        "fixed_answer": null
+      }
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "name": "",
+      "id": "4024624002",
+      "label": "I have a disability:*",
+      "placeholder": "",
+      "context_text": "I have a disability:* Select...",
+      "required": true,
+      "options": [],
+      "dom_indices": [
+        26,
+        27
+      ],
+      "source_types": [
+        "text"
+      ],
+      "source_count": 2,
+      "decision": {
+        "category": "VOLUNTARY_DEMOGRAPHIC",
+        "action": "NEEDS_ASSISTANCE",
+        "reason": "Demographic/EEO answers must never be inferred.",
+        "answer_key": null,
+        "fixed_answer": null
+      }
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "name": "",
+      "id": "4024625002",
+      "label": "I identify my race/ethnicity as (please mark all that apply):*",
+      "placeholder": "",
+      "context_text": "I identify my race/ethnicity as (please mark all that apply):* Select...",
+      "required": true,
+      "options": [],
+      "dom_indices": [
+        28,
+        29
+      ],
+      "source_types": [
+        "text"
+      ],
+      "source_count": 2,
+      "decision": {
+        "category": "VOLUNTARY_DEMOGRAPHIC",
+        "action": "NEEDS_ASSISTANCE",
+        "reason": "Demographic/EEO answers must never be inferred.",
+        "answer_key": null,
+        "fixed_answer": null
+      }
+    },
+    {
+      "tag": "input",
+      "type": "checkbox",
+      "name": "gdpr_demographic_data_consent_given",
+      "id": "gdpr_demographic_data_consent_given_1",
+      "label": "By checking this box, I consent to Chime Financial, Inc collecting, storing, and processing my responses to the demographic data surveys above.*",
+      "placeholder": "",
+      "context_text": "By checking this box, I consent to Chime Financial, Inc collecting, storing, and processing my responses to the demographic data surveys above.*",
+      "required": true,
+      "options": [],
+      "dom_indices": [
+        30
+      ],
+      "source_types": [
+        "checkbox"
+      ],
+      "source_count": 1,
+      "decision": {
+        "category": "VOLUNTARY_DEMOGRAPHIC",
+        "action": "NEEDS_ASSISTANCE",
+        "reason": "Demographic/EEO answers must never be inferred.",
+        "answer_key": null,
+        "fixed_answer": null
+      }
+    }
+  ],
+  "submit_attempted": false
+}

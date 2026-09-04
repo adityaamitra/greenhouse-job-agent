@@ -1,0 +1,37 @@
+{
+  "scheduler_version": 1,
+  "run_key": "20260904T215216Z",
+  "mode": "BROWSER_PERSISTED",
+  "started_at": "2026-09-04T21:52:16.551435+00:00",
+  "completed_at": "2026-09-04T21:52:25.078674+00:00",
+  "queue_limit": 1,
+  "board_token_filter": null,
+  "order": "oldest",
+  "browser_opened": true,
+  "supabase_queue_history_persisted": true,
+  "selected_count": 1,
+  "completed_count": 1,
+  "needs_assistance_count": 1,
+  "ready_no_submit_count": 0,
+  "blocked_count": 0,
+  "error_count": 0,
+  "challenge_count": 1,
+  "results": [
+    {
+      "board_token": "stripe",
+      "greenhouse_job_id": "8142764",
+      "company": "Stripe",
+      "title": "Full Stack Engineer, Bridge",
+      "queue_status": "COMPLETED",
+      "outcome": "NEEDS_ASSISTANCE",
+      "challenge_detected": true,
+      "ready_count": 13,
+      "required_human_count": 6,
+      "browser_modified": false,
+      "submit_clicked_by_agent": false,
+      "application_submitted": false
+    }
+  ],
+  "submit_clicked_by_agent": false,
+  "application_submitted": false
+}

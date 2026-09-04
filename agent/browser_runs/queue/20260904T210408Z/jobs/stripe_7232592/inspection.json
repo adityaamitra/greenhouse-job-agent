@@ -1,0 +1,938 @@
+{
+  "requested_url": "https://job-boards.greenhouse.io/embed/job_app?for=stripe&token=7232592",
+  "final_url": "https://job-boards.greenhouse.io/embed/job_app?for=stripe&token=7232592",
+  "page_title": "Job Application for Backend Engineer, Payments and Risk at Stripe",
+  "form_frame_url": "https://job-boards.greenhouse.io/embed/job_app?for=stripe&token=7232592",
+  "fields": [
+    {
+      "tag": "input",
+      "type": "text",
+      "name": "",
+      "id": "first_name",
+      "label": "First Name*",
+      "placeholder": "",
+      "context_text": "First Name* Last Name* Email* Phone Country* Phone* Location (City)* Locate me Resume/CV Attach Attach Dropbox Enter manually Enter manually Accepted file types: pdf, doc, docx, txt, rtf Cover Letter Attach Attach Dropbox Enter manually Enter manually Accepted file types: pdf, doc, docx, txt, rtf",
+      "required": true,
+      "options": [],
+      "values": [
+        ""
+      ],
+      "checked_states": [
+        false
+      ],
+      "dom_indices": [
+        0
+      ],
+      "source_types": [
+        "text"
+      ],
+      "source_count": 1,
+      "decision": {
+        "category": "FIRST_NAME",
+        "action": "PROFILE_VALUE",
+        "reason": "Standard applicant profile field.",
+        "answer_key": "FIRST_NAME",
+        "fixed_answer": null
+      }
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "name": "",
+      "id": "last_name",
+      "label": "Last Name*",
+      "placeholder": "",
+      "context_text": "First Name* Last Name* Email* Phone Country* Phone* Location (City)* Locate me Resume/CV Attach Attach Dropbox Enter manually Enter manually Accepted file types: pdf, doc, docx, txt, rtf Cover Letter Attach Attach Dropbox Enter manually Enter manually Accepted file types: pdf, doc, docx, txt, rtf",
+      "required": true,
+      "options": [],
+      "values": [
+        ""
+      ],
+      "checked_states": [
+        false
+      ],
+      "dom_indices": [
+        1
+      ],
+      "source_types": [
+        "text"
+      ],
+      "source_count": 1,
+      "decision": {
+        "category": "LAST_NAME",
+        "action": "PROFILE_VALUE",
+        "reason": "Standard applicant profile field.",
+        "answer_key": "LAST_NAME",
+        "fixed_answer": null
+      }
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "name": "",
+      "id": "email",
+      "label": "Email*",
+      "placeholder": "",
+      "context_text": "First Name* Last Name* Email* Phone Country* Phone* Location (City)* Locate me Resume/CV Attach Attach Dropbox Enter manually Enter manually Accepted file types: pdf, doc, docx, txt, rtf Cover Letter Attach Attach Dropbox Enter manually Enter manually Accepted file types: pdf, doc, docx, txt, rtf",
+      "required": true,
+      "options": [],
+      "values": [
+        ""
+      ],
+      "checked_states": [
+        false
+      ],
+      "dom_indices": [
+        2
+      ],
+      "source_types": [
+        "text"
+      ],
+      "source_count": 1,
+      "decision": {
+        "category": "EMAIL",
+        "action": "PROFILE_VALUE",
+        "reason": "Standard applicant profile field.",
+        "answer_key": "EMAIL",
+        "fixed_answer": null
+      }
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "name": "",
+      "id": "country",
+      "label": "Country*",
+      "placeholder": "",
+      "context_text": "First Name* Last Name* Email* Phone Country* Phone* Location (City)* Locate me Resume/CV Attach Attach Dropbox Enter manually Enter manually Accepted file types: pdf, doc, docx, txt, rtf Cover Letter Attach Attach Dropbox Enter manually Enter manually Accepted file types: pdf, doc, docx, txt, rtf",
+      "required": true,
+      "options": [],
+      "values": [
+        "",
+        ""
+      ],
+      "checked_states": [
+        false,
+        false
+      ],
+      "dom_indices": [
+        3,
+        4
+      ],
+      "source_types": [
+        "text"
+      ],
+      "source_count": 2,
+      "decision": {
+        "category": "COUNTRY",
+        "action": "PROFILE_VALUE",
+        "reason": "Structured country profile field.",
+        "answer_key": "COUNTRY",
+        "fixed_answer": null
+      }
+    },
+    {
+      "tag": "input",
+      "type": "tel",
+      "name": "",
+      "id": "phone",
+      "label": "Phone*",
+      "placeholder": "",
+      "context_text": "First Name* Last Name* Email* Phone Country* Phone* Location (City)* Locate me Resume/CV Attach Attach Dropbox Enter manually Enter manually Accepted file types: pdf, doc, docx, txt, rtf Cover Letter Attach Attach Dropbox Enter manually Enter manually Accepted file types: pdf, doc, docx, txt, rtf",
+      "required": true,
+      "options": [],
+      "values": [
+        ""
+      ],
+      "checked_states": [
+        false
+      ],
+      "dom_indices": [
+        6
+      ],
+      "source_types": [
+        "tel"
+      ],
+      "source_count": 1,
+      "decision": {
+        "category": "PHONE",
+        "action": "PROFILE_VALUE",
+        "reason": "Standard applicant profile field.",
+        "answer_key": "PHONE",
+        "fixed_answer": null
+      }
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "name": "",
+      "id": "candidate-location",
+      "label": "Location (City)*",
+      "placeholder": "",
+      "context_text": "First Name* Last Name* Email* Phone Country* Phone* Location (City)* Locate me Resume/CV Attach Attach Dropbox Enter manually Enter manually Accepted file types: pdf, doc, docx, txt, rtf Cover Letter Attach Attach Dropbox Enter manually Enter manually Accepted file types: pdf, doc, docx, txt, rtf",
+      "required": true,
+      "options": [],
+      "values": [
+        "",
+        ""
+      ],
+      "checked_states": [
+        false,
+        false
+      ],
+      "dom_indices": [
+        7,
+        8
+      ],
+      "source_types": [
+        "text"
+      ],
+      "source_count": 2,
+      "decision": {
+        "category": "CITY",
+        "action": "PROFILE_VALUE",
+        "reason": "Structured city profile field.",
+        "answer_key": "CITY",
+        "fixed_answer": null
+      }
+    },
+    {
+      "tag": "input",
+      "type": "file",
+      "name": "",
+      "id": "resume",
+      "label": "Attach",
+      "placeholder": "",
+      "context_text": "Resume/CV Attach Attach Dropbox Enter manually Enter manually Accepted file types: pdf, doc, docx, txt, rtf",
+      "required": false,
+      "options": [],
+      "values": [
+        ""
+      ],
+      "checked_states": [
+        false
+      ],
+      "dom_indices": [
+        9
+      ],
+      "source_types": [
+        "file"
+      ],
+      "source_count": 1,
+      "decision": {
+        "category": "RESUME",
+        "action": "RESUME_FILE",
+        "reason": "Resume upload can use the resume already selected by the V2.1 matcher.",
+        "answer_key": "SELECTED_RESUME_FILE",
+        "fixed_answer": null
+      }
+    },
+    {
+      "tag": "input",
+      "type": "file",
+      "name": "",
+      "id": "cover_letter",
+      "label": "Attach",
+      "placeholder": "",
+      "context_text": "Cover Letter Attach Attach Dropbox Enter manually Enter manually Accepted file types: pdf, doc, docx, txt, rtf",
+      "required": false,
+      "options": [],
+      "values": [
+        ""
+      ],
+      "checked_states": [
+        false
+      ],
+      "dom_indices": [
+        10
+      ],
+      "source_types": [
+        "file"
+      ],
+      "source_count": 1,
+      "decision": {
+        "category": "COVER_LETTER_UPLOAD",
+        "action": "NEEDS_ASSISTANCE",
+        "reason": "Cover-letter content is intentionally human-reviewed.",
+        "answer_key": null,
+        "fixed_answer": null
+      }
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "name": "",
+      "id": "school--0",
+      "label": "School*",
+      "placeholder": "",
+      "context_text": "Education School* Select... Degree* Select... Add another",
+      "required": true,
+      "options": [],
+      "values": [
+        ""
+      ],
+      "checked_states": [
+        false
+      ],
+      "dom_indices": [
+        11
+      ],
+      "source_types": [
+        "text"
+      ],
+      "source_count": 1,
+      "decision": {
+        "category": "EDUCATION_SCHOOL",
+        "action": "PROFILE_VALUE",
+        "reason": "Structured education field.",
+        "answer_key": "EDUCATION_SCHOOL",
+        "fixed_answer": null
+      }
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "name": "",
+      "id": "",
+      "label": "Select...",
+      "placeholder": "",
+      "context_text": "If this role offers the option to work from a remote location, do you plan to work remotely?* Select... This role is available either in an office or a remote location (typically, 35+ miles or 56+ km from a Stripe office). Office-assigned Stripes spend at least 50% of the time in a given month in their local office or with users. This hits a balance between bringing people together for in-person collaboration and learning from each other, while supporting flexibility about how to do this in a way that makes sense for individuals and their teams. A remote location, in most cases, is defined as being 35 miles (56 kilometers) or more from one of our offices. While you would be welcome to come into the office for team/business meetings, on-sites, meet-ups, and events, our expectation is you would regularly work from home rather than a Stripe office. Stripe does not cover the cost of relocating to a remote location. We encourage you to apply for roles that match the location where you currently or plan to live.",
+      "required": true,
+      "options": [],
+      "values": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "checked_states": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "dom_indices": [
+        12,
+        14,
+        16,
+        48,
+        54,
+        56,
+        58,
+        62
+      ],
+      "source_types": [
+        "text"
+      ],
+      "source_count": 8,
+      "decision": {
+        "category": "UNKNOWN_CUSTOM_FIELD",
+        "action": "NEEDS_ASSISTANCE",
+        "reason": "Field is not recognized with enough confidence to answer automatically.",
+        "answer_key": null,
+        "fixed_answer": null
+      }
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "name": "",
+      "id": "degree--0",
+      "label": "Degree*",
+      "placeholder": "",
+      "context_text": "Education School* Select... Degree* Select... Add another",
+      "required": true,
+      "options": [],
+      "values": [
+        ""
+      ],
+      "checked_states": [
+        false
+      ],
+      "dom_indices": [
+        13
+      ],
+      "source_types": [
+        "text"
+      ],
+      "source_count": 1,
+      "decision": {
+        "category": "EDUCATION_DEGREE",
+        "action": "PROFILE_VALUE",
+        "reason": "Structured education field.",
+        "answer_key": "EDUCATION_DEGREE",
+        "fixed_answer": null
+      }
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "name": "",
+      "id": "question_59966202",
+      "label": "Please select the country where you currently reside. *",
+      "placeholder": "",
+      "context_text": "Please select the country where you currently reside. * Select... If you don't see your country in the list, please select 'Other'.",
+      "required": true,
+      "options": [],
+      "values": [
+        ""
+      ],
+      "checked_states": [
+        false
+      ],
+      "dom_indices": [
+        15
+      ],
+      "source_types": [
+        "text"
+      ],
+      "source_count": 1,
+      "decision": {
+        "category": "COUNTRY",
+        "action": "PROFILE_VALUE",
+        "reason": "Structured country profile field.",
+        "answer_key": "COUNTRY",
+        "fixed_answer": null
+      }
+    },
+    {
+      "tag": "input",
+      "type": "checkbox",
+      "name": "question_59966203[]",
+      "id": "question_59966203[]_733142760",
+      "label": "Australia",
+      "placeholder": "",
+      "context_text": "Please select the country or countries you anticipate working in for the role in which you are applying. * Australia Belgium Brazil Canada France Germany India Indonesia Ireland Israel Italy Japan Luxembourg Malaysia Mexico New Zealand Poland Portugal Romania Singapore South Korea Spain Sweden Switzerland Taiwan Thailand The Netherlands UAE UK US",
+      "required": true,
+      "options": [],
+      "values": [
+        "733142760",
+        "733142761",
+        "733142762",
+        "733142763",
+        "733142764",
+        "733142765",
+        "733142766",
+        "733142767",
+        "733142768",
+        "733142769",
+        "733142770",
+        "733142771",
+        "733142772",
+        "733142773",
+        "733142774",
+        "733142775",
+        "733142776",
+        "733142777",
+        "733142778",
+        "733142779",
+        "733142780",
+        "733142781",
+        "733142782",
+        "733142783",
+        "733142784",
+        "733142785",
+        "733142786",
+        "733142787",
+        "733142788",
+        "733142789"
+      ],
+      "checked_states": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "dom_indices": [
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46
+      ],
+      "source_types": [
+        "checkbox"
+      ],
+      "source_count": 30,
+      "decision": {
+        "category": "UNKNOWN_CUSTOM_FIELD",
+        "action": "NEEDS_ASSISTANCE",
+        "reason": "Field is not recognized with enough confidence to answer automatically.",
+        "answer_key": null,
+        "fixed_answer": null
+      }
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "name": "",
+      "id": "question_59966204",
+      "label": "Are you authorized to work in the location(s) you selected in your previous response?*",
+      "placeholder": "",
+      "context_text": "Are you authorized to work in the location(s) you selected in your previous response?* Select...",
+      "required": true,
+      "options": [],
+      "values": [
+        ""
+      ],
+      "checked_states": [
+        false
+      ],
+      "dom_indices": [
+        47
+      ],
+      "source_types": [
+        "text"
+      ],
+      "source_count": 1,
+      "decision": {
+        "category": "WORK_AUTHORIZATION_US",
+        "action": "FIXED_ANSWER",
+        "reason": "Direct U.S. work-authorization question without sponsorship wording.",
+        "answer_key": "WORK_AUTHORIZED_US",
+        "fixed_answer": "Yes"
+      }
+    },
+    {
+      "tag": "input",
+      "type": "checkbox",
+      "name": "question_63684469[]",
+      "id": "question_63684469[]_633346645",
+      "label": "San Francisco",
+      "placeholder": "",
+      "context_text": "If you plan to work from one of the offices, what office do you intend to work out of (options being San Francisco, Seattle and New York)? * San Francisco Seattle New York Remote",
+      "required": true,
+      "options": [],
+      "values": [
+        "633346645",
+        "633346646",
+        "633346647",
+        "633346648"
+      ],
+      "checked_states": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "dom_indices": [
+        49,
+        50,
+        51,
+        52
+      ],
+      "source_types": [
+        "checkbox"
+      ],
+      "source_count": 4,
+      "decision": {
+        "category": "UNKNOWN_CUSTOM_FIELD",
+        "action": "NEEDS_ASSISTANCE",
+        "reason": "Field is not recognized with enough confidence to answer automatically.",
+        "answer_key": null,
+        "fixed_answer": null
+      }
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "name": "",
+      "id": "question_59966205",
+      "label": "Will you require Stripe to sponsor you for a work permit now or in the future for the location(s) you selected in in your previous response? *",
+      "placeholder": "",
+      "context_text": "Will you require Stripe to sponsor you for a work permit now or in the future for the location(s) you selected in in your previous response? * Select...",
+      "required": true,
+      "options": [],
+      "values": [
+        ""
+      ],
+      "checked_states": [
+        false
+      ],
+      "dom_indices": [
+        53
+      ],
+      "source_types": [
+        "text"
+      ],
+      "source_count": 1,
+      "decision": {
+        "category": "SPONSORSHIP_NOW_OR_FUTURE",
+        "action": "FIXED_ANSWER",
+        "reason": "Question asks whether sponsorship is needed now OR in the future.",
+        "answer_key": "SPONSORSHIP_NOW_OR_FUTURE",
+        "fixed_answer": "Yes"
+      }
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "name": "",
+      "id": "question_59966206",
+      "label": "If this role offers the option to work from a remote location, do you plan to work remotely?*",
+      "placeholder": "",
+      "context_text": "If this role offers the option to work from a remote location, do you plan to work remotely?* Select... This role is available either in an office or a remote location (typically, 35+ miles or 56+ km from a Stripe office). Office-assigned Stripes spend at least 50% of the time in a given month in their local office or with users. This hits a balance between bringing people together for in-person collaboration and learning from each other, while supporting flexibility about how to do this in a way that makes sense for individuals and their teams. A remote location, in most cases, is defined as being 35 miles (56 kilometers) or more from one of our offices. While you would be welcome to come into the office for team/business meetings, on-sites, meet-ups, and events, our expectation is you would regularly work from home rather than a Stripe office. Stripe does not cover the cost of relocating to a remote location. We encourage you to apply for roles that match the location where you currently or plan to live.",
+      "required": true,
+      "options": [],
+      "values": [
+        ""
+      ],
+      "checked_states": [
+        false
+      ],
+      "dom_indices": [
+        55
+      ],
+      "source_types": [
+        "text"
+      ],
+      "source_count": 1,
+      "decision": {
+        "category": "LOCATION_FREEFORM",
+        "action": "PROFILE_VALUE",
+        "reason": "Generic location field; future filling must use an explicitly configured free-form location.",
+        "answer_key": "LOCATION_FREEFORM",
+        "fixed_answer": null
+      }
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "name": "",
+      "id": "question_59966207",
+      "label": "Have you ever been employed by Stripe or a Stripe affiliate?*",
+      "placeholder": "",
+      "context_text": "Have you ever been employed by Stripe or a Stripe affiliate?* Select...",
+      "required": true,
+      "options": [],
+      "values": [
+        ""
+      ],
+      "checked_states": [
+        false
+      ],
+      "dom_indices": [
+        57
+      ],
+      "source_types": [
+        "text"
+      ],
+      "source_count": 1,
+      "decision": {
+        "category": "UNKNOWN_CUSTOM_FIELD",
+        "action": "NEEDS_ASSISTANCE",
+        "reason": "Field is not recognized with enough confidence to answer automatically.",
+        "answer_key": null,
+        "fixed_answer": null
+      }
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "name": "",
+      "id": "question_59966208",
+      "label": "Who is your current or previous employer?*",
+      "placeholder": "",
+      "context_text": "Who is your current or previous employer?*",
+      "required": true,
+      "options": [],
+      "values": [
+        ""
+      ],
+      "checked_states": [
+        false
+      ],
+      "dom_indices": [
+        59
+      ],
+      "source_types": [
+        "text"
+      ],
+      "source_count": 1,
+      "decision": {
+        "category": "UNKNOWN_CUSTOM_FIELD",
+        "action": "NEEDS_ASSISTANCE",
+        "reason": "Field is not recognized with enough confidence to answer automatically.",
+        "answer_key": null,
+        "fixed_answer": null
+      }
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "name": "",
+      "id": "question_59966209",
+      "label": "What is your current or previous job title?*",
+      "placeholder": "",
+      "context_text": "What is your current or previous job title?*",
+      "required": true,
+      "options": [],
+      "values": [
+        ""
+      ],
+      "checked_states": [
+        false
+      ],
+      "dom_indices": [
+        60
+      ],
+      "source_types": [
+        "text"
+      ],
+      "source_count": 1,
+      "decision": {
+        "category": "UNKNOWN_CUSTOM_FIELD",
+        "action": "NEEDS_ASSISTANCE",
+        "reason": "Field is not recognized with enough confidence to answer automatically.",
+        "answer_key": null,
+        "fixed_answer": null
+      }
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "name": "",
+      "id": "question_59966212",
+      "label": "Do you opt-in to receive WhatsApp messages from Stripe Recruiting?*",
+      "placeholder": "",
+      "context_text": "Do you opt-in to receive WhatsApp messages from Stripe Recruiting?* Select... Messages will only be sent regarding your candidacy with Stripe.",
+      "required": true,
+      "options": [],
+      "values": [
+        ""
+      ],
+      "checked_states": [
+        false
+      ],
+      "dom_indices": [
+        61
+      ],
+      "source_types": [
+        "text"
+      ],
+      "source_count": 1,
+      "decision": {
+        "category": "UNKNOWN_CUSTOM_FIELD",
+        "action": "NEEDS_ASSISTANCE",
+        "reason": "Field is not recognized with enough confidence to answer automatically.",
+        "answer_key": null,
+        "fixed_answer": null
+      }
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "name": "",
+      "id": "question_64191668",
+      "label": "If located in the US, in what city and state do you reside?*",
+      "placeholder": "",
+      "context_text": "If located in the US, in what city and state do you reside?*",
+      "required": true,
+      "options": [],
+      "values": [
+        ""
+      ],
+      "checked_states": [
+        false
+      ],
+      "dom_indices": [
+        63
+      ],
+      "source_types": [
+        "text"
+      ],
+      "source_count": 1,
+      "decision": {
+        "category": "CITY",
+        "action": "PROFILE_VALUE",
+        "reason": "Structured city profile field.",
+        "answer_key": "CITY",
+        "fixed_answer": null
+      }
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "name": "",
+      "id": "gender",
+      "label": "Gender",
+      "placeholder": "",
+      "context_text": "Gender Select...",
+      "required": false,
+      "options": [],
+      "values": [
+        ""
+      ],
+      "checked_states": [
+        false
+      ],
+      "dom_indices": [
+        64
+      ],
+      "source_types": [
+        "text"
+      ],
+      "source_count": 1,
+      "decision": {
+        "category": "VOLUNTARY_DEMOGRAPHIC",
+        "action": "NEEDS_ASSISTANCE",
+        "reason": "Demographic/EEO answers must never be inferred.",
+        "answer_key": null,
+        "fixed_answer": null
+      }
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "name": "",
+      "id": "hispanic_ethnicity",
+      "label": "Are you Hispanic/Latino?",
+      "placeholder": "",
+      "context_text": "Are you Hispanic/Latino? Select... Race & Ethnicity Definitions",
+      "required": false,
+      "options": [],
+      "values": [
+        ""
+      ],
+      "checked_states": [
+        false
+      ],
+      "dom_indices": [
+        65
+      ],
+      "source_types": [
+        "text"
+      ],
+      "source_count": 1,
+      "decision": {
+        "category": "VOLUNTARY_DEMOGRAPHIC",
+        "action": "NEEDS_ASSISTANCE",
+        "reason": "Demographic/EEO answers must never be inferred.",
+        "answer_key": null,
+        "fixed_answer": null
+      }
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "name": "",
+      "id": "veteran_status",
+      "label": "Veteran Status",
+      "placeholder": "",
+      "context_text": "Veteran Status Select...",
+      "required": false,
+      "options": [],
+      "values": [
+        ""
+      ],
+      "checked_states": [
+        false
+      ],
+      "dom_indices": [
+        66
+      ],
+      "source_types": [
+        "text"
+      ],
+      "source_count": 1,
+      "decision": {
+        "category": "VOLUNTARY_DEMOGRAPHIC",
+        "action": "NEEDS_ASSISTANCE",
+        "reason": "Demographic/EEO answers must never be inferred.",
+        "answer_key": null,
+        "fixed_answer": null
+      }
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "name": "",
+      "id": "disability_status",
+      "label": "Disability Status",
+      "placeholder": "",
+      "context_text": "Disability Status Select...",
+      "required": false,
+      "options": [],
+      "values": [
+        ""
+      ],
+      "checked_states": [
+        false
+      ],
+      "dom_indices": [
+        67
+      ],
+      "source_types": [
+        "text"
+      ],
+      "source_count": 1,
+      "decision": {
+        "category": "VOLUNTARY_DEMOGRAPHIC",
+        "action": "NEEDS_ASSISTANCE",
+        "reason": "Demographic/EEO answers must never be inferred.",
+        "answer_key": null,
+        "fixed_answer": null
+      }
+    }
+  ],
+  "submit_attempted": false
+}

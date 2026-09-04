@@ -1,0 +1,113 @@
+{
+  "requested_url": "https://job-boards.greenhouse.io/gleanwork/jobs/4006734005",
+  "final_url": "https://job-boards.greenhouse.io/gleanwork/jobs/4006734005",
+  "page_title": "Job Application for Software Engineer, Fullstack at Glean",
+  "form_frame_url": "https://job-boards.greenhouse.io/gleanwork/jobs/4006734005",
+  "resolution_summary": {
+    "total_fields": 18,
+    "ready_fields": 8,
+    "required_unresolved": 5,
+    "optional_unresolved": 5,
+    "policy_mismatches": 0,
+    "missing_resume": 0,
+    "ready_for_submission": false,
+    "browser_modified": false,
+    "submit_attempted": false
+  },
+  "fill_results": [
+    {
+      "label": "First Name*",
+      "category": "FIRST_NAME",
+      "answer_key": "FIRST_NAME",
+      "required": true,
+      "status": "FILLED",
+      "operation": "FILL_VALUE",
+      "source": "profile",
+      "reason": "Live field rebound by exact semantic identity. Text-like control filled."
+    },
+    {
+      "label": "Last Name*",
+      "category": "LAST_NAME",
+      "answer_key": "LAST_NAME",
+      "required": true,
+      "status": "FILLED",
+      "operation": "FILL_VALUE",
+      "source": "profile",
+      "reason": "Live field rebound by exact semantic identity. Text-like control filled."
+    },
+    {
+      "label": "Email*",
+      "category": "EMAIL",
+      "answer_key": "EMAIL",
+      "required": true,
+      "status": "FILLED",
+      "operation": "FILL_VALUE",
+      "source": "profile",
+      "reason": "Live field rebound by exact semantic identity. Text-like control filled."
+    },
+    {
+      "label": "Country*",
+      "category": "COUNTRY",
+      "answer_key": "COUNTRY",
+      "required": true,
+      "status": "FILLED",
+      "operation": "SELECT_OPTION",
+      "source": "profile",
+      "reason": "Live field rebound by exact semantic identity. Unique safe custom-select option clicked (exact text or COUNTRY + calling code)."
+    },
+    {
+      "label": "Phone*",
+      "category": "PHONE",
+      "answer_key": "PHONE",
+      "required": true,
+      "status": "FILLED",
+      "operation": "FILL_VALUE",
+      "source": "profile",
+      "reason": "Live field rebound by exact semantic identity. Text-like control filled."
+    },
+    {
+      "label": "Attach",
+      "category": "RESUME",
+      "answer_key": "SELECTED_RESUME_FILE",
+      "required": true,
+      "status": "FILLED",
+      "operation": "UPLOAD_RESUME",
+      "source": "matcher",
+      "reason": "Live field rebound by exact semantic identity. Resume attached to the file input."
+    },
+    {
+      "label": "LinkedIn Profile*",
+      "category": "LINKEDIN",
+      "answer_key": "LINKEDIN_URL",
+      "required": true,
+      "status": "FILLED",
+      "operation": "FILL_VALUE",
+      "source": "profile",
+      "reason": "Live field rebound by exact semantic identity. Text-like control filled."
+    },
+    {
+      "label": "Website",
+      "category": "PORTFOLIO",
+      "answer_key": "PORTFOLIO_URL",
+      "required": false,
+      "status": "FILLED",
+      "operation": "FILL_VALUE",
+      "source": "profile",
+      "reason": "Live field rebound by exact semantic identity. Text-like control filled."
+    }
+  ],
+  "fill_summary": {
+    "tasks_attempted": 8,
+    "filled": 8,
+    "fill_failed": 0,
+    "required_assistance_untouched": 5,
+    "optional_unresolved_untouched": 5,
+    "submit_attempts_blocked": 0,
+    "submit_clicked_by_agent": false,
+    "browser_modified": true,
+    "application_submitted": false,
+    "nonready_mutation_detected": false,
+    "nonready_mutation_reason": "",
+    "nonready_fields_verified_after_each_success": true
+  }
+}

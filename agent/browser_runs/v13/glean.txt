@@ -1,0 +1,187 @@
+
+====================================================================================================
+BROWSER APPLICATION AGENT V1.3 — READ-ONLY FORM INSPECTOR
+====================================================================================================
+
+Safety mode: INSPECT ONLY
+Fields will NOT be filled.
+Files will NOT be uploaded.
+Submit will NOT be clicked.
+
+Page title:     Job Application for Software Engineer, Fullstack at Glean
+Requested URL:  https://job-boards.greenhouse.io/gleanwork/jobs/4006734005
+Final URL:      https://job-boards.greenhouse.io/gleanwork/jobs/4006734005
+Form frame URL: https://job-boards.greenhouse.io/gleanwork/jobs/4006734005
+
+Logical fields discovered: 18
+
+----------------------------------------------------------------------------------------------------
+01. First Name*
+    DOM:        input/text
+    Sources:    1 control(s) [text]
+    Required:   YES
+    Category:   FIRST_NAME
+    Action:     PROFILE_VALUE
+    Answer key: FIRST_NAME
+    Reason:     Standard applicant profile field.
+----------------------------------------------------------------------------------------------------
+02. Last Name*
+    DOM:        input/text
+    Sources:    1 control(s) [text]
+    Required:   YES
+    Category:   LAST_NAME
+    Action:     PROFILE_VALUE
+    Answer key: LAST_NAME
+    Reason:     Standard applicant profile field.
+----------------------------------------------------------------------------------------------------
+03. Email*
+    DOM:        input/text
+    Sources:    1 control(s) [text]
+    Required:   YES
+    Category:   EMAIL
+    Action:     PROFILE_VALUE
+    Answer key: EMAIL
+    Reason:     Standard applicant profile field.
+----------------------------------------------------------------------------------------------------
+04. Country*
+    DOM:        input/text
+    Sources:    2 control(s) [text]
+    Required:   YES
+    Category:   LOCATION_OR_ADDRESS
+    Action:     PROFILE_VALUE
+    Answer key: LOCATION_OR_ADDRESS
+    Reason:     Recognized profile/location field; future filling must use explicit profile configuration.
+----------------------------------------------------------------------------------------------------
+05. Phone*
+    DOM:        input/tel
+    Sources:    1 control(s) [tel]
+    Required:   YES
+    Category:   PHONE
+    Action:     PROFILE_VALUE
+    Answer key: PHONE
+    Reason:     Standard applicant profile field.
+----------------------------------------------------------------------------------------------------
+06. Attach
+    DOM:        input/file
+    Sources:    1 control(s) [file]
+    Required:   NO
+    Category:   RESUME
+    Action:     RESUME_FILE
+    Answer key: SELECTED_RESUME_FILE
+    Reason:     Resume upload can use the resume already selected by the V2.1 matcher.
+----------------------------------------------------------------------------------------------------
+07. Attach
+    DOM:        input/file
+    Sources:    1 control(s) [file]
+    Required:   NO
+    Category:   COVER_LETTER_UPLOAD
+    Action:     NEEDS_ASSISTANCE
+    Reason:     Cover-letter content is intentionally human-reviewed.
+----------------------------------------------------------------------------------------------------
+08. LinkedIn Profile*
+    DOM:        input/text
+    Sources:    1 control(s) [text]
+    Required:   YES
+    Category:   LINKEDIN
+    Action:     PROFILE_VALUE
+    Answer key: LINKEDIN_URL
+    Reason:     Standard professional-profile field.
+----------------------------------------------------------------------------------------------------
+09. Website
+    DOM:        input/text
+    Sources:    1 control(s) [text]
+    Required:   NO
+    Category:   PORTFOLIO
+    Action:     PROFILE_VALUE
+    Answer key: PORTFOLIO_URL
+    Reason:     Standard professional-profile field.
+----------------------------------------------------------------------------------------------------
+10. Are you willing and able to commit to the hybrid policy if hired?*
+    DOM:        input/text
+    Sources:    2 control(s) [text]
+    Required:   YES
+    Category:   UNKNOWN_CUSTOM_FIELD
+    Action:     NEEDS_ASSISTANCE
+    Reason:     Field is not recognized with enough confidence to answer automatically.
+    Context:    LinkedIn Profile* Website Are you willing and able to commit to the hybrid policy if hired?* Select... We work out of the Palo Alto office on Monday, Wednesday, and Friday. Do you know anyone currently at Glean?* How did you hear about Glean?* Select... Please input the total years of experience you have that are relevant for this role.* What AI tools are you currently using today and how are you using them?*
+----------------------------------------------------------------------------------------------------
+11. Do you know anyone currently at Glean?*
+    DOM:        input/text
+    Sources:    1 control(s) [text]
+    Required:   YES
+    Category:   UNKNOWN_CUSTOM_FIELD
+    Action:     NEEDS_ASSISTANCE
+    Reason:     Field is not recognized with enough confidence to answer automatically.
+    Context:    LinkedIn Profile* Website Are you willing and able to commit to the hybrid policy if hired?* Select... We work out of the Palo Alto office on Monday, Wednesday, and Friday. Do you know anyone currently at Glean?* How did you hear about Glean?* Select... Please input the total years of experience you have that are relevant for this role.* What AI tools are you currently using today and how are you using them?*
+----------------------------------------------------------------------------------------------------
+12. How did you hear about Glean?*
+    DOM:        input/text
+    Sources:    2 control(s) [text]
+    Required:   YES
+    Category:   APPLICATION_SOURCE
+    Action:     NEEDS_ASSISTANCE
+    Reason:     Application-source questions require a truthful per-application answer.
+----------------------------------------------------------------------------------------------------
+13. Please input the total years of experience you have that are relevant for this role.*
+    DOM:        input/text
+    Sources:    1 control(s) [text]
+    Required:   YES
+    Category:   UNKNOWN_CUSTOM_FIELD
+    Action:     NEEDS_ASSISTANCE
+    Reason:     Field is not recognized with enough confidence to answer automatically.
+    Context:    LinkedIn Profile* Website Are you willing and able to commit to the hybrid policy if hired?* Select... We work out of the Palo Alto office on Monday, Wednesday, and Friday. Do you know anyone currently at Glean?* How did you hear about Glean?* Select... Please input the total years of experience you have that are relevant for this role.* What AI tools are you currently using today and how are you using them?*
+----------------------------------------------------------------------------------------------------
+14. What AI tools are you currently using today and how are you using them?*
+    DOM:        textarea/textarea
+    Sources:    1 control(s) [textarea]
+    Required:   YES
+    Category:   UNKNOWN_CUSTOM_FIELD
+    Action:     NEEDS_ASSISTANCE
+    Reason:     Field is not recognized with enough confidence to answer automatically.
+    Context:    LinkedIn Profile* Website Are you willing and able to commit to the hybrid policy if hired?* Select... We work out of the Palo Alto office on Monday, Wednesday, and Friday. Do you know anyone currently at Glean?* How did you hear about Glean?* Select... Please input the total years of experience you have that are relevant for this role.* What AI tools are you currently using today and how are you using them?*
+----------------------------------------------------------------------------------------------------
+15. Gender
+    DOM:        input/text
+    Sources:    1 control(s) [text]
+    Required:   NO
+    Category:   VOLUNTARY_DEMOGRAPHIC
+    Action:     NEEDS_ASSISTANCE
+    Reason:     Demographic/EEO answers must never be inferred.
+----------------------------------------------------------------------------------------------------
+16. Are you Hispanic/Latino?
+    DOM:        input/text
+    Sources:    1 control(s) [text]
+    Required:   NO
+    Category:   UNKNOWN_CUSTOM_FIELD
+    Action:     NEEDS_ASSISTANCE
+    Reason:     Field is not recognized with enough confidence to answer automatically.
+    Context:    Are you Hispanic/Latino? Select... Race & Ethnicity Definitions
+----------------------------------------------------------------------------------------------------
+17. Veteran Status
+    DOM:        input/text
+    Sources:    1 control(s) [text]
+    Required:   NO
+    Category:   VOLUNTARY_DEMOGRAPHIC
+    Action:     NEEDS_ASSISTANCE
+    Reason:     Demographic/EEO answers must never be inferred.
+----------------------------------------------------------------------------------------------------
+18. Disability Status
+    DOM:        input/text
+    Sources:    1 control(s) [text]
+    Required:   NO
+    Category:   VOLUNTARY_DEMOGRAPHIC
+    Action:     NEEDS_ASSISTANCE
+    Reason:     Demographic/EEO answers must never be inferred.
+
+====================================================================================================
+INSPECTION SUMMARY
+====================================================================================================
+Profile-value fields: 7
+Fixed-policy fields:  0
+Resume fields:        1
+Needs Assistance:     10
+Ignored technical:    0
+Submit attempted:     NO
+Screenshot:           browser_runs/v13/glean.png
+JSON report:          browser_runs/v13/glean.json
+====================================================================================================

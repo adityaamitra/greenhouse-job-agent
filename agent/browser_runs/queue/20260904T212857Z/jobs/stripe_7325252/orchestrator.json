@@ -1,0 +1,32 @@
+{
+  "orchestrator_version": 1.1,
+  "job_id": "4a40f627-866c-441e-81bc-ae79510c03b9",
+  "application_id": "313feb95-432f-4d8f-8874-27cda5454f2d",
+  "board_token": "stripe",
+  "greenhouse_job_id": "7325252",
+  "company": "Stripe",
+  "job_title": "Frontend Engineer, Payments & Risk",
+  "stored_job_url_host": "stripe.com",
+  "application_url_host": "job-boards.greenhouse.io",
+  "matcher_route": "AGENT_APPLY",
+  "selected_resume": "frontend_engineer.pdf",
+  "handoff_route": "NEEDS_ASSISTANCE",
+  "outcome": "NEEDS_ASSISTANCE",
+  "challenge_detected": true,
+  "ready_count": 15,
+  "required_human_count": 8,
+  "fill_tasks_attempted": 0,
+  "filled": 0,
+  "fill_failed": 0,
+  "browser_modified": false,
+  "persisted": true,
+  "submit_clicked_by_agent": false,
+  "application_submitted": false,
+  "artifacts": {
+    "inspection": "browser_runs/queue/20260904T212857Z/jobs/stripe_7325252/inspection.json",
+    "fill": "browser_runs/queue/20260904T212857Z/jobs/stripe_7325252/fill.json",
+    "handoff": "browser_runs/queue/20260904T212857Z/jobs/stripe_7325252/handoff.json",
+    "handoff_markdown": "browser_runs/queue/20260904T212857Z/jobs/stripe_7325252/handoff.md",
+    "orchestrator": "browser_runs/queue/20260904T212857Z/jobs/stripe_7325252/orchestrator.json"
+  }
+}

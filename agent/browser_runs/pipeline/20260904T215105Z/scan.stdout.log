@@ -1,0 +1,2458 @@
+
+==========================================================================================
+GREENHOUSE JOB AGENT — MULTI-COMPANY RUN
+==========================================================================================
+
+Enabled companies: 11
+  • Stripe [stripe]
+  • Figma [figma]
+  • Scale AI [scaleai]
+  • Airtable [airtable]
+  • Webflow [webflow]
+  • Ocrolus [ocrolusinc]
+  • Twilio [twilio]
+  • Chime [chime]
+  • Robinhood [robinhood]
+  • Glean [gleanwork]
+  • Discord [discord]
+
+Loading master resumes...
+Loading semantic model: all-MiniLM-L6-v2
+Semantic model device: mps:0
+
+Preparing resume semantic cache...
+  [1/8] software_engineer
+  [2/8] backend_engineer
+  [3/8] frontend_engineer
+  [4/8] fullstack_engineer
+  [5/8] ai_ml_engineer
+  [6/8] systems_engineer
+  [7/8] production_support_engineer
+  [8/8] devops_engineer
+Resume cache ready.
+
+Connecting to Supabase...
+Agent run created: b123eb97...
+
+
+==========================================================================================
+[1/11] Stripe
+==========================================================================================
+
+Discovered:             615
+Target roles:           62
+Full-time candidates:   56
+Employment filtered:    6
+US-compatible:          26
+Pre-eligibility jobs:   21
+Experience filtered:    5
+
+Employment-type exclusions:
+  ✗ Software Engineer, Intern
+      Reason: Excluded employment type detected in title
+  ✗ Software Engineer, Intern
+      Reason: Excluded employment type detected in title
+  ✗ Software Engineer, Intern 
+      Reason: Excluded employment type detected in title
+  ✗ Software Engineer, Intern (Summer or Winter)
+      Reason: Excluded employment type detected in title
+  ✗ Software Engineer, Intern (Summer or Winter)
+      Reason: Excluded employment type detected in title
+  ✗ Software Engineer, Intern (Summer or Winter)
+      Reason: Excluded employment type detected in title
+  [01/21] Backend Engineer, Core Technology
+       → Backend Engineer | 61.34 | AGENT_APPLY
+       Selection 79.76 | Fit 61.34 | Confidence 90%
+       Fit → Req 50.00 (25.00 pts)
+             Pref N/A (0.00 pts)
+             Sem 59.03 (19.68 pts)
+             Exp 100.00 (16.67 pts)
+       Manual gate → fit below 85
+       ⚑ Calibration flags: 2
+  [02/21] Backend Engineer, Developer & End-user Experience Platform
+       → Backend Engineer | 72.08 | AGENT_APPLY
+       Selection 88.37 | Fit 72.08 | Confidence 40%
+       Fit → Req N/A (0.00 pts)
+             Pref 100.00 (25.00 pts)
+             Sem 62.77 (47.08 pts)
+             Exp N/A (0.00 pts)
+       Manual gate → fit below 85; confidence below 75%; no required-skill evidence
+       ⚑ Calibration flags: 2
+  [03/21] Backend Engineer, Developer & End-user Experience Platform
+       → Backend Engineer | 10.63 | AGENT_APPLY
+       Selection 62.53 | Fit 10.63 | Confidence 85%
+       Fit → Req 0.00 (0.00 pts)
+             Pref 0.00 (0.00 pts)
+             Sem 30.11 (10.63 pts)
+             Exp N/A (0.00 pts)
+       Manual gate → fit below 85
+       ⚑ Calibration flags: 2
+  [04/21] Backend Engineer, Link
+       → Backend Engineer | 48.29 | AGENT_APPLY
+       Selection 83.84 | Fit 48.29 | Confidence 30%
+       Fit → Req N/A (0.00 pts)
+             Pref N/A (0.00 pts)
+             Sem 48.29 (48.29 pts)
+             Exp N/A (0.00 pts)
+       Manual gate → fit below 85; confidence below 75%; no required-skill evidence
+       ⚑ Calibration flags: 3
+  [05/21] Backend Engineer, Payments and Risk
+       → Backend Engineer | 60.90 | AGENT_APPLY
+       Selection 83.71 | Fit 60.90 | Confidence 40%
+       Fit → Req N/A (0.00 pts)
+             Pref 100.00 (25.00 pts)
+             Sem 47.86 (35.89 pts)
+             Exp N/A (0.00 pts)
+       Manual gate → fit below 85; confidence below 75%; no required-skill evidence
+       ⚑ Calibration flags: 2
+  [06/21] Frontend Engineer, Payments & Risk
+       → Frontend Engineer | 74.44 | AGENT_APPLY
+       Selection 84.02 | Fit 74.44 | Confidence 75%
+       Fit → Req 100.00 (60.00 pts)
+             Pref N/A (0.00 pts)
+             Sem 36.09 (14.44 pts)
+             Exp N/A (0.00 pts)
+       Manual gate → fit below 85
+       ⚑ Calibration flags: 2
+  [07/21] Full Stack Engineer, Bridge
+       → Fullstack Engineer | 77.39 | AGENT_APPLY
+       Selection 88.15 | Fit 77.39 | Confidence 85%
+       Fit → Req 100.00 (52.94 pts)
+             Pref 50.00 (5.88 pts)
+             Sem 52.60 (18.56 pts)
+             Exp N/A (0.00 pts)
+       Manual gate → fit below 85
+       ⚑ Calibration flags: 1
+  [08/21] Full Stack Engineer, Enterprise & Ecosystem
+       → Fullstack Engineer | 51.66 | AGENT_APPLY
+       Selection 84.89 | Fit 51.66 | Confidence 30%
+       Fit → Req N/A (0.00 pts)
+             Pref N/A (0.00 pts)
+             Sem 51.66 (51.66 pts)
+             Exp N/A (0.00 pts)
+       Manual gate → fit below 85; confidence below 75%; no required-skill evidence
+       ⚑ Calibration flags: 3
+  [09/21] Full Stack Engineer, Link
+       → Fullstack Engineer | 60.68 | AGENT_APPLY
+       Selection 83.62 | Fit 60.68 | Confidence 40%
+       Fit → Req N/A (0.00 pts)
+             Pref 100.00 (25.00 pts)
+             Sem 47.57 (35.68 pts)
+             Exp N/A (0.00 pts)
+       Manual gate → fit below 85; confidence below 75%; no required-skill evidence
+       ⚑ Calibration flags: 2
+  [10/21] Full Stack Engineer, Support Experience (Greater China Support)
+       → Fullstack Engineer | 61.07 | AGENT_APPLY
+       Selection 81.18 | Fit 61.07 | Confidence 85%
+       Fit → Req 50.00 (26.47 pts)
+             Pref 100.00 (11.76 pts)
+             Sem 64.71 (22.84 pts)
+             Exp N/A (0.00 pts)
+       Manual gate → fit below 85
+       ⚑ Calibration flags: 2
+  [11/21] Machine Learning Engineer
+       → Ai Ml Engineer | 73.26 | AGENT_APPLY
+       Selection 83.28 | Fit 73.26 | Confidence 75%
+       Fit → Req 100.00 (60.00 pts)
+             Pref N/A (0.00 pts)
+             Sem 33.14 (13.26 pts)
+             Exp N/A (0.00 pts)
+       Manual gate → fit below 85
+       ⚑ Calibration flags: 2
+  [12/21] Software Engineer, Authorization Infrastructure
+       → Software Engineer | 71.33 | AGENT_APPLY
+       Selection 79.69 | Fit 71.33 | Confidence 85%
+       Fit → Req 100.00 (52.94 pts)
+             Pref 100.00 (11.76 pts)
+             Sem 18.77 (6.62 pts)
+             Exp N/A (0.00 pts)
+       Manual gate → fit below 85
+       ⚑ Calibration flags: 1
+  [13/21] Software Engineer, Backend Engineer- Credit Coverage
+       → Backend Engineer | 44.16 | AGENT_APPLY
+       Selection 68.12 | Fit 44.16 | Confidence 90%
+       Fit → Req 42.86 (21.43 pts)
+             Pref N/A (0.00 pts)
+             Sem 18.20 (6.07 pts)
+             Exp 100.00 (16.67 pts)
+       Manual gate → fit below 85
+       ⚑ Calibration flags: 2
+  [14/21] Software Engineer, New Grad
+       → Software Engineer | 48.33 | AGENT_APPLY
+       Selection 76.46 | Fit 48.33 | Confidence 75%
+       Fit → Req 50.00 (30.00 pts)
+             Pref N/A (0.00 pts)
+             Sem 45.83 (18.33 pts)
+             Exp N/A (0.00 pts)
+       Manual gate → fit below 85
+       ⚑ Calibration flags: 3
+  [15/21] Software Engineer, Platform Infrastructure
+       → Software Engineer | 42.89 | AGENT_APPLY
+       Selection 73.06 | Fit 42.89 | Confidence 75%
+       Fit → Req 50.00 (30.00 pts)
+             Pref N/A (0.00 pts)
+             Sem 32.23 (12.89 pts)
+             Exp N/A (0.00 pts)
+       Manual gate → fit below 85
+       ⚑ Calibration flags: 3
+  [16/21] Software Engineer, Product Security Data Platforms
+       → Software Engineer | 68.60 | AGENT_APPLY
+       Selection 86.93 | Fit 68.60 | Confidence 85%
+       Fit → Req 66.67 (35.30 pts)
+             Pref 60.00 (7.06 pts)
+             Sem 74.37 (26.25 pts)
+             Exp N/A (0.00 pts)
+       Manual gate → fit below 85
+       ⚑ Calibration flags: 1
+  [17/21] Software Engineer, Product Security Data Platforms
+       → Software Engineer | 64.06 | AGENT_APPLY
+       Selection 83.29 | Fit 64.06 | Confidence 85%
+       Fit → Req 50.00 (26.47 pts)
+             Pref 100.00 (11.76 pts)
+             Sem 73.17 (25.82 pts)
+             Exp N/A (0.00 pts)
+       Manual gate → fit below 85
+       ⚑ Calibration flags: 2
+  [18/21] Software Engineer, Secrets Infrastructure
+       → Software Engineer | 61.40 | AGENT_APPLY
+       Selection 79.50 | Fit 61.40 | Confidence 100%
+       Fit → Req 33.33 (15.00 pts)
+             Pref 100.00 (10.00 pts)
+             Sem 71.34 (21.40 pts)
+             Exp 100.00 (15.00 pts)
+       Manual gate → fit below 85
+       ⚑ Calibration flags: 1
+  [19/21] Software Engineer, Vulnerability Management
+       → Software Engineer | 80.73 | AGENT_APPLY
+       Selection 85.55 | Fit 80.73 | Confidence 90%
+       Fit → Req 100.00 (50.00 pts)
+             Pref N/A (0.00 pts)
+             Sem 42.20 (14.07 pts)
+             Exp 100.00 (16.67 pts)
+       Manual gate → fit below 85
+       ⚑ Calibration flags: 1
+  [20/21] AI Engineer
+       → Ai Ml Engineer | 74.23 | AGENT_APPLY
+       Selection 90.88 | Fit 74.23 | Confidence 90%
+       Fit → Req 66.67 (33.34 pts)
+             Pref N/A (0.00 pts)
+             Sem 90.20 (30.07 pts)
+             Exp 65.00 (10.83 pts)
+       Manual gate → fit below 85
+       ⚑ Calibration flags: 2
+  [21/21] Software Engineer
+       → Software Engineer | 46.39 | AGENT_APPLY
+       Selection 72.92 | Fit 46.39 | Confidence 90%
+       Fit → Req 50.00 (25.00 pts)
+             Pref N/A (0.00 pts)
+             Sem 31.66 (10.55 pts)
+             Exp 65.00 (10.83 pts)
+       Manual gate → fit below 85
+       ⚑ Calibration flags: 3
+
+
+==========================================================================================
+[2/11] Figma
+==========================================================================================
+
+Discovered:             157
+Target roles:           16
+Full-time candidates:   15
+Employment filtered:    1
+US-compatible:          13
+Pre-eligibility jobs:   5
+Experience filtered:    8
+
+Employment-type exclusions:
+  ✗ Software Engineer Intern (Winter 2027)
+      Reason: Excluded employment type detected in title
+  [01/05] Software Engineer - Full Stack
+       → Fullstack Engineer | 89.75 | MANUAL_PRIORITY
+       Selection 93.59 | Fit 89.75 | Confidence 75%
+       Fit → Req 100.00 (60.00 pts)
+             Pref N/A (0.00 pts)
+             Sem 74.37 (29.75 pts)
+             Exp N/A (0.00 pts)
+       ⚑ Calibration flags: 2
+  [02/05] Software Engineer - C++
+       → Software Engineer | 68.64 | AGENT_APPLY
+       Selection 90.77 | Fit 68.64 | Confidence 45%
+       Fit → Req N/A (0.00 pts)
+             Pref N/A (0.00 pts)
+             Sem 70.46 (46.97 pts)
+             Exp 65.00 (21.67 pts)
+       Manual gate → fit below 85; confidence below 75%; no required-skill evidence
+       ⚑ Calibration flags: 3
+  [03/05] Software Engineer - Growth & Monetization
+       → Software Engineer | 84.78 | AGENT_APPLY
+       Selection 92.96 | Fit 84.78 | Confidence 90%
+       Fit → Req 100.00 (50.00 pts)
+             Pref N/A (0.00 pts)
+             Sem 71.83 (23.94 pts)
+             Exp 65.00 (10.83 pts)
+       Manual gate → fit below 85
+       ⚑ Calibration flags: 2
+  [04/05] Software Engineer - Mobile Web
+       → Software Engineer | 51.27 | AGENT_APPLY
+       Selection 82.62 | Fit 51.27 | Confidence 45%
+       Fit → Req N/A (0.00 pts)
+             Pref N/A (0.00 pts)
+             Sem 44.40 (29.60 pts)
+             Exp 65.00 (21.67 pts)
+       Manual gate → fit below 85; confidence below 75%; no required-skill evidence
+       ⚑ Calibration flags: 3
+  [05/05] Software Engineer - Traffic
+       → Software Engineer | 79.88 | AGENT_APPLY
+       Selection 89.28 | Fit 79.88 | Confidence 90%
+       Fit → Req 100.00 (50.00 pts)
+             Pref N/A (0.00 pts)
+             Sem 57.14 (19.05 pts)
+             Exp 65.00 (10.83 pts)
+       Manual gate → fit below 85
+       ⚑ Calibration flags: 2
+
+
+==========================================================================================
+[3/11] Scale AI
+==========================================================================================
+
+Discovered:             216
+Target roles:           20
+Full-time candidates:   20
+Employment filtered:    0
+US-compatible:          13
+Pre-eligibility jobs:   12
+Experience filtered:    1
+  [01/12] DevOps Engineer, Infrastructure & Security
+       → ⚠️ NEEDS_ASSISTANCE
+       → Eligibility review required: SECURITY_CLEARANCE
+  [02/12] Forward Deployed Software Engineer, Public Sector
+       → ⚠️ NEEDS_ASSISTANCE
+       → Eligibility review required: SECURITY_CLEARANCE
+  [03/12] Software Engineer - AI Enablement
+       → Ai Ml Engineer | 78.09 | AGENT_APPLY
+       Selection 89.73 | Fit 78.09 | Confidence 45%
+       Fit → Req N/A (0.00 pts)
+             Pref N/A (0.00 pts)
+             Sem 67.14 (44.76 pts)
+             Exp 100.00 (33.33 pts)
+       Manual gate → fit below 85; confidence below 75%; no required-skill evidence
+       ⚑ Calibration flags: 2
+  [04/12] Software Engineer, ARC Team
+       → ⚠️ NEEDS_ASSISTANCE
+       → Eligibility review required: SECURITY_CLEARANCE
+  [05/12] Software Engineer, Enterprise AI
+       → Ai Ml Engineer | 56.18 | AGENT_APPLY
+       Selection 79.61 | Fit 56.18 | Confidence 75%
+       Fit → Req 60.00 (36.00 pts)
+             Pref N/A (0.00 pts)
+             Sem 50.46 (20.18 pts)
+             Exp N/A (0.00 pts)
+       Manual gate → fit below 85
+       ⚑ Calibration flags: 2
+  [06/12] Software Engineer, Frontier AI Infrastructure
+       → ⚠️ NEEDS_ASSISTANCE
+       → Eligibility review required: SECURITY_CLEARANCE
+  [07/12] Software Engineer, Gen AI
+       → Ai Ml Engineer | 88.73 | MANUAL_PRIORITY
+       Selection 91.55 | Fit 88.73 | Confidence 90%
+       Fit → Req 100.00 (50.00 pts)
+             Pref N/A (0.00 pts)
+             Sem 66.20 (22.07 pts)
+             Exp 100.00 (16.67 pts)
+       ⚑ Calibration flags: 1
+  [08/12] Software Engineer, Identity
+       → Software Engineer | 31.39 | AGENT_APPLY
+       Selection 70.98 | Fit 31.39 | Confidence 85%
+       Fit → Req 0.00 (0.00 pts)
+             Pref 75.00 (8.82 pts)
+             Sem 63.94 (22.57 pts)
+             Exp N/A (0.00 pts)
+       Manual gate → fit below 85
+       ⚑ Calibration flags: 2
+  [09/12] Software Engineer - New Grad
+       → Software Engineer | 90.48 | MANUAL_PRIORITY
+       Selection 93.26 | Fit 90.48 | Confidence 85%
+       Fit → Req 100.00 (52.94 pts)
+             Pref 100.00 (11.76 pts)
+             Sem 73.03 (25.78 pts)
+             Exp N/A (0.00 pts)
+       ⚑ Calibration flags: 1
+  [10/12] Software Engineer, Platform
+       → Software Engineer | 65.93 | AGENT_APPLY
+       Selection 87.03 | Fit 65.93 | Confidence 85%
+       Fit → Req 60.00 (31.76 pts)
+             Pref 50.00 (5.88 pts)
+             Sem 80.14 (28.28 pts)
+             Exp N/A (0.00 pts)
+       Manual gate → fit below 85
+       ⚑ Calibration flags: 1
+  [11/12] Software Engineer, Public Sector
+       → Software Engineer | 89.80 | MANUAL_PRIORITY
+       Selection 93.62 | Fit 89.80 | Confidence 75%
+       Fit → Req 100.00 (60.00 pts)
+             Pref N/A (0.00 pts)
+             Sem 74.49 (29.80 pts)
+             Exp N/A (0.00 pts)
+       ⚑ Calibration flags: 2
+  [12/12] Infrastructure Software Engineer, Enterprise GenAI
+       → Ai Ml Engineer | 61.63 | AGENT_APPLY
+       Selection 81.43 | Fit 61.63 | Confidence 90%
+       Fit → Req 66.67 (33.34 pts)
+             Pref N/A (0.00 pts)
+             Sem 52.40 (17.47 pts)
+             Exp 65.00 (10.83 pts)
+       Manual gate → fit below 85
+       ⚑ Calibration flags: 2
+
+
+==========================================================================================
+[4/11] Airtable
+==========================================================================================
+
+Discovered:             16
+Target roles:           3
+Full-time candidates:   3
+Employment filtered:    0
+US-compatible:          3
+Pre-eligibility jobs:   2
+Experience filtered:    1
+  [01/02] Software Engineer, Infrastructure (4-8 YOE)
+       → Software Engineer | 69.86 | AGENT_APPLY
+       Selection 91.34 | Fit 69.86 | Confidence 45%
+       Fit → Req N/A (0.00 pts)
+             Pref N/A (0.00 pts)
+             Sem 72.29 (48.19 pts)
+             Exp 65.00 (21.67 pts)
+       Manual gate → fit below 85; confidence below 75%; no required-skill evidence
+       ⚑ Calibration flags: 3
+  [02/02] Software Engineer, Product Backend (4-8 YOE)
+       → Backend Engineer | 82.28 | AGENT_APPLY
+       Selection 91.08 | Fit 82.28 | Confidence 90%
+       Fit → Req 100.00 (50.00 pts)
+             Pref N/A (0.00 pts)
+             Sem 64.34 (21.45 pts)
+             Exp 65.00 (10.83 pts)
+       Manual gate → fit below 85
+       ⚑ Calibration flags: 2
+
+
+==========================================================================================
+[5/11] Webflow
+==========================================================================================
+
+Discovered:             29
+Target roles:           0
+Full-time candidates:   0
+Employment filtered:    0
+US-compatible:          0
+Pre-eligibility jobs:   0
+Experience filtered:    0
+
+
+==========================================================================================
+[6/11] Ocrolus
+==========================================================================================
+
+Discovered:             13
+Target roles:           0
+Full-time candidates:   0
+Employment filtered:    0
+US-compatible:          0
+Pre-eligibility jobs:   0
+Experience filtered:    0
+
+
+==========================================================================================
+[7/11] Twilio
+==========================================================================================
+
+Discovered:             145
+Target roles:           18
+Full-time candidates:   18
+Employment filtered:    0
+US-compatible:          12
+Pre-eligibility jobs:   8
+Experience filtered:    4
+  [01/08] Software Engineer, Identity
+       → Software Engineer | 62.48 | AGENT_APPLY
+       Selection 80.61 | Fit 62.48 | Confidence 90%
+       Fit → Req 50.00 (25.00 pts)
+             Pref N/A (0.00 pts)
+             Sem 62.43 (20.81 pts)
+             Exp 100.00 (16.67 pts)
+       Manual gate → fit below 85
+       ⚑ Calibration flags: 2
+  [02/08] Software Engineer (L2)
+       → Software Engineer | 59.67 | AGENT_APPLY
+       Selection 77.26 | Fit 59.67 | Confidence 90%
+       Fit → Req 57.14 (28.57 pts)
+             Pref N/A (0.00 pts)
+             Sem 43.31 (14.44 pts)
+             Exp 100.00 (16.67 pts)
+       Manual gate → fit below 85
+       ⚑ Calibration flags: 2
+  [03/08] Software Engineer (L2) 
+       → Software Engineer | 59.67 | AGENT_APPLY
+       Selection 77.26 | Fit 59.67 | Confidence 90%
+       Fit → Req 57.14 (28.57 pts)
+             Pref N/A (0.00 pts)
+             Sem 43.31 (14.44 pts)
+             Exp 100.00 (16.67 pts)
+       Manual gate → fit below 85
+       ⚑ Calibration flags: 2
+  [04/08] Software Engineer L2 - Cloud Infrastructure 
+       → Software Engineer | 75.71 | AGENT_APPLY
+       Selection 86.16 | Fit 75.71 | Confidence 90%
+       Fit → Req 75.00 (37.50 pts)
+             Pref N/A (0.00 pts)
+             Sem 64.63 (21.54 pts)
+             Exp 100.00 (16.67 pts)
+       Manual gate → fit below 85
+       ⚑ Calibration flags: 1
+  [05/08] Software Engineer, Platform Engineering (L2)
+       → Software Engineer | 80.29 | AGENT_APPLY
+       Selection 88.72 | Fit 80.29 | Confidence 90%
+       Fit → Req 80.00 (40.00 pts)
+             Pref N/A (0.00 pts)
+             Sem 70.86 (23.62 pts)
+             Exp 100.00 (16.67 pts)
+       Manual gate → fit below 85
+       ⚑ Calibration flags: 1
+  [06/08] Software Engineer - Video
+       → Software Engineer | 71.40 | AGENT_APPLY
+       Selection 84.38 | Fit 71.40 | Confidence 90%
+       Fit → Req 66.67 (33.34 pts)
+             Pref N/A (0.00 pts)
+             Sem 64.20 (21.40 pts)
+             Exp 100.00 (16.67 pts)
+       Manual gate → fit below 85
+       ⚑ Calibration flags: 1
+  [07/08] Software Engineer L3
+       → Software Engineer | 67.56 | AGENT_APPLY
+       Selection 87.54 | Fit 67.56 | Confidence 90%
+       Fit → Req 57.14 (28.57 pts)
+             Pref N/A (0.00 pts)
+             Sem 84.46 (28.15 pts)
+             Exp 65.00 (10.83 pts)
+       Manual gate → fit below 85
+       ⚑ Calibration flags: 3
+  [08/08] Software Engineer-Platform Engineering (L3)
+       → Software Engineer | 58.25 | AGENT_APPLY
+       Selection 83.06 | Fit 58.25 | Confidence 90%
+       Fit → Req 42.86 (21.43 pts)
+             Pref N/A (0.00 pts)
+             Sem 77.97 (25.99 pts)
+             Exp 65.00 (10.83 pts)
+       Manual gate → fit below 85
+       ⚑ Calibration flags: 3
+
+
+==========================================================================================
+[8/11] Chime
+==========================================================================================
+
+Discovered:             65
+Target roles:           10
+Full-time candidates:   10
+Employment filtered:    0
+US-compatible:          10
+Pre-eligibility jobs:   10
+Experience filtered:    0
+  [01/10] Full-Stack Engineer, Human Agent Tooling 
+       → Fullstack Engineer | 79.01 | AGENT_APPLY
+       Selection 90.16 | Fit 79.01 | Confidence 45%
+       Fit → Req N/A (0.00 pts)
+             Pref N/A (0.00 pts)
+             Sem 68.51 (45.67 pts)
+             Exp 100.00 (33.33 pts)
+       Manual gate → fit below 85; confidence below 75%; no required-skill evidence
+       ⚑ Calibration flags: 2
+  [02/10] Software Engineer, AI Enablement
+       → Ai Ml Engineer | 87.19 | MANUAL_PRIORITY
+       Selection 91.99 | Fit 87.19 | Confidence 75%
+       Fit → Req 100.00 (60.00 pts)
+             Pref N/A (0.00 pts)
+             Sem 67.97 (27.19 pts)
+             Exp N/A (0.00 pts)
+       ⚑ Calibration flags: 2
+  [03/10] Software Engineer, Communication Platform
+       → Software Engineer | 51.86 | AGENT_APPLY
+       Selection 78.67 | Fit 51.86 | Confidence 75%
+       Fit → Req 50.00 (30.00 pts)
+             Pref N/A (0.00 pts)
+             Sem 54.66 (21.86 pts)
+             Exp N/A (0.00 pts)
+       Manual gate → fit below 85
+       ⚑ Calibration flags: 3
+  [04/10] Software Engineer, Financial Platform
+       → Software Engineer | 66.67 | AGENT_APPLY
+       Selection 82.23 | Fit 66.67 | Confidence 85%
+       Fit → Req 66.67 (35.30 pts)
+             Pref 100.00 (11.76 pts)
+             Sem 55.57 (19.61 pts)
+             Exp N/A (0.00 pts)
+       Manual gate → fit below 85
+       ⚑ Calibration flags: 1
+  [05/10] Software Engineer, Growth
+       → Software Engineer | 57.92 | AGENT_APPLY
+       Selection 77.19 | Fit 57.92 | Confidence 90%
+       Fit → Req 50.00 (25.00 pts)
+             Pref N/A (0.00 pts)
+             Sem 48.77 (16.26 pts)
+             Exp 100.00 (16.67 pts)
+       Manual gate → fit below 85
+       ⚑ Calibration flags: 2
+  [06/10] Software Engineer, Infrastructure
+       → Software Engineer | 35.05 | AGENT_APPLY
+       Selection 68.78 | Fit 35.05 | Confidence 90%
+       Fit → Req 0.00 (0.00 pts)
+             Pref N/A (0.00 pts)
+             Sem 55.14 (18.38 pts)
+             Exp 100.00 (16.67 pts)
+       Manual gate → fit below 85
+       ⚑ Calibration flags: 2
+  [07/10] Software Engineer, Infrastructure
+       → Software Engineer | 52.57 | AGENT_APPLY
+       Selection 77.55 | Fit 52.57 | Confidence 90%
+       Fit → Req 25.00 (12.50 pts)
+             Pref N/A (0.00 pts)
+             Sem 70.20 (23.40 pts)
+             Exp 100.00 (16.67 pts)
+       Manual gate → fit below 85
+       ⚑ Calibration flags: 2
+  [08/10] Software Engineer, Lending
+       → Software Engineer | 38.51 | AGENT_APPLY
+       Selection 71.39 | Fit 38.51 | Confidence 90%
+       Fit → Req 0.00 (0.00 pts)
+             Pref N/A (0.00 pts)
+             Sem 65.54 (21.85 pts)
+             Exp 100.00 (16.67 pts)
+       Manual gate → fit below 85
+       ⚑ Calibration flags: 2
+  [09/10] Software Engineer, Membership
+       → Software Engineer | 29.42 | AGENT_APPLY
+       Selection 64.56 | Fit 29.42 | Confidence 90%
+       Fit → Req 0.00 (0.00 pts)
+             Pref N/A (0.00 pts)
+             Sem 38.26 (12.75 pts)
+             Exp 100.00 (16.67 pts)
+       Manual gate → fit below 85
+       ⚑ Calibration flags: 2
+  [10/10] Software Engineer, Support Foundations
+       → Software Engineer | 42.17 | AGENT_APPLY
+       Selection 74.13 | Fit 42.17 | Confidence 90%
+       Fit → Req 0.00 (0.00 pts)
+             Pref N/A (0.00 pts)
+             Sem 76.51 (25.50 pts)
+             Exp 100.00 (16.67 pts)
+       Manual gate → fit below 85
+       ⚑ Calibration flags: 2
+
+
+==========================================================================================
+[9/11] Robinhood
+==========================================================================================
+
+Discovered:             131
+Target roles:           8
+Full-time candidates:   8
+Employment filtered:    0
+US-compatible:          6
+Pre-eligibility jobs:   6
+Experience filtered:    0
+  [01/06] Full Stack Software Engineer, Credit Cards & Banking
+       → Fullstack Engineer | 65.70 | AGENT_APPLY
+       Selection 80.11 | Fit 65.70 | Confidence 90%
+       Fit → Req 66.67 (33.34 pts)
+             Pref N/A (0.00 pts)
+             Sem 47.09 (15.70 pts)
+             Exp 100.00 (16.67 pts)
+       Manual gate → fit below 85
+       ⚑ Calibration flags: 1
+  [02/06] Machine Learning Engineer
+       → Ai Ml Engineer | 57.76 | AGENT_APPLY
+       Selection 82.35 | Fit 57.76 | Confidence 75%
+       Fit → Req 50.00 (30.00 pts)
+             Pref N/A (0.00 pts)
+             Sem 69.40 (27.76 pts)
+             Exp N/A (0.00 pts)
+       Manual gate → fit below 85
+       ⚑ Calibration flags: 3
+  [03/06] Software Engineer, Backend
+       → Backend Engineer | 74.71 | AGENT_APPLY
+       Selection 84.76 | Fit 74.71 | Confidence 100%
+       Fit → Req 66.67 (30.00 pts)
+             Pref 100.00 (10.00 pts)
+             Sem 65.69 (19.71 pts)
+             Exp 100.00 (15.00 pts)
+       Manual gate → fit below 85
+  [04/06] Software Engineer, Cryptography
+       → Software Engineer | 60.12 | AGENT_APPLY
+       Selection 80.91 | Fit 60.12 | Confidence 75%
+       Fit → Req 66.67 (40.00 pts)
+             Pref N/A (0.00 pts)
+             Sem 50.29 (20.12 pts)
+             Exp N/A (0.00 pts)
+       Manual gate → fit below 85
+       ⚑ Calibration flags: 2
+  [05/06] Software Engineer, Proactive Capabilities
+       → Software Engineer | 67.63 | AGENT_APPLY
+       Selection 82.91 | Fit 67.63 | Confidence 85%
+       Fit → Req 66.67 (35.30 pts)
+             Pref 100.00 (11.76 pts)
+             Sem 58.29 (20.57 pts)
+             Exp N/A (0.00 pts)
+       Manual gate → fit below 85
+       ⚑ Calibration flags: 1
+  [06/06] Software Engineer, Wallet
+       → Software Engineer | 87.11 | MANUAL_PRIORITY
+       Selection 90.33 | Fit 87.11 | Confidence 90%
+       Fit → Req 100.00 (50.00 pts)
+             Pref N/A (0.00 pts)
+             Sem 61.34 (20.45 pts)
+             Exp 100.00 (16.67 pts)
+       ⚑ Calibration flags: 1
+
+
+==========================================================================================
+[10/11] Glean
+==========================================================================================
+
+Discovered:             115
+Target roles:           18
+Full-time candidates:   18
+Employment filtered:    0
+US-compatible:          13
+Pre-eligibility jobs:   9
+Experience filtered:    4
+  [01/09] Machine Learning Engineer, Assistant Quality
+       → Ai Ml Engineer | 95.53 | MANUAL_PRIORITY
+       Selection 96.65 | Fit 95.53 | Confidence 90%
+       Fit → Req 100.00 (50.00 pts)
+             Pref N/A (0.00 pts)
+             Sem 86.60 (28.87 pts)
+             Exp 100.00 (16.67 pts)
+       ⚑ Calibration flags: 1
+  [02/09] Machine Learning Engineer, Search Quality
+       → Ai Ml Engineer | 41.34 | AGENT_APPLY
+       Selection 73.51 | Fit 41.34 | Confidence 90%
+       Fit → Req 0.00 (0.00 pts)
+             Pref N/A (0.00 pts)
+             Sem 74.03 (24.68 pts)
+             Exp 100.00 (16.67 pts)
+       Manual gate → fit below 85
+       ⚑ Calibration flags: 2
+  [03/09] Software Engineer, AI/ML Infrastructure
+       → Ai Ml Engineer | 87.56 | AGENT_APPLY
+       Selection 94.17 | Fit 87.56 | Confidence 45%
+       Fit → Req N/A (0.00 pts)
+             Pref N/A (0.00 pts)
+             Sem 81.34 (54.23 pts)
+             Exp 100.00 (33.33 pts)
+       Manual gate → confidence below 75%; no required-skill evidence
+       ⚑ Calibration flags: 3
+  [04/09] Software Engineer, Cloud Deployment Infrastructure
+       → Software Engineer | 70.72 | AGENT_APPLY
+       Selection 87.53 | Fit 70.72 | Confidence 75%
+       Fit → Req 66.67 (40.00 pts)
+             Pref N/A (0.00 pts)
+             Sem 76.80 (30.72 pts)
+             Exp N/A (0.00 pts)
+       Manual gate → fit below 85
+       ⚑ Calibration flags: 2
+  [05/09] Software Engineer, Cloud Infrastructure
+       → Software Engineer | 71.04 | AGENT_APPLY
+       Selection 87.73 | Fit 71.04 | Confidence 75%
+       Fit → Req 66.67 (40.00 pts)
+             Pref N/A (0.00 pts)
+             Sem 77.60 (31.04 pts)
+             Exp N/A (0.00 pts)
+       Manual gate → fit below 85
+       ⚑ Calibration flags: 2
+  [06/09] Software Engineer, Data Foundations
+       → Software Engineer | 71.78 | AGENT_APPLY
+       Selection 87.58 | Fit 71.78 | Confidence 90%
+       Fit → Req 50.00 (25.00 pts)
+             Pref N/A (0.00 pts)
+             Sem 90.34 (30.11 pts)
+             Exp 100.00 (16.67 pts)
+       Manual gate → fit below 85
+       ⚑ Calibration flags: 2
+  [07/09] Software Engineer, Developer Productivity 
+       → Software Engineer | 98.60 | AGENT_APPLY
+       Selection 99.56 | Fit 98.60 | Confidence 30%
+       Fit → Req N/A (0.00 pts)
+             Pref N/A (0.00 pts)
+             Sem 98.60 (98.60 pts)
+             Exp N/A (0.00 pts)
+       Manual gate → confidence below 75%; no required-skill evidence
+       ⚑ Calibration flags: 4
+  [08/09] Software Engineer, Frontend
+       → Frontend Engineer | 88.89 | MANUAL_PRIORITY
+       Selection 93.06 | Fit 88.89 | Confidence 75%
+       Fit → Req 100.00 (60.00 pts)
+             Pref N/A (0.00 pts)
+             Sem 72.23 (28.89 pts)
+             Exp N/A (0.00 pts)
+       ⚑ Calibration flags: 2
+  [09/09] Software Engineer, Fullstack
+       → Fullstack Engineer | 81.26 | AGENT_APPLY
+       Selection 94.14 | Fit 81.26 | Confidence 30%
+       Fit → Req N/A (0.00 pts)
+             Pref N/A (0.00 pts)
+             Sem 81.26 (81.26 pts)
+             Exp N/A (0.00 pts)
+       Manual gate → fit below 85; confidence below 75%; no required-skill evidence
+       ⚑ Calibration flags: 3
+
+
+==========================================================================================
+[11/11] Discord
+==========================================================================================
+
+Discovered:             49
+Target roles:           4
+Full-time candidates:   4
+Employment filtered:    0
+US-compatible:          4
+Pre-eligibility jobs:   4
+Experience filtered:    0
+  [01/04] QA/DevOps Engineer
+       → Devops Engineer | 88.91 | AGENT_APPLY
+       Selection 98.86 | Fit 88.91 | Confidence 55%
+       Fit → Req N/A (0.00 pts)
+             Pref 50.00 (9.09 pts)
+             Sem 96.34 (52.55 pts)
+             Exp 100.00 (27.27 pts)
+       Manual gate → confidence below 75%; no required-skill evidence
+       ⚑ Calibration flags: 2
+  [02/04] Software Engineer, Data Platform
+       → Software Engineer | 79.19 | AGENT_APPLY
+       Selection 82.66 | Fit 79.19 | Confidence 100%
+       Fit → Req 100.00 (45.00 pts)
+             Pref 100.00 (10.00 pts)
+             Sem 30.63 (9.19 pts)
+             Exp 100.00 (15.00 pts)
+       Manual gate → fit below 85
+  [03/04] Software Engineer, Developer Success
+       → Software Engineer | 35.97 | AGENT_APPLY
+       Selection 65.10 | Fit 35.97 | Confidence 90%
+       Fit → Req 25.00 (12.50 pts)
+             Pref N/A (0.00 pts)
+             Sem 20.40 (6.80 pts)
+             Exp 100.00 (16.67 pts)
+       Manual gate → fit below 85
+       ⚑ Calibration flags: 2
+  [04/04] Software Engineer, Distributed Systems
+       → Software Engineer | 51.37 | AGENT_APPLY
+       Selection 79.08 | Fit 51.37 | Confidence 55%
+       Fit → Req N/A (0.00 pts)
+             Pref 33.33 (6.06 pts)
+             Sem 33.06 (18.03 pts)
+             Exp 100.00 (27.27 pts)
+       Manual gate → fit below 85; confidence below 75%; no required-skill evidence
+       ⚑ Calibration flags: 1
+
+
+==========================================================================================
+COMPANY SUMMARY
+==========================================================================================
+
+Stripe [stripe]
+  Status:               SUCCESS
+  Discovered:           615
+  Target roles:         62
+  Employment filtered:  6
+  Eligible/scored:      21
+  Needs assistance:     0
+  Hard blocked:         0
+  Marked inactive:      0
+  Manual:               0
+  Agent:                21
+
+Figma [figma]
+  Status:               SUCCESS
+  Discovered:           157
+  Target roles:         16
+  Employment filtered:  1
+  Eligible/scored:      5
+  Needs assistance:     0
+  Hard blocked:         0
+  Marked inactive:      0
+  Manual:               1
+  Agent:                4
+
+Scale AI [scaleai]
+  Status:               SUCCESS
+  Discovered:           216
+  Target roles:         20
+  Employment filtered:  0
+  Eligible/scored:      8
+  Needs assistance:     4
+  Hard blocked:         0
+  Marked inactive:      0
+  Manual:               3
+  Agent:                5
+
+Airtable [airtable]
+  Status:               SUCCESS
+  Discovered:           16
+  Target roles:         3
+  Employment filtered:  0
+  Eligible/scored:      2
+  Needs assistance:     0
+  Hard blocked:         0
+  Marked inactive:      0
+  Manual:               0
+  Agent:                2
+
+Webflow [webflow]
+  Status:               SUCCESS
+  Discovered:           29
+  Target roles:         0
+  Employment filtered:  0
+  Eligible/scored:      0
+  Needs assistance:     0
+  Hard blocked:         0
+  Marked inactive:      0
+  Manual:               0
+  Agent:                0
+
+Ocrolus [ocrolusinc]
+  Status:               SUCCESS
+  Discovered:           13
+  Target roles:         0
+  Employment filtered:  0
+  Eligible/scored:      0
+  Needs assistance:     0
+  Hard blocked:         0
+  Marked inactive:      0
+  Manual:               0
+  Agent:                0
+
+Twilio [twilio]
+  Status:               SUCCESS
+  Discovered:           145
+  Target roles:         18
+  Employment filtered:  0
+  Eligible/scored:      8
+  Needs assistance:     0
+  Hard blocked:         0
+  Marked inactive:      0
+  Manual:               0
+  Agent:                8
+
+Chime [chime]
+  Status:               SUCCESS
+  Discovered:           65
+  Target roles:         10
+  Employment filtered:  0
+  Eligible/scored:      10
+  Needs assistance:     0
+  Hard blocked:         0
+  Marked inactive:      0
+  Manual:               1
+  Agent:                9
+
+Robinhood [robinhood]
+  Status:               SUCCESS
+  Discovered:           131
+  Target roles:         8
+  Employment filtered:  0
+  Eligible/scored:      6
+  Needs assistance:     0
+  Hard blocked:         0
+  Marked inactive:      0
+  Manual:               1
+  Agent:                5
+
+Glean [gleanwork]
+  Status:               SUCCESS
+  Discovered:           115
+  Target roles:         18
+  Employment filtered:  0
+  Eligible/scored:      9
+  Needs assistance:     0
+  Hard blocked:         0
+  Marked inactive:      0
+  Manual:               2
+  Agent:                7
+
+Discord [discord]
+  Status:               SUCCESS
+  Discovered:           49
+  Target roles:         4
+  Employment filtered:  0
+  Eligible/scored:      4
+  Needs assistance:     0
+  Hard blocked:         0
+  Marked inactive:      0
+  Manual:               0
+  Agent:                4
+
+
+==========================================================================================
+⚠️ NEEDS ASSISTANCE — 4
+==========================================================================================
+
+1. Scale AI — DevOps Engineer, Infrastructure & Security
+   Reason: Eligibility review required: SECURITY_CLEARANCE
+   • SECURITY_CLEARANCE
+   URL: https://job-boards.greenhouse.io/scaleai/jobs/4674863005
+
+2. Scale AI — Forward Deployed Software Engineer, Public Sector
+   Reason: Eligibility review required: SECURITY_CLEARANCE
+   • SECURITY_CLEARANCE
+   URL: https://job-boards.greenhouse.io/scaleai/jobs/4481921005
+
+3. Scale AI — Software Engineer, ARC Team
+   Reason: Eligibility review required: SECURITY_CLEARANCE
+   • SECURITY_CLEARANCE
+   URL: https://job-boards.greenhouse.io/scaleai/jobs/4673771005
+
+4. Scale AI — Software Engineer, Frontier AI Infrastructure
+   Reason: Eligibility review required: SECURITY_CLEARANCE
+   • SECURITY_CLEARANCE
+   URL: https://job-boards.greenhouse.io/scaleai/jobs/4363623005
+
+
+====================================================================================================
+⭐ MANUAL PRIORITY — 8
+====================================================================================================
+
+1. [Fit 95.53 | Conf 90%] Glean — Machine Learning Engineer, Assistant Quality
+   Resume: Ai Ml Engineer (selection 96.65)
+   URL: https://job-boards.greenhouse.io/gleanwork/jobs/4711484005
+
+2. [Fit 90.48 | Conf 85%] Scale AI — Software Engineer - New Grad
+   Resume: Software Engineer (selection 93.26)
+   URL: https://job-boards.greenhouse.io/scaleai/jobs/4730836005
+
+3. [Fit 89.80 | Conf 75%] Scale AI — Software Engineer, Public Sector
+   Resume: Software Engineer (selection 93.62)
+   URL: https://job-boards.greenhouse.io/scaleai/jobs/4302243005
+
+4. [Fit 89.75 | Conf 75%] Figma — Software Engineer - Full Stack
+   Resume: Fullstack Engineer (selection 93.59)
+   URL: https://boards.greenhouse.io/figma/jobs/5691911004?gh_jid=5691911004
+
+5. [Fit 88.89 | Conf 75%] Glean — Software Engineer, Frontend
+   Resume: Frontend Engineer (selection 93.06)
+   URL: https://job-boards.greenhouse.io/gleanwork/jobs/4006733005
+
+6. [Fit 88.73 | Conf 90%] Scale AI — Software Engineer, Gen AI
+   Resume: Ai Ml Engineer (selection 91.55)
+   URL: https://job-boards.greenhouse.io/scaleai/jobs/4591300005
+
+7. [Fit 87.19 | Conf 75%] Chime — Software Engineer, AI Enablement
+   Resume: Ai Ml Engineer (selection 91.99)
+   URL: https://boards.greenhouse.io/chime/jobs/8578967002?gh_jid=8578967002
+
+8. [Fit 87.11 | Conf 90%] Robinhood — Software Engineer, Wallet
+   Resume: Software Engineer (selection 90.33)
+   URL: https://boards.greenhouse.io/robinhood/jobs/8088444?t=gh_src=&gh_jid=8088444
+
+
+====================================================================================================
+🤖 AGENT APPLY — 65
+====================================================================================================
+
+1. [Fit 98.60 | Conf 30%] Glean — Software Engineer, Developer Productivity 
+   Resume: Software Engineer (selection 99.56)
+   Manual gate: confidence below 75%; no required-skill evidence
+   URL: https://job-boards.greenhouse.io/gleanwork/jobs/4614706005
+
+2. [Fit 88.91 | Conf 55%] Discord — QA/DevOps Engineer
+   Resume: Devops Engineer (selection 98.86)
+   Manual gate: confidence below 75%; no required-skill evidence
+   URL: https://job-boards.greenhouse.io/discord/jobs/8703614002
+
+3. [Fit 87.56 | Conf 45%] Glean — Software Engineer, AI/ML Infrastructure
+   Resume: Ai Ml Engineer (selection 94.17)
+   Manual gate: confidence below 75%; no required-skill evidence
+   URL: https://job-boards.greenhouse.io/gleanwork/jobs/4501783005
+
+4. [Fit 84.78 | Conf 90%] Figma — Software Engineer - Growth & Monetization
+   Resume: Software Engineer (selection 92.96)
+   Manual gate: fit below 85
+   URL: https://boards.greenhouse.io/figma/jobs/5552560004?gh_jid=5552560004
+
+5. [Fit 82.28 | Conf 90%] Airtable — Software Engineer, Product Backend (4-8 YOE)
+   Resume: Backend Engineer (selection 91.08)
+   Manual gate: fit below 85
+   URL: https://job-boards.greenhouse.io/airtable/jobs/8397515002
+
+6. [Fit 81.26 | Conf 30%] Glean — Software Engineer, Fullstack
+   Resume: Fullstack Engineer (selection 94.14)
+   Manual gate: fit below 85; confidence below 75%; no required-skill evidence
+   URL: https://job-boards.greenhouse.io/gleanwork/jobs/4006734005
+
+7. [Fit 80.73 | Conf 90%] Stripe — Software Engineer, Vulnerability Management
+   Resume: Software Engineer (selection 85.55)
+   Manual gate: fit below 85
+   URL: https://stripe.com/jobs/search?gh_jid=8089353
+
+8. [Fit 80.29 | Conf 90%] Twilio — Software Engineer, Platform Engineering (L2)
+   Resume: Software Engineer (selection 88.72)
+   Manual gate: fit below 85
+   URL: https://job-boards.greenhouse.io/twilio/jobs/8026207
+
+9. [Fit 79.88 | Conf 90%] Figma — Software Engineer - Traffic
+   Resume: Software Engineer (selection 89.28)
+   Manual gate: fit below 85
+   URL: https://boards.greenhouse.io/figma/jobs/6102379004?gh_jid=6102379004
+
+10. [Fit 79.19 | Conf 100%] Discord — Software Engineer, Data Platform
+   Resume: Software Engineer (selection 82.66)
+   Manual gate: fit below 85
+   URL: https://job-boards.greenhouse.io/discord/jobs/8396927002
+
+11. [Fit 79.01 | Conf 45%] Chime — Full-Stack Engineer, Human Agent Tooling 
+   Resume: Fullstack Engineer (selection 90.16)
+   Manual gate: fit below 85; confidence below 75%; no required-skill evidence
+   URL: https://boards.greenhouse.io/chime/jobs/8606649002?gh_jid=8606649002
+
+12. [Fit 78.09 | Conf 45%] Scale AI — Software Engineer - AI Enablement
+   Resume: Ai Ml Engineer (selection 89.73)
+   Manual gate: fit below 85; confidence below 75%; no required-skill evidence
+   URL: https://job-boards.greenhouse.io/scaleai/jobs/4722512005
+
+13. [Fit 77.39 | Conf 85%] Stripe — Full Stack Engineer, Bridge
+   Resume: Fullstack Engineer (selection 88.15)
+   Manual gate: fit below 85
+   URL: https://stripe.com/jobs/search?gh_jid=8142764
+
+14. [Fit 75.71 | Conf 90%] Twilio — Software Engineer L2 - Cloud Infrastructure 
+   Resume: Software Engineer (selection 86.16)
+   Manual gate: fit below 85
+   URL: https://job-boards.greenhouse.io/twilio/jobs/7434770
+
+15. [Fit 74.71 | Conf 100%] Robinhood — Software Engineer, Backend
+   Resume: Backend Engineer (selection 84.76)
+   Manual gate: fit below 85
+   URL: https://boards.greenhouse.io/robinhood/jobs/7263592?t=gh_src=&gh_jid=7263592
+
+16. [Fit 74.44 | Conf 75%] Stripe — Frontend Engineer, Payments & Risk
+   Resume: Frontend Engineer (selection 84.02)
+   Manual gate: fit below 85
+   URL: https://stripe.com/jobs/search?gh_jid=7325252
+
+17. [Fit 74.23 | Conf 90%] Stripe — AI Engineer
+   Resume: Ai Ml Engineer (selection 90.88)
+   Manual gate: fit below 85
+   URL: https://stripe.com/jobs/search?gh_jid=8044460
+
+18. [Fit 73.26 | Conf 75%] Stripe — Machine Learning Engineer
+   Resume: Ai Ml Engineer (selection 83.28)
+   Manual gate: fit below 85
+   URL: https://stripe.com/jobs/search?gh_jid=8137997
+
+19. [Fit 72.08 | Conf 40%] Stripe — Backend Engineer, Developer & End-user Experience Platform
+   Resume: Backend Engineer (selection 88.37)
+   Manual gate: fit below 85; confidence below 75%; no required-skill evidence
+   URL: https://stripe.com/jobs/search?gh_jid=7476555
+
+20. [Fit 71.78 | Conf 90%] Glean — Software Engineer, Data Foundations
+   Resume: Software Engineer (selection 87.58)
+   Manual gate: fit below 85
+   URL: https://job-boards.greenhouse.io/gleanwork/jobs/4637208005
+
+21. [Fit 71.40 | Conf 90%] Twilio — Software Engineer - Video
+   Resume: Software Engineer (selection 84.38)
+   Manual gate: fit below 85
+   URL: https://job-boards.greenhouse.io/twilio/jobs/7661919
+
+22. [Fit 71.33 | Conf 85%] Stripe — Software Engineer, Authorization Infrastructure
+   Resume: Software Engineer (selection 79.69)
+   Manual gate: fit below 85
+   URL: https://stripe.com/jobs/search?gh_jid=8069941
+
+23. [Fit 71.04 | Conf 75%] Glean — Software Engineer, Cloud Infrastructure
+   Resume: Software Engineer (selection 87.73)
+   Manual gate: fit below 85
+   URL: https://job-boards.greenhouse.io/gleanwork/jobs/4709327005
+
+24. [Fit 70.72 | Conf 75%] Glean — Software Engineer, Cloud Deployment Infrastructure
+   Resume: Software Engineer (selection 87.53)
+   Manual gate: fit below 85
+   URL: https://job-boards.greenhouse.io/gleanwork/jobs/4711861005
+
+25. [Fit 69.86 | Conf 45%] Airtable — Software Engineer, Infrastructure (4-8 YOE)
+   Resume: Software Engineer (selection 91.34)
+   Manual gate: fit below 85; confidence below 75%; no required-skill evidence
+   URL: https://job-boards.greenhouse.io/airtable/jobs/8400373002
+
+26. [Fit 68.64 | Conf 45%] Figma — Software Engineer - C++
+   Resume: Software Engineer (selection 90.77)
+   Manual gate: fit below 85; confidence below 75%; no required-skill evidence
+   URL: https://boards.greenhouse.io/figma/jobs/5552530004?gh_jid=5552530004
+
+27. [Fit 68.60 | Conf 85%] Stripe — Software Engineer, Product Security Data Platforms
+   Resume: Software Engineer (selection 86.93)
+   Manual gate: fit below 85
+   URL: https://stripe.com/jobs/search?gh_jid=7761694
+
+28. [Fit 67.63 | Conf 85%] Robinhood — Software Engineer, Proactive Capabilities
+   Resume: Software Engineer (selection 82.91)
+   Manual gate: fit below 85
+   URL: https://boards.greenhouse.io/robinhood/jobs/8067604?t=gh_src=&gh_jid=8067604
+
+29. [Fit 67.56 | Conf 90%] Twilio — Software Engineer L3
+   Resume: Software Engineer (selection 87.54)
+   Manual gate: fit below 85
+   URL: https://job-boards.greenhouse.io/twilio/jobs/8009057
+
+30. [Fit 66.67 | Conf 85%] Chime — Software Engineer, Financial Platform
+   Resume: Software Engineer (selection 82.23)
+   Manual gate: fit below 85
+   URL: https://boards.greenhouse.io/chime/jobs/8594959002?gh_jid=8594959002
+
+31. [Fit 65.93 | Conf 85%] Scale AI — Software Engineer, Platform
+   Resume: Software Engineer (selection 87.03)
+   Manual gate: fit below 85
+   URL: https://job-boards.greenhouse.io/scaleai/jobs/4594879005
+
+32. [Fit 65.70 | Conf 90%] Robinhood — Full Stack Software Engineer, Credit Cards & Banking
+   Resume: Fullstack Engineer (selection 80.11)
+   Manual gate: fit below 85
+   URL: https://boards.greenhouse.io/robinhood/jobs/8008723?t=gh_src=&gh_jid=8008723
+
+33. [Fit 64.06 | Conf 85%] Stripe — Software Engineer, Product Security Data Platforms
+   Resume: Software Engineer (selection 83.29)
+   Manual gate: fit below 85
+   URL: https://stripe.com/jobs/search?gh_jid=8039800
+
+34. [Fit 62.48 | Conf 90%] Twilio — Software Engineer, Identity
+   Resume: Software Engineer (selection 80.61)
+   Manual gate: fit below 85
+   URL: https://job-boards.greenhouse.io/twilio/jobs/7605743
+
+35. [Fit 61.63 | Conf 90%] Scale AI — Infrastructure Software Engineer, Enterprise GenAI
+   Resume: Ai Ml Engineer (selection 81.43)
+   Manual gate: fit below 85
+   URL: https://job-boards.greenhouse.io/scaleai/jobs/4665557005
+
+36. [Fit 61.40 | Conf 100%] Stripe — Software Engineer, Secrets Infrastructure
+   Resume: Software Engineer (selection 79.50)
+   Manual gate: fit below 85
+   URL: https://stripe.com/jobs/search?gh_jid=7396679
+
+37. [Fit 61.34 | Conf 90%] Stripe — Backend Engineer, Core Technology
+   Resume: Backend Engineer (selection 79.76)
+   Manual gate: fit below 85
+   URL: https://stripe.com/jobs/search?gh_jid=6042172
+
+38. [Fit 61.07 | Conf 85%] Stripe — Full Stack Engineer, Support Experience (Greater China Support)
+   Resume: Fullstack Engineer (selection 81.18)
+   Manual gate: fit below 85
+   URL: https://stripe.com/jobs/search?gh_jid=8039548
+
+39. [Fit 60.90 | Conf 40%] Stripe — Backend Engineer, Payments and Risk
+   Resume: Backend Engineer (selection 83.71)
+   Manual gate: fit below 85; confidence below 75%; no required-skill evidence
+   URL: https://stripe.com/jobs/search?gh_jid=7232592
+
+40. [Fit 60.68 | Conf 40%] Stripe — Full Stack Engineer, Link
+   Resume: Fullstack Engineer (selection 83.62)
+   Manual gate: fit below 85; confidence below 75%; no required-skill evidence
+   URL: https://stripe.com/jobs/search?gh_jid=8062305
+
+41. [Fit 60.12 | Conf 75%] Robinhood — Software Engineer, Cryptography
+   Resume: Software Engineer (selection 80.91)
+   Manual gate: fit below 85
+   URL: https://boards.greenhouse.io/robinhood/jobs/8077370?t=gh_src=&gh_jid=8077370
+
+42. [Fit 59.67 | Conf 90%] Twilio — Software Engineer (L2)
+   Resume: Software Engineer (selection 77.26)
+   Manual gate: fit below 85
+   URL: https://job-boards.greenhouse.io/twilio/jobs/8100236
+
+43. [Fit 59.67 | Conf 90%] Twilio — Software Engineer (L2) 
+   Resume: Software Engineer (selection 77.26)
+   Manual gate: fit below 85
+   URL: https://job-boards.greenhouse.io/twilio/jobs/7689461
+
+44. [Fit 58.25 | Conf 90%] Twilio — Software Engineer-Platform Engineering (L3)
+   Resume: Software Engineer (selection 83.06)
+   Manual gate: fit below 85
+   URL: https://job-boards.greenhouse.io/twilio/jobs/8026203
+
+45. [Fit 57.92 | Conf 90%] Chime — Software Engineer, Growth
+   Resume: Software Engineer (selection 77.19)
+   Manual gate: fit below 85
+   URL: https://boards.greenhouse.io/chime/jobs/8782503002?gh_jid=8782503002
+
+46. [Fit 57.76 | Conf 75%] Robinhood — Machine Learning Engineer
+   Resume: Ai Ml Engineer (selection 82.35)
+   Manual gate: fit below 85
+   URL: https://boards.greenhouse.io/robinhood/jobs/7960680?t=gh_src=&gh_jid=7960680
+
+47. [Fit 56.18 | Conf 75%] Scale AI — Software Engineer, Enterprise AI
+   Resume: Ai Ml Engineer (selection 79.61)
+   Manual gate: fit below 85
+   URL: https://job-boards.greenhouse.io/scaleai/jobs/4513943005
+
+48. [Fit 52.57 | Conf 90%] Chime — Software Engineer, Infrastructure
+   Resume: Software Engineer (selection 77.55)
+   Manual gate: fit below 85
+   URL: https://boards.greenhouse.io/chime/jobs/8616359002?gh_jid=8616359002
+
+49. [Fit 51.86 | Conf 75%] Chime — Software Engineer, Communication Platform
+   Resume: Software Engineer (selection 78.67)
+   Manual gate: fit below 85
+   URL: https://boards.greenhouse.io/chime/jobs/8681191002?gh_jid=8681191002
+
+50. [Fit 51.66 | Conf 30%] Stripe — Full Stack Engineer, Enterprise & Ecosystem
+   Resume: Fullstack Engineer (selection 84.89)
+   Manual gate: fit below 85; confidence below 75%; no required-skill evidence
+   URL: https://stripe.com/jobs/search?gh_jid=8118929
+
+51. [Fit 51.37 | Conf 55%] Discord — Software Engineer, Distributed Systems
+   Resume: Software Engineer (selection 79.08)
+   Manual gate: fit below 85; confidence below 75%; no required-skill evidence
+   URL: https://job-boards.greenhouse.io/discord/jobs/8545663002
+
+52. [Fit 51.27 | Conf 45%] Figma — Software Engineer - Mobile Web
+   Resume: Software Engineer (selection 82.62)
+   Manual gate: fit below 85; confidence below 75%; no required-skill evidence
+   URL: https://boards.greenhouse.io/figma/jobs/6100023004?gh_jid=6100023004
+
+53. [Fit 48.33 | Conf 75%] Stripe — Software Engineer, New Grad
+   Resume: Software Engineer (selection 76.46)
+   Manual gate: fit below 85
+   URL: https://stripe.com/jobs/search?gh_jid=8128744
+
+54. [Fit 48.29 | Conf 30%] Stripe — Backend Engineer, Link
+   Resume: Backend Engineer (selection 83.84)
+   Manual gate: fit below 85; confidence below 75%; no required-skill evidence
+   URL: https://stripe.com/jobs/search?gh_jid=8131144
+
+55. [Fit 46.39 | Conf 90%] Stripe — Software Engineer
+   Resume: Software Engineer (selection 72.92)
+   Manual gate: fit below 85
+   URL: https://stripe.com/jobs/search?gh_jid=8137972
+
+56. [Fit 44.16 | Conf 90%] Stripe — Software Engineer, Backend Engineer- Credit Coverage
+   Resume: Backend Engineer (selection 68.12)
+   Manual gate: fit below 85
+   URL: https://stripe.com/jobs/search?gh_jid=8130578
+
+57. [Fit 42.89 | Conf 75%] Stripe — Software Engineer, Platform Infrastructure
+   Resume: Software Engineer (selection 73.06)
+   Manual gate: fit below 85
+   URL: https://stripe.com/jobs/search?gh_jid=8127182
+
+58. [Fit 42.17 | Conf 90%] Chime — Software Engineer, Support Foundations
+   Resume: Software Engineer (selection 74.13)
+   Manual gate: fit below 85
+   URL: https://boards.greenhouse.io/chime/jobs/8607195002?gh_jid=8607195002
+
+59. [Fit 41.34 | Conf 90%] Glean — Machine Learning Engineer, Search Quality
+   Resume: Ai Ml Engineer (selection 73.51)
+   Manual gate: fit below 85
+   URL: https://job-boards.greenhouse.io/gleanwork/jobs/4006735005
+
+60. [Fit 38.51 | Conf 90%] Chime — Software Engineer, Lending
+   Resume: Software Engineer (selection 71.39)
+   Manual gate: fit below 85
+   URL: https://boards.greenhouse.io/chime/jobs/8657011002?gh_jid=8657011002
+
+61. [Fit 35.97 | Conf 90%] Discord — Software Engineer, Developer Success
+   Resume: Software Engineer (selection 65.10)
+   Manual gate: fit below 85
+   URL: https://job-boards.greenhouse.io/discord/jobs/8609250002
+
+62. [Fit 35.05 | Conf 90%] Chime — Software Engineer, Infrastructure
+   Resume: Software Engineer (selection 68.78)
+   Manual gate: fit below 85
+   URL: https://boards.greenhouse.io/chime/jobs/8573625002?gh_jid=8573625002
+
+63. [Fit 31.39 | Conf 85%] Scale AI — Software Engineer, Identity
+   Resume: Software Engineer (selection 70.98)
+   Manual gate: fit below 85
+   URL: https://job-boards.greenhouse.io/scaleai/jobs/4710484005
+
+64. [Fit 29.42 | Conf 90%] Chime — Software Engineer, Membership
+   Resume: Software Engineer (selection 64.56)
+   Manual gate: fit below 85
+   URL: https://boards.greenhouse.io/chime/jobs/8614188002?gh_jid=8614188002
+
+65. [Fit 10.63 | Conf 85%] Stripe — Backend Engineer, Developer & End-user Experience Platform
+   Resume: Backend Engineer (selection 62.53)
+   Manual gate: fit below 85
+   URL: https://stripe.com/jobs/search?gh_jid=7557899
+
+
+========================================================================================================================
+📊 SCORE CALIBRATION TABLE — 73 JOBS
+========================================================================================================================
+
+Fit     Sel     Conf   Req    Pref   Sem    Exp    Route              Job
+------------------------------------------------------------------------------------------------------------------------
+ 98.60   99.56    30%     N/A    N/A   98.6    N/A  AGENT_APPLY        Glean — Software Engineer, Developer Productivity 
+ 95.53   96.65    90%   100.0    N/A   86.6  100.0  MANUAL_PRIORITY    Glean — Machine Learning Engineer, Assistant Quality
+ 90.48   93.26    85%   100.0  100.0   73.0    N/A  MANUAL_PRIORITY    Scale AI — Software Engineer - New Grad
+ 89.80   93.62    75%   100.0    N/A   74.5    N/A  MANUAL_PRIORITY    Scale AI — Software Engineer, Public Sector
+ 89.75   93.59    75%   100.0    N/A   74.4    N/A  MANUAL_PRIORITY    Figma — Software Engineer - Full Stack
+ 88.91   98.86    55%     N/A   50.0   96.3  100.0  AGENT_APPLY        Discord — QA/DevOps Engineer
+ 88.89   93.06    75%   100.0    N/A   72.2    N/A  MANUAL_PRIORITY    Glean — Software Engineer, Frontend
+ 88.73   91.55    90%   100.0    N/A   66.2  100.0  MANUAL_PRIORITY    Scale AI — Software Engineer, Gen AI
+ 87.56   94.17    45%     N/A    N/A   81.3  100.0  AGENT_APPLY        Glean — Software Engineer, AI/ML Infrastructure
+ 87.19   91.99    75%   100.0    N/A   68.0    N/A  MANUAL_PRIORITY    Chime — Software Engineer, AI Enablement
+ 87.11   90.33    90%   100.0    N/A   61.3  100.0  MANUAL_PRIORITY    Robinhood — Software Engineer, Wallet
+ 84.78   92.96    90%   100.0    N/A   71.8   65.0  AGENT_APPLY        Figma — Software Engineer - Growth & Monetization
+ 82.28   91.08    90%   100.0    N/A   64.3   65.0  AGENT_APPLY        Airtable — Software Engineer, Product Backend (4-8 YOE)
+ 81.26   94.14    30%     N/A    N/A   81.3    N/A  AGENT_APPLY        Glean — Software Engineer, Fullstack
+ 80.73   85.55    90%   100.0    N/A   42.2  100.0  AGENT_APPLY        Stripe — Software Engineer, Vulnerability Management
+ 80.29   88.72    90%    80.0    N/A   70.9  100.0  AGENT_APPLY        Twilio — Software Engineer, Platform Engineering (L2)
+ 79.88   89.28    90%   100.0    N/A   57.1   65.0  AGENT_APPLY        Figma — Software Engineer - Traffic
+ 79.19   82.66   100%   100.0  100.0   30.6  100.0  AGENT_APPLY        Discord — Software Engineer, Data Platform
+ 79.01   90.16    45%     N/A    N/A   68.5  100.0  AGENT_APPLY        Chime — Full-Stack Engineer, Human Agent Tooling 
+ 78.09   89.73    45%     N/A    N/A   67.1  100.0  AGENT_APPLY        Scale AI — Software Engineer - AI Enablement
+ 77.39   88.15    85%   100.0   50.0   52.6    N/A  AGENT_APPLY        Stripe — Full Stack Engineer, Bridge
+ 75.71   86.16    90%    75.0    N/A   64.6  100.0  AGENT_APPLY        Twilio — Software Engineer L2 - Cloud Infrastructure 
+ 74.71   84.76   100%    66.7  100.0   65.7  100.0  AGENT_APPLY        Robinhood — Software Engineer, Backend
+ 74.44   84.02    75%   100.0    N/A   36.1    N/A  AGENT_APPLY        Stripe — Frontend Engineer, Payments & Risk
+ 74.23   90.88    90%    66.7    N/A   90.2   65.0  AGENT_APPLY        Stripe — AI Engineer
+ 73.26   83.28    75%   100.0    N/A   33.1    N/A  AGENT_APPLY        Stripe — Machine Learning Engineer
+ 72.08   88.37    40%     N/A  100.0   62.8    N/A  AGENT_APPLY        Stripe — Backend Engineer, Developer & End-user Experience Platform
+ 71.78   87.58    90%    50.0    N/A   90.3  100.0  AGENT_APPLY        Glean — Software Engineer, Data Foundations
+ 71.40   84.38    90%    66.7    N/A   64.2  100.0  AGENT_APPLY        Twilio — Software Engineer - Video
+ 71.33   79.69    85%   100.0  100.0   18.8    N/A  AGENT_APPLY        Stripe — Software Engineer, Authorization Infrastructure
+ 71.04   87.73    75%    66.7    N/A   77.6    N/A  AGENT_APPLY        Glean — Software Engineer, Cloud Infrastructure
+ 70.72   87.53    75%    66.7    N/A   76.8    N/A  AGENT_APPLY        Glean — Software Engineer, Cloud Deployment Infrastructure
+ 69.86   91.34    45%     N/A    N/A   72.3   65.0  AGENT_APPLY        Airtable — Software Engineer, Infrastructure (4-8 YOE)
+ 68.64   90.77    45%     N/A    N/A   70.5   65.0  AGENT_APPLY        Figma — Software Engineer - C++
+ 68.60   86.93    85%    66.7   60.0   74.4    N/A  AGENT_APPLY        Stripe — Software Engineer, Product Security Data Platforms
+ 67.63   82.91    85%    66.7  100.0   58.3    N/A  AGENT_APPLY        Robinhood — Software Engineer, Proactive Capabilities
+ 67.56   87.54    90%    57.1    N/A   84.5   65.0  AGENT_APPLY        Twilio — Software Engineer L3
+ 66.67   82.23    85%    66.7  100.0   55.6    N/A  AGENT_APPLY        Chime — Software Engineer, Financial Platform
+ 65.93   87.03    85%    60.0   50.0   80.1    N/A  AGENT_APPLY        Scale AI — Software Engineer, Platform
+ 65.70   80.11    90%    66.7    N/A   47.1  100.0  AGENT_APPLY        Robinhood — Full Stack Software Engineer, Credit Cards & Banking
+ 64.06   83.29    85%    50.0  100.0   73.2    N/A  AGENT_APPLY        Stripe — Software Engineer, Product Security Data Platforms
+ 62.48   80.61    90%    50.0    N/A   62.4  100.0  AGENT_APPLY        Twilio — Software Engineer, Identity
+ 61.63   81.43    90%    66.7    N/A   52.4   65.0  AGENT_APPLY        Scale AI — Infrastructure Software Engineer, Enterprise GenAI
+ 61.40   79.50   100%    33.3  100.0   71.3  100.0  AGENT_APPLY        Stripe — Software Engineer, Secrets Infrastructure
+ 61.34   79.76    90%    50.0    N/A   59.0  100.0  AGENT_APPLY        Stripe — Backend Engineer, Core Technology
+ 61.07   81.18    85%    50.0  100.0   64.7    N/A  AGENT_APPLY        Stripe — Full Stack Engineer, Support Experience (Greater China Support)
+ 60.90   83.71    40%     N/A  100.0   47.9    N/A  AGENT_APPLY        Stripe — Backend Engineer, Payments and Risk
+ 60.68   83.62    40%     N/A  100.0   47.6    N/A  AGENT_APPLY        Stripe — Full Stack Engineer, Link
+ 60.12   80.91    75%    66.7    N/A   50.3    N/A  AGENT_APPLY        Robinhood — Software Engineer, Cryptography
+ 59.67   77.26    90%    57.1    N/A   43.3  100.0  AGENT_APPLY        Twilio — Software Engineer (L2)
+ 59.67   77.26    90%    57.1    N/A   43.3  100.0  AGENT_APPLY        Twilio — Software Engineer (L2) 
+ 58.25   83.06    90%    42.9    N/A   78.0   65.0  AGENT_APPLY        Twilio — Software Engineer-Platform Engineering (L3)
+ 57.92   77.19    90%    50.0    N/A   48.8  100.0  AGENT_APPLY        Chime — Software Engineer, Growth
+ 57.76   82.35    75%    50.0    N/A   69.4    N/A  AGENT_APPLY        Robinhood — Machine Learning Engineer
+ 56.18   79.61    75%    60.0    N/A   50.5    N/A  AGENT_APPLY        Scale AI — Software Engineer, Enterprise AI
+ 52.57   77.55    90%    25.0    N/A   70.2  100.0  AGENT_APPLY        Chime — Software Engineer, Infrastructure
+ 51.86   78.67    75%    50.0    N/A   54.7    N/A  AGENT_APPLY        Chime — Software Engineer, Communication Platform
+ 51.66   84.89    30%     N/A    N/A   51.7    N/A  AGENT_APPLY        Stripe — Full Stack Engineer, Enterprise & Ecosystem
+ 51.37   79.08    55%     N/A   33.3   33.1  100.0  AGENT_APPLY        Discord — Software Engineer, Distributed Systems
+ 51.27   82.62    45%     N/A    N/A   44.4   65.0  AGENT_APPLY        Figma — Software Engineer - Mobile Web
+ 48.33   76.46    75%    50.0    N/A   45.8    N/A  AGENT_APPLY        Stripe — Software Engineer, New Grad
+ 48.29   83.84    30%     N/A    N/A   48.3    N/A  AGENT_APPLY        Stripe — Backend Engineer, Link
+ 46.39   72.92    90%    50.0    N/A   31.7   65.0  AGENT_APPLY        Stripe — Software Engineer
+ 44.16   68.12    90%    42.9    N/A   18.2  100.0  AGENT_APPLY        Stripe — Software Engineer, Backend Engineer- Credit Coverage
+ 42.89   73.06    75%    50.0    N/A   32.2    N/A  AGENT_APPLY        Stripe — Software Engineer, Platform Infrastructure
+ 42.17   74.13    90%     0.0    N/A   76.5  100.0  AGENT_APPLY        Chime — Software Engineer, Support Foundations
+ 41.34   73.51    90%     0.0    N/A   74.0  100.0  AGENT_APPLY        Glean — Machine Learning Engineer, Search Quality
+ 38.51   71.39    90%     0.0    N/A   65.5  100.0  AGENT_APPLY        Chime — Software Engineer, Lending
+ 35.97   65.10    90%    25.0    N/A   20.4  100.0  AGENT_APPLY        Discord — Software Engineer, Developer Success
+ 35.05   68.78    90%     0.0    N/A   55.1  100.0  AGENT_APPLY        Chime — Software Engineer, Infrastructure
+ 31.39   70.98    85%     0.0   75.0   63.9    N/A  AGENT_APPLY        Scale AI — Software Engineer, Identity
+ 29.42   64.56    90%     0.0    N/A   38.3  100.0  AGENT_APPLY        Chime — Software Engineer, Membership
+ 10.63   62.53    85%     0.0    0.0   30.1    N/A  AGENT_APPLY        Stripe — Backend Engineer, Developer & End-user Experience Platform
+
+
+====================================================================================================
+EVIDENCE / ROUTING SUMMARY
+====================================================================================================
+Scored jobs:                   73
+Jobs with required evidence:   58
+Confidence >= 75%:           58
+Confidence < 75%:            15
+Fit >= 85:                    11
+Fit >= 85 but evidence-held:  3
+
+
+====================================================================================================
+⚠️ LOW-CONFIDENCE SCORED JOBS (<75%) — 15
+====================================================================================================
+
+1. [Fit 98.60 | Conf 30%] Glean — Software Engineer, Developer Productivity 
+   Missing evidence: required, preferred, experience
+   Route: AGENT_APPLY
+
+2. [Fit 81.26 | Conf 30%] Glean — Software Engineer, Fullstack
+   Missing evidence: required, preferred, experience
+   Route: AGENT_APPLY
+
+3. [Fit 51.66 | Conf 30%] Stripe — Full Stack Engineer, Enterprise & Ecosystem
+   Missing evidence: required, preferred, experience
+   Route: AGENT_APPLY
+
+4. [Fit 48.29 | Conf 30%] Stripe — Backend Engineer, Link
+   Missing evidence: required, preferred, experience
+   Route: AGENT_APPLY
+
+5. [Fit 72.08 | Conf 40%] Stripe — Backend Engineer, Developer & End-user Experience Platform
+   Missing evidence: required, experience
+   Route: AGENT_APPLY
+
+6. [Fit 60.90 | Conf 40%] Stripe — Backend Engineer, Payments and Risk
+   Missing evidence: required, experience
+   Route: AGENT_APPLY
+
+7. [Fit 60.68 | Conf 40%] Stripe — Full Stack Engineer, Link
+   Missing evidence: required, experience
+   Route: AGENT_APPLY
+
+8. [Fit 87.56 | Conf 45%] Glean — Software Engineer, AI/ML Infrastructure
+   Missing evidence: required, preferred
+   Route: AGENT_APPLY
+
+9. [Fit 79.01 | Conf 45%] Chime — Full-Stack Engineer, Human Agent Tooling 
+   Missing evidence: required, preferred
+   Route: AGENT_APPLY
+
+10. [Fit 78.09 | Conf 45%] Scale AI — Software Engineer - AI Enablement
+   Missing evidence: required, preferred
+   Route: AGENT_APPLY
+
+11. [Fit 69.86 | Conf 45%] Airtable — Software Engineer, Infrastructure (4-8 YOE)
+   Missing evidence: required, preferred
+   Route: AGENT_APPLY
+
+12. [Fit 68.64 | Conf 45%] Figma — Software Engineer - C++
+   Missing evidence: required, preferred
+   Route: AGENT_APPLY
+
+13. [Fit 51.27 | Conf 45%] Figma — Software Engineer - Mobile Web
+   Missing evidence: required, preferred
+   Route: AGENT_APPLY
+
+14. [Fit 88.91 | Conf 55%] Discord — QA/DevOps Engineer
+   Missing evidence: required
+   Route: AGENT_APPLY
+
+15. [Fit 51.37 | Conf 55%] Discord — Software Engineer, Distributed Systems
+   Missing evidence: required
+   Route: AGENT_APPLY
+
+
+====================================================================================================
+🔎 DETAILED SCORE CALIBRATION REVIEW — 17 JOBS
+====================================================================================================
+
+Selected automatically from:
+  • highest scores
+  • lowest scores
+  • jobs closest to the 85 threshold
+  • jobs with calibration warnings
+  • lowest evidence confidence
+
+----------------------------------------------------------------------------------------------------
+1. Glean — Software Engineer, Developer Productivity 
+----------------------------------------------------------------------------------------------------
+Job-fit score:       98.60
+Score band:          VERY_STRONG
+Route:               AGENT_APPLY
+Threshold delta:     +13.60
+Evidence confidence: 30%
+Active evidence:     30/100
+
+Job profile:         Software Engineer
+Selected resume:     Software Engineer
+Resume select score: 99.56
+Role alignment:      100.00 (resume selection only)
+
+Job-fit components (role alignment excluded):
+  Required:      N/A [MISSING] →  0.00 pts (base weight 45)
+  Preferred:     N/A [MISSING] →  0.00 pts (base weight 10)
+  Semantic:    98.60 [REAL   ] → 98.60 pts (base weight 30)
+  Experience:    N/A [MISSING] →  0.00 pts (base weight 15)
+
+  Renormalized total: 98.60/100
+
+Manual Priority gates:
+  Fit >= 85:          PASS
+  Confidence >= 75%: FAIL
+  Required evidence: FAIL
+  Held because: confidence below 75%; no required-skill evidence
+
+Semantic details:
+  Raw similarity:     59.51
+  Normalized score:   98.60
+
+Required requirements: 0/0
+  ✓ Matched standalone: None
+  ✗ Missing standalone: None
+
+Preferred requirements: 0/0
+  ✓ Matched standalone: None
+  ✗ Missing standalone: None
+
+Experience:
+  Applicant years:   3
+  Required minimum:  Not extracted
+
+Calibration flags:
+  ⚑ No required skill units were extracted; the required component is excluded from job-fit scoring and confidence is reduced.
+  ⚑ No preferred skill units were extracted; the preferred component is excluded from job-fit scoring and confidence is reduced.
+  ⚑ No required experience minimum was extracted; the experience component is excluded from job-fit scoring and confidence is reduced.
+  ⚑ Fit score is above the manual threshold, but the evidence gates prevent Manual Priority routing.
+
+URL: https://job-boards.greenhouse.io/gleanwork/jobs/4614706005
+
+----------------------------------------------------------------------------------------------------
+2. Glean — Machine Learning Engineer, Assistant Quality
+----------------------------------------------------------------------------------------------------
+Job-fit score:       95.53
+Score band:          VERY_STRONG
+Route:               MANUAL_PRIORITY
+Threshold delta:     +10.53
+Evidence confidence: 90%
+Active evidence:     90/100
+
+Job profile:         Ai Ml Engineer
+Selected resume:     Ai Ml Engineer
+Resume select score: 96.65
+Role alignment:      100.00 (resume selection only)
+
+Job-fit components (role alignment excluded):
+  Required:   100.00 [REAL   ] → 50.00 pts (base weight 45)
+  Preferred:     N/A [MISSING] →  0.00 pts (base weight 10)
+  Semantic:    86.60 [REAL   ] → 28.87 pts (base weight 30)
+  Experience: 100.00 [REAL   ] → 16.67 pts (base weight 15)
+
+  Renormalized total: 95.53/100
+
+Manual Priority gates:
+  Fit >= 85:          PASS
+  Confidence >= 75%: PASS
+  Required evidence: PASS
+
+Semantic details:
+  Raw similarity:     55.31
+  Normalized score:   86.60
+
+Required requirements: 2/2
+  ✓ Matched standalone: None
+  ✗ Missing standalone: None
+  Grouped requirements:
+      ✓ one of: LLMs, NLP | matched: LLMs
+      ✓ one of: C++, Go, Java, Python | matched: Java, Python
+
+Preferred requirements: 0/0
+  ✓ Matched standalone: None
+  ✗ Missing standalone: None
+
+Experience:
+  Applicant years:   3
+  Required minimum:  2
+
+Calibration flags:
+  ⚑ No preferred skill units were extracted; the preferred component is excluded from job-fit scoring and confidence is reduced.
+
+URL: https://job-boards.greenhouse.io/gleanwork/jobs/4711484005
+
+----------------------------------------------------------------------------------------------------
+3. Scale AI — Software Engineer - New Grad
+----------------------------------------------------------------------------------------------------
+Job-fit score:       90.48
+Score band:          VERY_STRONG
+Route:               MANUAL_PRIORITY
+Threshold delta:     +5.48
+Evidence confidence: 85%
+Active evidence:     85/100
+
+Job profile:         Software Engineer
+Selected resume:     Software Engineer
+Resume select score: 93.26
+Role alignment:      100.00 (resume selection only)
+
+Job-fit components (role alignment excluded):
+  Required:   100.00 [REAL   ] → 52.94 pts (base weight 45)
+  Preferred:  100.00 [REAL   ] → 11.76 pts (base weight 10)
+  Semantic:    73.03 [REAL   ] → 25.78 pts (base weight 30)
+  Experience:    N/A [MISSING] →  0.00 pts (base weight 15)
+
+  Renormalized total: 90.48/100
+
+Manual Priority gates:
+  Fit >= 85:          PASS
+  Confidence >= 75%: PASS
+  Required evidence: PASS
+
+Semantic details:
+  Raw similarity:     50.56
+  Normalized score:   73.03
+
+Required requirements: 1/1
+  ✓ Matched standalone: None
+  ✗ Missing standalone: None
+  Grouped requirements:
+      ✓ one of: MongoDB, Python, React, TypeScript | matched: MongoDB, Python, React, TypeScript
+
+Preferred requirements: 1/1
+  ✓ Matched standalone: LLMs
+  ✗ Missing standalone: None
+
+Experience:
+  Applicant years:   3
+  Required minimum:  Not extracted
+
+Calibration flags:
+  ⚑ No required experience minimum was extracted; the experience component is excluded from job-fit scoring and confidence is reduced.
+
+URL: https://job-boards.greenhouse.io/scaleai/jobs/4730836005
+
+----------------------------------------------------------------------------------------------------
+4. Figma — Software Engineer - Growth & Monetization
+----------------------------------------------------------------------------------------------------
+Job-fit score:       84.78
+Score band:          MODERATE
+Route:               AGENT_APPLY
+Threshold delta:     -0.22
+Evidence confidence: 90%
+Active evidence:     90/100
+
+Job profile:         Software Engineer
+Selected resume:     Software Engineer
+Resume select score: 92.96
+Role alignment:      100.00 (resume selection only)
+
+Job-fit components (role alignment excluded):
+  Required:   100.00 [REAL   ] → 50.00 pts (base weight 45)
+  Preferred:     N/A [MISSING] →  0.00 pts (base weight 10)
+  Semantic:    71.83 [REAL   ] → 23.94 pts (base weight 30)
+  Experience:  65.00 [REAL   ] → 10.83 pts (base weight 15)
+
+  Renormalized total: 84.78/100
+
+Manual Priority gates:
+  Fit >= 85:          FAIL
+  Confidence >= 75%: PASS
+  Required evidence: PASS
+  Held because: fit below 85
+
+Semantic details:
+  Raw similarity:     50.14
+  Normalized score:   71.83
+
+Required requirements: 2/2
+  ✓ Matched standalone: None
+  ✗ Missing standalone: None
+  Grouped requirements:
+      ✓ one of: React, TypeScript | matched: React, TypeScript
+      ✓ one of: Go, PostgreSQL, Python, Ruby | matched: Python
+
+Preferred requirements: 0/0
+  ✓ Matched standalone: None
+  ✗ Missing standalone: None
+
+Experience:
+  Applicant years:   3
+  Required minimum:  4
+
+Calibration flags:
+  ⚑ No preferred skill units were extracted; the preferred component is excluded from job-fit scoring and confidence is reduced.
+  ⚑ Experience score is reduced because the minimum requirement is one year above the configured applicant experience.
+
+URL: https://boards.greenhouse.io/figma/jobs/5552560004?gh_jid=5552560004
+
+----------------------------------------------------------------------------------------------------
+5. Robinhood — Software Engineer, Wallet
+----------------------------------------------------------------------------------------------------
+Job-fit score:       87.11
+Score band:          STRONG
+Route:               MANUAL_PRIORITY
+Threshold delta:     +2.11
+Evidence confidence: 90%
+Active evidence:     90/100
+
+Job profile:         Software Engineer
+Selected resume:     Software Engineer
+Resume select score: 90.33
+Role alignment:      100.00 (resume selection only)
+
+Job-fit components (role alignment excluded):
+  Required:   100.00 [REAL   ] → 50.00 pts (base weight 45)
+  Preferred:     N/A [MISSING] →  0.00 pts (base weight 10)
+  Semantic:    61.34 [REAL   ] → 20.45 pts (base weight 30)
+  Experience: 100.00 [REAL   ] → 16.67 pts (base weight 15)
+
+  Renormalized total: 87.11/100
+
+Manual Priority gates:
+  Fit >= 85:          PASS
+  Confidence >= 75%: PASS
+  Required evidence: PASS
+
+Semantic details:
+  Raw similarity:     46.47
+  Normalized score:   61.34
+
+Required requirements: 2/2
+  ✓ Matched standalone: System Design
+  ✗ Missing standalone: None
+  Grouped requirements:
+      ✓ one of: Go, Java, Python | matched: Java, Python
+
+Preferred requirements: 0/0
+  ✓ Matched standalone: None
+  ✗ Missing standalone: None
+
+Experience:
+  Applicant years:   3
+  Required minimum:  2
+
+Calibration flags:
+  ⚑ No preferred skill units were extracted; the preferred component is excluded from job-fit scoring and confidence is reduced.
+
+URL: https://boards.greenhouse.io/robinhood/jobs/8088444?t=gh_src=&gh_jid=8088444
+
+----------------------------------------------------------------------------------------------------
+6. Chime — Software Engineer, AI Enablement
+----------------------------------------------------------------------------------------------------
+Job-fit score:       87.19
+Score band:          STRONG
+Route:               MANUAL_PRIORITY
+Threshold delta:     +2.19
+Evidence confidence: 75%
+Active evidence:     75/100
+
+Job profile:         Ai Ml Engineer
+Selected resume:     Ai Ml Engineer
+Resume select score: 91.99
+Role alignment:      100.00 (resume selection only)
+
+Job-fit components (role alignment excluded):
+  Required:   100.00 [REAL   ] → 60.00 pts (base weight 45)
+  Preferred:     N/A [MISSING] →  0.00 pts (base weight 10)
+  Semantic:    67.97 [REAL   ] → 27.19 pts (base weight 30)
+  Experience:    N/A [MISSING] →  0.00 pts (base weight 15)
+
+  Renormalized total: 87.19/100
+
+Manual Priority gates:
+  Fit >= 85:          PASS
+  Confidence >= 75%: PASS
+  Required evidence: PASS
+
+Semantic details:
+  Raw similarity:     48.79
+  Normalized score:   67.97
+
+Required requirements: 2/2
+  ✓ Matched standalone: LLMs
+  ✗ Missing standalone: None
+  Grouped requirements:
+      ✓ one of: Go, JavaScript, Python, TypeScript | matched: JavaScript, Python, TypeScript
+
+Preferred requirements: 0/0
+  ✓ Matched standalone: None
+  ✗ Missing standalone: None
+
+Experience:
+  Applicant years:   3
+  Required minimum:  Not extracted
+
+Calibration flags:
+  ⚑ No preferred skill units were extracted; the preferred component is excluded from job-fit scoring and confidence is reduced.
+  ⚑ No required experience minimum was extracted; the experience component is excluded from job-fit scoring and confidence is reduced.
+
+URL: https://boards.greenhouse.io/chime/jobs/8578967002?gh_jid=8578967002
+
+----------------------------------------------------------------------------------------------------
+7. Glean — Software Engineer, AI/ML Infrastructure
+----------------------------------------------------------------------------------------------------
+Job-fit score:       87.56
+Score band:          STRONG
+Route:               AGENT_APPLY
+Threshold delta:     +2.56
+Evidence confidence: 45%
+Active evidence:     45/100
+
+Job profile:         Ai Ml Engineer
+Selected resume:     Ai Ml Engineer
+Resume select score: 94.17
+Role alignment:      100.00 (resume selection only)
+
+Job-fit components (role alignment excluded):
+  Required:      N/A [MISSING] →  0.00 pts (base weight 45)
+  Preferred:     N/A [MISSING] →  0.00 pts (base weight 10)
+  Semantic:    81.34 [REAL   ] → 54.23 pts (base weight 30)
+  Experience: 100.00 [REAL   ] → 33.33 pts (base weight 15)
+
+  Renormalized total: 87.56/100
+
+Manual Priority gates:
+  Fit >= 85:          PASS
+  Confidence >= 75%: FAIL
+  Required evidence: FAIL
+  Held because: confidence below 75%; no required-skill evidence
+
+Semantic details:
+  Raw similarity:     53.47
+  Normalized score:   81.34
+
+Required requirements: 0/0
+  ✓ Matched standalone: None
+  ✗ Missing standalone: None
+
+Preferred requirements: 0/0
+  ✓ Matched standalone: None
+  ✗ Missing standalone: None
+
+Experience:
+  Applicant years:   3
+  Required minimum:  2
+
+Calibration flags:
+  ⚑ No required skill units were extracted; the required component is excluded from job-fit scoring and confidence is reduced.
+  ⚑ No preferred skill units were extracted; the preferred component is excluded from job-fit scoring and confidence is reduced.
+  ⚑ Fit score is above the manual threshold, but the evidence gates prevent Manual Priority routing.
+
+URL: https://job-boards.greenhouse.io/gleanwork/jobs/4501783005
+
+----------------------------------------------------------------------------------------------------
+8. Airtable — Software Engineer, Product Backend (4-8 YOE)
+----------------------------------------------------------------------------------------------------
+Job-fit score:       82.28
+Score band:          MODERATE
+Route:               AGENT_APPLY
+Threshold delta:     -2.72
+Evidence confidence: 90%
+Active evidence:     90/100
+
+Job profile:         Backend Engineer
+Selected resume:     Backend Engineer
+Resume select score: 91.08
+Role alignment:      100.00 (resume selection only)
+
+Job-fit components (role alignment excluded):
+  Required:   100.00 [REAL   ] → 50.00 pts (base weight 45)
+  Preferred:     N/A [MISSING] →  0.00 pts (base weight 10)
+  Semantic:    64.34 [REAL   ] → 21.45 pts (base weight 30)
+  Experience:  65.00 [REAL   ] → 10.83 pts (base weight 15)
+
+  Renormalized total: 82.28/100
+
+Manual Priority gates:
+  Fit >= 85:          FAIL
+  Confidence >= 75%: PASS
+  Required evidence: PASS
+  Held because: fit below 85
+
+Semantic details:
+  Raw similarity:     47.52
+  Normalized score:   64.34
+
+Required requirements: 2/2
+  ✓ Matched standalone: JavaScript, React
+  ✗ Missing standalone: None
+
+Preferred requirements: 0/0
+  ✓ Matched standalone: None
+  ✗ Missing standalone: None
+
+Experience:
+  Applicant years:   3
+  Required minimum:  4
+
+Calibration flags:
+  ⚑ No preferred skill units were extracted; the preferred component is excluded from job-fit scoring and confidence is reduced.
+  ⚑ Experience score is reduced because the minimum requirement is one year above the configured applicant experience.
+
+URL: https://job-boards.greenhouse.io/airtable/jobs/8397515002
+
+----------------------------------------------------------------------------------------------------
+9. Scale AI — Software Engineer, Identity
+----------------------------------------------------------------------------------------------------
+Job-fit score:       31.39
+Score band:          VERY_WEAK
+Route:               AGENT_APPLY
+Threshold delta:     -53.61
+Evidence confidence: 85%
+Active evidence:     85/100
+
+Job profile:         Software Engineer
+Selected resume:     Software Engineer
+Resume select score: 70.98
+Role alignment:      100.00 (resume selection only)
+
+Job-fit components (role alignment excluded):
+  Required:     0.00 [REAL   ] →  0.00 pts (base weight 45)
+  Preferred:   75.00 [REAL   ] →  8.82 pts (base weight 10)
+  Semantic:    63.94 [REAL   ] → 22.57 pts (base weight 30)
+  Experience:    N/A [MISSING] →  0.00 pts (base weight 15)
+
+  Renormalized total: 31.39/100
+
+Manual Priority gates:
+  Fit >= 85:          FAIL
+  Confidence >= 75%: PASS
+  Required evidence: PASS
+  Held because: fit below 85
+
+Semantic details:
+  Raw similarity:     47.38
+  Normalized score:   63.94
+
+Required requirements: 0/1
+  ✓ Matched standalone: None
+  ✗ Missing standalone: Distributed Systems
+
+Preferred requirements: 3/4
+  ✓ Matched standalone: AWS, GCP
+  ✗ Missing standalone: Azure
+  Grouped requirements:
+      ✓ one of: Java, Node.js, Python | matched: Java, Node.js, Python
+
+Experience:
+  Applicant years:   3
+  Required minimum:  Not extracted
+
+Calibration flags:
+  ⚑ No required experience minimum was extracted; the experience component is excluded from job-fit scoring and confidence is reduced.
+  ⚑ Required-skill coverage is below 60%.
+
+URL: https://job-boards.greenhouse.io/scaleai/jobs/4710484005
+
+----------------------------------------------------------------------------------------------------
+10. Chime — Software Engineer, Membership
+----------------------------------------------------------------------------------------------------
+Job-fit score:       29.42
+Score band:          VERY_WEAK
+Route:               AGENT_APPLY
+Threshold delta:     -55.58
+Evidence confidence: 90%
+Active evidence:     90/100
+
+Job profile:         Software Engineer
+Selected resume:     Software Engineer
+Resume select score: 64.56
+Role alignment:      100.00 (resume selection only)
+
+Job-fit components (role alignment excluded):
+  Required:     0.00 [REAL   ] →  0.00 pts (base weight 45)
+  Preferred:     N/A [MISSING] →  0.00 pts (base weight 10)
+  Semantic:    38.26 [REAL   ] → 12.75 pts (base weight 30)
+  Experience: 100.00 [REAL   ] → 16.67 pts (base weight 15)
+
+  Renormalized total: 29.42/100
+
+Manual Priority gates:
+  Fit >= 85:          FAIL
+  Confidence >= 75%: PASS
+  Required evidence: PASS
+  Held because: fit below 85
+
+Semantic details:
+  Raw similarity:     38.39
+  Normalized score:   38.26
+
+Required requirements: 0/1
+  ✓ Matched standalone: None
+  ✗ Missing standalone: Ruby
+
+Preferred requirements: 0/0
+  ✓ Matched standalone: None
+  ✗ Missing standalone: None
+
+Experience:
+  Applicant years:   3
+  Required minimum:  2
+
+Calibration flags:
+  ⚑ No preferred skill units were extracted; the preferred component is excluded from job-fit scoring and confidence is reduced.
+  ⚑ Required-skill coverage is below 60%.
+
+URL: https://boards.greenhouse.io/chime/jobs/8614188002?gh_jid=8614188002
+
+----------------------------------------------------------------------------------------------------
+11. Stripe — Backend Engineer, Developer & End-user Experience Platform
+----------------------------------------------------------------------------------------------------
+Job-fit score:       10.63
+Score band:          VERY_WEAK
+Route:               AGENT_APPLY
+Threshold delta:     -74.37
+Evidence confidence: 85%
+Active evidence:     85/100
+
+Job profile:         Backend Engineer
+Selected resume:     Backend Engineer
+Resume select score: 62.53
+Role alignment:      100.00 (resume selection only)
+
+Job-fit components (role alignment excluded):
+  Required:     0.00 [REAL   ] →  0.00 pts (base weight 45)
+  Preferred:    0.00 [REAL   ] →  0.00 pts (base weight 10)
+  Semantic:    30.11 [REAL   ] → 10.63 pts (base weight 30)
+  Experience:    N/A [MISSING] →  0.00 pts (base weight 15)
+
+  Renormalized total: 10.63/100
+
+Manual Priority gates:
+  Fit >= 85:          FAIL
+  Confidence >= 75%: PASS
+  Required evidence: PASS
+  Held because: fit below 85
+
+Semantic details:
+  Raw similarity:     35.54
+  Normalized score:   30.11
+
+Required requirements: 0/1
+  ✓ Matched standalone: None
+  ✗ Missing standalone: Go
+
+Preferred requirements: 0/1
+  ✓ Matched standalone: None
+  ✗ Missing standalone: Ruby
+
+Experience:
+  Applicant years:   3
+  Required minimum:  Not extracted
+
+Calibration flags:
+  ⚑ No required experience minimum was extracted; the experience component is excluded from job-fit scoring and confidence is reduced.
+  ⚑ Required-skill coverage is below 60%.
+
+URL: https://stripe.com/jobs/search?gh_jid=7557899
+
+----------------------------------------------------------------------------------------------------
+12. Glean — Software Engineer, Fullstack
+----------------------------------------------------------------------------------------------------
+Job-fit score:       81.26
+Score band:          MODERATE
+Route:               AGENT_APPLY
+Threshold delta:     -3.74
+Evidence confidence: 30%
+Active evidence:     30/100
+
+Job profile:         Fullstack Engineer
+Selected resume:     Fullstack Engineer
+Resume select score: 94.14
+Role alignment:      100.00 (resume selection only)
+
+Job-fit components (role alignment excluded):
+  Required:      N/A [MISSING] →  0.00 pts (base weight 45)
+  Preferred:     N/A [MISSING] →  0.00 pts (base weight 10)
+  Semantic:    81.26 [REAL   ] → 81.26 pts (base weight 30)
+  Experience:    N/A [MISSING] →  0.00 pts (base weight 15)
+
+  Renormalized total: 81.26/100
+
+Manual Priority gates:
+  Fit >= 85:          FAIL
+  Confidence >= 75%: FAIL
+  Required evidence: FAIL
+  Held because: fit below 85; confidence below 75%; no required-skill evidence
+
+Semantic details:
+  Raw similarity:     53.44
+  Normalized score:   81.26
+
+Required requirements: 0/0
+  ✓ Matched standalone: None
+  ✗ Missing standalone: None
+
+Preferred requirements: 0/0
+  ✓ Matched standalone: None
+  ✗ Missing standalone: None
+
+Experience:
+  Applicant years:   3
+  Required minimum:  Not extracted
+
+Calibration flags:
+  ⚑ No required skill units were extracted; the required component is excluded from job-fit scoring and confidence is reduced.
+  ⚑ No preferred skill units were extracted; the preferred component is excluded from job-fit scoring and confidence is reduced.
+  ⚑ No required experience minimum was extracted; the experience component is excluded from job-fit scoring and confidence is reduced.
+
+URL: https://job-boards.greenhouse.io/gleanwork/jobs/4006734005
+
+----------------------------------------------------------------------------------------------------
+13. Airtable — Software Engineer, Infrastructure (4-8 YOE)
+----------------------------------------------------------------------------------------------------
+Job-fit score:       69.86
+Score band:          WEAK
+Route:               AGENT_APPLY
+Threshold delta:     -15.14
+Evidence confidence: 45%
+Active evidence:     45/100
+
+Job profile:         Software Engineer
+Selected resume:     Software Engineer
+Resume select score: 91.34
+Role alignment:      100.00 (resume selection only)
+
+Job-fit components (role alignment excluded):
+  Required:      N/A [MISSING] →  0.00 pts (base weight 45)
+  Preferred:     N/A [MISSING] →  0.00 pts (base weight 10)
+  Semantic:    72.29 [REAL   ] → 48.19 pts (base weight 30)
+  Experience:  65.00 [REAL   ] → 21.67 pts (base weight 15)
+
+  Renormalized total: 69.86/100
+
+Manual Priority gates:
+  Fit >= 85:          FAIL
+  Confidence >= 75%: FAIL
+  Required evidence: FAIL
+  Held because: fit below 85; confidence below 75%; no required-skill evidence
+
+Semantic details:
+  Raw similarity:     50.30
+  Normalized score:   72.29
+
+Required requirements: 0/0
+  ✓ Matched standalone: None
+  ✗ Missing standalone: None
+
+Preferred requirements: 0/0
+  ✓ Matched standalone: None
+  ✗ Missing standalone: None
+
+Experience:
+  Applicant years:   3
+  Required minimum:  4
+
+Calibration flags:
+  ⚑ No required skill units were extracted; the required component is excluded from job-fit scoring and confidence is reduced.
+  ⚑ No preferred skill units were extracted; the preferred component is excluded from job-fit scoring and confidence is reduced.
+  ⚑ Experience score is reduced because the minimum requirement is one year above the configured applicant experience.
+
+URL: https://job-boards.greenhouse.io/airtable/jobs/8400373002
+
+----------------------------------------------------------------------------------------------------
+14. Figma — Software Engineer - C++
+----------------------------------------------------------------------------------------------------
+Job-fit score:       68.64
+Score band:          WEAK
+Route:               AGENT_APPLY
+Threshold delta:     -16.36
+Evidence confidence: 45%
+Active evidence:     45/100
+
+Job profile:         Software Engineer
+Selected resume:     Software Engineer
+Resume select score: 90.77
+Role alignment:      100.00 (resume selection only)
+
+Job-fit components (role alignment excluded):
+  Required:      N/A [MISSING] →  0.00 pts (base weight 45)
+  Preferred:     N/A [MISSING] →  0.00 pts (base weight 10)
+  Semantic:    70.46 [REAL   ] → 46.97 pts (base weight 30)
+  Experience:  65.00 [REAL   ] → 21.67 pts (base weight 15)
+
+  Renormalized total: 68.64/100
+
+Manual Priority gates:
+  Fit >= 85:          FAIL
+  Confidence >= 75%: FAIL
+  Required evidence: FAIL
+  Held because: fit below 85; confidence below 75%; no required-skill evidence
+
+Semantic details:
+  Raw similarity:     49.66
+  Normalized score:   70.46
+
+Required requirements: 0/0
+  ✓ Matched standalone: None
+  ✗ Missing standalone: None
+
+Preferred requirements: 0/0
+  ✓ Matched standalone: None
+  ✗ Missing standalone: None
+
+Experience:
+  Applicant years:   3
+  Required minimum:  4
+
+Calibration flags:
+  ⚑ No required skill units were extracted; the required component is excluded from job-fit scoring and confidence is reduced.
+  ⚑ No preferred skill units were extracted; the preferred component is excluded from job-fit scoring and confidence is reduced.
+  ⚑ Experience score is reduced because the minimum requirement is one year above the configured applicant experience.
+
+URL: https://boards.greenhouse.io/figma/jobs/5552530004?gh_jid=5552530004
+
+----------------------------------------------------------------------------------------------------
+15. Stripe — Full Stack Engineer, Enterprise & Ecosystem
+----------------------------------------------------------------------------------------------------
+Job-fit score:       51.66
+Score band:          VERY_WEAK
+Route:               AGENT_APPLY
+Threshold delta:     -33.34
+Evidence confidence: 30%
+Active evidence:     30/100
+
+Job profile:         Fullstack Engineer
+Selected resume:     Fullstack Engineer
+Resume select score: 84.89
+Role alignment:      100.00 (resume selection only)
+
+Job-fit components (role alignment excluded):
+  Required:      N/A [MISSING] →  0.00 pts (base weight 45)
+  Preferred:     N/A [MISSING] →  0.00 pts (base weight 10)
+  Semantic:    51.66 [REAL   ] → 51.66 pts (base weight 30)
+  Experience:    N/A [MISSING] →  0.00 pts (base weight 15)
+
+  Renormalized total: 51.66/100
+
+Manual Priority gates:
+  Fit >= 85:          FAIL
+  Confidence >= 75%: FAIL
+  Required evidence: FAIL
+  Held because: fit below 85; confidence below 75%; no required-skill evidence
+
+Semantic details:
+  Raw similarity:     43.08
+  Normalized score:   51.66
+
+Required requirements: 0/0
+  ✓ Matched standalone: None
+  ✗ Missing standalone: None
+
+Preferred requirements: 0/0
+  ✓ Matched standalone: None
+  ✗ Missing standalone: None
+
+Experience:
+  Applicant years:   3
+  Required minimum:  Not extracted
+
+Calibration flags:
+  ⚑ No required skill units were extracted; the required component is excluded from job-fit scoring and confidence is reduced.
+  ⚑ No preferred skill units were extracted; the preferred component is excluded from job-fit scoring and confidence is reduced.
+  ⚑ No required experience minimum was extracted; the experience component is excluded from job-fit scoring and confidence is reduced.
+
+URL: https://stripe.com/jobs/search?gh_jid=8118929
+
+----------------------------------------------------------------------------------------------------
+16. Stripe — Backend Engineer, Link
+----------------------------------------------------------------------------------------------------
+Job-fit score:       48.29
+Score band:          VERY_WEAK
+Route:               AGENT_APPLY
+Threshold delta:     -36.71
+Evidence confidence: 30%
+Active evidence:     30/100
+
+Job profile:         Backend Engineer
+Selected resume:     Backend Engineer
+Resume select score: 83.84
+Role alignment:      100.00 (resume selection only)
+
+Job-fit components (role alignment excluded):
+  Required:      N/A [MISSING] →  0.00 pts (base weight 45)
+  Preferred:     N/A [MISSING] →  0.00 pts (base weight 10)
+  Semantic:    48.29 [REAL   ] → 48.29 pts (base weight 30)
+  Experience:    N/A [MISSING] →  0.00 pts (base weight 15)
+
+  Renormalized total: 48.29/100
+
+Manual Priority gates:
+  Fit >= 85:          FAIL
+  Confidence >= 75%: FAIL
+  Required evidence: FAIL
+  Held because: fit below 85; confidence below 75%; no required-skill evidence
+
+Semantic details:
+  Raw similarity:     41.90
+  Normalized score:   48.29
+
+Required requirements: 0/0
+  ✓ Matched standalone: None
+  ✗ Missing standalone: None
+
+Preferred requirements: 0/0
+  ✓ Matched standalone: None
+  ✗ Missing standalone: None
+
+Experience:
+  Applicant years:   3
+  Required minimum:  Not extracted
+
+Calibration flags:
+  ⚑ No required skill units were extracted; the required component is excluded from job-fit scoring and confidence is reduced.
+  ⚑ No preferred skill units were extracted; the preferred component is excluded from job-fit scoring and confidence is reduced.
+  ⚑ No required experience minimum was extracted; the experience component is excluded from job-fit scoring and confidence is reduced.
+
+URL: https://stripe.com/jobs/search?gh_jid=8131144
+
+----------------------------------------------------------------------------------------------------
+17. Stripe — Backend Engineer, Developer & End-user Experience Platform
+----------------------------------------------------------------------------------------------------
+Job-fit score:       72.08
+Score band:          WEAK
+Route:               AGENT_APPLY
+Threshold delta:     -12.92
+Evidence confidence: 40%
+Active evidence:     40/100
+
+Job profile:         Backend Engineer
+Selected resume:     Backend Engineer
+Resume select score: 88.37
+Role alignment:      100.00 (resume selection only)
+
+Job-fit components (role alignment excluded):
+  Required:      N/A [MISSING] →  0.00 pts (base weight 45)
+  Preferred:  100.00 [REAL   ] → 25.00 pts (base weight 10)
+  Semantic:    62.77 [REAL   ] → 47.08 pts (base weight 30)
+  Experience:    N/A [MISSING] →  0.00 pts (base weight 15)
+
+  Renormalized total: 72.08/100
+
+Manual Priority gates:
+  Fit >= 85:          FAIL
+  Confidence >= 75%: FAIL
+  Required evidence: FAIL
+  Held because: fit below 85; confidence below 75%; no required-skill evidence
+
+Semantic details:
+  Raw similarity:     46.97
+  Normalized score:   62.77
+
+Required requirements: 0/0
+  ✓ Matched standalone: None
+  ✗ Missing standalone: None
+
+Preferred requirements: 1/1
+  ✓ Matched standalone: None
+  ✗ Missing standalone: None
+  Grouped requirements:
+      ✓ one of: AWS, Docker, GraphQL, Kubernetes, gRPC | matched: AWS, Docker
+
+Experience:
+  Applicant years:   3
+  Required minimum:  Not extracted
+
+Calibration flags:
+  ⚑ No required skill units were extracted; the required component is excluded from job-fit scoring and confidence is reduced.
+  ⚑ No required experience minimum was extracted; the experience component is excluded from job-fit scoring and confidence is reduced.
+
+URL: https://stripe.com/jobs/search?gh_jid=7476555
+
+
+==========================================================================================
+MULTI-COMPANY RUN COMPLETE
+==========================================================================================
+Companies scanned:           11
+Jobs discovered:             1551
+Target-role jobs:            159
+Employment filtered:         7
+US-compatible jobs:          100
+Jobs eligible/scored:        73
+Needs assistance:            4
+Hard blocked:                0
+Jobs marked inactive:        0
+Manual priority:             8
+Agent apply:                 65
+Experience filtered:         23
+Unknown location:            8
+Low-confidence scored jobs:  15
+Total runtime:               63.63s
+==========================================================================================

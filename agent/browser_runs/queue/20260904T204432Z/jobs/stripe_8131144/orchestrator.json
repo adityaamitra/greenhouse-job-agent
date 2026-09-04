@@ -1,0 +1,32 @@
+{
+  "orchestrator_version": 1.1,
+  "job_id": "dcc02b39-f3e5-4aa9-9b62-33735182d01d",
+  "application_id": "c6c7b920-3ec8-4e79-bf71-a2e9ec0a2410",
+  "board_token": "stripe",
+  "greenhouse_job_id": "8131144",
+  "company": "Stripe",
+  "job_title": "Backend Engineer, Link",
+  "stored_job_url_host": "stripe.com",
+  "application_url_host": "job-boards.greenhouse.io",
+  "matcher_route": "AGENT_APPLY",
+  "selected_resume": "backend_engineer.pdf",
+  "handoff_route": "NEEDS_ASSISTANCE",
+  "outcome": "NEEDS_ASSISTANCE",
+  "challenge_detected": true,
+  "ready_count": 15,
+  "required_human_count": 7,
+  "fill_tasks_attempted": 0,
+  "filled": 0,
+  "fill_failed": 0,
+  "browser_modified": false,
+  "persisted": false,
+  "submit_clicked_by_agent": false,
+  "application_submitted": false,
+  "artifacts": {
+    "inspection": "browser_runs/queue/20260904T204432Z/jobs/stripe_8131144/inspection.json",
+    "fill": "browser_runs/queue/20260904T204432Z/jobs/stripe_8131144/fill.json",
+    "handoff": "browser_runs/queue/20260904T204432Z/jobs/stripe_8131144/handoff.json",
+    "handoff_markdown": "browser_runs/queue/20260904T204432Z/jobs/stripe_8131144/handoff.md",
+    "orchestrator": "browser_runs/queue/20260904T204432Z/jobs/stripe_8131144/orchestrator.json"
+  }
+}

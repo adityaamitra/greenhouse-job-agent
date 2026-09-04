@@ -1,0 +1,53 @@
+{
+  "queue_runner_version": 1,
+  "run_id": "20260904T215217Z",
+  "started_at": "2026-09-04T21:52:16.555165+00:00",
+  "completed_at": "2026-09-04T21:52:24.949983+00:00",
+  "total_seconds": 8.395,
+  "persist": true,
+  "history_persisted": true,
+  "history_id": "3f78786d-b17f-4ffd-a4d7-2ed84fa92cef",
+  "history_error": null,
+  "limit": 1,
+  "include_in_progress": false,
+  "board_token_filter": null,
+  "order": "oldest",
+  "delay_seconds": 2.0,
+  "summary": {
+    "selected": 1,
+    "completed": 1,
+    "needs_assistance": 1,
+    "ready_no_submit": 0,
+    "blocked": 0,
+    "errors": 0,
+    "challenge_count": 1,
+    "browser_modified_count": 0,
+    "submitted": 0
+  },
+  "results": [
+    {
+      "job_id": "ecc8f0f6-0859-429a-8567-ce26f5eb2b1d",
+      "application_id": "0d95cf11-9a2f-43fe-a9ce-5304c864e9a8",
+      "board_token": "stripe",
+      "greenhouse_job_id": "8142764",
+      "company": "Stripe",
+      "title": "Full Stack Engineer, Bridge",
+      "matcher_route": "AGENT_APPLY",
+      "selected_resume": "fullstack_engineer.pdf",
+      "queue_status": "COMPLETED",
+      "outcome": "NEEDS_ASSISTANCE",
+      "challenge_detected": true,
+      "ready_count": 13,
+      "required_human_count": 6,
+      "browser_modified": false,
+      "persisted": true,
+      "application_status_after": "PENDING",
+      "submit_clicked_by_agent": false,
+      "application_submitted": false,
+      "error_type": null,
+      "error": null
+    }
+  ],
+  "application_submitted": false,
+  "submit_clicked_by_agent": false
+}

@@ -1,0 +1,110 @@
+{
+  "requested_url": "https://job-boards.greenhouse.io/gleanwork/jobs/4006734005",
+  "final_url": "https://job-boards.greenhouse.io/gleanwork/jobs/4006734005",
+  "page_title": "Job Application for Software Engineer, Fullstack at Glean",
+  "form_frame_url": "https://job-boards.greenhouse.io/gleanwork/jobs/4006734005",
+  "resolution_summary": {
+    "total_fields": 18,
+    "ready_fields": 8,
+    "required_unresolved": 5,
+    "optional_unresolved": 5,
+    "policy_mismatches": 0,
+    "missing_resume": 0,
+    "ready_for_submission": false,
+    "browser_modified": false,
+    "submit_attempted": false
+  },
+  "fill_results": [
+    {
+      "label": "First Name*",
+      "category": "FIRST_NAME",
+      "answer_key": "FIRST_NAME",
+      "required": true,
+      "status": "FILLED",
+      "operation": "FILL_VALUE",
+      "source": "profile",
+      "reason": "Text-like control filled."
+    },
+    {
+      "label": "Last Name*",
+      "category": "LAST_NAME",
+      "answer_key": "LAST_NAME",
+      "required": true,
+      "status": "FILLED",
+      "operation": "FILL_VALUE",
+      "source": "profile",
+      "reason": "Text-like control filled."
+    },
+    {
+      "label": "Email*",
+      "category": "EMAIL",
+      "answer_key": "EMAIL",
+      "required": true,
+      "status": "FILLED",
+      "operation": "FILL_VALUE",
+      "source": "profile",
+      "reason": "Text-like control filled."
+    },
+    {
+      "label": "Country*",
+      "category": "COUNTRY",
+      "answer_key": "COUNTRY",
+      "required": true,
+      "status": "FILL_FAILED",
+      "operation": "SELECT_OPTION",
+      "source": "profile",
+      "reason": "Custom dropdown exact-match resolution failed for 'United States': 0 exact visible candidate(s). Input was cleared. control role='combobox', aria-controls='react-select-country-listbox', aria-expanded='true' | visible popup text: United States +1"
+    },
+    {
+      "label": "Phone*",
+      "category": "PHONE",
+      "answer_key": "PHONE",
+      "required": true,
+      "status": "FILLED",
+      "operation": "FILL_VALUE",
+      "source": "profile",
+      "reason": "Text-like control filled."
+    },
+    {
+      "label": "Attach",
+      "category": "RESUME",
+      "answer_key": "SELECTED_RESUME_FILE",
+      "required": true,
+      "status": "FILLED",
+      "operation": "UPLOAD_RESUME",
+      "source": "matcher",
+      "reason": "Resume attached to the file input."
+    },
+    {
+      "label": "LinkedIn Profile*",
+      "category": "LINKEDIN",
+      "answer_key": "LINKEDIN_URL",
+      "required": true,
+      "status": "FILLED",
+      "operation": "FILL_VALUE",
+      "source": "profile",
+      "reason": "Text-like control filled."
+    },
+    {
+      "label": "Website",
+      "category": "PORTFOLIO",
+      "answer_key": "PORTFOLIO_URL",
+      "required": false,
+      "status": "FILLED",
+      "operation": "FILL_VALUE",
+      "source": "profile",
+      "reason": "Text-like control filled."
+    }
+  ],
+  "fill_summary": {
+    "tasks_attempted": 8,
+    "filled": 7,
+    "fill_failed": 1,
+    "required_assistance_untouched": 5,
+    "optional_unresolved_untouched": 5,
+    "submit_attempts_blocked": 0,
+    "submit_clicked_by_agent": false,
+    "browser_modified": true,
+    "application_submitted": false
+  }
+}

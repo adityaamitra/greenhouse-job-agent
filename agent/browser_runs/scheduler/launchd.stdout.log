@@ -1,0 +1,76 @@
+
+========================================================================================================
+SCHEDULED BROWSER QUEUE EXECUTION V1
+========================================================================================================
+Mode:                    PREVIEW
+Per-run cap:             1
+Application statuses:    PENDING only
+IN_PROGRESS retries:     DISABLED
+Browser mode:            HEADLESS
+CAPTCHA bypass:          DISABLED
+Submit clicks:           NONE
+Application submission:  HARD-BLOCKED
+Browser execution:       DISABLED
+Supabase persistence:    DISABLED
+========================================================================================================
+
+========================================================================================================
+SCHEDULED RUN RESULT
+========================================================================================================
+Selected:                1
+Browser opened:          NO
+Queue history persisted: NO
+Application submitted:   NO
+Scheduler report:        browser_runs/scheduler/20260904T205436Z/scheduled_run.json
+========================================================================================================
+
+========================================================================================================
+SCHEDULED BROWSER QUEUE EXECUTION V1
+========================================================================================================
+Mode:                    BROWSER_DRY_RUN
+Per-run cap:             1
+Application statuses:    PENDING only
+IN_PROGRESS retries:     DISABLED
+Browser mode:            HEADLESS
+CAPTCHA bypass:          DISABLED
+Submit clicks:           NONE
+Application submission:  HARD-BLOCKED
+Browser execution:       ENABLED
+Supabase persistence:    DISABLED
+========================================================================================================
+
+========================================================================================================
+SCHEDULED RUN RESULT
+========================================================================================================
+Selected:                1
+Browser opened:          YES
+Queue history persisted: NO
+Application submitted:   NO
+Scheduler report:        browser_runs/scheduler/20260904T205905Z/scheduled_run.json
+========================================================================================================
+
+========================================================================================================
+SCHEDULED BROWSER QUEUE EXECUTION V1
+========================================================================================================
+Mode:                    BROWSER_PERSISTED
+Per-run cap:             1
+Application statuses:    PENDING only
+IN_PROGRESS retries:     DISABLED
+Browser mode:            HEADLESS
+CAPTCHA bypass:          DISABLED
+Submit clicks:           NONE
+Application submission:  HARD-BLOCKED
+Browser execution:       ENABLED
+Supabase persistence:    ENABLED
+Persisted-mode allow:    YES
+========================================================================================================
+
+========================================================================================================
+SCHEDULED RUN RESULT
+========================================================================================================
+Selected:                1
+Browser opened:          YES
+Queue history persisted: YES
+Application submitted:   NO
+Scheduler report:        browser_runs/scheduler/20260904T210406Z/scheduled_run.json
+========================================================================================================

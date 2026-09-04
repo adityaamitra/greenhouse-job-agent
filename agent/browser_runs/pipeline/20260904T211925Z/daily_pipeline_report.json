@@ -1,0 +1,32 @@
+{
+  "pipeline_version": 1,
+  "run_key": "20260904T211925Z",
+  "mode": "SCAN_ONLY",
+  "started_at": "2026-09-04T21:19:25.982979+00:00",
+  "scan": {
+    "board_token": "multi",
+    "started_at": "2026-09-04T21:19:38.384275+00:00",
+    "completed_at": "2026-09-04T21:20:37.865484+00:00",
+    "jobs_discovered": 1550,
+    "target_role_jobs": 159,
+    "us_compatible_jobs": 100,
+    "jobs_eligible": 73,
+    "manual_priority_count": 8,
+    "agent_apply_count": 65,
+    "experience_rejected_count": 23,
+    "unknown_location_count": 8,
+    "total_seconds": 63.905
+  },
+  "scan_process_seconds": 72.791,
+  "browser_limit": 1,
+  "browser_board_token_filter": null,
+  "browser_order": "oldest",
+  "browser_opened": false,
+  "browser_history_persisted": false,
+  "browser_selected_count": 0,
+  "browser_candidates": [],
+  "submit_clicked_by_agent": false,
+  "application_submitted": false,
+  "completed_at": "2026-09-04T21:20:39.973670+00:00",
+  "status": "COMPLETED_SCAN_ONLY"
+}

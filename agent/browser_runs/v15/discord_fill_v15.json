@@ -1,0 +1,37 @@
+{
+  "requested_url": "https://job-boards.greenhouse.io/discord/jobs/8609250002",
+  "final_url": "https://job-boards.greenhouse.io/discord/jobs/8609250002",
+  "page_title": "Job Application for Software Engineer, Developer Success at Discord",
+  "form_frame_url": null,
+  "resolution_summary": {
+    "total_fields": 0,
+    "ready_fields": 0,
+    "required_unresolved": 1,
+    "optional_unresolved": 0,
+    "policy_mismatches": 0,
+    "missing_resume": 0,
+    "ready_for_submission": false,
+    "browser_modified": false,
+    "submit_attempted": false
+  },
+  "fill_results": [],
+  "fill_summary": {
+    "tasks_attempted": 0,
+    "filled": 0,
+    "fill_failed": 0,
+    "required_assistance_untouched": 1,
+    "optional_unresolved_untouched": 0,
+    "submit_attempts_blocked": 0,
+    "submit_clicked_by_agent": false,
+    "browser_modified": false,
+    "application_submitted": false,
+    "nonready_mutation_detected": false,
+    "nonready_mutation_reason": "",
+    "nonready_fields_verified_after_each_success": true,
+    "page_challenge_detected": true,
+    "page_challenge_reasons": [
+      "reCAPTCHA iframe: 1 element(s), 1 visible"
+    ],
+    "mutation_blocked_by_challenge": true
+  }
+}

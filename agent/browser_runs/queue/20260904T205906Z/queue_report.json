@@ -1,0 +1,53 @@
+{
+  "queue_runner_version": 1,
+  "run_id": "20260904T205906Z",
+  "started_at": "2026-09-04T20:59:05.604884+00:00",
+  "completed_at": "2026-09-04T20:59:13.759971+00:00",
+  "total_seconds": 8.155,
+  "persist": false,
+  "history_persisted": false,
+  "history_id": null,
+  "history_error": null,
+  "limit": 1,
+  "include_in_progress": false,
+  "board_token_filter": null,
+  "order": "oldest",
+  "delay_seconds": 2.0,
+  "summary": {
+    "selected": 1,
+    "completed": 1,
+    "needs_assistance": 1,
+    "ready_no_submit": 0,
+    "blocked": 0,
+    "errors": 0,
+    "challenge_count": 1,
+    "browser_modified_count": 0,
+    "submitted": 0
+  },
+  "results": [
+    {
+      "job_id": "8f3d7afd-d87e-4a24-b45c-d025aa19be89",
+      "application_id": "e5d03c36-26fa-495e-b898-9fb7b3c693ec",
+      "board_token": "stripe",
+      "greenhouse_job_id": "7232592",
+      "company": "Stripe",
+      "title": "Backend Engineer, Payments and Risk",
+      "matcher_route": "AGENT_APPLY",
+      "selected_resume": "backend_engineer.pdf",
+      "queue_status": "COMPLETED",
+      "outcome": "NEEDS_ASSISTANCE",
+      "challenge_detected": true,
+      "ready_count": 14,
+      "required_human_count": 7,
+      "browser_modified": false,
+      "persisted": false,
+      "application_status_after": "PENDING",
+      "submit_clicked_by_agent": false,
+      "application_submitted": false,
+      "error_type": null,
+      "error": null
+    }
+  ],
+  "application_submitted": false,
+  "submit_clicked_by_agent": false
+}

@@ -1,0 +1,651 @@
+{
+  "requested_url": "https://job-boards.greenhouse.io/chime/jobs/8616359002",
+  "final_url": "https://job-boards.greenhouse.io/chime/jobs/8616359002",
+  "page_title": "Job Application for Software Engineer, Infrastructure at Chime Financial, Inc",
+  "form_frame_url": "https://job-boards.greenhouse.io/chime/jobs/8616359002",
+  "fields": [
+    {
+      "tag": "input",
+      "type": "text",
+      "name": "",
+      "id": "first_name",
+      "label": "Last Name*",
+      "placeholder": "",
+      "required": true,
+      "options": [],
+      "dom_indices": [
+        0
+      ],
+      "decision": {
+        "category": "LAST_NAME",
+        "action": "PROFILE_VALUE",
+        "reason": "Standard applicant profile field.",
+        "answer_key": "LAST_NAME",
+        "fixed_answer": null
+      }
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "name": "",
+      "id": "last_name",
+      "label": "First Name*",
+      "placeholder": "",
+      "required": true,
+      "options": [],
+      "dom_indices": [
+        1
+      ],
+      "decision": {
+        "category": "FIRST_NAME",
+        "action": "PROFILE_VALUE",
+        "reason": "Standard applicant profile field.",
+        "answer_key": "FIRST_NAME",
+        "fixed_answer": null
+      }
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "name": "",
+      "id": "preferred_name",
+      "label": "First Name*",
+      "placeholder": "",
+      "required": true,
+      "options": [],
+      "dom_indices": [
+        2
+      ],
+      "decision": {
+        "category": "FIRST_NAME",
+        "action": "PROFILE_VALUE",
+        "reason": "Standard applicant profile field.",
+        "answer_key": "FIRST_NAME",
+        "fixed_answer": null
+      }
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "name": "",
+      "id": "email",
+      "label": "First Name*",
+      "placeholder": "",
+      "required": true,
+      "options": [],
+      "dom_indices": [
+        3
+      ],
+      "decision": {
+        "category": "FIRST_NAME",
+        "action": "PROFILE_VALUE",
+        "reason": "Standard applicant profile field.",
+        "answer_key": "FIRST_NAME",
+        "fixed_answer": null
+      }
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "name": "",
+      "id": "country",
+      "label": "Phone",
+      "placeholder": "",
+      "required": true,
+      "options": [],
+      "dom_indices": [
+        4
+      ],
+      "decision": {
+        "category": "PHONE",
+        "action": "PROFILE_VALUE",
+        "reason": "Standard applicant profile field.",
+        "answer_key": "PHONE",
+        "fixed_answer": null
+      }
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "name": "",
+      "id": "",
+      "label": "Phone",
+      "placeholder": "",
+      "required": true,
+      "options": [],
+      "dom_indices": [
+        5
+      ],
+      "decision": {
+        "category": "PHONE",
+        "action": "PROFILE_VALUE",
+        "reason": "Standard applicant profile field.",
+        "answer_key": "PHONE",
+        "fixed_answer": null
+      }
+    },
+    {
+      "tag": "input",
+      "type": "search",
+      "name": "",
+      "id": "iti-0__search-input",
+      "label": "Phone",
+      "placeholder": "Search",
+      "required": false,
+      "options": [],
+      "dom_indices": [
+        6
+      ],
+      "decision": {
+        "category": "PHONE",
+        "action": "PROFILE_VALUE",
+        "reason": "Standard applicant profile field.",
+        "answer_key": "PHONE",
+        "fixed_answer": null
+      }
+    },
+    {
+      "tag": "input",
+      "type": "tel",
+      "name": "",
+      "id": "phone",
+      "label": "Phone",
+      "placeholder": "",
+      "required": true,
+      "options": [],
+      "dom_indices": [
+        7
+      ],
+      "decision": {
+        "category": "PHONE",
+        "action": "PROFILE_VALUE",
+        "reason": "Standard applicant profile field.",
+        "answer_key": "PHONE",
+        "fixed_answer": null
+      }
+    },
+    {
+      "tag": "input",
+      "type": "file",
+      "name": "",
+      "id": "resume",
+      "label": "First Name*",
+      "placeholder": "",
+      "required": false,
+      "options": [],
+      "dom_indices": [
+        8
+      ],
+      "decision": {
+        "category": "UNKNOWN_FILE_UPLOAD",
+        "action": "NEEDS_ASSISTANCE",
+        "reason": "File-upload purpose is not confidently recognized.",
+        "answer_key": null,
+        "fixed_answer": null
+      }
+    },
+    {
+      "tag": "input",
+      "type": "file",
+      "name": "",
+      "id": "cover_letter",
+      "label": "First Name*",
+      "placeholder": "",
+      "required": false,
+      "options": [],
+      "dom_indices": [
+        9
+      ],
+      "decision": {
+        "category": "UNKNOWN_FILE_UPLOAD",
+        "action": "NEEDS_ASSISTANCE",
+        "reason": "File-upload purpose is not confidently recognized.",
+        "answer_key": null,
+        "fixed_answer": null
+      }
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "name": "",
+      "id": "question_37162251002",
+      "label": "How did you hear about this job?*",
+      "placeholder": "",
+      "required": true,
+      "options": [],
+      "dom_indices": [
+        10
+      ],
+      "decision": {
+        "category": "UNKNOWN_CUSTOM_FIELD",
+        "action": "NEEDS_ASSISTANCE",
+        "reason": "The field is not recognized with enough confidence to answer automatically.",
+        "answer_key": null,
+        "fixed_answer": null
+      }
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "name": "",
+      "id": "question_37162252002",
+      "label": "LinkedIn Profile*",
+      "placeholder": "",
+      "required": true,
+      "options": [],
+      "dom_indices": [
+        11
+      ],
+      "decision": {
+        "category": "LINKEDIN",
+        "action": "PROFILE_VALUE",
+        "reason": "Standard professional-profile field.",
+        "answer_key": "LINKEDIN_URL",
+        "fixed_answer": null
+      }
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "name": "",
+      "id": "question_37162253002",
+      "label": "LinkedIn Profile*",
+      "placeholder": "",
+      "required": true,
+      "options": [],
+      "dom_indices": [
+        12
+      ],
+      "decision": {
+        "category": "LINKEDIN",
+        "action": "PROFILE_VALUE",
+        "reason": "Standard professional-profile field.",
+        "answer_key": "LINKEDIN_URL",
+        "fixed_answer": null
+      }
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "name": "",
+      "id": "",
+      "label": "LinkedIn Profile*",
+      "placeholder": "",
+      "required": true,
+      "options": [],
+      "dom_indices": [
+        13
+      ],
+      "decision": {
+        "category": "LINKEDIN",
+        "action": "PROFILE_VALUE",
+        "reason": "Standard professional-profile field.",
+        "answer_key": "LINKEDIN_URL",
+        "fixed_answer": null
+      }
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "name": "",
+      "id": "question_37162254002",
+      "label": "LinkedIn Profile*",
+      "placeholder": "",
+      "required": true,
+      "options": [],
+      "dom_indices": [
+        14
+      ],
+      "decision": {
+        "category": "LINKEDIN",
+        "action": "PROFILE_VALUE",
+        "reason": "Standard professional-profile field.",
+        "answer_key": "LINKEDIN_URL",
+        "fixed_answer": null
+      }
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "name": "",
+      "id": "",
+      "label": "LinkedIn Profile*",
+      "placeholder": "",
+      "required": true,
+      "options": [],
+      "dom_indices": [
+        15
+      ],
+      "decision": {
+        "category": "LINKEDIN",
+        "action": "PROFILE_VALUE",
+        "reason": "Standard professional-profile field.",
+        "answer_key": "LINKEDIN_URL",
+        "fixed_answer": null
+      }
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "name": "",
+      "id": "question_37162256002",
+      "label": "LinkedIn Profile*",
+      "placeholder": "",
+      "required": true,
+      "options": [],
+      "dom_indices": [
+        16
+      ],
+      "decision": {
+        "category": "LINKEDIN",
+        "action": "PROFILE_VALUE",
+        "reason": "Standard professional-profile field.",
+        "answer_key": "LINKEDIN_URL",
+        "fixed_answer": null
+      }
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "name": "",
+      "id": "",
+      "label": "LinkedIn Profile*",
+      "placeholder": "",
+      "required": true,
+      "options": [],
+      "dom_indices": [
+        17
+      ],
+      "decision": {
+        "category": "LINKEDIN",
+        "action": "PROFILE_VALUE",
+        "reason": "Standard professional-profile field.",
+        "answer_key": "LINKEDIN_URL",
+        "fixed_answer": null
+      }
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "name": "",
+      "id": "4024620002",
+      "label": "I identify my gender as:*",
+      "placeholder": "",
+      "required": true,
+      "options": [],
+      "dom_indices": [
+        18
+      ],
+      "decision": {
+        "category": "VOLUNTARY_DEMOGRAPHIC",
+        "action": "NEEDS_ASSISTANCE",
+        "reason": "Demographic/EEO answers must never be inferred.",
+        "answer_key": null,
+        "fixed_answer": null
+      }
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "name": "",
+      "id": "",
+      "label": "",
+      "placeholder": "",
+      "required": true,
+      "options": [],
+      "dom_indices": [
+        19
+      ],
+      "decision": {
+        "category": "UNKNOWN_CUSTOM_FIELD",
+        "action": "NEEDS_ASSISTANCE",
+        "reason": "The field is not recognized with enough confidence to answer automatically.",
+        "answer_key": null,
+        "fixed_answer": null
+      }
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "name": "",
+      "id": "4024621002",
+      "label": "I identify as:*",
+      "placeholder": "",
+      "required": true,
+      "options": [],
+      "dom_indices": [
+        20
+      ],
+      "decision": {
+        "category": "UNKNOWN_CUSTOM_FIELD",
+        "action": "NEEDS_ASSISTANCE",
+        "reason": "The field is not recognized with enough confidence to answer automatically.",
+        "answer_key": null,
+        "fixed_answer": null
+      }
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "name": "",
+      "id": "",
+      "label": "",
+      "placeholder": "",
+      "required": true,
+      "options": [],
+      "dom_indices": [
+        21
+      ],
+      "decision": {
+        "category": "UNKNOWN_CUSTOM_FIELD",
+        "action": "NEEDS_ASSISTANCE",
+        "reason": "The field is not recognized with enough confidence to answer automatically.",
+        "answer_key": null,
+        "fixed_answer": null
+      }
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "name": "",
+      "id": "4024622002",
+      "label": "I identify my sexual orientation as:*",
+      "placeholder": "",
+      "required": true,
+      "options": [],
+      "dom_indices": [
+        22
+      ],
+      "decision": {
+        "category": "VOLUNTARY_DEMOGRAPHIC",
+        "action": "NEEDS_ASSISTANCE",
+        "reason": "Demographic/EEO answers must never be inferred.",
+        "answer_key": null,
+        "fixed_answer": null
+      }
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "name": "",
+      "id": "",
+      "label": "",
+      "placeholder": "",
+      "required": true,
+      "options": [],
+      "dom_indices": [
+        23
+      ],
+      "decision": {
+        "category": "UNKNOWN_CUSTOM_FIELD",
+        "action": "NEEDS_ASSISTANCE",
+        "reason": "The field is not recognized with enough confidence to answer automatically.",
+        "answer_key": null,
+        "fixed_answer": null
+      }
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "name": "",
+      "id": "4024623002",
+      "label": "Veteran Status:*",
+      "placeholder": "",
+      "required": true,
+      "options": [],
+      "dom_indices": [
+        24
+      ],
+      "decision": {
+        "category": "VOLUNTARY_DEMOGRAPHIC",
+        "action": "NEEDS_ASSISTANCE",
+        "reason": "Demographic/EEO answers must never be inferred.",
+        "answer_key": null,
+        "fixed_answer": null
+      }
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "name": "",
+      "id": "",
+      "label": "",
+      "placeholder": "",
+      "required": true,
+      "options": [],
+      "dom_indices": [
+        25
+      ],
+      "decision": {
+        "category": "UNKNOWN_CUSTOM_FIELD",
+        "action": "NEEDS_ASSISTANCE",
+        "reason": "The field is not recognized with enough confidence to answer automatically.",
+        "answer_key": null,
+        "fixed_answer": null
+      }
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "name": "",
+      "id": "4024624002",
+      "label": "I have a disability:*",
+      "placeholder": "",
+      "required": true,
+      "options": [],
+      "dom_indices": [
+        26
+      ],
+      "decision": {
+        "category": "VOLUNTARY_DEMOGRAPHIC",
+        "action": "NEEDS_ASSISTANCE",
+        "reason": "Demographic/EEO answers must never be inferred.",
+        "answer_key": null,
+        "fixed_answer": null
+      }
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "name": "",
+      "id": "",
+      "label": "",
+      "placeholder": "",
+      "required": true,
+      "options": [],
+      "dom_indices": [
+        27
+      ],
+      "decision": {
+        "category": "UNKNOWN_CUSTOM_FIELD",
+        "action": "NEEDS_ASSISTANCE",
+        "reason": "The field is not recognized with enough confidence to answer automatically.",
+        "answer_key": null,
+        "fixed_answer": null
+      }
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "name": "",
+      "id": "4024625002",
+      "label": "I identify my race/ethnicity as (please mark all that apply):*",
+      "placeholder": "",
+      "required": true,
+      "options": [],
+      "dom_indices": [
+        28
+      ],
+      "decision": {
+        "category": "VOLUNTARY_DEMOGRAPHIC",
+        "action": "NEEDS_ASSISTANCE",
+        "reason": "Demographic/EEO answers must never be inferred.",
+        "answer_key": null,
+        "fixed_answer": null
+      }
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "name": "",
+      "id": "",
+      "label": "",
+      "placeholder": "",
+      "required": true,
+      "options": [],
+      "dom_indices": [
+        29
+      ],
+      "decision": {
+        "category": "UNKNOWN_CUSTOM_FIELD",
+        "action": "NEEDS_ASSISTANCE",
+        "reason": "The field is not recognized with enough confidence to answer automatically.",
+        "answer_key": null,
+        "fixed_answer": null
+      }
+    },
+    {
+      "tag": "input",
+      "type": "checkbox",
+      "name": "gdpr_demographic_data_consent_given",
+      "id": "gdpr_demographic_data_consent_given_1",
+      "label": "By checking this box, I consent to Chime Financial, Inc collecting, storing, and processing my responses to the demographic data surveys above.*",
+      "placeholder": "",
+      "required": true,
+      "options": [
+        "By checking this box, I consent to Chime Financial, Inc collecting, storing, and processing my responses to the demographic data surveys above.*"
+      ],
+      "dom_indices": [
+        30
+      ],
+      "decision": {
+        "category": "VOLUNTARY_DEMOGRAPHIC",
+        "action": "NEEDS_ASSISTANCE",
+        "reason": "Demographic/EEO answers must never be inferred.",
+        "answer_key": null,
+        "fixed_answer": null
+      }
+    },
+    {
+      "tag": "textarea",
+      "type": "textarea",
+      "name": "g-recaptcha-response",
+      "id": "g-recaptcha-response-100000",
+      "label": "g-recaptcha-response",
+      "placeholder": "",
+      "required": false,
+      "options": [],
+      "dom_indices": [
+        31
+      ],
+      "decision": {
+        "category": "UNKNOWN_CUSTOM_FIELD",
+        "action": "NEEDS_ASSISTANCE",
+        "reason": "The field is not recognized with enough confidence to answer automatically.",
+        "answer_key": null,
+        "fixed_answer": null
+      }
+    }
+  ],
+  "submit_attempted": false
+}

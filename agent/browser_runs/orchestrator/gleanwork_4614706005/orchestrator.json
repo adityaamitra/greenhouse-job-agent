@@ -1,0 +1,30 @@
+{
+  "orchestrator_version": 1,
+  "job_id": "27857c63-b5f1-4b07-8e35-ae4f744a3a50",
+  "application_id": "11a5ea9f-5af6-47a5-b967-7ff80e3cc90f",
+  "board_token": "gleanwork",
+  "greenhouse_job_id": "4614706005",
+  "company": "Glean",
+  "job_title": "Software Engineer, Developer Productivity ",
+  "matcher_route": "AGENT_APPLY",
+  "selected_resume": "software_engineer.pdf",
+  "handoff_route": "NEEDS_ASSISTANCE",
+  "outcome": "NEEDS_ASSISTANCE",
+  "challenge_detected": true,
+  "ready_count": 8,
+  "required_human_count": 6,
+  "fill_tasks_attempted": 0,
+  "filled": 0,
+  "fill_failed": 0,
+  "browser_modified": false,
+  "persisted": true,
+  "submit_clicked_by_agent": false,
+  "application_submitted": false,
+  "artifacts": {
+    "inspection": "browser_runs/orchestrator/gleanwork_4614706005/inspection.json",
+    "fill": "browser_runs/orchestrator/gleanwork_4614706005/fill.json",
+    "handoff": "browser_runs/orchestrator/gleanwork_4614706005/handoff.json",
+    "handoff_markdown": "browser_runs/orchestrator/gleanwork_4614706005/handoff.md",
+    "orchestrator": "browser_runs/orchestrator/gleanwork_4614706005/orchestrator.json"
+  }
+}

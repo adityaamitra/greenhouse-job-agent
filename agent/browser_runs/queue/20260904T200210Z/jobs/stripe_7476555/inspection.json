@@ -1,0 +1,898 @@
+{
+  "requested_url": "https://job-boards.greenhouse.io/embed/job_app?for=stripe&token=7476555",
+  "final_url": "https://job-boards.greenhouse.io/embed/job_app?for=stripe&token=7476555",
+  "page_title": "Job Application for Backend Engineer, Developer & End-user Experience Platform at Stripe",
+  "form_frame_url": "https://job-boards.greenhouse.io/embed/job_app?for=stripe&token=7476555",
+  "fields": [
+    {
+      "tag": "input",
+      "type": "text",
+      "name": "",
+      "id": "first_name",
+      "label": "First Name*",
+      "placeholder": "",
+      "context_text": "First Name* Last Name* Email* Phone Country* Phone* Location (City)* Locate me Resume/CV* Attach Attach Dropbox Enter manually Enter manually Accepted file types: pdf, doc, docx, txt, rtf Cover Letter Attach Attach Dropbox Enter manually Enter manually Accepted file types: pdf, doc, docx, txt, rtf",
+      "required": true,
+      "options": [],
+      "values": [
+        ""
+      ],
+      "checked_states": [
+        false
+      ],
+      "dom_indices": [
+        0
+      ],
+      "source_types": [
+        "text"
+      ],
+      "source_count": 1,
+      "decision": {
+        "category": "FIRST_NAME",
+        "action": "PROFILE_VALUE",
+        "reason": "Standard applicant profile field.",
+        "answer_key": "FIRST_NAME",
+        "fixed_answer": null
+      }
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "name": "",
+      "id": "last_name",
+      "label": "Last Name*",
+      "placeholder": "",
+      "context_text": "First Name* Last Name* Email* Phone Country* Phone* Location (City)* Locate me Resume/CV* Attach Attach Dropbox Enter manually Enter manually Accepted file types: pdf, doc, docx, txt, rtf Cover Letter Attach Attach Dropbox Enter manually Enter manually Accepted file types: pdf, doc, docx, txt, rtf",
+      "required": true,
+      "options": [],
+      "values": [
+        ""
+      ],
+      "checked_states": [
+        false
+      ],
+      "dom_indices": [
+        1
+      ],
+      "source_types": [
+        "text"
+      ],
+      "source_count": 1,
+      "decision": {
+        "category": "LAST_NAME",
+        "action": "PROFILE_VALUE",
+        "reason": "Standard applicant profile field.",
+        "answer_key": "LAST_NAME",
+        "fixed_answer": null
+      }
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "name": "",
+      "id": "email",
+      "label": "Email*",
+      "placeholder": "",
+      "context_text": "First Name* Last Name* Email* Phone Country* Phone* Location (City)* Locate me Resume/CV* Attach Attach Dropbox Enter manually Enter manually Accepted file types: pdf, doc, docx, txt, rtf Cover Letter Attach Attach Dropbox Enter manually Enter manually Accepted file types: pdf, doc, docx, txt, rtf",
+      "required": true,
+      "options": [],
+      "values": [
+        ""
+      ],
+      "checked_states": [
+        false
+      ],
+      "dom_indices": [
+        2
+      ],
+      "source_types": [
+        "text"
+      ],
+      "source_count": 1,
+      "decision": {
+        "category": "EMAIL",
+        "action": "PROFILE_VALUE",
+        "reason": "Standard applicant profile field.",
+        "answer_key": "EMAIL",
+        "fixed_answer": null
+      }
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "name": "",
+      "id": "country",
+      "label": "Country*",
+      "placeholder": "",
+      "context_text": "First Name* Last Name* Email* Phone Country* Phone* Location (City)* Locate me Resume/CV* Attach Attach Dropbox Enter manually Enter manually Accepted file types: pdf, doc, docx, txt, rtf Cover Letter Attach Attach Dropbox Enter manually Enter manually Accepted file types: pdf, doc, docx, txt, rtf",
+      "required": true,
+      "options": [],
+      "values": [
+        "",
+        ""
+      ],
+      "checked_states": [
+        false,
+        false
+      ],
+      "dom_indices": [
+        3,
+        4
+      ],
+      "source_types": [
+        "text"
+      ],
+      "source_count": 2,
+      "decision": {
+        "category": "COUNTRY",
+        "action": "PROFILE_VALUE",
+        "reason": "Structured country profile field.",
+        "answer_key": "COUNTRY",
+        "fixed_answer": null
+      }
+    },
+    {
+      "tag": "input",
+      "type": "tel",
+      "name": "",
+      "id": "phone",
+      "label": "Phone*",
+      "placeholder": "",
+      "context_text": "First Name* Last Name* Email* Phone Country* Phone* Location (City)* Locate me Resume/CV* Attach Attach Dropbox Enter manually Enter manually Accepted file types: pdf, doc, docx, txt, rtf Cover Letter Attach Attach Dropbox Enter manually Enter manually Accepted file types: pdf, doc, docx, txt, rtf",
+      "required": true,
+      "options": [],
+      "values": [
+        ""
+      ],
+      "checked_states": [
+        false
+      ],
+      "dom_indices": [
+        6
+      ],
+      "source_types": [
+        "tel"
+      ],
+      "source_count": 1,
+      "decision": {
+        "category": "PHONE",
+        "action": "PROFILE_VALUE",
+        "reason": "Standard applicant profile field.",
+        "answer_key": "PHONE",
+        "fixed_answer": null
+      }
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "name": "",
+      "id": "candidate-location",
+      "label": "Location (City)*",
+      "placeholder": "",
+      "context_text": "First Name* Last Name* Email* Phone Country* Phone* Location (City)* Locate me Resume/CV* Attach Attach Dropbox Enter manually Enter manually Accepted file types: pdf, doc, docx, txt, rtf Cover Letter Attach Attach Dropbox Enter manually Enter manually Accepted file types: pdf, doc, docx, txt, rtf",
+      "required": true,
+      "options": [],
+      "values": [
+        "",
+        ""
+      ],
+      "checked_states": [
+        false,
+        false
+      ],
+      "dom_indices": [
+        7,
+        8
+      ],
+      "source_types": [
+        "text"
+      ],
+      "source_count": 2,
+      "decision": {
+        "category": "CITY",
+        "action": "PROFILE_VALUE",
+        "reason": "Structured city profile field.",
+        "answer_key": "CITY",
+        "fixed_answer": null
+      }
+    },
+    {
+      "tag": "input",
+      "type": "file",
+      "name": "",
+      "id": "resume",
+      "label": "Attach",
+      "placeholder": "",
+      "context_text": "Resume/CV* Attach Attach Dropbox Enter manually Enter manually Accepted file types: pdf, doc, docx, txt, rtf",
+      "required": false,
+      "options": [],
+      "values": [
+        ""
+      ],
+      "checked_states": [
+        false
+      ],
+      "dom_indices": [
+        9
+      ],
+      "source_types": [
+        "file"
+      ],
+      "source_count": 1,
+      "decision": {
+        "category": "RESUME",
+        "action": "RESUME_FILE",
+        "reason": "Resume upload can use the resume already selected by the V2.1 matcher.",
+        "answer_key": "SELECTED_RESUME_FILE",
+        "fixed_answer": null
+      }
+    },
+    {
+      "tag": "input",
+      "type": "file",
+      "name": "",
+      "id": "cover_letter",
+      "label": "Attach",
+      "placeholder": "",
+      "context_text": "Cover Letter Attach Attach Dropbox Enter manually Enter manually Accepted file types: pdf, doc, docx, txt, rtf",
+      "required": false,
+      "options": [],
+      "values": [
+        ""
+      ],
+      "checked_states": [
+        false
+      ],
+      "dom_indices": [
+        10
+      ],
+      "source_types": [
+        "file"
+      ],
+      "source_count": 1,
+      "decision": {
+        "category": "COVER_LETTER_UPLOAD",
+        "action": "NEEDS_ASSISTANCE",
+        "reason": "Cover-letter content is intentionally human-reviewed.",
+        "answer_key": null,
+        "fixed_answer": null
+      }
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "name": "",
+      "id": "school--0",
+      "label": "School*",
+      "placeholder": "",
+      "context_text": "Education School* Select... Degree* Select... Add another",
+      "required": true,
+      "options": [],
+      "values": [
+        ""
+      ],
+      "checked_states": [
+        false
+      ],
+      "dom_indices": [
+        11
+      ],
+      "source_types": [
+        "text"
+      ],
+      "source_count": 1,
+      "decision": {
+        "category": "EDUCATION_SCHOOL",
+        "action": "PROFILE_VALUE",
+        "reason": "Structured education field.",
+        "answer_key": "EDUCATION_SCHOOL",
+        "fixed_answer": null
+      }
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "name": "",
+      "id": "",
+      "label": "Select...",
+      "placeholder": "",
+      "context_text": "Please select the country where you currently reside. * Select... If you don't see your country in the list, please select 'Other'. Please select the country or countries you anticipate working in for the role in which you are applying. * Australia Belgium Brazil Canada France Germany India Indonesia Ireland Israel Italy Japan Luxembourg Malaysia Mexico New Zealand Poland Portugal Romania Singapore South Korea Spain Sweden Switzerland Taiwan Thailand The Netherlands UAE UK US Are you authorized to work in the location(s) you selected in your previous response?* Select... Will you require Stripe to sponsor you for a work permit now or in the future for the location(s) you selected in in your previous response? * Select... Have you ever been employed by Stripe or a Stripe affiliate?* Select... Who is your current or previous employer?* What is your current or previous job title?* Do you opt-in to receive WhatsApp messages from Stripe Recruiting?* Select... Messages will only be sent regarding your candidacy with Stripe. If located in the US, in what city and state do you reside?* How many years of full-time industry experience do you have as a software engineer? (Please exclude internships, co-ops and schoolwork)* Select... Please count only full-time industry roles; do not include internships, co-ops, schoolwork, or side projects.",
+      "required": true,
+      "options": [],
+      "values": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "checked_states": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "dom_indices": [
+        12,
+        14,
+        16,
+        48,
+        50,
+        52,
+        56,
+        59
+      ],
+      "source_types": [
+        "text"
+      ],
+      "source_count": 8,
+      "decision": {
+        "category": "UNKNOWN_CUSTOM_FIELD",
+        "action": "NEEDS_ASSISTANCE",
+        "reason": "Field is not recognized with enough confidence to answer automatically.",
+        "answer_key": null,
+        "fixed_answer": null
+      }
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "name": "",
+      "id": "degree--0",
+      "label": "Degree*",
+      "placeholder": "",
+      "context_text": "Education School* Select... Degree* Select... Add another",
+      "required": true,
+      "options": [],
+      "values": [
+        ""
+      ],
+      "checked_states": [
+        false
+      ],
+      "dom_indices": [
+        13
+      ],
+      "source_types": [
+        "text"
+      ],
+      "source_count": 1,
+      "decision": {
+        "category": "EDUCATION_DEGREE",
+        "action": "PROFILE_VALUE",
+        "reason": "Structured education field.",
+        "answer_key": "EDUCATION_DEGREE",
+        "fixed_answer": null
+      }
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "name": "",
+      "id": "question_62213185",
+      "label": "Please select the country where you currently reside. *",
+      "placeholder": "",
+      "context_text": "Please select the country where you currently reside. * Select... If you don't see your country in the list, please select 'Other'. Please select the country or countries you anticipate working in for the role in which you are applying. * Australia Belgium Brazil Canada France Germany India Indonesia Ireland Israel Italy Japan Luxembourg Malaysia Mexico New Zealand Poland Portugal Romania Singapore South Korea Spain Sweden Switzerland Taiwan Thailand The Netherlands UAE UK US Are you authorized to work in the location(s) you selected in your previous response?* Select... Will you require Stripe to sponsor you for a work permit now or in the future for the location(s) you selected in in your previous response? * Select... Have you ever been employed by Stripe or a Stripe affiliate?* Select... Who is your current or previous employer?* What is your current or previous job title?* Do you opt-in to receive WhatsApp messages from Stripe Recruiting?* Select... Messages will only be sent regarding your candidacy with Stripe. If located in the US, in what city and state do you reside?* How many years of full-time industry experience do you have as a software engineer? (Please exclude internships, co-ops and schoolwork)* Select... Please count only full-time industry roles; do not include internships, co-ops, schoolwork, or side projects.",
+      "required": true,
+      "options": [],
+      "values": [
+        ""
+      ],
+      "checked_states": [
+        false
+      ],
+      "dom_indices": [
+        15
+      ],
+      "source_types": [
+        "text"
+      ],
+      "source_count": 1,
+      "decision": {
+        "category": "COUNTRY",
+        "action": "PROFILE_VALUE",
+        "reason": "Structured country profile field.",
+        "answer_key": "COUNTRY",
+        "fixed_answer": null
+      }
+    },
+    {
+      "tag": "input",
+      "type": "checkbox",
+      "name": "question_62213186[]",
+      "id": "question_62213186[]_733211495",
+      "label": "Australia",
+      "placeholder": "",
+      "context_text": "Please select the country where you currently reside. * Select... If you don't see your country in the list, please select 'Other'. Please select the country or countries you anticipate working in for the role in which you are applying. * Australia Belgium Brazil Canada France Germany India Indonesia Ireland Israel Italy Japan Luxembourg Malaysia Mexico New Zealand Poland Portugal Romania Singapore South Korea Spain Sweden Switzerland Taiwan Thailand The Netherlands UAE UK US Are you authorized to work in the location(s) you selected in your previous response?* Select... Will you require Stripe to sponsor you for a work permit now or in the future for the location(s) you selected in in your previous response? * Select... Have you ever been employed by Stripe or a Stripe affiliate?* Select... Who is your current or previous employer?* What is your current or previous job title?* Do you opt-in to receive WhatsApp messages from Stripe Recruiting?* Select... Messages will only be sent regarding your candidacy with Stripe. If located in the US, in what city and state do you reside?* How many years of full-time industry experience do you have as a software engineer? (Please exclude internships, co-ops and schoolwork)* Select... Please count only full-time industry roles; do not include internships, co-ops, schoolwork, or side projects.",
+      "required": true,
+      "options": [],
+      "values": [
+        "733211495",
+        "733211501",
+        "733211502",
+        "733211505",
+        "733211506",
+        "733211508",
+        "733211511",
+        "733211513",
+        "733211516",
+        "733211518",
+        "733211520",
+        "733211523",
+        "733211525",
+        "733211528",
+        "733211530",
+        "733211532",
+        "733211535",
+        "733211536",
+        "733211539",
+        "733211541",
+        "733211544",
+        "733211550",
+        "733211552",
+        "733211554",
+        "733211555",
+        "733211556",
+        "733211557",
+        "733211558",
+        "733211559",
+        "733211560"
+      ],
+      "checked_states": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "dom_indices": [
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46
+      ],
+      "source_types": [
+        "checkbox"
+      ],
+      "source_count": 30,
+      "decision": {
+        "category": "UNKNOWN_CUSTOM_FIELD",
+        "action": "NEEDS_ASSISTANCE",
+        "reason": "Field is not recognized with enough confidence to answer automatically.",
+        "answer_key": null,
+        "fixed_answer": null
+      }
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "name": "",
+      "id": "question_62213187",
+      "label": "Are you authorized to work in the location(s) you selected in your previous response?*",
+      "placeholder": "",
+      "context_text": "Are you authorized to work in the location(s) you selected in your previous response?* Select...",
+      "required": true,
+      "options": [],
+      "values": [
+        ""
+      ],
+      "checked_states": [
+        false
+      ],
+      "dom_indices": [
+        47
+      ],
+      "source_types": [
+        "text"
+      ],
+      "source_count": 1,
+      "decision": {
+        "category": "WORK_AUTHORIZATION_US",
+        "action": "FIXED_ANSWER",
+        "reason": "Direct U.S. work-authorization question without sponsorship wording.",
+        "answer_key": "WORK_AUTHORIZED_US",
+        "fixed_answer": "Yes"
+      }
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "name": "",
+      "id": "question_62213188",
+      "label": "Will you require Stripe to sponsor you for a work permit now or in the future for the location(s) you selected in in your previous response? *",
+      "placeholder": "",
+      "context_text": "Please select the country where you currently reside. * Select... If you don't see your country in the list, please select 'Other'. Please select the country or countries you anticipate working in for the role in which you are applying. * Australia Belgium Brazil Canada France Germany India Indonesia Ireland Israel Italy Japan Luxembourg Malaysia Mexico New Zealand Poland Portugal Romania Singapore South Korea Spain Sweden Switzerland Taiwan Thailand The Netherlands UAE UK US Are you authorized to work in the location(s) you selected in your previous response?* Select... Will you require Stripe to sponsor you for a work permit now or in the future for the location(s) you selected in in your previous response? * Select... Have you ever been employed by Stripe or a Stripe affiliate?* Select... Who is your current or previous employer?* What is your current or previous job title?* Do you opt-in to receive WhatsApp messages from Stripe Recruiting?* Select... Messages will only be sent regarding your candidacy with Stripe. If located in the US, in what city and state do you reside?* How many years of full-time industry experience do you have as a software engineer? (Please exclude internships, co-ops and schoolwork)* Select... Please count only full-time industry roles; do not include internships, co-ops, schoolwork, or side projects.",
+      "required": true,
+      "options": [],
+      "values": [
+        ""
+      ],
+      "checked_states": [
+        false
+      ],
+      "dom_indices": [
+        49
+      ],
+      "source_types": [
+        "text"
+      ],
+      "source_count": 1,
+      "decision": {
+        "category": "SPONSORSHIP_NOW_OR_FUTURE",
+        "action": "FIXED_ANSWER",
+        "reason": "Question asks whether sponsorship is needed now OR in the future.",
+        "answer_key": "SPONSORSHIP_NOW_OR_FUTURE",
+        "fixed_answer": "Yes"
+      }
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "name": "",
+      "id": "question_62213190",
+      "label": "Have you ever been employed by Stripe or a Stripe affiliate?*",
+      "placeholder": "",
+      "context_text": "Please select the country where you currently reside. * Select... If you don't see your country in the list, please select 'Other'. Please select the country or countries you anticipate working in for the role in which you are applying. * Australia Belgium Brazil Canada France Germany India Indonesia Ireland Israel Italy Japan Luxembourg Malaysia Mexico New Zealand Poland Portugal Romania Singapore South Korea Spain Sweden Switzerland Taiwan Thailand The Netherlands UAE UK US Are you authorized to work in the location(s) you selected in your previous response?* Select... Will you require Stripe to sponsor you for a work permit now or in the future for the location(s) you selected in in your previous response? * Select... Have you ever been employed by Stripe or a Stripe affiliate?* Select... Who is your current or previous employer?* What is your current or previous job title?* Do you opt-in to receive WhatsApp messages from Stripe Recruiting?* Select... Messages will only be sent regarding your candidacy with Stripe. If located in the US, in what city and state do you reside?* How many years of full-time industry experience do you have as a software engineer? (Please exclude internships, co-ops and schoolwork)* Select... Please count only full-time industry roles; do not include internships, co-ops, schoolwork, or side projects.",
+      "required": true,
+      "options": [],
+      "values": [
+        ""
+      ],
+      "checked_states": [
+        false
+      ],
+      "dom_indices": [
+        51
+      ],
+      "source_types": [
+        "text"
+      ],
+      "source_count": 1,
+      "decision": {
+        "category": "UNKNOWN_CUSTOM_FIELD",
+        "action": "NEEDS_ASSISTANCE",
+        "reason": "Field is not recognized with enough confidence to answer automatically.",
+        "answer_key": null,
+        "fixed_answer": null
+      }
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "name": "",
+      "id": "question_62213191",
+      "label": "Who is your current or previous employer?*",
+      "placeholder": "",
+      "context_text": "Please select the country where you currently reside. * Select... If you don't see your country in the list, please select 'Other'. Please select the country or countries you anticipate working in for the role in which you are applying. * Australia Belgium Brazil Canada France Germany India Indonesia Ireland Israel Italy Japan Luxembourg Malaysia Mexico New Zealand Poland Portugal Romania Singapore South Korea Spain Sweden Switzerland Taiwan Thailand The Netherlands UAE UK US Are you authorized to work in the location(s) you selected in your previous response?* Select... Will you require Stripe to sponsor you for a work permit now or in the future for the location(s) you selected in in your previous response? * Select... Have you ever been employed by Stripe or a Stripe affiliate?* Select... Who is your current or previous employer?* What is your current or previous job title?* Do you opt-in to receive WhatsApp messages from Stripe Recruiting?* Select... Messages will only be sent regarding your candidacy with Stripe. If located in the US, in what city and state do you reside?* How many years of full-time industry experience do you have as a software engineer? (Please exclude internships, co-ops and schoolwork)* Select... Please count only full-time industry roles; do not include internships, co-ops, schoolwork, or side projects.",
+      "required": true,
+      "options": [],
+      "values": [
+        ""
+      ],
+      "checked_states": [
+        false
+      ],
+      "dom_indices": [
+        53
+      ],
+      "source_types": [
+        "text"
+      ],
+      "source_count": 1,
+      "decision": {
+        "category": "UNKNOWN_CUSTOM_FIELD",
+        "action": "NEEDS_ASSISTANCE",
+        "reason": "Field is not recognized with enough confidence to answer automatically.",
+        "answer_key": null,
+        "fixed_answer": null
+      }
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "name": "",
+      "id": "question_62213192",
+      "label": "What is your current or previous job title?*",
+      "placeholder": "",
+      "context_text": "Please select the country where you currently reside. * Select... If you don't see your country in the list, please select 'Other'. Please select the country or countries you anticipate working in for the role in which you are applying. * Australia Belgium Brazil Canada France Germany India Indonesia Ireland Israel Italy Japan Luxembourg Malaysia Mexico New Zealand Poland Portugal Romania Singapore South Korea Spain Sweden Switzerland Taiwan Thailand The Netherlands UAE UK US Are you authorized to work in the location(s) you selected in your previous response?* Select... Will you require Stripe to sponsor you for a work permit now or in the future for the location(s) you selected in in your previous response? * Select... Have you ever been employed by Stripe or a Stripe affiliate?* Select... Who is your current or previous employer?* What is your current or previous job title?* Do you opt-in to receive WhatsApp messages from Stripe Recruiting?* Select... Messages will only be sent regarding your candidacy with Stripe. If located in the US, in what city and state do you reside?* How many years of full-time industry experience do you have as a software engineer? (Please exclude internships, co-ops and schoolwork)* Select... Please count only full-time industry roles; do not include internships, co-ops, schoolwork, or side projects.",
+      "required": true,
+      "options": [],
+      "values": [
+        ""
+      ],
+      "checked_states": [
+        false
+      ],
+      "dom_indices": [
+        54
+      ],
+      "source_types": [
+        "text"
+      ],
+      "source_count": 1,
+      "decision": {
+        "category": "UNKNOWN_CUSTOM_FIELD",
+        "action": "NEEDS_ASSISTANCE",
+        "reason": "Field is not recognized with enough confidence to answer automatically.",
+        "answer_key": null,
+        "fixed_answer": null
+      }
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "name": "",
+      "id": "question_62213195",
+      "label": "Do you opt-in to receive WhatsApp messages from Stripe Recruiting?*",
+      "placeholder": "",
+      "context_text": "Please select the country where you currently reside. * Select... If you don't see your country in the list, please select 'Other'. Please select the country or countries you anticipate working in for the role in which you are applying. * Australia Belgium Brazil Canada France Germany India Indonesia Ireland Israel Italy Japan Luxembourg Malaysia Mexico New Zealand Poland Portugal Romania Singapore South Korea Spain Sweden Switzerland Taiwan Thailand The Netherlands UAE UK US Are you authorized to work in the location(s) you selected in your previous response?* Select... Will you require Stripe to sponsor you for a work permit now or in the future for the location(s) you selected in in your previous response? * Select... Have you ever been employed by Stripe or a Stripe affiliate?* Select... Who is your current or previous employer?* What is your current or previous job title?* Do you opt-in to receive WhatsApp messages from Stripe Recruiting?* Select... Messages will only be sent regarding your candidacy with Stripe. If located in the US, in what city and state do you reside?* How many years of full-time industry experience do you have as a software engineer? (Please exclude internships, co-ops and schoolwork)* Select... Please count only full-time industry roles; do not include internships, co-ops, schoolwork, or side projects.",
+      "required": true,
+      "options": [],
+      "values": [
+        ""
+      ],
+      "checked_states": [
+        false
+      ],
+      "dom_indices": [
+        55
+      ],
+      "source_types": [
+        "text"
+      ],
+      "source_count": 1,
+      "decision": {
+        "category": "UNKNOWN_CUSTOM_FIELD",
+        "action": "NEEDS_ASSISTANCE",
+        "reason": "Field is not recognized with enough confidence to answer automatically.",
+        "answer_key": null,
+        "fixed_answer": null
+      }
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "name": "",
+      "id": "question_64191839",
+      "label": "If located in the US, in what city and state do you reside?*",
+      "placeholder": "",
+      "context_text": "Please select the country where you currently reside. * Select... If you don't see your country in the list, please select 'Other'. Please select the country or countries you anticipate working in for the role in which you are applying. * Australia Belgium Brazil Canada France Germany India Indonesia Ireland Israel Italy Japan Luxembourg Malaysia Mexico New Zealand Poland Portugal Romania Singapore South Korea Spain Sweden Switzerland Taiwan Thailand The Netherlands UAE UK US Are you authorized to work in the location(s) you selected in your previous response?* Select... Will you require Stripe to sponsor you for a work permit now or in the future for the location(s) you selected in in your previous response? * Select... Have you ever been employed by Stripe or a Stripe affiliate?* Select... Who is your current or previous employer?* What is your current or previous job title?* Do you opt-in to receive WhatsApp messages from Stripe Recruiting?* Select... Messages will only be sent regarding your candidacy with Stripe. If located in the US, in what city and state do you reside?* How many years of full-time industry experience do you have as a software engineer? (Please exclude internships, co-ops and schoolwork)* Select... Please count only full-time industry roles; do not include internships, co-ops, schoolwork, or side projects.",
+      "required": true,
+      "options": [],
+      "values": [
+        ""
+      ],
+      "checked_states": [
+        false
+      ],
+      "dom_indices": [
+        57
+      ],
+      "source_types": [
+        "text"
+      ],
+      "source_count": 1,
+      "decision": {
+        "category": "CITY",
+        "action": "PROFILE_VALUE",
+        "reason": "Structured city profile field.",
+        "answer_key": "CITY",
+        "fixed_answer": null
+      }
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "name": "",
+      "id": "question_68538007",
+      "label": "How many years of full-time industry experience do you have as a software engineer? (Please exclude internships, co-ops and schoolwork)*",
+      "placeholder": "",
+      "context_text": "Please select the country where you currently reside. * Select... If you don't see your country in the list, please select 'Other'. Please select the country or countries you anticipate working in for the role in which you are applying. * Australia Belgium Brazil Canada France Germany India Indonesia Ireland Israel Italy Japan Luxembourg Malaysia Mexico New Zealand Poland Portugal Romania Singapore South Korea Spain Sweden Switzerland Taiwan Thailand The Netherlands UAE UK US Are you authorized to work in the location(s) you selected in your previous response?* Select... Will you require Stripe to sponsor you for a work permit now or in the future for the location(s) you selected in in your previous response? * Select... Have you ever been employed by Stripe or a Stripe affiliate?* Select... Who is your current or previous employer?* What is your current or previous job title?* Do you opt-in to receive WhatsApp messages from Stripe Recruiting?* Select... Messages will only be sent regarding your candidacy with Stripe. If located in the US, in what city and state do you reside?* How many years of full-time industry experience do you have as a software engineer? (Please exclude internships, co-ops and schoolwork)* Select... Please count only full-time industry roles; do not include internships, co-ops, schoolwork, or side projects.",
+      "required": true,
+      "options": [],
+      "values": [
+        ""
+      ],
+      "checked_states": [
+        false
+      ],
+      "dom_indices": [
+        58
+      ],
+      "source_types": [
+        "text"
+      ],
+      "source_count": 1,
+      "decision": {
+        "category": "UNKNOWN_CUSTOM_FIELD",
+        "action": "NEEDS_ASSISTANCE",
+        "reason": "Field is not recognized with enough confidence to answer automatically.",
+        "answer_key": null,
+        "fixed_answer": null
+      }
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "name": "",
+      "id": "gender",
+      "label": "Gender",
+      "placeholder": "",
+      "context_text": "Gender Select...",
+      "required": false,
+      "options": [],
+      "values": [
+        ""
+      ],
+      "checked_states": [
+        false
+      ],
+      "dom_indices": [
+        60
+      ],
+      "source_types": [
+        "text"
+      ],
+      "source_count": 1,
+      "decision": {
+        "category": "VOLUNTARY_DEMOGRAPHIC",
+        "action": "NEEDS_ASSISTANCE",
+        "reason": "Demographic/EEO answers must never be inferred.",
+        "answer_key": null,
+        "fixed_answer": null
+      }
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "name": "",
+      "id": "hispanic_ethnicity",
+      "label": "Are you Hispanic/Latino?",
+      "placeholder": "",
+      "context_text": "Are you Hispanic/Latino? Select... Race & Ethnicity Definitions",
+      "required": false,
+      "options": [],
+      "values": [
+        ""
+      ],
+      "checked_states": [
+        false
+      ],
+      "dom_indices": [
+        61
+      ],
+      "source_types": [
+        "text"
+      ],
+      "source_count": 1,
+      "decision": {
+        "category": "VOLUNTARY_DEMOGRAPHIC",
+        "action": "NEEDS_ASSISTANCE",
+        "reason": "Demographic/EEO answers must never be inferred.",
+        "answer_key": null,
+        "fixed_answer": null
+      }
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "name": "",
+      "id": "veteran_status",
+      "label": "Veteran Status",
+      "placeholder": "",
+      "context_text": "Veteran Status Select...",
+      "required": false,
+      "options": [],
+      "values": [
+        ""
+      ],
+      "checked_states": [
+        false
+      ],
+      "dom_indices": [
+        62
+      ],
+      "source_types": [
+        "text"
+      ],
+      "source_count": 1,
+      "decision": {
+        "category": "VOLUNTARY_DEMOGRAPHIC",
+        "action": "NEEDS_ASSISTANCE",
+        "reason": "Demographic/EEO answers must never be inferred.",
+        "answer_key": null,
+        "fixed_answer": null
+      }
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "name": "",
+      "id": "disability_status",
+      "label": "Disability Status",
+      "placeholder": "",
+      "context_text": "Disability Status Select...",
+      "required": false,
+      "options": [],
+      "values": [
+        ""
+      ],
+      "checked_states": [
+        false
+      ],
+      "dom_indices": [
+        63
+      ],
+      "source_types": [
+        "text"
+      ],
+      "source_count": 1,
+      "decision": {
+        "category": "VOLUNTARY_DEMOGRAPHIC",
+        "action": "NEEDS_ASSISTANCE",
+        "reason": "Demographic/EEO answers must never be inferred.",
+        "answer_key": null,
+        "fixed_answer": null
+      }
+    }
+  ],
+  "submit_attempted": false
+}

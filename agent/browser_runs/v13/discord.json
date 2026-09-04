@@ -1,0 +1,725 @@
+{
+  "requested_url": "https://job-boards.greenhouse.io/discord/jobs/8609250002",
+  "final_url": "https://job-boards.greenhouse.io/discord/jobs/8609250002",
+  "page_title": "Job Application for Software Engineer, Developer Success at Discord",
+  "form_frame_url": "https://job-boards.greenhouse.io/discord/jobs/8609250002",
+  "fields": [
+    {
+      "tag": "input",
+      "type": "text",
+      "name": "",
+      "id": "first_name",
+      "label": "First Name*",
+      "placeholder": "",
+      "context_text": "First Name* Last Name* Email* Phone Country* Phone* Location (City)* Locate me Resume/CV* Attach Attach Dropbox Google Drive Enter manually Enter manually Accepted file types: pdf, doc, docx, txt, rtf Cover Letter Attach Attach Dropbox Google Drive Enter manually Enter manually Accepted file types: pdf, doc, docx, txt, rtf",
+      "required": true,
+      "options": [],
+      "dom_indices": [
+        0
+      ],
+      "source_types": [
+        "text"
+      ],
+      "source_count": 1,
+      "decision": {
+        "category": "FIRST_NAME",
+        "action": "PROFILE_VALUE",
+        "reason": "Standard applicant profile field.",
+        "answer_key": "FIRST_NAME",
+        "fixed_answer": null
+      }
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "name": "",
+      "id": "last_name",
+      "label": "Last Name*",
+      "placeholder": "",
+      "context_text": "First Name* Last Name* Email* Phone Country* Phone* Location (City)* Locate me Resume/CV* Attach Attach Dropbox Google Drive Enter manually Enter manually Accepted file types: pdf, doc, docx, txt, rtf Cover Letter Attach Attach Dropbox Google Drive Enter manually Enter manually Accepted file types: pdf, doc, docx, txt, rtf",
+      "required": true,
+      "options": [],
+      "dom_indices": [
+        1
+      ],
+      "source_types": [
+        "text"
+      ],
+      "source_count": 1,
+      "decision": {
+        "category": "LAST_NAME",
+        "action": "PROFILE_VALUE",
+        "reason": "Standard applicant profile field.",
+        "answer_key": "LAST_NAME",
+        "fixed_answer": null
+      }
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "name": "",
+      "id": "email",
+      "label": "Email*",
+      "placeholder": "",
+      "context_text": "First Name* Last Name* Email* Phone Country* Phone* Location (City)* Locate me Resume/CV* Attach Attach Dropbox Google Drive Enter manually Enter manually Accepted file types: pdf, doc, docx, txt, rtf Cover Letter Attach Attach Dropbox Google Drive Enter manually Enter manually Accepted file types: pdf, doc, docx, txt, rtf",
+      "required": true,
+      "options": [],
+      "dom_indices": [
+        2
+      ],
+      "source_types": [
+        "text"
+      ],
+      "source_count": 1,
+      "decision": {
+        "category": "EMAIL",
+        "action": "PROFILE_VALUE",
+        "reason": "Standard applicant profile field.",
+        "answer_key": "EMAIL",
+        "fixed_answer": null
+      }
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "name": "",
+      "id": "country",
+      "label": "Country*",
+      "placeholder": "",
+      "context_text": "First Name* Last Name* Email* Phone Country* Phone* Location (City)* Locate me Resume/CV* Attach Attach Dropbox Google Drive Enter manually Enter manually Accepted file types: pdf, doc, docx, txt, rtf Cover Letter Attach Attach Dropbox Google Drive Enter manually Enter manually Accepted file types: pdf, doc, docx, txt, rtf",
+      "required": true,
+      "options": [],
+      "dom_indices": [
+        3,
+        4
+      ],
+      "source_types": [
+        "text"
+      ],
+      "source_count": 2,
+      "decision": {
+        "category": "LOCATION_OR_ADDRESS",
+        "action": "PROFILE_VALUE",
+        "reason": "Recognized profile/location field; future filling must use explicit profile configuration.",
+        "answer_key": "LOCATION_OR_ADDRESS",
+        "fixed_answer": null
+      }
+    },
+    {
+      "tag": "input",
+      "type": "tel",
+      "name": "",
+      "id": "phone",
+      "label": "Phone*",
+      "placeholder": "",
+      "context_text": "First Name* Last Name* Email* Phone Country* Phone* Location (City)* Locate me Resume/CV* Attach Attach Dropbox Google Drive Enter manually Enter manually Accepted file types: pdf, doc, docx, txt, rtf Cover Letter Attach Attach Dropbox Google Drive Enter manually Enter manually Accepted file types: pdf, doc, docx, txt, rtf",
+      "required": true,
+      "options": [],
+      "dom_indices": [
+        6
+      ],
+      "source_types": [
+        "tel"
+      ],
+      "source_count": 1,
+      "decision": {
+        "category": "PHONE",
+        "action": "PROFILE_VALUE",
+        "reason": "Standard applicant profile field.",
+        "answer_key": "PHONE",
+        "fixed_answer": null
+      }
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "name": "",
+      "id": "candidate-location",
+      "label": "Location (City)*",
+      "placeholder": "",
+      "context_text": "First Name* Last Name* Email* Phone Country* Phone* Location (City)* Locate me Resume/CV* Attach Attach Dropbox Google Drive Enter manually Enter manually Accepted file types: pdf, doc, docx, txt, rtf Cover Letter Attach Attach Dropbox Google Drive Enter manually Enter manually Accepted file types: pdf, doc, docx, txt, rtf",
+      "required": true,
+      "options": [],
+      "dom_indices": [
+        7,
+        8
+      ],
+      "source_types": [
+        "text"
+      ],
+      "source_count": 2,
+      "decision": {
+        "category": "LOCATION_OR_ADDRESS",
+        "action": "PROFILE_VALUE",
+        "reason": "Recognized profile/location field; future filling must use explicit profile configuration.",
+        "answer_key": "LOCATION_OR_ADDRESS",
+        "fixed_answer": null
+      }
+    },
+    {
+      "tag": "input",
+      "type": "file",
+      "name": "",
+      "id": "resume",
+      "label": "Attach",
+      "placeholder": "",
+      "context_text": "Resume/CV* Attach Attach Dropbox Google Drive Enter manually Enter manually Accepted file types: pdf, doc, docx, txt, rtf",
+      "required": false,
+      "options": [],
+      "dom_indices": [
+        9
+      ],
+      "source_types": [
+        "file"
+      ],
+      "source_count": 1,
+      "decision": {
+        "category": "RESUME",
+        "action": "RESUME_FILE",
+        "reason": "Resume upload can use the resume already selected by the V2.1 matcher.",
+        "answer_key": "SELECTED_RESUME_FILE",
+        "fixed_answer": null
+      }
+    },
+    {
+      "tag": "input",
+      "type": "file",
+      "name": "",
+      "id": "cover_letter",
+      "label": "Attach",
+      "placeholder": "",
+      "context_text": "Cover Letter Attach Attach Dropbox Google Drive Enter manually Enter manually Accepted file types: pdf, doc, docx, txt, rtf",
+      "required": false,
+      "options": [],
+      "dom_indices": [
+        10
+      ],
+      "source_types": [
+        "file"
+      ],
+      "source_count": 1,
+      "decision": {
+        "category": "COVER_LETTER_UPLOAD",
+        "action": "NEEDS_ASSISTANCE",
+        "reason": "Cover-letter content is intentionally human-reviewed.",
+        "answer_key": null,
+        "fixed_answer": null
+      }
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "name": "",
+      "id": "school--0",
+      "label": "School",
+      "placeholder": "",
+      "context_text": "Education School Select... Degree Select... Discipline Select... Add another",
+      "required": false,
+      "options": [],
+      "dom_indices": [
+        11
+      ],
+      "source_types": [
+        "text"
+      ],
+      "source_count": 1,
+      "decision": {
+        "category": "UNKNOWN_CUSTOM_FIELD",
+        "action": "NEEDS_ASSISTANCE",
+        "reason": "Field is not recognized with enough confidence to answer automatically.",
+        "answer_key": null,
+        "fixed_answer": null
+      }
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "name": "",
+      "id": "degree--0",
+      "label": "Degree",
+      "placeholder": "",
+      "context_text": "Education School Select... Degree Select... Discipline Select... Add another",
+      "required": false,
+      "options": [],
+      "dom_indices": [
+        12
+      ],
+      "source_types": [
+        "text"
+      ],
+      "source_count": 1,
+      "decision": {
+        "category": "UNKNOWN_CUSTOM_FIELD",
+        "action": "NEEDS_ASSISTANCE",
+        "reason": "Field is not recognized with enough confidence to answer automatically.",
+        "answer_key": null,
+        "fixed_answer": null
+      }
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "name": "",
+      "id": "discipline--0",
+      "label": "Discipline",
+      "placeholder": "",
+      "context_text": "Education School Select... Degree Select... Discipline Select... Add another",
+      "required": false,
+      "options": [],
+      "dom_indices": [
+        13
+      ],
+      "source_types": [
+        "text"
+      ],
+      "source_count": 1,
+      "decision": {
+        "category": "UNKNOWN_CUSTOM_FIELD",
+        "action": "NEEDS_ASSISTANCE",
+        "reason": "Field is not recognized with enough confidence to answer automatically.",
+        "answer_key": null,
+        "fixed_answer": null
+      }
+    },
+    {
+      "tag": "textarea",
+      "type": "textarea",
+      "name": "",
+      "id": "question_37094274002",
+      "label": "Why do you want to work at Discord?*",
+      "placeholder": "",
+      "context_text": "Why do you want to work at Discord?* Tell us about your game development experience. This can include professional work, independent projects, game jams, academic projects, or mods.* Please describe your experience using C++.* LinkedIn Profile Website How did you hear about this job? Are you legally authorized to work in the United States for our Company?* Select... Are you currently located in the US?* Select... Are you currently based in or willing to relocate to the Bay Area for this position?* Select...",
+      "required": true,
+      "options": [],
+      "dom_indices": [
+        14
+      ],
+      "source_types": [
+        "textarea"
+      ],
+      "source_count": 1,
+      "decision": {
+        "category": "FREEFORM_APPLICATION_QUESTION",
+        "action": "NEEDS_ASSISTANCE",
+        "reason": "Free-form answers are human-reviewed in Browser Agent V1.",
+        "answer_key": null,
+        "fixed_answer": null
+      }
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "name": "",
+      "id": "question_37103994002",
+      "label": "Tell us about your game development experience. This can include professional work, independent projects, game jams, academic projects, or mods.*",
+      "placeholder": "",
+      "context_text": "Why do you want to work at Discord?* Tell us about your game development experience. This can include professional work, independent projects, game jams, academic projects, or mods.* Please describe your experience using C++.* LinkedIn Profile Website How did you hear about this job? Are you legally authorized to work in the United States for our Company?* Select... Are you currently located in the US?* Select... Are you currently based in or willing to relocate to the Bay Area for this position?* Select...",
+      "required": true,
+      "options": [],
+      "dom_indices": [
+        15
+      ],
+      "source_types": [
+        "text"
+      ],
+      "source_count": 1,
+      "decision": {
+        "category": "UNKNOWN_CUSTOM_FIELD",
+        "action": "NEEDS_ASSISTANCE",
+        "reason": "Field is not recognized with enough confidence to answer automatically.",
+        "answer_key": null,
+        "fixed_answer": null
+      }
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "name": "",
+      "id": "question_37977926002",
+      "label": "Please describe your experience using C++.*",
+      "placeholder": "",
+      "context_text": "Why do you want to work at Discord?* Tell us about your game development experience. This can include professional work, independent projects, game jams, academic projects, or mods.* Please describe your experience using C++.* LinkedIn Profile Website How did you hear about this job? Are you legally authorized to work in the United States for our Company?* Select... Are you currently located in the US?* Select... Are you currently based in or willing to relocate to the Bay Area for this position?* Select...",
+      "required": true,
+      "options": [],
+      "dom_indices": [
+        16
+      ],
+      "source_types": [
+        "text"
+      ],
+      "source_count": 1,
+      "decision": {
+        "category": "UNKNOWN_CUSTOM_FIELD",
+        "action": "NEEDS_ASSISTANCE",
+        "reason": "Field is not recognized with enough confidence to answer automatically.",
+        "answer_key": null,
+        "fixed_answer": null
+      }
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "name": "",
+      "id": "question_37094275002",
+      "label": "LinkedIn Profile",
+      "placeholder": "",
+      "context_text": "Why do you want to work at Discord?* Tell us about your game development experience. This can include professional work, independent projects, game jams, academic projects, or mods.* Please describe your experience using C++.* LinkedIn Profile Website How did you hear about this job? Are you legally authorized to work in the United States for our Company?* Select... Are you currently located in the US?* Select... Are you currently based in or willing to relocate to the Bay Area for this position?* Select...",
+      "required": false,
+      "options": [],
+      "dom_indices": [
+        17
+      ],
+      "source_types": [
+        "text"
+      ],
+      "source_count": 1,
+      "decision": {
+        "category": "LINKEDIN",
+        "action": "PROFILE_VALUE",
+        "reason": "Standard professional-profile field.",
+        "answer_key": "LINKEDIN_URL",
+        "fixed_answer": null
+      }
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "name": "",
+      "id": "question_37094276002",
+      "label": "Website",
+      "placeholder": "",
+      "context_text": "Why do you want to work at Discord?* Tell us about your game development experience. This can include professional work, independent projects, game jams, academic projects, or mods.* Please describe your experience using C++.* LinkedIn Profile Website How did you hear about this job? Are you legally authorized to work in the United States for our Company?* Select... Are you currently located in the US?* Select... Are you currently based in or willing to relocate to the Bay Area for this position?* Select...",
+      "required": false,
+      "options": [],
+      "dom_indices": [
+        18
+      ],
+      "source_types": [
+        "text"
+      ],
+      "source_count": 1,
+      "decision": {
+        "category": "PORTFOLIO",
+        "action": "PROFILE_VALUE",
+        "reason": "Standard professional-profile field.",
+        "answer_key": "PORTFOLIO_URL",
+        "fixed_answer": null
+      }
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "name": "",
+      "id": "question_37094277002",
+      "label": "How did you hear about this job?",
+      "placeholder": "",
+      "context_text": "Why do you want to work at Discord?* Tell us about your game development experience. This can include professional work, independent projects, game jams, academic projects, or mods.* Please describe your experience using C++.* LinkedIn Profile Website How did you hear about this job? Are you legally authorized to work in the United States for our Company?* Select... Are you currently located in the US?* Select... Are you currently based in or willing to relocate to the Bay Area for this position?* Select...",
+      "required": false,
+      "options": [],
+      "dom_indices": [
+        19
+      ],
+      "source_types": [
+        "text"
+      ],
+      "source_count": 1,
+      "decision": {
+        "category": "APPLICATION_SOURCE",
+        "action": "NEEDS_ASSISTANCE",
+        "reason": "Application-source questions require a truthful per-application answer.",
+        "answer_key": null,
+        "fixed_answer": null
+      }
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "name": "",
+      "id": "question_37094278002",
+      "label": "Are you legally authorized to work in the United States for our Company?*",
+      "placeholder": "",
+      "context_text": "Are you legally authorized to work in the United States for our Company?* Select...",
+      "required": true,
+      "options": [],
+      "dom_indices": [
+        20,
+        21
+      ],
+      "source_types": [
+        "text"
+      ],
+      "source_count": 2,
+      "decision": {
+        "category": "WORK_AUTHORIZATION_US",
+        "action": "FIXED_ANSWER",
+        "reason": "Direct U.S. work-authorization question without sponsorship wording.",
+        "answer_key": "WORK_AUTHORIZED_US",
+        "fixed_answer": "Yes"
+      }
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "name": "",
+      "id": "question_37094279002",
+      "label": "Are you currently located in the US?*",
+      "placeholder": "",
+      "context_text": "Why do you want to work at Discord?* Tell us about your game development experience. This can include professional work, independent projects, game jams, academic projects, or mods.* Please describe your experience using C++.* LinkedIn Profile Website How did you hear about this job? Are you legally authorized to work in the United States for our Company?* Select... Are you currently located in the US?* Select... Are you currently based in or willing to relocate to the Bay Area for this position?* Select...",
+      "required": true,
+      "options": [],
+      "dom_indices": [
+        22,
+        23
+      ],
+      "source_types": [
+        "text"
+      ],
+      "source_count": 2,
+      "decision": {
+        "category": "UNKNOWN_CUSTOM_FIELD",
+        "action": "NEEDS_ASSISTANCE",
+        "reason": "Field is not recognized with enough confidence to answer automatically.",
+        "answer_key": null,
+        "fixed_answer": null
+      }
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "name": "",
+      "id": "question_37094280002",
+      "label": "Are you currently based in or willing to relocate to the Bay Area for this position?*",
+      "placeholder": "",
+      "context_text": "Why do you want to work at Discord?* Tell us about your game development experience. This can include professional work, independent projects, game jams, academic projects, or mods.* Please describe your experience using C++.* LinkedIn Profile Website How did you hear about this job? Are you legally authorized to work in the United States for our Company?* Select... Are you currently located in the US?* Select... Are you currently based in or willing to relocate to the Bay Area for this position?* Select...",
+      "required": true,
+      "options": [],
+      "dom_indices": [
+        24,
+        25
+      ],
+      "source_types": [
+        "text"
+      ],
+      "source_count": 2,
+      "decision": {
+        "category": "RELOCATION",
+        "action": "NEEDS_ASSISTANCE",
+        "reason": "Relocation preferences require explicit profile data.",
+        "answer_key": null,
+        "fixed_answer": null
+      }
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "name": "",
+      "id": "4033064002",
+      "label": "Gender*",
+      "placeholder": "",
+      "context_text": "Gender* Select...",
+      "required": true,
+      "options": [],
+      "dom_indices": [
+        26,
+        27,
+        37,
+        38
+      ],
+      "source_types": [
+        "text"
+      ],
+      "source_count": 4,
+      "decision": {
+        "category": "VOLUNTARY_DEMOGRAPHIC",
+        "action": "NEEDS_ASSISTANCE",
+        "reason": "Demographic/EEO answers must never be inferred.",
+        "answer_key": null,
+        "fixed_answer": null
+      }
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "name": "",
+      "id": "4033065002",
+      "label": "Race and Ethnicity*",
+      "placeholder": "",
+      "context_text": "Race and Ethnicity* Select...",
+      "required": true,
+      "options": [],
+      "dom_indices": [
+        28,
+        29
+      ],
+      "source_types": [
+        "text"
+      ],
+      "source_count": 2,
+      "decision": {
+        "category": "VOLUNTARY_DEMOGRAPHIC",
+        "action": "NEEDS_ASSISTANCE",
+        "reason": "Demographic/EEO answers must never be inferred.",
+        "answer_key": null,
+        "fixed_answer": null
+      }
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "name": "",
+      "id": "4033066002",
+      "label": "Veteran Status*",
+      "placeholder": "",
+      "context_text": "Veteran Status* Select...",
+      "required": true,
+      "options": [],
+      "dom_indices": [
+        30,
+        31,
+        41,
+        42
+      ],
+      "source_types": [
+        "text"
+      ],
+      "source_count": 4,
+      "decision": {
+        "category": "VOLUNTARY_DEMOGRAPHIC",
+        "action": "NEEDS_ASSISTANCE",
+        "reason": "Demographic/EEO answers must never be inferred.",
+        "answer_key": null,
+        "fixed_answer": null
+      }
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "name": "",
+      "id": "4033067002",
+      "label": "Disability Status*",
+      "placeholder": "",
+      "context_text": "Disability Status* Select...",
+      "required": true,
+      "options": [],
+      "dom_indices": [
+        32,
+        33,
+        43,
+        44
+      ],
+      "source_types": [
+        "text"
+      ],
+      "source_count": 4,
+      "decision": {
+        "category": "VOLUNTARY_DEMOGRAPHIC",
+        "action": "NEEDS_ASSISTANCE",
+        "reason": "Demographic/EEO answers must never be inferred.",
+        "answer_key": null,
+        "fixed_answer": null
+      }
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "name": "",
+      "id": "4033068002",
+      "label": "Gender Identity (optional)",
+      "placeholder": "",
+      "context_text": "Gender Identity (optional) Select...",
+      "required": false,
+      "options": [],
+      "dom_indices": [
+        34
+      ],
+      "source_types": [
+        "text"
+      ],
+      "source_count": 1,
+      "decision": {
+        "category": "VOLUNTARY_DEMOGRAPHIC",
+        "action": "NEEDS_ASSISTANCE",
+        "reason": "Demographic/EEO answers must never be inferred.",
+        "answer_key": null,
+        "fixed_answer": null
+      }
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "name": "",
+      "id": "4033069002",
+      "label": "Race or Ethnicity (optional)",
+      "placeholder": "",
+      "context_text": "Race or Ethnicity (optional) Select...",
+      "required": false,
+      "options": [],
+      "dom_indices": [
+        35
+      ],
+      "source_types": [
+        "text"
+      ],
+      "source_count": 1,
+      "decision": {
+        "category": "VOLUNTARY_DEMOGRAPHIC",
+        "action": "NEEDS_ASSISTANCE",
+        "reason": "Demographic/EEO answers must never be inferred.",
+        "answer_key": null,
+        "fixed_answer": null
+      }
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "name": "",
+      "id": "4033070002",
+      "label": "I consider myself a member of the LGBTQ+ community. (optional)",
+      "placeholder": "",
+      "context_text": "I consider myself a member of the LGBTQ+ community. (optional) Select...",
+      "required": false,
+      "options": [],
+      "dom_indices": [
+        36
+      ],
+      "source_types": [
+        "text"
+      ],
+      "source_count": 1,
+      "decision": {
+        "category": "UNKNOWN_CUSTOM_FIELD",
+        "action": "NEEDS_ASSISTANCE",
+        "reason": "Field is not recognized with enough confidence to answer automatically.",
+        "answer_key": null,
+        "fixed_answer": null
+      }
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "name": "",
+      "id": "hispanic_ethnicity",
+      "label": "Are you Hispanic/Latino?*",
+      "placeholder": "",
+      "context_text": "Are you Hispanic/Latino?* Select... Race & Ethnicity Definitions",
+      "required": true,
+      "options": [],
+      "dom_indices": [
+        39,
+        40
+      ],
+      "source_types": [
+        "text"
+      ],
+      "source_count": 2,
+      "decision": {
+        "category": "UNKNOWN_CUSTOM_FIELD",
+        "action": "NEEDS_ASSISTANCE",
+        "reason": "Field is not recognized with enough confidence to answer automatically.",
+        "answer_key": null,
+        "fixed_answer": null
+      }
+    }
+  ],
+  "submit_attempted": false
+}

@@ -3,7 +3,7 @@
 
 # Private applicant data
 agent/config/applicant.json
-
+agent/config/applicant_profile.json
 # Resumes - contain personal information
 agent/resumes/
 

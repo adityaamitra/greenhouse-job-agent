@@ -1,0 +1,14 @@
+{
+  "mode": "SCAN_THEN_BROWSER_PERSISTED",
+  "scan_entrypoint": "main.py",
+  "browser_limit": 1,
+  "browser_board_token": null,
+  "browser_order": "oldest",
+  "profile_path": "config/applicant_profile.json",
+  "resume_dir": "resumes",
+  "browser_queue_artifacts_dir": "browser_runs/queue",
+  "browser_scheduler_artifacts_dir": "browser_runs/scheduler",
+  "pipeline_artifacts_dir": "browser_runs/pipeline",
+  "browser_delay_seconds": 2.0,
+  "post_scan_delay_seconds": 1.0
+}

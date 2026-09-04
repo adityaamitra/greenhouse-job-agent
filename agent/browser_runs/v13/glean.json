@@ -1,0 +1,462 @@
+{
+  "requested_url": "https://job-boards.greenhouse.io/gleanwork/jobs/4006734005",
+  "final_url": "https://job-boards.greenhouse.io/gleanwork/jobs/4006734005",
+  "page_title": "Job Application for Software Engineer, Fullstack at Glean",
+  "form_frame_url": "https://job-boards.greenhouse.io/gleanwork/jobs/4006734005",
+  "fields": [
+    {
+      "tag": "input",
+      "type": "text",
+      "name": "",
+      "id": "first_name",
+      "label": "First Name*",
+      "placeholder": "",
+      "context_text": "First Name* Last Name* Email* Phone Country* Phone* Resume/CV* Attach Attach Dropbox Google Drive Enter manually Enter manually Accepted file types: pdf, doc, docx, txt, rtf Cover Letter Attach Attach Dropbox Google Drive Enter manually Enter manually Accepted file types: pdf, doc, docx, txt, rtf",
+      "required": true,
+      "options": [],
+      "dom_indices": [
+        0
+      ],
+      "source_types": [
+        "text"
+      ],
+      "source_count": 1,
+      "decision": {
+        "category": "FIRST_NAME",
+        "action": "PROFILE_VALUE",
+        "reason": "Standard applicant profile field.",
+        "answer_key": "FIRST_NAME",
+        "fixed_answer": null
+      }
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "name": "",
+      "id": "last_name",
+      "label": "Last Name*",
+      "placeholder": "",
+      "context_text": "First Name* Last Name* Email* Phone Country* Phone* Resume/CV* Attach Attach Dropbox Google Drive Enter manually Enter manually Accepted file types: pdf, doc, docx, txt, rtf Cover Letter Attach Attach Dropbox Google Drive Enter manually Enter manually Accepted file types: pdf, doc, docx, txt, rtf",
+      "required": true,
+      "options": [],
+      "dom_indices": [
+        1
+      ],
+      "source_types": [
+        "text"
+      ],
+      "source_count": 1,
+      "decision": {
+        "category": "LAST_NAME",
+        "action": "PROFILE_VALUE",
+        "reason": "Standard applicant profile field.",
+        "answer_key": "LAST_NAME",
+        "fixed_answer": null
+      }
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "name": "",
+      "id": "email",
+      "label": "Email*",
+      "placeholder": "",
+      "context_text": "First Name* Last Name* Email* Phone Country* Phone* Resume/CV* Attach Attach Dropbox Google Drive Enter manually Enter manually Accepted file types: pdf, doc, docx, txt, rtf Cover Letter Attach Attach Dropbox Google Drive Enter manually Enter manually Accepted file types: pdf, doc, docx, txt, rtf",
+      "required": true,
+      "options": [],
+      "dom_indices": [
+        2
+      ],
+      "source_types": [
+        "text"
+      ],
+      "source_count": 1,
+      "decision": {
+        "category": "EMAIL",
+        "action": "PROFILE_VALUE",
+        "reason": "Standard applicant profile field.",
+        "answer_key": "EMAIL",
+        "fixed_answer": null
+      }
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "name": "",
+      "id": "country",
+      "label": "Country*",
+      "placeholder": "",
+      "context_text": "First Name* Last Name* Email* Phone Country* Phone* Resume/CV* Attach Attach Dropbox Google Drive Enter manually Enter manually Accepted file types: pdf, doc, docx, txt, rtf Cover Letter Attach Attach Dropbox Google Drive Enter manually Enter manually Accepted file types: pdf, doc, docx, txt, rtf",
+      "required": true,
+      "options": [],
+      "dom_indices": [
+        3,
+        4
+      ],
+      "source_types": [
+        "text"
+      ],
+      "source_count": 2,
+      "decision": {
+        "category": "LOCATION_OR_ADDRESS",
+        "action": "PROFILE_VALUE",
+        "reason": "Recognized profile/location field; future filling must use explicit profile configuration.",
+        "answer_key": "LOCATION_OR_ADDRESS",
+        "fixed_answer": null
+      }
+    },
+    {
+      "tag": "input",
+      "type": "tel",
+      "name": "",
+      "id": "phone",
+      "label": "Phone*",
+      "placeholder": "",
+      "context_text": "First Name* Last Name* Email* Phone Country* Phone* Resume/CV* Attach Attach Dropbox Google Drive Enter manually Enter manually Accepted file types: pdf, doc, docx, txt, rtf Cover Letter Attach Attach Dropbox Google Drive Enter manually Enter manually Accepted file types: pdf, doc, docx, txt, rtf",
+      "required": true,
+      "options": [],
+      "dom_indices": [
+        6
+      ],
+      "source_types": [
+        "tel"
+      ],
+      "source_count": 1,
+      "decision": {
+        "category": "PHONE",
+        "action": "PROFILE_VALUE",
+        "reason": "Standard applicant profile field.",
+        "answer_key": "PHONE",
+        "fixed_answer": null
+      }
+    },
+    {
+      "tag": "input",
+      "type": "file",
+      "name": "",
+      "id": "resume",
+      "label": "Attach",
+      "placeholder": "",
+      "context_text": "Resume/CV* Attach Attach Dropbox Google Drive Enter manually Enter manually Accepted file types: pdf, doc, docx, txt, rtf",
+      "required": false,
+      "options": [],
+      "dom_indices": [
+        7
+      ],
+      "source_types": [
+        "file"
+      ],
+      "source_count": 1,
+      "decision": {
+        "category": "RESUME",
+        "action": "RESUME_FILE",
+        "reason": "Resume upload can use the resume already selected by the V2.1 matcher.",
+        "answer_key": "SELECTED_RESUME_FILE",
+        "fixed_answer": null
+      }
+    },
+    {
+      "tag": "input",
+      "type": "file",
+      "name": "",
+      "id": "cover_letter",
+      "label": "Attach",
+      "placeholder": "",
+      "context_text": "Cover Letter Attach Attach Dropbox Google Drive Enter manually Enter manually Accepted file types: pdf, doc, docx, txt, rtf",
+      "required": false,
+      "options": [],
+      "dom_indices": [
+        8
+      ],
+      "source_types": [
+        "file"
+      ],
+      "source_count": 1,
+      "decision": {
+        "category": "COVER_LETTER_UPLOAD",
+        "action": "NEEDS_ASSISTANCE",
+        "reason": "Cover-letter content is intentionally human-reviewed.",
+        "answer_key": null,
+        "fixed_answer": null
+      }
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "name": "",
+      "id": "question_4021098005",
+      "label": "LinkedIn Profile*",
+      "placeholder": "",
+      "context_text": "LinkedIn Profile* Website Are you willing and able to commit to the hybrid policy if hired?* Select... We work out of the Palo Alto office on Monday, Wednesday, and Friday. Do you know anyone currently at Glean?* How did you hear about Glean?* Select... Please input the total years of experience you have that are relevant for this role.* What AI tools are you currently using today and how are you using them?*",
+      "required": true,
+      "options": [],
+      "dom_indices": [
+        9
+      ],
+      "source_types": [
+        "text"
+      ],
+      "source_count": 1,
+      "decision": {
+        "category": "LINKEDIN",
+        "action": "PROFILE_VALUE",
+        "reason": "Standard professional-profile field.",
+        "answer_key": "LINKEDIN_URL",
+        "fixed_answer": null
+      }
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "name": "",
+      "id": "question_4021099005",
+      "label": "Website",
+      "placeholder": "",
+      "context_text": "LinkedIn Profile* Website Are you willing and able to commit to the hybrid policy if hired?* Select... We work out of the Palo Alto office on Monday, Wednesday, and Friday. Do you know anyone currently at Glean?* How did you hear about Glean?* Select... Please input the total years of experience you have that are relevant for this role.* What AI tools are you currently using today and how are you using them?*",
+      "required": false,
+      "options": [],
+      "dom_indices": [
+        10
+      ],
+      "source_types": [
+        "text"
+      ],
+      "source_count": 1,
+      "decision": {
+        "category": "PORTFOLIO",
+        "action": "PROFILE_VALUE",
+        "reason": "Standard professional-profile field.",
+        "answer_key": "PORTFOLIO_URL",
+        "fixed_answer": null
+      }
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "name": "",
+      "id": "question_6328097005",
+      "label": "Are you willing and able to commit to the hybrid policy if hired?*",
+      "placeholder": "",
+      "context_text": "LinkedIn Profile* Website Are you willing and able to commit to the hybrid policy if hired?* Select... We work out of the Palo Alto office on Monday, Wednesday, and Friday. Do you know anyone currently at Glean?* How did you hear about Glean?* Select... Please input the total years of experience you have that are relevant for this role.* What AI tools are you currently using today and how are you using them?*",
+      "required": true,
+      "options": [],
+      "dom_indices": [
+        11,
+        12
+      ],
+      "source_types": [
+        "text"
+      ],
+      "source_count": 2,
+      "decision": {
+        "category": "UNKNOWN_CUSTOM_FIELD",
+        "action": "NEEDS_ASSISTANCE",
+        "reason": "Field is not recognized with enough confidence to answer automatically.",
+        "answer_key": null,
+        "fixed_answer": null
+      }
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "name": "",
+      "id": "question_6328318005",
+      "label": "Do you know anyone currently at Glean?*",
+      "placeholder": "",
+      "context_text": "LinkedIn Profile* Website Are you willing and able to commit to the hybrid policy if hired?* Select... We work out of the Palo Alto office on Monday, Wednesday, and Friday. Do you know anyone currently at Glean?* How did you hear about Glean?* Select... Please input the total years of experience you have that are relevant for this role.* What AI tools are you currently using today and how are you using them?*",
+      "required": true,
+      "options": [],
+      "dom_indices": [
+        13
+      ],
+      "source_types": [
+        "text"
+      ],
+      "source_count": 1,
+      "decision": {
+        "category": "UNKNOWN_CUSTOM_FIELD",
+        "action": "NEEDS_ASSISTANCE",
+        "reason": "Field is not recognized with enough confidence to answer automatically.",
+        "answer_key": null,
+        "fixed_answer": null
+      }
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "name": "",
+      "id": "question_7125109005",
+      "label": "How did you hear about Glean?*",
+      "placeholder": "",
+      "context_text": "LinkedIn Profile* Website Are you willing and able to commit to the hybrid policy if hired?* Select... We work out of the Palo Alto office on Monday, Wednesday, and Friday. Do you know anyone currently at Glean?* How did you hear about Glean?* Select... Please input the total years of experience you have that are relevant for this role.* What AI tools are you currently using today and how are you using them?*",
+      "required": true,
+      "options": [],
+      "dom_indices": [
+        14,
+        15
+      ],
+      "source_types": [
+        "text"
+      ],
+      "source_count": 2,
+      "decision": {
+        "category": "APPLICATION_SOURCE",
+        "action": "NEEDS_ASSISTANCE",
+        "reason": "Application-source questions require a truthful per-application answer.",
+        "answer_key": null,
+        "fixed_answer": null
+      }
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "name": "",
+      "id": "question_8504973005",
+      "label": "Please input the total years of experience you have that are relevant for this role.*",
+      "placeholder": "",
+      "context_text": "LinkedIn Profile* Website Are you willing and able to commit to the hybrid policy if hired?* Select... We work out of the Palo Alto office on Monday, Wednesday, and Friday. Do you know anyone currently at Glean?* How did you hear about Glean?* Select... Please input the total years of experience you have that are relevant for this role.* What AI tools are you currently using today and how are you using them?*",
+      "required": true,
+      "options": [],
+      "dom_indices": [
+        16
+      ],
+      "source_types": [
+        "text"
+      ],
+      "source_count": 1,
+      "decision": {
+        "category": "UNKNOWN_CUSTOM_FIELD",
+        "action": "NEEDS_ASSISTANCE",
+        "reason": "Field is not recognized with enough confidence to answer automatically.",
+        "answer_key": null,
+        "fixed_answer": null
+      }
+    },
+    {
+      "tag": "textarea",
+      "type": "textarea",
+      "name": "",
+      "id": "question_8595585005",
+      "label": "What AI tools are you currently using today and how are you using them?*",
+      "placeholder": "",
+      "context_text": "LinkedIn Profile* Website Are you willing and able to commit to the hybrid policy if hired?* Select... We work out of the Palo Alto office on Monday, Wednesday, and Friday. Do you know anyone currently at Glean?* How did you hear about Glean?* Select... Please input the total years of experience you have that are relevant for this role.* What AI tools are you currently using today and how are you using them?*",
+      "required": true,
+      "options": [],
+      "dom_indices": [
+        17
+      ],
+      "source_types": [
+        "textarea"
+      ],
+      "source_count": 1,
+      "decision": {
+        "category": "UNKNOWN_CUSTOM_FIELD",
+        "action": "NEEDS_ASSISTANCE",
+        "reason": "Field is not recognized with enough confidence to answer automatically.",
+        "answer_key": null,
+        "fixed_answer": null
+      }
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "name": "",
+      "id": "gender",
+      "label": "Gender",
+      "placeholder": "",
+      "context_text": "Gender Select...",
+      "required": false,
+      "options": [],
+      "dom_indices": [
+        18
+      ],
+      "source_types": [
+        "text"
+      ],
+      "source_count": 1,
+      "decision": {
+        "category": "VOLUNTARY_DEMOGRAPHIC",
+        "action": "NEEDS_ASSISTANCE",
+        "reason": "Demographic/EEO answers must never be inferred.",
+        "answer_key": null,
+        "fixed_answer": null
+      }
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "name": "",
+      "id": "hispanic_ethnicity",
+      "label": "Are you Hispanic/Latino?",
+      "placeholder": "",
+      "context_text": "Are you Hispanic/Latino? Select... Race & Ethnicity Definitions",
+      "required": false,
+      "options": [],
+      "dom_indices": [
+        19
+      ],
+      "source_types": [
+        "text"
+      ],
+      "source_count": 1,
+      "decision": {
+        "category": "UNKNOWN_CUSTOM_FIELD",
+        "action": "NEEDS_ASSISTANCE",
+        "reason": "Field is not recognized with enough confidence to answer automatically.",
+        "answer_key": null,
+        "fixed_answer": null
+      }
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "name": "",
+      "id": "veteran_status",
+      "label": "Veteran Status",
+      "placeholder": "",
+      "context_text": "Veteran Status Select...",
+      "required": false,
+      "options": [],
+      "dom_indices": [
+        20
+      ],
+      "source_types": [
+        "text"
+      ],
+      "source_count": 1,
+      "decision": {
+        "category": "VOLUNTARY_DEMOGRAPHIC",
+        "action": "NEEDS_ASSISTANCE",
+        "reason": "Demographic/EEO answers must never be inferred.",
+        "answer_key": null,
+        "fixed_answer": null
+      }
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "name": "",
+      "id": "disability_status",
+      "label": "Disability Status",
+      "placeholder": "",
+      "context_text": "Disability Status Select...",
+      "required": false,
+      "options": [],
+      "dom_indices": [
+        21
+      ],
+      "source_types": [
+        "text"
+      ],
+      "source_count": 1,
+      "decision": {
+        "category": "VOLUNTARY_DEMOGRAPHIC",
+        "action": "NEEDS_ASSISTANCE",
+        "reason": "Demographic/EEO answers must never be inferred.",
+        "answer_key": null,
+        "fixed_answer": null
+      }
+    }
+  ],
+  "submit_attempted": false
+}

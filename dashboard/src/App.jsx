@@ -47,6 +47,16 @@ const FIT_COMPONENTS = [
 ];
 
 
+const BROWSER_POLICY_ANSWER_KEYS = new Set([
+  "WORK_AUTHORIZED_US",
+  "SPONSORSHIP_NOW",
+  "SPONSORSHIP_FUTURE",
+  "SPONSORSHIP_NOW_OR_FUTURE",
+  "WORK_AUTH_WITHOUT_SPONSORSHIP_NOW",
+  "WORK_AUTH_WITHOUT_SPONSORSHIP_FUTURE",
+]);
+
+
 function prettyName(value) {
   if (!value) {
     return "-";
@@ -156,6 +166,82 @@ function jobIsActive(application) {
 }
 
 
+function objectOrNull(value) {
+  if (
+    value &&
+    typeof value === "object" &&
+    !Array.isArray(value)
+  ) {
+    return value;
+  }
+
+  return null;
+}
+
+
+function getBrowserHandoff(application) {
+  const request = application?.browser_assistance;
+
+  if (
+    !request ||
+    request.source !== "BROWSER" ||
+    request.resolved === true ||
+    Number(request.handoff_version) !== 1
+  ) {
+    return null;
+  }
+
+  return objectOrNull(request.handoff);
+}
+
+
+function safeHandoffItems(value) {
+  if (!Array.isArray(value)) {
+    return [];
+  }
+
+  return value.filter(
+    (item) =>
+      item &&
+      typeof item === "object" &&
+      !Array.isArray(item)
+  );
+}
+
+
+function safeHandoffCount(value, fallback) {
+  const parsed = numberOrNull(value);
+
+  if (parsed === null || parsed < 0) {
+    return fallback;
+  }
+
+  return Math.round(parsed);
+}
+
+
+function safePolicyDisplayAnswer(item) {
+  if (
+    !item ||
+    !BROWSER_POLICY_ANSWER_KEYS.has(
+      item.answer_key
+    )
+  ) {
+    return null;
+  }
+
+  const answer = String(
+    item.display_answer ?? ""
+  );
+
+  return ["Yes", "No", "True", "False"].includes(
+    answer
+  )
+    ? answer
+    : null;
+}
+
+
 function ScoreBadge({ score }) {
   const numericScore = numberOrNull(score);
 
@@ -259,6 +345,8 @@ function App() {
     useState(null);
   const [runHistory, setRunHistory] =
     useState([]);
+  const [browserRuns, setBrowserRuns] =
+    useState([]);
   const [activeTab, setActiveTab] =
     useState("overview");
   const [loading, setLoading] =
@@ -287,6 +375,7 @@ function App() {
           setApplications([]);
           setLatestRun(null);
           setRunHistory([]);
+          setBrowserRuns([]);
         }
       }
     );
@@ -427,6 +516,48 @@ function App() {
         }
       }
 
+      const {
+        data: browserAssistanceData,
+        error: browserAssistanceError,
+      } = await supabase
+        .from("assistance_requests")
+        .select(`
+          id,
+          application_id,
+          question,
+          reason,
+          resolved,
+          source,
+          handoff_version,
+          handoff,
+          updated_at
+        `)
+        .eq("source", "BROWSER")
+        .eq("resolved", false)
+        .order("updated_at", {
+          ascending: false,
+        });
+
+      if (browserAssistanceError) {
+        throw browserAssistanceError;
+      }
+
+      const latestBrowserAssistanceByApplication = {};
+
+      for (
+        const request of browserAssistanceData ?? []
+      ) {
+        if (
+          !latestBrowserAssistanceByApplication[
+            request.application_id
+          ]
+        ) {
+          latestBrowserAssistanceByApplication[
+            request.application_id
+          ] = request;
+        }
+      }
+
       const mergedApplications = (
         applicationData ?? []
       ).map((application) => ({
@@ -434,6 +565,10 @@ function App() {
         evaluation:
           latestEvaluationByJob[
             application.job_id
+          ] ?? null,
+        browser_assistance:
+          latestBrowserAssistanceByApplication[
+            application.id
           ] ?? null,
       }));
 
@@ -480,6 +615,49 @@ function App() {
 
       setRunHistory(
         [...(runData ?? [])].reverse()
+      );
+
+      const {
+        data: browserRunData,
+        error: browserRunError,
+      } = await supabase
+        .from("browser_queue_runs")
+        .select(`
+          id,
+          run_key,
+          runner_version,
+          status,
+          persist_handoffs,
+          board_token_filter,
+          queue_order,
+          queue_limit,
+          include_in_progress,
+          started_at,
+          completed_at,
+          total_seconds,
+          selected_count,
+          completed_count,
+          needs_assistance_count,
+          ready_no_submit_count,
+          blocked_count,
+          error_count,
+          challenge_count,
+          browser_modified_count,
+          submitted_count,
+          submit_clicked_by_agent,
+          application_submitted
+        `)
+        .order("started_at", {
+          ascending: false,
+        })
+        .limit(30);
+
+      if (browserRunError) {
+        throw browserRunError;
+      }
+
+      setBrowserRuns(
+        browserRunData ?? []
       );
     } catch (err) {
       setError(err.message);
@@ -550,6 +728,74 @@ function App() {
       setUpdatingId(null);
     }
   }
+
+
+  const latestBrowserRun =
+    browserRuns[
+      0
+    ] ?? null;
+
+  const browserRunStats = useMemo(
+    () => {
+      const recent = browserRuns;
+
+      return {
+        runs: recent.length,
+        selected: recent.reduce(
+          (sum, run) =>
+            sum +
+            Number(
+              run.selected_count ?? 0
+            ),
+          0
+        ),
+        completed: recent.reduce(
+          (sum, run) =>
+            sum +
+            Number(
+              run.completed_count ?? 0
+            ),
+          0
+        ),
+        challenges: recent.reduce(
+          (sum, run) =>
+            sum +
+            Number(
+              run.challenge_count ?? 0
+            ),
+          0
+        ),
+        assistance: recent.reduce(
+          (sum, run) =>
+            sum +
+            Number(
+              run.needs_assistance_count ?? 0
+            ),
+          0
+        ),
+        readyNoSubmit: recent.reduce(
+          (sum, run) =>
+            sum +
+            Number(
+              run.ready_no_submit_count ?? 0
+            ),
+          0
+        ),
+        failures: recent.reduce(
+          (sum, run) =>
+            sum +
+            Number(
+              run.blocked_count ?? 0
+            ) +
+            Number(
+              run.error_count ?? 0
+            ),
+          0
+        ),
+      };
+    },
+    [browserRuns]
+  );
 
 
   const manualApplications = useMemo(
@@ -988,6 +1234,19 @@ function App() {
         />
 
         <Tab
+          label="Browser Runs"
+          active={
+            activeTab === "browser"
+          }
+          count={
+            browserRuns.length
+          }
+          onClick={() =>
+            setActiveTab("browser")
+          }
+        />
+
+        <Tab
           label="Analytics"
           active={
             activeTab === "analytics"
@@ -1284,6 +1543,7 @@ function App() {
                   updateStatus={updateStatus}
                   updatingId={updatingId}
                   showEvidence={false}
+                  showAssistanceHandoff
                 />
               )
             )}
@@ -1604,6 +1864,305 @@ function App() {
       )}
 
 
+      {activeTab === "browser" && (
+        <main>
+          <section className="panel">
+            <div className="panel-heading">
+              <div>
+                <h2>
+                  Browser Queue Runs
+                </h2>
+                <p>
+                  Sanitized Browser Agent queue history. Submission remains hard-blocked.
+                </p>
+              </div>
+
+              <span className="count-badge">
+                {browserRuns.length}
+              </span>
+            </div>
+
+            {latestBrowserRun ? (
+              <>
+                <div className="browser-run-hero">
+                  <div>
+                    <span className="browser-run-kicker">
+                      Latest Browser Queue Run
+                    </span>
+
+                    <strong>
+                      {formatBrowserRunTime(
+                        latestBrowserRun.started_at
+                      )}
+                    </strong>
+
+                    <small>
+                      {latestBrowserRun.board_token_filter
+                        ? `Board: ${latestBrowserRun.board_token_filter}`
+                        : "All configured boards"}
+                      {" · "}
+                      {latestBrowserRun.persist_handoffs
+                        ? "Persisted"
+                        : "Dry run"}
+                    </small>
+                  </div>
+
+                  <BrowserRunHealthBadge
+                    run={latestBrowserRun}
+                  />
+                </div>
+
+                <div className="activity-grid browser-run-stats">
+                  <RunStat
+                    label="Selected"
+                    value={
+                      latestBrowserRun.selected_count
+                    }
+                  />
+
+                  <RunStat
+                    label="Completed"
+                    value={
+                      latestBrowserRun.completed_count
+                    }
+                  />
+
+                  <RunStat
+                    label="CAPTCHA"
+                    value={
+                      latestBrowserRun.challenge_count
+                    }
+                  />
+
+                  <RunStat
+                    label="Needs Assistance"
+                    value={
+                      latestBrowserRun.needs_assistance_count
+                    }
+                  />
+
+                  <RunStat
+                    label="Ready / No Submit"
+                    value={
+                      latestBrowserRun.ready_no_submit_count
+                    }
+                  />
+
+                  <RunStat
+                    label="Blocked + Errors"
+                    value={
+                      Number(
+                        latestBrowserRun.blocked_count ?? 0
+                      ) +
+                      Number(
+                        latestBrowserRun.error_count ?? 0
+                      )
+                    }
+                  />
+                </div>
+
+                <div className="browser-safety-strip">
+                  <span>
+                    Browser modified:{" "}
+                    <strong>
+                      {latestBrowserRun.browser_modified_count ?? 0}
+                    </strong>
+                  </span>
+
+                  <span>
+                    Runtime:{" "}
+                    <strong>
+                      {formatNumber(
+                        latestBrowserRun.total_seconds,
+                        2
+                      )}s
+                    </strong>
+                  </span>
+
+                  <span className="browser-submit-zero">
+                    Submissions:{" "}
+                    <strong>
+                      {latestBrowserRun.submitted_count ?? 0}
+                    </strong>
+                  </span>
+                </div>
+              </>
+            ) : (
+              <EmptyState
+                text="No persisted Browser Queue runs yet."
+              />
+            )}
+          </section>
+
+
+          <section className="metrics metrics-six panel-spacing browser-history-summary">
+            <MetricCard
+              label="Recent Runs"
+              value={
+                browserRunStats.runs
+              }
+            />
+
+            <MetricCard
+              label="Jobs Selected"
+              value={
+                browserRunStats.selected
+              }
+            />
+
+            <MetricCard
+              label="Completed"
+              value={
+                browserRunStats.completed
+              }
+            />
+
+            <MetricCard
+              label="CAPTCHA Handoffs"
+              value={
+                browserRunStats.challenges
+              }
+            />
+
+            <MetricCard
+              label="Needs Assistance"
+              value={
+                browserRunStats.assistance
+              }
+            />
+
+            <MetricCard
+              label="Ready / No Submit"
+              value={
+                browserRunStats.readyNoSubmit
+              }
+              hint={
+                `${browserRunStats.failures} blocked/error`
+              }
+            />
+          </section>
+
+
+          <section className="panel panel-spacing">
+            <div className="panel-heading">
+              <div>
+                <h2>
+                  Recent Queue History
+                </h2>
+                <p>
+                  Up to 30 owner-scoped Browser Queue runs from Supabase.
+                </p>
+              </div>
+            </div>
+
+            {browserRuns.length > 0 ? (
+              <div className="table-wrapper">
+                <table className="browser-runs-table">
+                  <thead>
+                    <tr>
+                      <th>Started</th>
+                      <th>Scope</th>
+                      <th>Mode</th>
+                      <th>Selected</th>
+                      <th>Completed</th>
+                      <th>CAPTCHA</th>
+                      <th>Assistance</th>
+                      <th>Ready</th>
+                      <th>Blocked</th>
+                      <th>Errors</th>
+                      <th>Runtime</th>
+                      <th>Submit</th>
+                    </tr>
+                  </thead>
+
+                  <tbody>
+                    {browserRuns.map(
+                      (run) => (
+                        <tr
+                          key={run.id}
+                        >
+                          <td>
+                            <div className="browser-run-time-cell">
+                              <strong>
+                                {formatBrowserRunTime(
+                                  run.started_at
+                                )}
+                              </strong>
+
+                              <BrowserRunHealthBadge
+                                run={run}
+                                compact
+                              />
+                            </div>
+                          </td>
+
+                          <td>
+                            {run.board_token_filter
+                              ?? "All boards"}
+                          </td>
+
+                          <td>
+                            {run.persist_handoffs
+                              ? "Persisted"
+                              : "Dry run"}
+                          </td>
+
+                          <td className="numeric-cell">
+                            {run.selected_count ?? 0}
+                          </td>
+
+                          <td className="numeric-cell">
+                            {run.completed_count ?? 0}
+                          </td>
+
+                          <td className="numeric-cell">
+                            {run.challenge_count ?? 0}
+                          </td>
+
+                          <td className="numeric-cell">
+                            {run.needs_assistance_count ?? 0}
+                          </td>
+
+                          <td className="numeric-cell">
+                            {run.ready_no_submit_count ?? 0}
+                          </td>
+
+                          <td className="numeric-cell">
+                            {run.blocked_count ?? 0}
+                          </td>
+
+                          <td className="numeric-cell">
+                            {run.error_count ?? 0}
+                          </td>
+
+                          <td className="numeric-cell">
+                            {formatNumber(
+                              run.total_seconds,
+                              2
+                            )}s
+                          </td>
+
+                          <td>
+                            <span className="browser-submit-badge">
+                              {run.submitted_count ?? 0}
+                            </span>
+                          </td>
+                        </tr>
+                      )
+                    )}
+                  </tbody>
+                </table>
+              </div>
+            ) : (
+              <EmptyState
+                text="Run the Browser Queue with --persist to create history."
+              />
+            )}
+          </section>
+        </main>
+      )}
+
+
       {activeTab === "analytics" && (
         <main>
           <section className="metrics analytics-metrics metrics-six">
@@ -1869,6 +2428,81 @@ function Tab({
 }
 
 
+function formatBrowserRunTime(
+  value
+) {
+  if (!value) {
+    return "-";
+  }
+
+  const parsed = new Date(
+    value
+  );
+
+  if (
+    Number.isNaN(
+      parsed.getTime()
+    )
+  ) {
+    return String(value);
+  }
+
+  return parsed.toLocaleString();
+}
+
+
+function BrowserRunHealthBadge({
+  run,
+  compact = false,
+}) {
+  const submitted =
+    Number(
+      run?.submitted_count ?? 0
+    );
+
+  const failures =
+    Number(
+      run?.blocked_count ?? 0
+    ) +
+    Number(
+      run?.error_count ?? 0
+    );
+
+  const assistance =
+    Number(
+      run?.needs_assistance_count ?? 0
+    );
+
+  let label = "Clean";
+  let className =
+    "browser-run-health clean";
+
+  if (submitted > 0) {
+    label = "Safety violation";
+    className =
+      "browser-run-health danger";
+  } else if (failures > 0) {
+    label = "Blocked / error";
+    className =
+      "browser-run-health warning";
+  } else if (assistance > 0) {
+    label = "Assistance";
+    className =
+      "browser-run-health assistance";
+  }
+
+  if (compact) {
+    className += " compact";
+  }
+
+  return (
+    <span className={className}>
+      {label}
+    </span>
+  );
+}
+
+
 function MetricCard({
   label,
   value,
@@ -2012,9 +2646,15 @@ function ActionCard({
   updateStatus,
   updatingId,
   showEvidence,
+  showAssistanceHandoff = false,
 }) {
   const evaluation =
     application.evaluation;
+
+  const browserHandoff =
+    showAssistanceHandoff
+      ? getBrowserHandoff(application)
+      : null;
 
   return (
     <div className="action-card action-card-v21">
@@ -2080,10 +2720,18 @@ function ActionCard({
           />
         )}
 
-        {application.assistance_reason && (
+        {application.assistance_reason &&
+          !browserHandoff && (
           <div className="assistance-message">
             {application.assistance_reason}
           </div>
+        )}
+
+        {browserHandoff && (
+          <BrowserAssistanceHandoff
+            application={application}
+            handoff={browserHandoff}
+          />
         )}
       </div>
 
@@ -2114,6 +2762,298 @@ function ActionCard({
           </button>
         )}
       </div>
+    </div>
+  );
+}
+
+
+function BrowserAssistanceHandoff({
+  application,
+  handoff,
+}) {
+  const summary =
+    objectOrNull(handoff.summary) ?? {};
+
+  const challenge =
+    objectOrNull(handoff.challenge) ?? {};
+
+  const readyItems =
+    safeHandoffItems(
+      handoff.deterministic_ready
+    );
+
+  const humanItems =
+    safeHandoffItems(
+      handoff.human_assistance
+    );
+
+  const routeReasons =
+    Array.isArray(handoff.route_reasons)
+      ? handoff.route_reasons.filter(
+          (reason) =>
+            typeof reason === "string" &&
+            reason.trim()
+        )
+      : [];
+
+  const challengeReasons =
+    Array.isArray(challenge.reasons)
+      ? challenge.reasons.filter(
+          (reason) =>
+            typeof reason === "string" &&
+            reason.trim()
+        )
+      : [];
+
+  const readyCount =
+    safeHandoffCount(
+      summary.ready_count,
+      readyItems.length
+    );
+
+  const requiredHumanCount =
+    safeHandoffCount(
+      summary.required_human_count,
+      humanItems.filter(
+        (item) => item.required
+      ).length
+    );
+
+  const challengeDetected =
+    challenge.detected === true ||
+    summary.challenge_detected === true;
+
+  const selectedResume =
+    typeof handoff.selected_resume === "string" &&
+    handoff.selected_resume.trim()
+      ? handoff.selected_resume
+      : (
+          application.evaluation
+            ?.selected_resume_file ??
+          application.evaluation
+            ?.selected_resume ??
+          "-"
+        );
+
+  const routeMismatch =
+    application.evaluation?.route &&
+    application.evaluation.route !==
+      "AGENT_APPLY";
+
+  return (
+    <div className="browser-handoff">
+      <div className="browser-handoff-header">
+        <div>
+          <strong>
+            Browser assistance handoff
+          </strong>
+
+          <span>
+            Deterministic answers are ready;
+            human-only fields remain untouched.
+          </span>
+        </div>
+
+        <div className="handoff-badges">
+          <span className="handoff-badge browser">
+            Browser V1
+          </span>
+
+          {challengeDetected && (
+            <span className="handoff-badge challenge">
+              CAPTCHA
+            </span>
+          )}
+
+          <span className="handoff-badge ready">
+            {readyCount} ready
+          </span>
+
+          <span className="handoff-badge review">
+            {requiredHumanCount} need review
+          </span>
+
+          {routeMismatch && (
+            <span className="handoff-badge warning">
+              Route mismatch
+            </span>
+          )}
+        </div>
+      </div>
+
+      <div className="handoff-resume">
+        <span>
+          Selected resume
+        </span>
+
+        <strong>
+          {selectedResume}
+        </strong>
+      </div>
+
+      {routeMismatch && (
+        <div className="handoff-routing-note">
+          Latest matcher route is{" "}
+          <strong>
+            {prettyName(
+              application.evaluation?.route
+            )}
+          </strong>
+          . Browser handoffs are only persisted
+          for Agent Apply jobs under the current
+          route guard.
+        </div>
+      )}
+
+      <details className="handoff-details">
+        <summary>
+          Review application handoff
+        </summary>
+
+        <div className="handoff-detail-grid">
+          <section className="handoff-section">
+            <h4>
+              Why assistance is needed
+            </h4>
+
+            {routeReasons.length > 0 ? (
+              <ul>
+                {routeReasons.map(
+                  (reason, index) => (
+                    <li key={`${reason}-${index}`}>
+                      {reason}
+                    </li>
+                  )
+                )}
+              </ul>
+            ) : (
+              <p>
+                {application.assistance_reason ??
+                  "Human review is required."}
+              </p>
+            )}
+
+            {challengeReasons.length > 0 && (
+              <div className="handoff-technical">
+                <span>
+                  Challenge signal
+                </span>
+
+                {challengeReasons.map(
+                  (reason, index) => (
+                    <code
+                      key={`${reason}-${index}`}
+                    >
+                      {reason}
+                    </code>
+                  )
+                )}
+              </div>
+            )}
+          </section>
+
+          <section className="handoff-section">
+            <h4>
+              Ready from profile / policy
+            </h4>
+
+            {readyItems.length > 0 ? (
+              <ul className="handoff-item-list">
+                {readyItems.map(
+                  (item, index) => {
+                    const displayAnswer =
+                      safePolicyDisplayAnswer(
+                        item
+                      );
+
+                    return (
+                      <li
+                        key={
+                          item.answer_key ??
+                          `${item.label}-${index}`
+                        }
+                      >
+                        <div>
+                          <strong>
+                            {item.label ?? "Ready field"}
+                          </strong>
+
+                          <small>
+                            {prettyName(
+                              item.category
+                            )}
+                          </small>
+                        </div>
+
+                        <span className="handoff-ready-value">
+                          {displayAnswer ??
+                            "Ready"}
+                        </span>
+                      </li>
+                    );
+                  }
+                )}
+              </ul>
+            ) : (
+              <p>
+                No deterministic fields are stored
+                in this handoff.
+              </p>
+            )}
+          </section>
+
+          <section className="handoff-section handoff-section-wide">
+            <h4>
+              Human review needed
+            </h4>
+
+            {humanItems.length > 0 ? (
+              <ul className="handoff-item-list human">
+                {humanItems.map(
+                  (item, index) => (
+                    <li
+                      key={
+                        item.answer_key ??
+                        `${item.label}-${index}`
+                      }
+                    >
+                      <div>
+                        <strong>
+                          {item.label ??
+                            "Application question"}
+                        </strong>
+
+                        <small>
+                          {prettyName(
+                            item.category
+                          )}
+                        </small>
+                      </div>
+
+                      <span
+                        className={
+                          item.required
+                            ? "handoff-field-badge required"
+                            : "handoff-field-badge optional"
+                        }
+                      >
+                        {item.required
+                          ? "Required"
+                          : "Optional"}
+                      </span>
+                    </li>
+                  )
+                )}
+              </ul>
+            ) : (
+              <p>
+                No human-review fields are stored
+                in this handoff.
+              </p>
+            )}
+          </section>
+        </div>
+      </details>
     </div>
   );
 }
